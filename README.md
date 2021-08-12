@@ -10,11 +10,11 @@ CLEO Redux only supports "Windows D3D9 MSS 32bit" version of re3. It might work 
 
 - Download and install re3 from https://github.com/GTAmodding/re3#installation
 
-- Copy cleo.asi to re3 directory.
+- Download `cleo.asi` from the [Releases page](https://github.com/cleolibrary/cleo-redux/releases).
 
 Make sure `cleo.asi`, `re3.exe` and `re3.pdb` are located in the same folder.
 
-- Install CLEO scripts. You can try a classic `showsavescreen.cs` from CLEO 3. Press `F4` to display the save screen while on foot.
+- Create CLEO directory and [install CLEO scripts](https://cleo.li/scripts.html#how_to_install_CLEO_scripts). You can try a classic `showsavescreen.cs` from CLEO 3. Press `F4` to display the save screen while on foot.
 
 **NOTE: CLEO scripts written for GTA III/Vice City should work, but CLEO Redux does not support most of the common CLEO commands yet (see the list of supported commands below).**
 
