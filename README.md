@@ -8,7 +8,7 @@ At the moment it's very barebone and has a limited number of features (see below
 
 CLEO Redux only supports "Windows D3D9 MSS 32bit" version of re3 and reVC.
 
-- Download and install re3 from https://github.com/GTAmodding/re3#installation or reVC from https://github.com/GTAmodding/re3/tree/miami#installation
+- Download and install [re3](https://github.com/GTAmodding/re3#installation) or [reVC](https://github.com/GTAmodding/re3/tree/miami#installation)
 
 - Download `cleo.asi` from the [Releases page](https://github.com/cleolibrary/cleo-redux/releases).
 
