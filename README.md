@@ -6,13 +6,13 @@ At the moment it's very barebone and has a limited number of features (see below
 
 ## Installation
 
-CLEO Redux only supports "Windows D3D9 MSS 32bit" version of re3. It might work with reVC but hasn't been tested yet.
+CLEO Redux only supports "Windows D3D9 MSS 32bit" version of re3 and reVC.
 
-- Download and install re3 from https://github.com/GTAmodding/re3#installation
+- Download and install re3 from https://github.com/GTAmodding/re3#installation or reVC from https://github.com/GTAmodding/re3/tree/miami#installation
 
 - Download `cleo.asi` from the [Releases page](https://github.com/cleolibrary/cleo-redux/releases).
 
-Make sure `cleo.asi`, `re3.exe` and `re3.pdb` are located in the same folder.
+Make sure `cleo.asi`, `re3.exe` (or `reVC.exe`) and `re3.pdb` (or `reVC.pdb`) are located in the same folder.
 
 - Create CLEO directory and [install CLEO scripts](https://cleo.li/scripts.html#how_to_install_CLEO_scripts). You can try a classic `showsavescreen.cs` from CLEO 3. Press `F4` to display the save screen while on foot.
 
