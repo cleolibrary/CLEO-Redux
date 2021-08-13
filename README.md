@@ -24,7 +24,8 @@ If the script only uses vanilla commands, or commands listed below it should wor
 
 - Loading and unloading CS files from CLEO directory
 - Reload scripts when the game starts
-- basic scm log. To enable trace for executed commands open up re3.ini or reVC.ini and add these lines:
+- Live Edit. CLEO monitors active scripts and reloads them if they were changed https://www.youtube.com/watch?v=WanLojClqFw  
+- Basic SCM log. To enable trace for executed commands open up re3.ini or reVC.ini and add these lines:
 
 ```
 [CLEO]
