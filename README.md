@@ -23,7 +23,9 @@ If the script only uses vanilla commands, or commands listed below it should wor
 ## Features
 
 - Loading and processing CS scripts located in the CLEO directory
-- Live Edit. CLEO monitors active scripts and reloads them as they change https://www.youtube.com/watch?v=WanLojClqFw. Adding a new CS file in CLEO directory or deleting an existing one while the game is running starts or stops the script automatically
+- Hot Reload
+  - CLEO monitors active scripts and reloads them in game as they change https://www.youtube.com/watch?v=WanLojClqFw. 
+  - Adding a new CS file in CLEO directory or deleting an existing one while the game is running starts or stops the script automatically: https://www.youtube.com/watch?v=LAi2syrsxJg
 - Basic SCM log. To enable trace for executed commands open up re3.ini or reVC.ini and add these lines:
 
 ```
