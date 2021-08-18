@@ -32,6 +32,7 @@ If the script only uses vanilla commands, or commands listed below it should wor
 [CLEO]
 LogOpcodes = 1
 ```
+- experimental support for JavaScript execution (see an example script)
 
 ## Writing CLEO scripts
 
