@@ -1,3 +1,10 @@
+### 0.3.1 - August 21, 2021
+
+- add `op` binding to execute any opcode from JavaScript code
+- add `GAME` constant to check the current host game
+- CLEO now keeps its settings in `CLEO/.config/cleo.ini` created on the first run
+- JavaScript support can be disabled using `AllowJs=0` setting
+
 ### 0.3.0 - August 17, 2021
 
 - add experimental VM executing ES5 code (JavaScript)
