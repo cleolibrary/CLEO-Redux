@@ -1,3 +1,10 @@
+### 0.4.0 - September 02, 2021
+
+- add bindings for all opcodes in JS scripts
+- CLEO can now generate a \*.d.ts file for autocomplete in VS Code
+- add hot reload for \*.js files
+- fix an issue with the opcodes not being logged in the cleo.log even with LogOpcodes=1
+
 ### 0.3.1 - August 21, 2021
 
 - add `op` binding to execute any opcode from JavaScript code
