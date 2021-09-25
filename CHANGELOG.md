@@ -1,3 +1,13 @@
+### 0.5.0 - September 25, 2021
+
+- add support for GTA III 1.0 and GTA VC 1.0
+- add support for auto-incrementing variables `TIMERA` and `TIMERB`
+- add permission levels for unsafe opcodes
+- add two unsafe opcodes: 0A8C WRITE_MEMORY and 0A8D READ_MEMORY
+- fix: custom opcodes did not work in main.scm
+- fix: gosub did not work in CS scripts
+- fix: race condition caused false-positive timeouts for JS scripts
+
 ### 0.4.0 - September 02, 2021
 
 - add bindings for all opcodes in JS scripts
@@ -14,7 +24,7 @@
 
 ### 0.3.0 - August 17, 2021
 
-- add experimental VM executing ES5 code (JavaScript)
+- add experimental VM executing ECMAScript 5 (JavaScript)
 
 ### 0.2.1 - August 14, 2021
 
