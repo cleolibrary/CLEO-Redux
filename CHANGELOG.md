@@ -1,3 +1,9 @@
+### 0.5.1 - September 28, 2021
+
+- add support for Boolean, null and undefined as arguments of the 'op' command
+- allow arbitrary size in WRITE_MEMORY to fill a continiuos block of memory with a single byte value
+- fix: after reloading the game JS scripts could have been duplicated
+
 ### 0.5.0 - September 25, 2021
 
 - add support for GTA III 1.0 and GTA VC 1.0
