@@ -45,6 +45,7 @@ CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\c
 ### General Configuration
 
 - `AllowJS` - when set to `1` CLEO loads and executes `*.js` files located in the CLEO directory. Enabled by default.
+- `CheckUpdates` - when set to `1` CLEO check if there is a new update available for download during the game startup. Enabled by default.
 - `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo.log` file that can be found in the game directory.
 - `PermissionLevel` - sets the permission level for unsafe operations (see below). Default is `Lax`.
 
@@ -249,14 +250,6 @@ while (true) {
 }
 ```
 
-- `isKeyPressed(vk_id)` - returns `true` if the key with the code `{vk_id}` is pressed. [Virtual key-codes reference](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes)
-
-```js
-if (isKeyPressed(0x74)) {
-  log("F5 is pressed");
-}
-```
-
 - `showTextBox(text)` - displays `{text}` in the black rectangular box
 
 ```js
@@ -288,6 +281,14 @@ showTextBox("Player pos:", " x = ", pos.x, " y = ", pos.y, " z = ", pos.z);
 if (op(0x0248, 101)) {
   // checks the condition
   showTextBox("Model with id 101 has been loaded");
+}
+```
+
+- `isKeyPressed(vk_id)` - returns `true` if the key with the [code](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) `{vk_id}` is pressed. Deprecated since 0.5.2, use [Pad.isKeyPressed](https://library.sannybuilder.com/#/gta3/CLEO/0AB0) instead.
+
+```js
+if (isKeyPressed(0x74)) {
+  log("F5 is pressed");
 }
 ```
 
