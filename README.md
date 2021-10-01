@@ -30,7 +30,7 @@ Also a new folder named `CLEO` should appear in the game directory. This is the 
 
 ### Compatibility with re3 and reVC
 
-CLEO Redux only supports "Windows D3D9 MSS 32bit" version of re3 or reVC.
+CLEO Redux only supports "Windows D3D9 MSS 32bit" version of `re3` or `reVC`.
 
 When running on `re3` and `reVC` make sure the game directory contains the file `re3.pdb` (for **re3**) or `reVC.pdb` (for **reVC**). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.
 
@@ -150,9 +150,9 @@ When JavaScript is enabled CLEO Redux needs commands definitions from https://li
 
 ### Script Lifecycle
 
-A file with the JavaScript code should have the \*.js extension and contain known instructions as described below. The script may have no instructions (the empty script). It runs as soon as the the new game starts or a save file is loaded.
+A file with the JavaScript code should have the `*.js` extension and contain known instructions as described below. The script may have no instructions (the empty script). It runs as soon as the the new game starts or a save file is loaded.
 
-The script terminates automatically when the last instruction has been executed. The runtime also terminates stuck scripts to prevent the game from freezing. The stuck script is the one that took more than 2 seconds to run since the last wait command. If that happened, check out your loops, some of the are missing the wait command.
+The script terminates automatically when the last instruction has been executed. The runtime also terminates stuck scripts to prevent the game from freezing. The stuck script is the one that took more than `2` seconds to run since the last wait command. If that happened, check out your loops, some of the are missing the wait command.
 
 ```js
 while (true) {
@@ -236,7 +236,7 @@ if (GAME === "vc") {
 }
 ```
 
-- `log(...values)` - prints `{values}` to the cleo.log
+- `log(...values)` - prints comma-separated `{values}` to the cleo.log
 
 ```js
 var x = 1;
