@@ -1,3 +1,16 @@
+### 0.5.3 - Oct 02, 2021
+
+- add a new built-in JavaScript function `asFloat` to cast a raw value read from the memory with `Memory.Read` command from the default integer type to floating-point (IIIE 754)
+
+```
+var gravity = asFloat(Memory.Read(gravityAddress, 4, false)); // the gravity var now holds a floating-point value
+```
+
+- auto-generated `*.d.ts` files now make a distinction between integer and floating-point parameters, VS Code autocomplete now displays them with `int` and `float` types respectively
+- auto-generated `*.d.ts` files now have `<reference no-default-lib="true"/>` so it is no longer needed to add this line in a script file to exclude unsupported JS commands from autocomplete
+- fix: `op` incorrectly returned any single value as integer regardless of the type information
+- fix: `showTextBox` command was missing in the `cleo.log` with `logOpcodes=1`
+
 ### 0.5.2 - Sep 30, 2021
 
 - CLEO now checks for updates and notifies in the main menu (can be disabled with `CheckUpdates=0`)
