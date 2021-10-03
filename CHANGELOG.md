@@ -1,6 +1,6 @@
 ### 0.5.3 - Oct 02, 2021
 
-- add a new built-in JavaScript function `asFloat` to cast a raw value read from the memory with `Memory.Read` command from the default integer type to floating-point (IIIE 754)
+- add a new built-in JavaScript function `asFloat` to cast an integer value returned by the `Memory.Read` command to a floating point number ([IEEE 754](https://en.wikipedia.org/wiki/IEEE_754))
 
 ```
 var gravity = asFloat(Memory.Read(gravityAddress, 4, false)); // the gravity var now holds a floating-point value

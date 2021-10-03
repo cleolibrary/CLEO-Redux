@@ -89,7 +89,7 @@ No unsafe operation is allowed.
 
 ## Log
 
-CLEO logs important events and errors in the `cleo.log` file located in the game directory. This file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from the file.
+CLEO logs important events and errors in the `cleo.log` file located in the game directory. This file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.
 
 ## Custom Scripts
 
@@ -134,7 +134,6 @@ See demo: https://youtu.be/jqz8_lGnG4g
 CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the two following lines in your `*.js` script to get the full autocomplete support:
 
 ```
-/// <reference no-default-lib="true"/>
 /// <reference path=".config/gta3.d.ts" /> // or vc.d.ts
 ```
 
@@ -258,6 +257,8 @@ while (true) {
 showTextBox("Hello, world!");
 ```
 
+- `asFloat(value)` - casts an integer `value` returned by the `Memory.Read` command to a floating point number ([IEEE 754](https://en.wikipedia.org/wiki/IEEE_754)).
+
 ### Deprecated
 
 Note: usage of the following commands is not recommended.
@@ -309,3 +310,7 @@ Demo: https://www.youtube.com/watch?v=WanLojClqFw.
 Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically
 
 Demo: https://www.youtube.com/watch?v=LAi2syrsxJg
+
+## License
+
+CLEO Redux is available under the end-user license agreement available here: https://re.cleo.li/LICENSE.txt
