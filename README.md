@@ -131,15 +131,21 @@ Note: The runtime supports scripts in [ECMAScript 5.1 standard](https://262.ecma
 
 See demo: https://youtu.be/jqz8_lGnG4g
 
-CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the two following lines in your `*.js` script to get the full autocomplete support:
+CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your `*.js` script to get the full autocomplete support:
+
+For `GTA III` or `re3`:
 
 ```
-/// <reference path=".config/gta3.d.ts" /> // or vc.d.ts
+/// <reference path=".config/gta3.d.ts" />
 ```
 
-The first line excludes standard JavaScript API from autocomplete as it's not supported in the CLEO runtime.
+For `GTA VC` or `reVC`
 
-The second line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
+```
+/// <reference path=".config/vc.d.ts" />
+```
+
+This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
 
 ## JavaScript Support
 
@@ -287,7 +293,7 @@ if (op(0x0248, 101)) {
 }
 ```
 
-- `isKeyPressed(vk_id)` - returns `true` if the key with the [code](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) `{vk_id}` is pressed. Deprecated since 0.5.2, use [Pad.isKeyPressed](https://library.sannybuilder.com/#/gta3/CLEO/0AB0) instead.
+- `isKeyPressed(vk_id)` - returns `true` if the key with the [code](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) `{vk_id}` is pressed. Deprecated since 0.5.2, use [Pad.IsKeyPressed](https://library.sannybuilder.com/#/gta3/CLEO/0AB0) instead.
 
 ```js
 if (isKeyPressed(0x74)) {

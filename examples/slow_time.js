@@ -6,9 +6,9 @@ var game_speed = 1.0;
 while (true) {
   wait(0);
 
-  if (op(0x0256, 0) && isKeyPressed(VK_R)) {
+  if (op(0x0256, 0) && Pad.IsKeyPressed(VK_R)) {
     // Wait for button release (ON)
-    while (isKeyPressed(VK_R)) {
+    while (Pad.IsKeyPressed(VK_R)) {
       wait(0);
     }
 
@@ -22,7 +22,7 @@ while (true) {
     }
 
     // Maintain the new speed until the button is pressed
-    while (!isKeyPressed(VK_R)) {
+    while (!Pad.IsKeyPressed(VK_R)) {
       wait(0);
       setGameSpeed(0.25);
     }
@@ -38,7 +38,7 @@ while (true) {
     setGameSpeed(1.0);
 
     // Wait for button release (OFF)
-    while (isKeyPressed(VK_R)) {
+    while (Pad.IsKeyPressed(VK_R)) {
       wait(0);
     }
   }

@@ -1,6 +1,4 @@
-/// <reference no-default-lib="true"/>
-
-// this path below assumes the spawn_infernus.js is located in re3/CLEO directory. Adjust accordingly to your setup.
+// this path below assumes the script file is located in CLEO directory. Adjust accordingly to your setup.
 /// <reference path=".config/gta3.d.ts" />
 
 /**
@@ -8,14 +6,12 @@
  * when the F5 button is pressed
  */
 var VK_F5 = 116;
-var MI_INFERNUS = GAME === "re3" ? 101 : 141;
+var MI_INFERNUS = GAME === "re3" || GAME === "gta3" ? 101 : 141;
 var player = new Player(0);
-
-Clock.SetTimeOfDay(22, 30);
 
 while (true) {
   wait(250);
-  if (isKeyPressed(VK_F5) && player.isPlaying()) {
+  if (Pad.IsKeyPressed(VK_F5) && player.isPlaying()) {
     loadModel(MI_INFERNUS);
 
     var pos = addVec(player.getCoordinates(), { x: 2.0, y: -2.0, z: 0 });
@@ -27,10 +23,6 @@ while (true) {
     Streaming.MarkModelAsNoLongerNeeded(MI_INFERNUS);
 
     wait(2000);
-    infernus.explode();
-    Camera.Shake(200);
-    wait(1000);
-    infernus.delete();
   }
 }
 

@@ -14,7 +14,7 @@ var gravity = asFloat(Memory.Read(gravityAddress, 4, false)); // the gravity var
 ### 0.5.2 - Sep 30, 2021
 
 - CLEO now checks for updates and notifies in the main menu (can be disabled with `CheckUpdates=0`)
-- command `isKeyPressed` has been deprecated, use `Pad.isKeyPressed` instead
+- command `isKeyPressed` has been deprecated, use `Pad.IsKeyPressed` instead
 - fix: deadlock causing timeouts in JS scripts
 
 ### 0.5.1 - Sep 28, 2021
