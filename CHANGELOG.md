@@ -5,7 +5,7 @@
 - new static methods in `Memory` class. See [documentation](using-memory.md) for more info
 
 #### BREAKING CHANGES
-- `asFloat` has been removed in favor of `Memory.toFloat`
+- `asFloat` has been removed in favor of `Memory.ToFloat`
 - class `Object` has been renamed to `ScriptObject` to avoid conflicts with native JavaScript Object.
 - deprecated command `isKeyPressed` has been deleted. Use `Pad.isKeyPressed` instead
 
