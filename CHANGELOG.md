@@ -1,8 +1,19 @@
+### 0.6.0 - Oct 08, 2021
+
+- add [INT_ADD](https://library.sannybuilder.com/#/gta3/CLEO/0A8E), [INT_SUB](https://library.sannybuilder.com/#/gta3/CLEO/0A8F), [INT_MUL](https://library.sannybuilder.com/#/gta3/CLEO/0A90), [INT_DIV](https://library.sannybuilder.com/#/gta3/CLEO/0A91) commands
+- math operations are now available through the native JavaScript `Math` object where possible ([see documentation](using-math.md)).
+- new static methods in `Memory` class. See [documentation](using-memory.md) for more info
+
+#### BREAKING CHANGES
+- `asFloat` has been removed in favor of `Memory.toFloat`
+- class `Object` has been renamed to `ScriptObject` to avoid conflicts with native JavaScript Object.
+- deprecated command `isKeyPressed` has been deleted. Use `Pad.isKeyPressed` instead
+
 ### 0.5.3 - Oct 02, 2021
 
 - add a new built-in JavaScript function `asFloat` to cast an integer value returned by the `Memory.Read` command to a floating point number ([IEEE 754](https://en.wikipedia.org/wiki/IEEE_754))
 
-```
+```js
 var gravity = asFloat(Memory.Read(gravityAddress, 4, false)); // the gravity var now holds a floating-point value
 ```
 
@@ -36,13 +47,13 @@ var gravity = asFloat(Memory.Read(gravityAddress, 4, false)); // the gravity var
 ### 0.4.0 - Sep 02, 2021
 
 - add bindings for all opcodes in JS scripts
-- CLEO can now generate a \*.d.ts file for autocomplete in VS Code
-- add hot reload for \*.js files
-- fix an issue with the opcodes not being logged in the cleo.log even with LogOpcodes=1
+- CLEO can now generate a `*.d.ts` file for autocomplete in VS Code
+- add hot reload for `*.js` files
+- fix: opcodes log did not work even with `LogOpcodes=1`
 
 ### 0.3.1 - Aug 21, 2021
 
-- add `op` binding to execute any opcode from JavaScript code
+- add `op` function to execute any opcode from JavaScript code
 - add `GAME` constant to check the current host game
 - CLEO now keeps its settings in `CLEO/.config/cleo.ini` created on the first run
 - JavaScript support can be disabled using `AllowJs=0` setting
@@ -53,7 +64,7 @@ var gravity = asFloat(Memory.Read(gravityAddress, 4, false)); // the gravity var
 
 ### 0.2.1 - Aug 14, 2021
 
-- watch CLEO directory and start/stop scripts if the CS file got removed
+- watch the CLEO directory and start/stop scripts if a CS file has been added or deleted
 
 ### 0.2.0 - Aug 13, 2021
 

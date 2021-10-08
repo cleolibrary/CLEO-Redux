@@ -111,11 +111,14 @@ JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` 
 
 ### Custom Commands
 
-- 0A93
-  [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa/CLEO/0A93)
-- 0AB0 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa/CLEO/0AB0)
 - 0A8D [READ_MEMORY](https://library.sannybuilder.com/#/gta3/CLEO/0A8D) (**UNSAFE** - requires `mem` permission)
 - 0A8C [WRITE_MEMORY](https://library.sannybuilder.com/#/gta3/CLEO/0A8C) (**UNSAFE** - requires `mem` permission)
+- 0A8E [INT_ADD](https://library.sannybuilder.com/#/gta3/CLEO/0A8E)
+- 0A8F [INT_SUB](https://library.sannybuilder.com/#/gta3/CLEO/0A8F)
+- 0A90 [INT_MUL](https://library.sannybuilder.com/#/gta3/CLEO/0A90)
+- 0A91 [INT_DIV](https://library.sannybuilder.com/#/gta3/CLEO/0A91)
+- 0A93 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/gta3/CLEO/0A93)
+- 0AB0 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/gta3/CLEO/0AB0)
 
 ### Writing CS scripts
 
@@ -178,6 +181,24 @@ while (true) {
 ### Native Commands
 
 CLEO Redux supports all in-game commands (opcodes) in the class form as defined in Sanny Builder Library. Keywords and custom extensions are not supported.
+
+#### Class ScriptObject vs Object
+
+Sanny Builder Library defines a static class `Object` to group commands allowing to create and manipulate 3D objects in-game. At the same time JavaScript has the [native Object class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) with its own methods.
+
+To avoid mixing the two, CLEO Redux uses `ScriptObject` class instead of the Library's `Object` with [the same interface](https://library.sannybuilder.com/#/gta3/classes/Object).
+
+```js
+  var x = ScriptObject.Create(modelId, x, y, z) // opcode 0107, creates a new object in the game
+  
+  var x = Object.create(null) // native JavaScript code, creates a new object in JS memory
+```
+
+#### Class Math
+
+Similarly to the `Object` class (see above), both the Library and native JavaScript runtime use the same name for mathematical utilities: class `Math`. In this case however, the decision was made to keep both native and script methods under the same class name. 
+
+The priority was given to the native code in those cases where it provides the same functionality as script opcodes. For example, to calculate the absolute value of a number, use native [Math.abs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs), not [Math.Abs](https://library.sannybuilder.com/#/gta3?q=%22abs%22). See [Using Math](using-math.md) for more detailed information.
 
 #### Examples
 
@@ -263,7 +284,7 @@ while (true) {
 showTextBox("Hello, world!");
 ```
 
-- `asFloat(value)` - casts an integer `value` returned by the `Memory.Read` command to a floating point number ([IEEE 754](https://en.wikipedia.org/wiki/IEEE_754)).
+- family of static methods in the `Memory` class for manipulating different data types. See the [Memory guide](using-memory.md) for more information.
 
 ### Deprecated
 
@@ -290,14 +311,6 @@ showTextBox("Player pos:", " x = ", pos.x, " y = ", pos.y, " z = ", pos.z);
 if (op(0x0248, 101)) {
   // checks the condition
   showTextBox("Model with id 101 has been loaded");
-}
-```
-
-- `isKeyPressed(vk_id)` - returns `true` if the key with the [code](https://docs.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes) `{vk_id}` is pressed. Deprecated since 0.5.2, use [Pad.IsKeyPressed](https://library.sannybuilder.com/#/gta3/CLEO/0AB0) instead.
-
-```js
-if (isKeyPressed(0x74)) {
-  log("F5 is pressed");
 }
 ```
 
