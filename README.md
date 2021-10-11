@@ -111,24 +111,28 @@ JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` 
 
 ### Custom Commands
 
-- 0A8D [READ_MEMORY](https://library.sannybuilder.com/#/gta3/CLEO/0A8D) (**UNSAFE** - requires `mem` permission)
 - 0A8C [WRITE_MEMORY](https://library.sannybuilder.com/#/gta3/CLEO/0A8C) (**UNSAFE** - requires `mem` permission)
+- 0A8D [READ_MEMORY](https://library.sannybuilder.com/#/gta3/CLEO/0A8D) (**UNSAFE** - requires `mem` permission)
 - 0A8E [INT_ADD](https://library.sannybuilder.com/#/gta3/CLEO/0A8E)
 - 0A8F [INT_SUB](https://library.sannybuilder.com/#/gta3/CLEO/0A8F)
 - 0A90 [INT_MUL](https://library.sannybuilder.com/#/gta3/CLEO/0A90)
 - 0A91 [INT_DIV](https://library.sannybuilder.com/#/gta3/CLEO/0A91)
 - 0A93 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/gta3/CLEO/0A93)
+- 0AA5 [CALL_FUNCTION](https://library.sannybuilder.com/#/gta3/CLEO/0AA5) (**UNSAFE** - requires `mem` permission)
+- 0AA6 [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA6) (**UNSAFE** - requires `mem` permission)
+- 0AA7 [CALL_METHOD](https://library.sannybuilder.com/#/gta3/CLEO/0AA7) (**UNSAFE** - requires `mem` permission)
+- 0AA8 [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8) (**UNSAFE** - requires `mem` permission)
 - 0AB0 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/gta3/CLEO/0AB0)
 
 ### Writing CS scripts
 
-Use [Sanny Builder 3.8.0](https://sannybuilder.com) in GTA III or GTA VC edit modes respectively. Check out [this page](https://cleo.li/scripts.html) for more information.
+Use [Sanny Builder 3](https://sannybuilder.com) in GTA III or GTA VC edit modes respectively. Check out [this page](https://cleo.li/scripts.html) for more information.
 
 ### Writing JS scripts
 
 Use VS Code (recommended) or any editor of your choice. Create a new file with `.js` extension and put it in the CLEO folder.
 
-Note: The runtime supports scripts in [ECMAScript 5.1 standard](https://262.ecma-international.org/5.1). It means you won't be able to use the most recent JavaScript features out of the box, however you can use any traspiler, such as [Babel](https://babeljs.io/) or [TypeScript](https://www.typescriptlang.org/), to downlevel unsupported ES6+ code to ES5.
+Note: The runtime supports scripts in [ECMAScript 5.1 standard](https://262.ecma-international.org/5.1). It means you won't be able to use the most recent JavaScript features out of the box, however you can use any transpiler, such as [Babel](https://babeljs.io/) or [TypeScript](https://www.typescriptlang.org/), to downlevel unsupported ES6+ code to ES5.
 
 ### Integration with Visual Studio Code
 

@@ -1,34 +1,67 @@
-## Using Memory class
+## Using Memory Object
 
-Static class `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
+An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
 
 ```ts
-class Memory {
-    static ReadFloat(address: int, vp: boolean): float;
-    static WriteFloat(address: int, value: float, vp: boolean): void;
-    static ReadI8(address: int, vp: boolean): int;
-    static ReadI16(address: int, vp: boolean): int;
-    static ReadI32(address: int, vp: boolean): int;
-    static ReadU8(address: int, vp: boolean): int;
-    static ReadU16(address: int, vp: boolean): int;
-    static ReadU32(address: int, vp: boolean): int;
-    static WriteI8(address: int, value: int, vp: boolean): void;
-    static WriteI16(address: int, value: int, vp: boolean): void;
-    static WriteI32(address: int, value: int, vp: boolean): void;
-    static WriteU8(address: int, value: int, vp: boolean): void;
-    static WriteU16(address: int, value: int, vp: boolean): void;
-    static WriteU32(address: int, value: int, vp: boolean): void;
-    static Read(address: int, size: int, vp: boolean): int;
-    static Write(address: int, size: int, value: int, vp: boolean): void;
+interface Memory {
+    ReadFloat(address: int, vp: boolean): float;
+    WriteFloat(address: int, value: float, vp: boolean): void;
+    ReadI8(address: int, vp: boolean): int;
+    ReadI16(address: int, vp: boolean): int;
+    ReadI32(address: int, vp: boolean): int;
+    ReadU8(address: int, vp: boolean): int;
+    ReadU16(address: int, vp: boolean): int;
+    ReadU32(address: int, vp: boolean): int;
+    WriteI8(address: int, value: int, vp: boolean): void;
+    WriteI16(address: int, value: int, vp: boolean): void;
+    WriteI32(address: int, value: int, vp: boolean): void;
+    WriteU8(address: int, value: int, vp: boolean): void;
+    WriteU16(address: int, value: int, vp: boolean): void;
+    WriteU32(address: int, value: int, vp: boolean): void;
+    Read(address: int, size: int, vp: boolean): int;
+    Write(address: int, size: int, value: int, vp: boolean): void;
 
-    static ToFloat(value: int): float;
-    static FromFloat(value: float): int;
-    static ToU8(value: int): int;
-    static ToU16(value: int): int;
-    static ToU32(value: int): int;
-    static ToI8(value: int): int;
-    static ToI16(value: int): int;
-    static ToI32(value: int): int;
+    ToFloat(value: int): float;
+    FromFloat(value: float): int;
+    ToU8(value: int): int;
+    ToU16(value: int): int;
+    ToU32(value: int): int;
+    ToI8(value: int): int;
+    ToI16(value: int): int;
+    ToI32(value: int): int;
+
+    CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
+    CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
+    CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    Fn: {
+        Cdecl(address: int): (...funcParams: int[]) => int;
+        CdeclFloat(address: int): (...funcParams: int[]) => float;
+        CdeclI8(address: int): (...funcParams: int[]) => int;
+        CdeclI16(address: int): (...funcParams: int[]) => int;
+        CdeclI32(address: int): (...funcParams: int[]) => int;
+        CdeclU8(address: int): (...funcParams: int[]) => int;
+        CdeclU16(address: int): (...funcParams: int[]) => int;
+        CdeclU32(address: int): (...funcParams: int[]) => int;
+
+        Stdcall(address: int): (...funcParams: int[]) => int;
+        StdcallFloat(address: int): (...funcParams: int[]) => float;
+        StdcallI8(address: int): (...funcParams: int[]) => int;
+        StdcallI16(address: int): (...funcParams: int[]) => int;
+        StdcallI32(address: int): (...funcParams: int[]) => int;
+        StdcallU8(address: int): (...funcParams: int[]) => int;
+        StdcallU16(address: int): (...funcParams: int[]) => int;
+        StdcallU32(address: int): (...funcParams: int[]) => int;
+
+        Thiscall(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallFloat(address: int, struct: int): (...funcParams: int[]) => float;
+        ThiscallI8(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallI16(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallI32(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallU8(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallU16(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallU32(address: int, struct: int): (...funcParams: int[]) => int;
+    }
 }
 ```
 
@@ -76,14 +109,127 @@ By default `Read` and `Write` methods treat data as signed integer values. It ca
 To get a quick idea what to expect from those methods see the following examples:
 
 ```js
-Memory.FromFloat(1.0) => 1065353216
-Memory.ToFloat(1065353216) => 1.0
-Memory.ToU8(-1) => 255
-Memory.ToU16(-1) => 65535
-Memory.ToU32(-1) => 4294967295
-Memory.ToI8(255) => -1
-Memory.ToI16(65535) => -1
-Memory.ToI32(4294967295) => -1
+    Memory.FromFloat(1.0) => 1065353216
+    Memory.ToFloat(1065353216) => 1.0
+    Memory.ToU8(-1) => 255
+    Memory.ToU16(-1) => 65535
+    Memory.ToU32(-1) => 4294967295
+    Memory.ToI8(255) => -1
+    Memory.ToI16(65535) => -1
+    Memory.ToI32(4294967295) => -1
 ```
 
 Alternatively, use appropriate methods to read/write the value as a float (`ReadFloat`/`WriteFloat`) or as an unsigned integer (`ReadUXXX`/`WriteUXXX`).
+
+
+### Calling Foreign Functions
+
+`Memory` object allows to invoke foreign (native) functions by its address using one of the following methods:
+
+- `Memory.CallFunction` - binds to [0AA5 CALL_FUNCTION](https://library.sannybuilder.com/#/gta3/CLEO/0AA5)
+- `Memory.CallFunctionReturn` - binds to [0AA7 CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA7)
+- `Memory.CallMethod` - binds to [CALL_METHOD](https://library.sannybuilder.com/#/gta3/CLEO/0AA6)
+- `Memory.CallMethodReturn` - binds to [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8)
+
+
+```js
+    Memory.CallFunction(0x1234567, 2, 0, 1000, 2000)
+```
+where `0x1234567` is the address of the function, `2` is the number of arguments, `0` is the `pop` parameter (see below),  `1000` and `2000` are the two arguments passed into the function.
+
+Note that legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:
+
+```
+0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
+```
+where `2000` is the second argument passed to the function located at 0x1234567 and `1000` is the first one.
+
+
+The third parameter (`pop`) in `Memory.CallFunction` defines the calling convention. When it is set to `0`, the function is called using the [stdcall](https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall) convention. When it is set to the same value as `numParam`, the function is called using the [cdecl](https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl) convention. Any other value breaks the code.
+
+`Memory.CallFunctionReturn` has the same interface but additionally it writes the result of the function to a variable.
+
+`Memory.CallMethod` invokes a method of an object:
+
+```js
+    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+```
+
+The second parameter (`0x7001234`) is the object address. The `pop` parameter is always `0` (the method uses the [thiscall](https://en.wikipedia.org/wiki/X86_calling_conventions#thiscall) convention).
+
+To call the method and get the result out of it, use `Memory.CallMethodReturn`.
+
+Note that all arguments are read as 32-bit signed integers. If you need to provide an argument of the float type, use `Memory.FromFloat`, e.g.
+
+```js
+    Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456))
+```
+
+CLEO Redux supports calling foreign functions with up to 16 parameters.
+
+**Note that usage of any of the call methods requires the `mem` [permission](README.md#Permissions)**.
+
+#### Convenience methods with Fn object
+
+`Memory.Fn` provides a lot of convenient methods for calling different types of foreign functions.
+
+```ts
+Fn: {
+        Cdecl(address: int): (...funcParams: int[]) => int;
+        CdeclFloat(address: int): (...funcParams: int[]) => float;
+        CdeclI8(address: int): (...funcParams: int[]) => int;
+        CdeclI16(address: int): (...funcParams: int[]) => int;
+        CdeclI32(address: int): (...funcParams: int[]) => int;
+        CdeclU8(address: int): (...funcParams: int[]) => int;
+        CdeclU16(address: int): (...funcParams: int[]) => int;
+        CdeclU32(address: int): (...funcParams: int[]) => int;
+
+        Stdcall(address: int): (...funcParams: int[]) => int;
+        StdcallFloat(address: int): (...funcParams: int[]) => float;
+        StdcallI8(address: int): (...funcParams: int[]) => int;
+        StdcallI16(address: int): (...funcParams: int[]) => int;
+        StdcallI32(address: int): (...funcParams: int[]) => int;
+        StdcallU8(address: int): (...funcParams: int[]) => int;
+        StdcallU16(address: int): (...funcParams: int[]) => int;
+        StdcallU32(address: int): (...funcParams: int[]) => int;
+
+        Thiscall(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallFloat(address: int, struct: int): (...funcParams: int[]) => float;
+        ThiscallI8(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallI16(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallI32(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallU8(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallU16(address: int, struct: int): (...funcParams: int[]) => int;
+        ThiscallU32(address: int, struct: int): (...funcParams: int[]) => int;
+    }
+```
+
+These methods is designed to cover all possible function signatures. For example, this code
+
+```js
+    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+```
+
+can also be written as
+
+```js
+    Memory.Fn.Thiscall(0x2345678, 0x7001234)(1000, 2000)
+```
+
+Note a few key differences here. First of all, `Memory.Fn` methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:
+
+```js
+    var myMethod = Memory.Fn.Thiscall(0x2345678, 0x7001234);
+    myMethod(1000, 2000); // calls method 0x2345678 with arguments 1000 and 2000
+    myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
+```
+
+The second difference is that there are no `numParams` and `pop` parameters. Each `Fn` method figures them out automatically.
+
+By default a returned result is considered a 32-bit signed integer value. If the function something another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:
+
+```js
+    var flag = Memory.Fn.CdeclU8(0x1234567)()
+```
+
+This code invokes a `cdecl` function at `0x1234567` with no arguments and stores the result as a 8-bit unsigned integer value. 
