@@ -124,7 +124,7 @@ Alternatively, use appropriate methods to read/write the value as a float (`Read
 
 ### Calling Foreign Functions
 
-`Memory` object allows to invoke foreign (native) functions by its address using one of the following methods:
+`Memory` object allows to invoke a foreign (native) function by its address using one of the following methods:
 
 - `Memory.CallFunction` - binds to [0AA5 CALL_FUNCTION](https://library.sannybuilder.com/#/gta3/CLEO/0AA5)
 - `Memory.CallFunctionReturn` - binds to [0AA7 CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA7)

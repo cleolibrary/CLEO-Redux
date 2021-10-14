@@ -4,9 +4,9 @@
 
 ### What is CLEO Redux?
 
-CLEO Redux is a scripting runtime for GTA III and GTA Vice City in a form of an ASI library that the game can natively load. It's a member of the CLEO family and provides familiar experience to anyone who used CLEO Library for GTA San Andreas or its re-implementations for other games. The main goal of CLEO is to provide a way to easily customize the game with countless user-made scripts.
+CLEO Redux is a scripting runtime for classic versions of GTA III and GTA Vice City. It is a proud member of the CLEO family and provides familiar experience to anyone who used CLEO Library for GTA San Andreas or its re-implementations for other games. The main goal of CLEO is to provide a way to easily customize the game with countless user-made scripts.
 
-If you're new to CLEO visit the [official website](https://cleo.li/) to find more information on it.
+If you're new to CLEO visit the [official website](https://cleo.li/) to find more information about it.
 
 ### Supported Releases
 
@@ -20,11 +20,13 @@ If you're new to CLEO visit the [official website](https://cleo.li/) to find mor
 - Copy `cleo.asi` to the game directory.
 - Run the game
 
-Note: CLEO Redux does not alter any game files.
+Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads `.asi` files as addons to the Miles Sound System library. No extra software is required.
+
+You should see the words "CLEO Redux" and the current version in the bottom-left corner of the game menu.
 
 ### First time setup
 
-There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for JavaScript support. It won't happen on subsequent runs.
+There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for [JavaScript support](#javascript-support). It won't happen on subsequent runs.
 
 Also a new folder named `CLEO` should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.
 
@@ -158,7 +160,9 @@ This line instructs VS Code where to look for the commands definitions for the a
 
 ### Prerequisites
 
-When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO would try to download the necessary files and put them into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download `gta3.json` or `vc.json` from the [library's repo](https://github.com/sannybuilder/library) and put them to the `CLEO/.config` directory.
+When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO would try to download the necessary files and put them into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json) or [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json) and place them in the `CLEO/.config` directory.
+
+Minimum required version of the commands definitions is `0.92` for `gta3.json` and `0.136` for `vc.json`.
 
 ### Script Lifecycle
 
@@ -336,4 +340,4 @@ Demo: https://www.youtube.com/watch?v=LAi2syrsxJg
 
 ## License
 
-CLEO Redux is available under the end-user license agreement available here: https://re.cleo.li/LICENSE.txt
+CLEO Redux is available under the [end-user license agreement](./LICENSE.txt)
