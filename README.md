@@ -48,7 +48,7 @@ CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\c
 
 ### General Configuration
 
-- `AllowJS` - when set to `1` CLEO loads and executes `*.js` files located in the CLEO directory. Enabled by default.
+- `AllowJs` - when set to `1` CLEO loads and executes `*.js` files located in the CLEO directory. Enabled by default.
 - `CheckUpdates` - when set to `1` CLEO check if there is a new update available for download during the game startup. Enabled by default.
 - `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo.log` file that can be found in the game directory.
 - `PermissionLevel` - sets the permission level for unsafe operations (see below). Default is `Lax`.
@@ -109,7 +109,7 @@ CLEO Redux supports compiled binary scripts (`*.cs`) in the native SCM format an
 
 CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.
 
-JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` and change `AllowJS` to `0`.
+JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` and change `AllowJs` to `0`.
 
 ### Custom Commands
 
