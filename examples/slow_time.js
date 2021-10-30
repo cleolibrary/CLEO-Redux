@@ -2,11 +2,12 @@
 
 var VK_R = 82;
 var game_speed = 1.0;
+var player = new Player(0);
 
 while (true) {
   wait(0);
 
-  if (op(0x0256, 0) && Pad.IsKeyPressed(VK_R)) {
+  if (player.isPlaying() && Pad.IsKeyPressed(VK_R)) {
     // Wait for button release (ON)
     while (Pad.IsKeyPressed(VK_R)) {
       wait(0);
@@ -45,10 +46,10 @@ while (true) {
 }
 
 function playSound(soundId) {
-  op(0x018c, 0, 0, 0, soundId);
+  Sound.AddOneOffSound(0, 0, 0, soundId)
 }
 
 function setGameSpeed(speed) {
   game_speed = speed;
-  op(0x015d, speed);
+  Clock.SetTimeScale(speed)
 }

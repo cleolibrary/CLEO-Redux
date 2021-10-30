@@ -6,7 +6,7 @@
  * when the F5 button is pressed
  */
 var VK_F5 = 116;
-var MI_INFERNUS = GAME === "re3" || GAME === "gta3" ? 101 : 141;
+var MI_INFERNUS = getInfernusMI();
 var player = new Player(0);
 
 while (true) {
@@ -14,7 +14,7 @@ while (true) {
   if (Pad.IsKeyPressed(VK_F5) && player.isPlaying()) {
     loadModel(MI_INFERNUS);
 
-    var pos = addVec(player.getCoordinates(), { x: 2.0, y: -2.0, z: 0 });
+    var pos = addVec(player.getChar().getCoordinates(), { x: 2.0, y: -2.0, z: 0 });
     var infernus = Car.Create(MI_INFERNUS, pos.x, pos.y, pos.z);
     var blip = Blip.AddForCar(infernus);
 
@@ -36,4 +36,17 @@ function loadModel(mi) {
 
 function addVec(v1, v2) {
   return { x: v1.x + v2.x, y: v1.y + v2.y, z: v1.z + v2.z };
+}
+
+function getInfernusMI() {
+  switch (GAME) {
+    case "re3":
+    case "gta3":
+      return 101;
+    case "reVC":
+    case "vc":
+      return 141;
+    case "sa":
+      return 411;
+  }
 }

@@ -8,21 +8,50 @@ CLEO Redux is a scripting runtime for classic versions of GTA III and GTA Vice C
 
 If you're new to CLEO visit the [official website](https://cleo.li/) to find more information about it.
 
+### Supported Languages
+
+CLEO Redux supports compiled binary scripts (`*.cs`) in the native SCM format and plain text scripts (`*.js`) written in JavaScript.
+
+CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.
+
+JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` and change `AllowJs` to `0`.
+
 ### Supported Releases
 
 - GTA III v1.0
 - GTA Vice City v1.0
+- GTA San Andreas v1.0 (only with CLEO 4.4)
 - re3
 - reVC
 
+### Relation to CLEO Library
+
+CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded [here](https://cleo.li/download.html). CLEO Redux is *another* CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code. 
+
+At the moment CLEO Redux can not be considered as a replacement for CLEO Library due to the lack of support for many widely used CLEO commands. To solve this issue and get the best out of the two libraries, CLEO Redux supports two different usage strategies.
+
+#### Running CLEO Redux as a standalone software
+
+CLEO Redux can run as a standalone software, or as an addon to CLEO Library. In the first case your game directory would only contain `cleo_redux.asi` file. In the second case, your game directory would have both `cleo.asi` (or `III.CLEO.asi` or `VC.CLEO.asi`) and `cleo_redux.asi`. 
+
+As a standalone software CLEO Redux runs compiled scripts and JavaScript and provides access to all native script commands. It also provides a limited set of [custom commands](#custom-commands) backward-compatible to CLEO Library. Existing CLEO scripts may not work if they use custom commands (for example from a third-party plugin) not supported by CLEO Redux.
+
+This mode does not work in GTA San Andreas.
+
+#### Running CLEO Redux as an addon to CLEO library
+
+As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for [files](https://library.sannybuilder.com/#/gta3/classes/File) or [dynamic libraries](https://library.sannybuilder.com/#/gta3/classes/DynamicLibrary).
+
+This mode works in GTA III, GTA Vice City and GTA San Andreas.
+
 ## Installation
 
-- Copy `cleo.asi` to the game directory.
+- Copy `cleo_redux.asi` to the game directory.
 - Run the game
 
 Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads `.asi` files as addons to the Miles Sound System library. No extra software is required.
 
-You should see the words "CLEO Redux" and the current version in the bottom-left corner of the game menu.
+You should see the words "CLEO Redux" and the current version in the bottom-right corner of the game menu.
 
 ### First time setup
 
@@ -38,9 +67,9 @@ When running on `re3` and `reVC` make sure the game directory contains the file 
 
 ### Uninstallation
 
-- Delete `cleo.asi`.
+- Delete `cleo_redux.asi`.
 - Delete the `CLEO` folder (optional).
-- Delete the `cleo.log` (optional)
+- Delete the `cleo_redux.log` (optional)
 
 ## Configuration
 
@@ -48,9 +77,10 @@ CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\c
 
 ### General Configuration
 
+- `AllowCs` - when set to `1` CLEO loads and executes `*.cs` files located in the CLEO directory. Enabled by default.
 - `AllowJs` - when set to `1` CLEO loads and executes `*.js` files located in the CLEO directory. Enabled by default.
 - `CheckUpdates` - when set to `1` CLEO check if there is a new update available for download during the game startup. Enabled by default.
-- `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo.log` file that can be found in the game directory.
+- `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo_redux.log` file that can be found in the game directory.
 - `PermissionLevel` - sets the permission level for unsafe operations (see below). Default is `Lax`.
 
 ### Permissions
@@ -91,7 +121,7 @@ No unsafe operation is allowed.
 
 ## Log
 
-CLEO logs important events and errors in the `cleo.log` file located in the game directory. This file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.
+CLEO logs important events and errors in the `cleo_redux.log` file located in the game directory. This file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.
 
 ## Custom Scripts
 
@@ -102,14 +132,6 @@ Generally a script file should just be copied to the `CLEO` directory. Some scri
 ### Removing the script
 
 Delete the script file from `CLEO` directory. Some scripts may require extra steps for undoing the installation. In case of any issues check the script documentation or ask its author.
-
-### Supported Languages
-
-CLEO Redux supports compiled binary scripts (`*.cs`) in the native SCM format and plain text scripts (`*.js`) written in JavaScript.
-
-CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.
-
-JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` and change `AllowJs` to `0`.
 
 ### Custom Commands
 
@@ -154,15 +176,24 @@ For `GTA VC` or `reVC`
 /// <reference path=".config/vc.d.ts" />
 ```
 
+For `GTA SA`
+
+```
+/// <reference path=".config/sa.d.ts" />
+```
+
 This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
 
 ## JavaScript Support
 
 ### Prerequisites
 
-When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO would try to download the necessary files and put them into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json) or [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json) and place them in the `CLEO/.config` directory.
+When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO would try to download the necessary files and put them into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json), [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json), or [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json) and place them in the `CLEO/.config` directory.
 
-Minimum required version of the commands definitions is `0.92` for `gta3.json` and `0.136` for `vc.json`.
+Minimum required version of the commands definitions: 
+ * `gta3.json`: `0.99`
+ * `vc.json`: `0.143`
+ * `sa.json`: `0.164`
 
 ### Script Lifecycle
 
@@ -188,7 +219,7 @@ while (true) {
 
 ### Native Commands
 
-CLEO Redux supports all in-game commands (opcodes) in the class form as defined in Sanny Builder Library. Keywords and custom extensions are not supported.
+CLEO Redux supports all in-game commands (opcodes) in the class form as defined in Sanny Builder Library.
 
 #### Class ScriptObject vs Object
 
@@ -259,7 +290,7 @@ This would be the equivalent to the opcode `020B: explode_car $infernus` or `EXP
 
 ### Custom Bindings
 
-- `GAME` - current game id. Possible values: `gta3`, `vc`, `re3`, `reVC`
+- `GAME` - current game id. Possible values: `gta3`, `vc`, `re3`, `reVC`, `sa`
 
 ```js
 if (GAME === "gta3") {
@@ -268,9 +299,12 @@ if (GAME === "gta3") {
 if (GAME === "vc") {
   showTextBox("This is Vice City");
 }
+if (GAME === "sa") {
+  showTextBox("This is San Andreas");
+}
 ```
 
-- `log(...values)` - prints comma-separated `{values}` to the cleo.log
+- `log(...values)` - prints comma-separated `{values}` to the cleo_redux.log
 
 ```js
 var x = 1;
@@ -326,7 +360,7 @@ if (op(0x0248, 101)) {
 
 ### SCM Log
 
-CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up cleo.ini and change `LogOpcodes` to 1.
+CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up `cleo.ini` and change `LogOpcodes` to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.
 
 ### Hot Reload
 

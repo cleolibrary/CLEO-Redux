@@ -1,9 +1,21 @@
+### 0.7.0 - Oct 30, 2021
+
+- CLEO Redux can now work as an extension to CLEO Library (see [Relation to CLEO Library](README.md#relation-to-cleo-library))
+- CLEO Redux now runs JavaScript in GTA San Andreas with CLEO 4.4 installed 
+- new config parameter `AllowCs` to control `*.cs` scripts 
+- fix: ini config was ignored if there were missing parameters in the `cleo.ini`
+
+#### BREAKING CHANGE
+
+CLEO Redux' primary distribution file has been renamed to `cleo_redux.asi`. To avoid conflicts with previously installed versions of CLEO Redux manually delete old `cleo.asi` file from the game directory.
+
 ### 0.6.2 - Oct 11, 2021
 - add [CALL_FUNCTION](https://library.sannybuilder.com/#/gta3/CLEO/0AA5), [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA7), [CALL_METHOD](https://library.sannybuilder.com/#/gta3/CLEO/0AA6), [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8). See [Using Memory](using-memory.md#calling-foreign-functions) for more information.
 - update typings to include links to relevant documentation
 
 ### 0.6.1 - Oct 08, 2021
 - fix crash in `Memory` class methods
+
 ### 0.6.0 - Oct 08, 2021
 
 - add [INT_ADD](https://library.sannybuilder.com/#/gta3/CLEO/0A8E), [INT_SUB](https://library.sannybuilder.com/#/gta3/CLEO/0A8F), [INT_MUL](https://library.sannybuilder.com/#/gta3/CLEO/0A90), [INT_DIV](https://library.sannybuilder.com/#/gta3/CLEO/0A91) commands
