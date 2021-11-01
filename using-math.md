@@ -55,6 +55,6 @@ Then the game-specific commands go. Following the naming convention, each method
 
 ```js
     var x = Math.abs(-1); // x = 1
-    var f = Math.ConvertMetresToFeet(10) // f = 32
+    var f = Math.ConvertMetersToFeet(10) // f = 32
     var pi = Math.floor(Math.PI) // pi = 3
 ```
