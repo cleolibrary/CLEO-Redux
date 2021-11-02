@@ -1,7 +1,12 @@
+### 0.7.1 - Nov 02, 2021
+
+- new static function `Memory.Translate` to get memory address of a function or variable by its name (see [documentation](using-memory.md#finding-memory-addresses-in-re3-and-revc))
+- new function `exit` to terminate the script early
+
 ### 0.7.0 - Oct 30, 2021
 
 - CLEO Redux can now work as an extension to CLEO Library (see [Relation to CLEO Library](README.md#relation-to-cleo-library))
-- CLEO Redux now runs JavaScript in GTA San Andreas with CLEO 4.4 installed 
+- CLEO Redux is now able to execute JavaScript in GTA San Andreas with CLEO 4.4 installed
 - new config parameter `AllowCs` to control `*.cs` scripts 
 - fix: ini config was ignored if there were missing parameters in the `cleo.ini`
 

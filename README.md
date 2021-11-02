@@ -328,6 +328,8 @@ showTextBox("Hello, world!");
 
 - family of static methods in the `Memory` class for manipulating different data types. See the [Memory guide](using-memory.md) for more information.
 
+- `exit(reason?)` - terminates the script immeditely. `exit` function accepts an optional string argument that will be added to the `cleo_redux.log`.
+
 ### Deprecated
 
 Note: usage of the following commands is not recommended.

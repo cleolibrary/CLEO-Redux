@@ -30,6 +30,8 @@ interface Memory {
     ToI16(value: int): int;
     ToI32(value: int): int;
 
+    Translate(symbol: string): int;
+
     CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
     CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
     CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
@@ -67,7 +69,7 @@ interface Memory {
 
 ### Reading and Writing Values
 
-First group of methods (`ReadXXX`/`WriteXXX`) can be used for changing values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use `Memory.WriteFloat`, e.g.:
+Group of memory access methods (`ReadXXX`/`WriteXXX`) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use `Memory.WriteFloat`, e.g.:
 
 ```js
     Memory.WriteFloat(address, 1.0, false)
@@ -233,3 +235,19 @@ By default a returned result is considered a 32-bit signed integer value. If the
 ```
 
 This code invokes a `cdecl` function at `0x1234567` with no arguments and stores the result as a 8-bit unsigned integer value. 
+
+
+### Finding Memory Addresses in re3 and reVC
+
+Since `re3` and `reVC` use address space layout randomization (ASLR) feature, it can be difficult to locate needed addresses. CLEO Redux provides a helper function `Memory.Translate` that accepts a name of the function or variable and returns its current address. If the requested symbol is not found, the result is 0.
+
+```js
+    var addr = Memory.Translate("CTheScripts::MainScriptSize");
+
+    // check if address is not zero
+    if (addr) {
+        showTextBox("MainScriptSize = " + Memory.ReadI32(addr, 0))
+    }
+```
+
+At the moment `Memory.Translate` should only be used in `re3` and `reVC`. In other games you will be getting `0` as a result most of the time.
