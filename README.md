@@ -154,7 +154,7 @@ Use [Sanny Builder 3](https://sannybuilder.com) in GTA III or GTA VC edit modes 
 
 ### Writing JS scripts
 
-Use VS Code (recommended) or any editor of your choice. Create a new file with `.js` extension and put it in the CLEO folder.
+Use VS Code (recommended) or any editor of your choice. Create a new file with `.js` extension and put it in the CLEO folder. See [JavaScript support](#javascript-support) for extra information.
 
 Note: The runtime supports scripts in [ECMAScript 5.1 standard](https://262.ecma-international.org/5.1). It means you won't be able to use the most recent JavaScript features out of the box, however you can use any transpiler, such as [Babel](https://babeljs.io/) or [TypeScript](https://www.typescriptlang.org/), to downlevel unsupported ES6+ code to ES5.
 
@@ -287,6 +287,8 @@ infernus.explode();
 ```
 
 This would be the equivalent to the opcode `020B: explode_car $infernus` or `EXPLODE_CAR $infernus` in SCM scripts.
+
+Also check out the [example scripts](examples).
 
 ### Custom Bindings
 
