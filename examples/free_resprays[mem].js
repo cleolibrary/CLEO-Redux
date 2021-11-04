@@ -6,6 +6,7 @@ if (GAME !== "re3" && GAME !== "reVC") {
 
 wait(1000);
 var addr = Memory.Translate("CGarages::RespraysAreFree");
-Memory.WriteU8(addr, 1, 0);
-
-showTextBox("Resprays are free now!");
+if (addr) {
+  Memory.WriteU8(addr, true, false);
+  showTextBox("Resprays are free now!");
+}

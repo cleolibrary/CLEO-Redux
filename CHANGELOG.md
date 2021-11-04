@@ -1,3 +1,24 @@
+### 0.7.2 - Nov 4, 2021
+
+- add `ONMISSION` variable that can be used to manipulate the global player's on a mission status
+
+```js
+if (!ONMISSION) {
+    showTextBox("Not on a mission. Setting ONMISSION to true");
+    ONMISSION = true;
+}
+```
+
+#### BREAKING CHANGE
+
+- using `new` operator on a static object (for which Sanny Builder Library does not define a constructor, e.g. `Audio` or `Hud`) now throws an error:
+
+```js
+    var hud = new Hud(); // error: Hud is not constructable
+```
+
+- minimum required version of `sa.json` is `0.166` 
+
 ### 0.7.1 - Nov 02, 2021
 
 - new static function `Memory.Translate` to get memory address of a function or variable by its name (see [documentation](using-memory.md#finding-memory-addresses-in-re3-and-revc))

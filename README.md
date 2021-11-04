@@ -193,7 +193,7 @@ When JavaScript is enabled CLEO Redux needs commands definitions from https://li
 Minimum required version of the commands definitions: 
  * `gta3.json`: `0.99`
  * `vc.json`: `0.143`
- * `sa.json`: `0.164`
+ * `sa.json`: `0.166`
 
 ### Script Lifecycle
 
@@ -306,6 +306,28 @@ if (GAME === "sa") {
 }
 ```
 
+- `ONMISSION` - global flag controlling whether the player is on a mission now.
+
+```js
+if (!ONMISSION) {
+    showTextBox("Not on a mission. Setting ONMISSION to true");
+    ONMISSION = true;
+}
+```
+
+- `TIMERA` and `TIMERB` - two auto-incrementing timers useful for measuring time intervals.
+
+```js
+while(true) {
+    TIMERA = 0;
+    // wait 1000 ms
+    while(TIMERA < 1000) {
+        wait(0)
+    }
+    showTextBox("1 second passed")
+}
+```
+
 - `log(...values)` - prints comma-separated `{values}` to the `cleo_redux.log`
 
 ```js
@@ -328,9 +350,13 @@ while (true) {
 showTextBox("Hello, world!");
 ```
 
-- family of static methods in the `Memory` class for manipulating different data types. See the [Memory guide](using-memory.md) for more information.
-
 - `exit(reason?)` - terminates the script immediately. `exit` function accepts an optional string argument that will be added to the `cleo_redux.log`.
+
+```js
+  exit("Script ended");
+```
+
+- family of static methods in the `Memory` class for manipulating different data types. See the [Memory guide](using-memory.md) for more information.
 
 ### Deprecated
 
