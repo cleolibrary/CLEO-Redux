@@ -1,3 +1,12 @@
+### 0.7.3 - Nov 8, 2021
+
+- ensure custom scripts have unique [in-game names](https://library.sannybuilder.com/#/vc/default/03A4) when the first 7 characters of their file names are the same (e.g. scripts in files `spawner_a.cs`, `spawner_b.cs`, `spawner_c.cs` would now have names `spawner`, `spawn01`, `spawn02` respectively)
+- fix: internal address error could make a JS script execute a wrong instruction
+
+#### BREAKING CHANGE
+
+- minimum required version of `sa.json` is `0.167` 
+
 ### 0.7.2 - Nov 4, 2021
 
 - add `ONMISSION` variable that can be used to manipulate the global player's on a mission status
@@ -9,7 +18,7 @@ if (!ONMISSION) {
 }
 ```
 
-#### BREAKING CHANGE
+#### BREAKING CHANGES
 
 - using `new` operator on a static object (for which Sanny Builder Library does not define a constructor, e.g. `Audio` or `Hud`) now throws an error:
 
