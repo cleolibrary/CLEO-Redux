@@ -24,7 +24,7 @@ JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` 
 - re3 (see [Compatibility details](README.md#compatibility-with-re3-and-revc)) 
 - reVC (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
 
-NOTE: CLEO Redux doesn't work on [Windows 7 and below](#5).
+NOTE: CLEO Redux doesn't work on [Windows 7 and below](https://github.com/cleolibrary/CLEO-Redux/issues/5).
 
 ### Relation to CLEO Library
 
