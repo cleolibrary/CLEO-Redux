@@ -193,7 +193,7 @@ When JavaScript is enabled CLEO Redux needs commands definitions from https://li
 Minimum required version of the commands definitions: 
  * `gta3.json`: `0.99`
  * `vc.json`: `0.143`
- * `sa.json`: `0.166`
+ * `sa.json`: `0.167`
 
 ### Script Lifecycle
 
