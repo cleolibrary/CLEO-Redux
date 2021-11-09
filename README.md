@@ -24,6 +24,8 @@ JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` 
 - re3 (see [Compatibility details](README.md#compatibility-with-re3-and-revc)) 
 - reVC (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
 
+NOTE: CLEO Redux doesn't work on [Windows 7 and below](#5).
+
 ### Relation to CLEO Library
 
 CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded [here](https://cleo.li/download.html). CLEO Redux is *another* CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code. 
