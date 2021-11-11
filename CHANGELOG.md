@@ -1,3 +1,12 @@
+### 0.7.4 - Nov 11, 2021
+
+- ignore mobile and console command definitions (fixes https://github.com/cleolibrary/CLEO-Redux/issues/6)
+
+#### BREAKING CHANGE
+
+- minimum required version of `vc.json` is `0.144`
+- minimum required version of `sa.json` is `0.168`
+
 ### 0.7.3 - Nov 8, 2021
 
 - ensure custom scripts have unique [in-game names](https://library.sannybuilder.com/#/vc/default/03A4) when the first 7 characters of their file names are the same (e.g. scripts in files `spawner_a.cs`, `spawner_b.cs`, `spawner_c.cs` would now have names `spawner`, `spawn01`, `spawn02` respectively)
@@ -5,7 +14,7 @@
 
 #### BREAKING CHANGE
 
-- minimum required version of `sa.json` is `0.167` 
+- minimum required version of `sa.json` is `0.167`
 
 ### 0.7.2 - Nov 4, 2021
 
@@ -13,8 +22,8 @@
 
 ```js
 if (!ONMISSION) {
-    showTextBox("Not on a mission. Setting ONMISSION to true");
-    ONMISSION = true;
+  showTextBox("Not on a mission. Setting ONMISSION to true");
+  ONMISSION = true;
 }
 ```
 
@@ -23,10 +32,10 @@ if (!ONMISSION) {
 - using `new` operator on a static object (for which Sanny Builder Library does not define a constructor, e.g. `Audio` or `Hud`) now throws an error:
 
 ```js
-    var hud = new Hud(); // error: Hud is not constructable
+var hud = new Hud(); // error: Hud is not constructable
 ```
 
-- minimum required version of `sa.json` is `0.166` 
+- minimum required version of `sa.json` is `0.166`
 
 ### 0.7.1 - Nov 02, 2021
 
@@ -37,7 +46,7 @@ if (!ONMISSION) {
 
 - CLEO Redux can now work as an extension to CLEO Library (see [Relation to CLEO Library](README.md#relation-to-cleo-library))
 - CLEO Redux is now able to execute JavaScript in GTA San Andreas with CLEO 4.4 installed
-- new config parameter `AllowCs` to control `*.cs` scripts 
+- new config parameter `AllowCs` to control `*.cs` scripts
 - fix: ini config was ignored if there were missing parameters in the `cleo.ini`
 
 #### BREAKING CHANGE
@@ -45,10 +54,12 @@ if (!ONMISSION) {
 CLEO Redux' primary distribution file has been renamed to `cleo_redux.asi`. To avoid conflicts with previously installed versions of CLEO Redux manually delete old `cleo.asi` file from the game directory.
 
 ### 0.6.2 - Oct 11, 2021
+
 - add [CALL_FUNCTION](https://library.sannybuilder.com/#/gta3/CLEO/0AA5), [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA7), [CALL_METHOD](https://library.sannybuilder.com/#/gta3/CLEO/0AA6), [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8). See [Using Memory](using-memory.md#calling-foreign-functions) for more information.
 - update typings to include links to relevant documentation
 
 ### 0.6.1 - Oct 08, 2021
+
 - fix crash in `Memory` class methods
 
 ### 0.6.0 - Oct 08, 2021
@@ -58,6 +69,7 @@ CLEO Redux' primary distribution file has been renamed to `cleo_redux.asi`. To a
 - new static methods in `Memory` class. See [documentation](using-memory.md) for more info
 
 #### BREAKING CHANGES
+
 - `asFloat` has been removed in favor of `Memory.ToFloat`
 - class `Object` has been renamed to `ScriptObject` to avoid conflicts with native JavaScript Object.
 - deprecated command `isKeyPressed` has been deleted. Use `Pad.isKeyPressed` instead

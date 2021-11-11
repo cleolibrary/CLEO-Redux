@@ -21,18 +21,18 @@ JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` 
 - GTA III v1.0 (PC version)
 - GTA Vice City v1.0 (PC version)
 - GTA San Andreas v1.0 (PC version, only with [CLEO 4.4](https://github.com/cleolibrary/CLEO4))
-- re3 (see [Compatibility details](README.md#compatibility-with-re3-and-revc)) 
+- re3 (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
 - reVC (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
 
 NOTE: CLEO Redux doesn't work on [Windows 7 and below](https://github.com/cleolibrary/CLEO-Redux/issues/5).
 
 ### Relation to CLEO Library
 
-CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded [here](https://cleo.li/download.html). CLEO Redux is *another* CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code. 
+CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded [here](https://cleo.li/download.html). CLEO Redux is _another_ CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code.
 
 At the moment CLEO Redux can not be considered as a replacement for CLEO Library due to the lack of support for many widely used CLEO commands. To solve this issue and get the best out of the two libraries, CLEO Redux supports two different usage strategies.
 
-CLEO Redux can run as a standalone software, or as an addon to CLEO Library. In the first case your game directory would only contain `cleo_redux.asi` file. In the second case, your game directory would have both `cleo.asi` (or `III.CLEO.asi` or `VC.CLEO.asi`) and `cleo_redux.asi`. 
+CLEO Redux can run as a standalone software, or as an addon to CLEO Library. In the first case your game directory would only contain `cleo_redux.asi` file. In the second case, your game directory would have both `cleo.asi` (or `III.CLEO.asi` or `VC.CLEO.asi`) and `cleo_redux.asi`.
 
 #### Running CLEO Redux as a standalone software
 
@@ -192,10 +192,11 @@ This line instructs VS Code where to look for the commands definitions for the a
 
 When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO would try to download the necessary files and put them into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json), [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json), or [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json) and place them in the `CLEO/.config` directory.
 
-Minimum required version of the commands definitions: 
- * `gta3.json`: `0.99`
- * `vc.json`: `0.143`
- * `sa.json`: `0.167`
+Minimum required version of the commands definitions:
+
+- `gta3.json`: `0.99`
+- `vc.json`: `0.144`
+- `sa.json`: `0.168`
 
 ### Script Lifecycle
 
@@ -230,14 +231,14 @@ Sanny Builder Library defines a static class `Object` to group commands allowing
 To avoid mixing the two, CLEO Redux uses `ScriptObject` class instead of the Library's `Object` with [the same interface](https://library.sannybuilder.com/#/gta3/classes/Object).
 
 ```js
-  var x = ScriptObject.Create(modelId, x, y, z) // opcode 0107, creates a new object in the game
-  
-  var x = Object.create(null) // native JavaScript code, creates a new object in JS memory
+var x = ScriptObject.Create(modelId, x, y, z); // opcode 0107, creates a new object in the game
+
+var x = Object.create(null); // native JavaScript code, creates a new object in JS memory
 ```
 
 #### Class Math
 
-Similarly to the `Object` class (see above), both the Library and native JavaScript runtime use the same name for mathematical utilities: class `Math`. In this case however, the decision was made to keep both native and script methods under the same class name. 
+Similarly to the `Object` class (see above), both the Library and native JavaScript runtime use the same name for mathematical utilities: class `Math`. In this case however, the decision was made to keep both native and script methods under the same class name.
 
 The priority was given to the native code in those cases where it provides the same functionality as script opcodes. For example, to calculate the absolute value of a number, use native [Math.abs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs), not [Math.Abs](https://library.sannybuilder.com/#/gta3?q=%22abs%22). See [Using Math](using-math.md) for more detailed information.
 
@@ -312,21 +313,21 @@ if (GAME === "sa") {
 
 ```js
 if (!ONMISSION) {
-    showTextBox("Not on a mission. Setting ONMISSION to true");
-    ONMISSION = true;
+  showTextBox("Not on a mission. Setting ONMISSION to true");
+  ONMISSION = true;
 }
 ```
 
 - `TIMERA` and `TIMERB` - two auto-incrementing timers useful for measuring time intervals.
 
 ```js
-while(true) {
-    TIMERA = 0;
-    // wait 1000 ms
-    while(TIMERA < 1000) {
-        wait(0)
-    }
-    showTextBox("1 second passed")
+while (true) {
+  TIMERA = 0;
+  // wait 1000 ms
+  while (TIMERA < 1000) {
+    wait(0);
+  }
+  showTextBox("1 second passed");
 }
 ```
 
@@ -355,7 +356,7 @@ showTextBox("Hello, world!");
 - `exit(reason?)` - terminates the script immediately. `exit` function accepts an optional string argument that will be added to the `cleo_redux.log`.
 
 ```js
-  exit("Script ended");
+exit("Script ended");
 ```
 
 - family of static methods in the `Memory` class for manipulating different data types. See the [Memory guide](using-memory.md) for more information.
