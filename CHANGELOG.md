@@ -1,3 +1,8 @@
+### 0.7.5 - Nov 13, 2021
+
+- fix: some custom command could have unconventional arguments order (e.g. [0AA4 GET_DYNAMIC_LIBRARY_PROCEDURE](https://library.sannybuilder.com/#/sa/CLEO/0AA4))
+- fix: "if and set" commands had incorrect definitions in *.d.ts file
+
 ### 0.7.4 - Nov 11, 2021
 
 - ignore mobile and console command definitions (fixes https://github.com/cleolibrary/CLEO-Redux/issues/6)
