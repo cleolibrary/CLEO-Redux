@@ -1,7 +1,11 @@
+### 0.7.6 - Nov 18, 2021
+
+- CLEO Redux now works on Windows 7
+
 ### 0.7.5 - Nov 13, 2021
 
 - fix: some custom command could have unconventional arguments order (e.g. [0AA4 GET_DYNAMIC_LIBRARY_PROCEDURE](https://library.sannybuilder.com/#/sa/CLEO/0AA4))
-- fix: "if and set" commands had incorrect definitions in *.d.ts file
+- fix: "if and set" commands had incorrect definitions in \*.d.ts file
 
 ### 0.7.4 - Nov 11, 2021
 
