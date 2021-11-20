@@ -1,5 +1,7 @@
 # CLEO Redux
 
+![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)
+
 ## Getting Started
 
 ### What is CLEO Redux?
