@@ -23,8 +23,8 @@ JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` 
 - GTA III v1.0 (PC version)
 - GTA Vice City v1.0 (PC version)
 - GTA San Andreas v1.0 (PC version, only with [CLEO 4.4](https://github.com/cleolibrary/CLEO4))
-- re3 (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
-- reVC (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
+- re3 (see [Compatibility details](#compatibility-with-re3-and-revc))
+- reVC (see [Compatibility details](#compatibility-with-re3-and-revc))
 
 ### Relation to CLEO Library
 
