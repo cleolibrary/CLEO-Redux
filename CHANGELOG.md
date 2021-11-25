@@ -1,3 +1,20 @@
+### 0.8.0 - Nov 25, 2021
+
+- new 64-bit version of CLEO Redux (cleo_redux64.asi). It's intended to work only with remastered games.
+- [initial support](#compatibility-with-the-trilogy-the-definitive-edition) for San Andreas: The Definitive Edition v1.0.0.14296 and v1.0.0.14388 
+- fixed an issue when scripts might not reload after loading a save file
+
+#### KNOWN ISSUES:
+
+- `showTextBox` function does not work in JavaScript in San Andreas: The Definitive Edition
+- CLEO does not display its version in the main menu in San Andreas: The Definitive Edition
+
+#### BREAKING CHANGES
+
+- minimum required version of `gta3.json` is `0.100`
+- minimum required version of `vc.json` is `0.145`
+- minimum required version of `sa.json` is `0.175`
+
 ### 0.7.6 - Nov 18, 2021
 
 - CLEO Redux now works on Windows 7
