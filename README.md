@@ -28,7 +28,7 @@ Classic:
 
 Remasters:
 
-- San Andreas: The Definitive Edition 1.0.0.14296, 1.0.0.14388 (see [Compatibility details](README.md#compatibility-with-the-trilogy-the-definitive-edition))
+- San Andreas: The Definitive Edition 1.0.0.14296, 1.0.0.14388 (see [Compatibility details](#compatibility-with-the-trilogy-the-definitive-edition))
 
 Other:
 
