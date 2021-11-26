@@ -32,8 +32,8 @@ Remasters:
 
 Other:
 
-- re3 (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
-- reVC (see [Compatibility details](README.md#compatibility-with-re3-and-revc))
+- re3 (see [Compatibility details](#compatibility-with-re3-and-revc))
+- reVC (see [Compatibility details](#compatibility-with-re3-and-revc))
 
 CLEO Redux only supports the PC version of each game.
 
