@@ -61,16 +61,14 @@ This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO
 
 If you run San Andreas: The Definitive Edition:
 
-- Download and install [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) by ThirteenAG (rename to `dsound.dll` or any compatible name)
-- Copy `cleo_redux64.asi` to the `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64` directory.
+- Download and install [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) by ThirteenAG (rename to `dsound.dll` or any compatible name and copy to the `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64` directory)
+- Copy `cleo_redux64.asi` to the same directory.
 
 For all other games:
 
 - Copy `cleo_redux.asi` to the game directory.
 
 - Run the game
-
-If everything is done correctly the CLEO folder and the file `cleo_redux.log` should appear in the game directory.
 
 Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads `.asi` files as addons to the Miles Sound System library. No extra software is required.
 
