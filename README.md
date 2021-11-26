@@ -61,7 +61,7 @@ This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO
 
 If you run San Andreas: The Definitive Edition:
 
-- Download and install [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) by ThirteenAG (rename to `dsound.dll` or any compatible name and copy to the `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64` directory)
+- Download and install [Ultimate ASI Loader x64](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) by ThirteenAG (rename to `dsound.dll` or any compatible name and copy to the `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64` directory)
 - Copy `cleo_redux64.asi` to the same directory.
 
 For all other games:
