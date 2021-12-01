@@ -1,3 +1,6 @@
+### 0.8.1 - Dec 1, 2021
+
+- add support for San Andreas: The Definitive Edition v1.0.0.14718 (Title Update 1.03)
 ### 0.8.0 - Nov 25, 2021
 
 - new 64-bit version of CLEO Redux (cleo_redux64.asi). It's intended to work only with remastered games.
@@ -63,7 +66,7 @@ var hud = new Hud(); // error: Hud is not constructable
 
 - minimum required version of `sa.json` is `0.166`
 
-### 0.7.1 - Nov 02, 2021
+### 0.7.1 - Nov 2, 2021
 
 - new static function `Memory.Translate` to get memory address of a function or variable by its name (see [documentation](using-memory.md#finding-memory-addresses-in-re3-and-revc))
 - new function `exit` to terminate the script early
@@ -84,11 +87,11 @@ CLEO Redux' primary distribution file has been renamed to `cleo_redux.asi`. To a
 - add [CALL_FUNCTION](https://library.sannybuilder.com/#/gta3/CLEO/0AA5), [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA7), [CALL_METHOD](https://library.sannybuilder.com/#/gta3/CLEO/0AA6), [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8). See [Using Memory](using-memory.md#calling-foreign-functions) for more information.
 - update typings to include links to relevant documentation
 
-### 0.6.1 - Oct 08, 2021
+### 0.6.1 - Oct 8, 2021
 
 - fix crash in `Memory` class methods
 
-### 0.6.0 - Oct 08, 2021
+### 0.6.0 - Oct 8, 2021
 
 - add [INT_ADD](https://library.sannybuilder.com/#/gta3/CLEO/0A8E), [INT_SUB](https://library.sannybuilder.com/#/gta3/CLEO/0A8F), [INT_MUL](https://library.sannybuilder.com/#/gta3/CLEO/0A90), [INT_DIV](https://library.sannybuilder.com/#/gta3/CLEO/0A91) commands
 - math operations are now available through the native JavaScript `Math` object where possible ([see documentation](using-math.md)).
@@ -100,7 +103,7 @@ CLEO Redux' primary distribution file has been renamed to `cleo_redux.asi`. To a
 - class `Object` has been renamed to `ScriptObject` to avoid conflicts with native JavaScript Object.
 - deprecated command `isKeyPressed` has been deleted. Use `Pad.isKeyPressed` instead
 
-### 0.5.3 - Oct 02, 2021
+### 0.5.3 - Oct 2, 2021
 
 - add a new built-in JavaScript function `asFloat` to cast an integer value returned by the `Memory.Read` command to a floating point number ([IEEE 754](https://en.wikipedia.org/wiki/IEEE_754))
 
@@ -135,7 +138,7 @@ var gravity = asFloat(Memory.Read(gravityAddress, 4, false)); // the gravity var
 - fix: gosub did not work in CS scripts
 - fix: race condition caused false-positive timeouts for JS scripts
 
-### 0.4.0 - Sep 02, 2021
+### 0.4.0 - Sep 2, 2021
 
 - add bindings for all opcodes in JS scripts
 - CLEO can now generate a `*.d.ts` file for autocomplete in VS Code
