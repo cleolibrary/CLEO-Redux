@@ -28,7 +28,7 @@ Classic:
 
 Remasters:
 
-- San Andreas: The Definitive Edition 1.0.0.14296, 1.0.0.14388 (see [Compatibility details](#compatibility-with-the-trilogy-the-definitive-edition))
+- San Andreas: The Definitive Edition 1.0.0.14296, 1.0.0.14388, v1.0.0.14718 (Title Update 1.03) (see [Compatibility details](#compatibility-with-the-trilogy-the-definitive-edition))
 
 Other:
 
@@ -88,7 +88,7 @@ When running on `re3` and `reVC` make sure the game directory contains the file 
 
 ### Compatibility with The Trilogy: The Definitive Edition
 
-At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.0.14296`, `1.0.0.14388`. There are some key differences from other games:
+At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.0.14296`, `1.0.0.14388`, `v1.0.0.14718` (Title Update 1.03). There are some key differences from other games:
 
 - Ultimate ASI Loader by ThirteenAG is requred, see [Installation](#installation) notes
 - there is no CLEO version displaying in the main menu
