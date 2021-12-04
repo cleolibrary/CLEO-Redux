@@ -1,10 +1,17 @@
+### 0.8.2 - Dec 4, 2021
+
+- CLEO now uses AppData directory if there is no write permissions in the current game directory (see [First Time Setup](README.md#first-time-setup) note)
+- add fluent interface for methods on constructible entities. See demo: https://www.youtube.com/watch?v=LLgJ0fWbklg
+- fixed an issue when a script could run during game pause (when the game menu is active)
+
 ### 0.8.1 - Dec 1, 2021
 
 - add support for San Andreas: The Definitive Edition v1.0.0.14718 (Title Update 1.03)
+
 ### 0.8.0 - Nov 25, 2021
 
 - new 64-bit version of CLEO Redux (cleo_redux64.asi). It's intended to work only with remastered games.
-- [initial support](#compatibility-with-the-trilogy-the-definitive-edition) for San Andreas: The Definitive Edition v1.0.0.14296 and v1.0.0.14388 
+- [initial support](README.md#compatibility-with-the-trilogy-the-definitive-edition) for San Andreas: The Definitive Edition v1.0.0.14296 and v1.0.0.14388
 - fixed an issue when scripts might not reload after loading a save file
 
 #### KNOWN ISSUES:

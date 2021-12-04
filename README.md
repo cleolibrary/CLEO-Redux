@@ -78,7 +78,9 @@ You should see the words "CLEO Redux" and the current version in the bottom-righ
 
 There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for [JavaScript support](#javascript-support). It won't happen on subsequent runs.
 
-Also a new folder named `CLEO` should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.
+Also a new folder named `CLEO` should appear in the game directory\*. This is the primary location for all CLEO scripts, plugins and configs.
+
+\*If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there.
 
 ### Compatibility with re3 and reVC
 
@@ -90,7 +92,7 @@ When running on `re3` and `reVC` make sure the game directory contains the file 
 
 At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.0.14296`, `1.0.0.14388`, `v1.0.0.14718` (Title Update 1.03). There are some key differences from other games:
 
-- Ultimate ASI Loader by ThirteenAG is requred, see [Installation](#installation) notes
+- Ultimate ASI Loader by ThirteenAG is required, see [Installation](#installation) notes
 - there is no CLEO version displaying in the main menu
 - function `showTextBox` does not work in JS scripts
 - opcodes for custom commands are different, only a few are supported:
@@ -115,6 +117,8 @@ At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.
 
 Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition.
 
+For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (`Win64`). To remediate this issue CLEO will fallback to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log`and the `CLEO` directory can be found there.
+
 ### Uninstallation
 
 - Delete `cleo_redux.asi` (or `cleo_redux64.asi`).
@@ -130,7 +134,7 @@ CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\c
 - `AllowCs` - when set to `1` CLEO loads and executes `*.cs` files located in the CLEO directory. Enabled by default.
 - `AllowJs` - when set to `1` CLEO loads and executes `*.js` files located in the CLEO directory. Enabled by default.
 - `CheckUpdates` - when set to `1` CLEO check if there is a new update available for download during the game startup. Enabled by default.
-- `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo_redux.log` file that can be found in the game directory.
+- `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo_redux.log` file (see [Log](#log))
 - `PermissionLevel` - sets the permission level for unsafe operations (see below). Default is `Lax`.
 
 ### Permissions
@@ -171,7 +175,7 @@ No unsafe operation is allowed.
 
 ## Log
 
-CLEO logs important events and errors in the `cleo_redux.log` file located in the game directory. This file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.
+CLEO logs important events and errors in the `cleo_redux.log` file located in the game directory (or `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`, see [First Time Setup](#first-time-setup) note). This file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.
 
 ## Custom Scripts
 
@@ -291,6 +295,29 @@ var x = Object.create(null); // native JavaScript code, creates a new object in 
 Similarly to the `Object` class (see above), both the Library and native JavaScript runtime use the same name for mathematical utilities: class `Math`. In this case however, the decision was made to keep both native and script methods under the same class name.
 
 The priority was given to the native code in those cases where it provides the same functionality as script opcodes. For example, to calculate the absolute value of a number, use native [Math.abs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs), not [Math.Abs](https://library.sannybuilder.com/#/gta3?q=%22abs%22). See [Using Math](using-math.md) for more detailed information.
+
+#### Fluent Interface
+
+Methods on constructible entities (such as `Player`, `Car`, `Char` -- any entities created via a constructor method) support chaining (also known as Fluent Interface). It allows to write code like this:
+
+```js
+var p = new Player(0);
+
+p.giveWeapon(2, 100)
+  .setHealth(5)
+  .setCurrentWeapon(2)
+  .getChar()
+  .setCoordinates(1144, -600, 14)
+  .setBleeding(true);
+```
+
+See demo: https://www.youtube.com/watch?v=LLgJ0fWbklg.
+
+Destructor methods interrupt the chain. E.g. given the code:
+
+`Char.Create(0, 0, 0, 0, 0).setCoordinates(0, 0, 0).delete()`
+
+the chain can not continue after delete method as the character gets removed and its handle is not longer valid.
 
 #### Examples
 
