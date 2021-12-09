@@ -482,6 +482,8 @@ Adding a new script file in CLEO directory or deleting one while the game is run
 
 Demo: https://www.youtube.com/watch?v=LAi2syrsxJg
 
+Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).
+
 ## License
 
 CLEO Redux is available under the [end-user license agreement](./LICENSE.txt)
