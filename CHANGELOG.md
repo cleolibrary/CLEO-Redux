@@ -1,3 +1,8 @@
+### 0.8.3 - Dec 8, 2021
+
+- fixed a critical bug in CS scripts scheduler causing abnormal behavior (mostly resulting in slow execution) (https://github.com/cleolibrary/CLEO-Redux/issues/21)
+- fixed an issue making coronas created in CLEO scripts not render (https://github.com/cleolibrary/CLEO-Redux/issues/23)
+
 ### 0.8.2 - Dec 4, 2021
 
 - CLEO now uses AppData directory if there is no write permissions in the current game directory (see [First Time Setup](README.md#first-time-setup) note)
