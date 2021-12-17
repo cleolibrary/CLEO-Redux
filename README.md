@@ -97,12 +97,14 @@ At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.
 - function `showTextBox` does not work in JS scripts
 - opcodes for custom commands are different, only a few are supported:
 
-  - 0C00 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00?p=2&v=4)
-  - 0C01 [INT_ADD](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01?p=2&v=4)
-  - 0C02 [INT_SUB](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02?p=2&v=4)
-  - 0C03 [INT_MUL](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03?p=2&v=4)
-  - 0C04 [INT_DIV](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04?p=2&v=4)
-  - 0C05 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05?p=2&v=4)
+  - 0C00 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00)
+  - 0C01 [INT_ADD](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01)
+  - 0C02 [INT_SUB](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02)
+  - 0C03 [INT_MUL](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03)
+  - 0C04 [INT_DIV](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04)
+  - 0C05 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05)
+  - 0C06 [WRITE_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06)
+  - 0C07 [READ_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07)
 
 - Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:
 
@@ -113,6 +115,8 @@ At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.
 {$O 0C03=3,%3d% = %1d% * %2d% }
 {$O 0C04=3,%3d% = %1d% / %2d% }
 {$O 0C05=0,terminate_this_custom_script }
+{$O 0C06=5,write_memory %1d% size %2d% value %3d% virtual_protect %4d% ib %5d% }
+{$O 0C07=5,%5d% = read_memory %1d% size %2d% virtual_protect %3d% ib %4d% }
 ```
 
 Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition.
@@ -244,13 +248,14 @@ This line instructs VS Code where to look for the commands definitions for the a
 
 ### Prerequisites
 
-When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO tries to download the necessary files and puts them into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json), [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json), or [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json) and place them in the `CLEO/.config` directory.
+When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO tries to download them and put into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download a required file (see the table below) and place it in the `CLEO/.config` directory.
 
-Minimum required version of the commands definitions:
-
-- `gta3.json`: `0.100`
-- `vc.json`: `0.145`
-- `sa.json`: `0.175`
+| Game | File | Minumum Required Version |
+| --- | --- | --- | 
+| GTA III, re3 | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json) | `0.200`
+| GTA VC, reVC | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json) | `0.201`
+| GTA San Andreas (Classic) 1.0 | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json) | `0.202`
+| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json) | `0.204`
 
 ### Script Lifecycle
 

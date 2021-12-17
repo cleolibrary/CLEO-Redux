@@ -1,3 +1,5 @@
+Note: This guide is for the classic era games. For the information on using the Memory class in the definitive editions [click here](./using-memory-64.md).
+
 ## Using Memory Object
 
 An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
@@ -77,7 +79,7 @@ Group of memory access methods (`ReadXXX`/`WriteXXX`) can be used for reading or
 
 where `address` is a variable storing the memory location, `1.0` is the value to write and `false` means it's not necessary to change the memory protection with `VirtualProtect` (the address is already writable). 
 
-Similarly, to read a value from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read a  8-bit signed integer (also known as a `char` or `uint8`) use `Memory.ReadI8`, e.g.:
+Similarly, to read a value from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a `char` or `uint8`) use `Memory.ReadI8`, e.g.:
 
 ```js
     var x = Memory.ReadI8(address, true)

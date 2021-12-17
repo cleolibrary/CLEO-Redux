@@ -1,3 +1,24 @@
+### 0.8.4 - Dec 17, 2021
+
+- for San Andreas: The Definitive Edition:
+  - new opcodes `0C06 WRITE_MEMORY` and `0C07 READ_MEMORY`, as well as corresponding JavaScript commands: `Memory.Write` and `Memory.Read`. [Read the guide](using-memory-64.md) for more information
+  - fixed an issue with opcodes `0C01`, `0C02`, `0C03`, `0C04` crashing the game
+
+- for all games:
+  - improved stability of JS scripts (https://github.com/cleolibrary/CLEO-Redux/issues/22)
+  - fixed an issue when scripts permissions were not validated for CLEO scripts
+
+#### BREAKING CHANGES
+
+CLEO Redux for San Andreas: The Definitive Edition now uses `sa_unreal.json` from https://github.com/sannybuilder/library.
+
+| Game | Minumum Required Version |
+| --- | --- | 
+| GTA III, re3 | `0.200`
+| GTA VC, reVC | `0.201`
+| GTA San Andreas (Classic) 1.0 | `0.202`
+| San Andreas: The Definitive Edition | `0.204`
+
 ### 0.8.3 - Dec 8, 2021
 
 - fixed a critical bug in CS scripts scheduler causing abnormal behavior (mostly resulting in slow execution) (https://github.com/cleolibrary/CLEO-Redux/issues/21)
