@@ -85,9 +85,9 @@ variable `x` now holds a 8-bit integer value in the range (0..255). For the sake
 
 Finally, last two methods `Read` and `Write` is what other methods use under the hood. They have direct binding to the Rust code that reads and write the memory. In JavaScript code you can use input arguments as large as 53-bit numbers.
 
-The `size` parameter in the `Read` method can only be `1`, `2` or `4`. CLEO treats the `value` as a signed integer stored in the little-endian format. 
+The `size` parameter in the `Read` method can only be `1`, `2`, `4` or `8`. CLEO treats the `value` as a signed integer stored in the little-endian format. 
 
-In the `Write` method any `size` larger than `0` is allowed. Sizes `3` and `5` onwards can only be used together with a single byte `value`.  CLEO uses them to fill a continious block of memory starting at the `address` with the given `value` (think of it as `memset` in C++).
+In the `Write` method any `size` larger than `0` is allowed. Sizes `3`, `5`, `6`, `7` and `9` onwards can only be used together with a single byte `value`.  CLEO uses them to fill a continious block of memory starting at the `address` with the given `value` (think of it as `memset` in C++).
 
 ```js
     Memory.Write(offset, 0x90, 10, true, true) // "noping" 10 bytes of code starting from offset+image base
