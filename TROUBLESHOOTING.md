@@ -8,6 +8,6 @@ Check out [this information](https://github.com/cleolibrary/CLEO-Redux#compatibi
   - Put `version.dll` to `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64`)
 - make sure you run the latest CLEO Redux version (0.8.2 and above)
 - delete config files from `Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor`
-- run the game as administrator
+- run the game (or Rockstar Games Launcher) as administrator
 
 If CLEO can't create files in `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64` it will use another directory at `C:\Users\<your_usename>\AppData\Roaming\CLEO Redux`. There should be `cleo_redux.log` and the CLEO folder where all your scripts go.
