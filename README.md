@@ -53,7 +53,7 @@ This mode does not work in the classic GTA San Andreas.
 
 #### Running CLEO Redux as an addon to CLEO library
 
-As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for [files](https://library.sannybuilder.com/#/gta3/classes/File) or [dynamic libraries](https://library.sannybuilder.com/#/gta3/classes/DynamicLibrary).
+As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for [files](https://library.sannybuilder.com/#/gta3/classes/File) or [dynamic libraries](https://library.sannybuilder.com/#/gta3/classes/DynamicLibrary).
 
 This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO Library exists.
 
