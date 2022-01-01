@@ -1,3 +1,10 @@
+### 0.8.5 - Jan 1, 2022
+- add support for [static FXT files](using-fxt.md#static-fxt-files) in `CLEO_TEXT` folder
+- add support for [private FXT storage](using-fxt.md#fxtstore) in each JS script
+- fixed an issue when [scripts permissions](README.md#permissions) were not validated for CLEO scripts
+- fixed an issue when the game may crash on the script reload
+- [custom CLEO opcodes](README.md#compatibility-with-the-trilogy-the-definitive-edition) (`0C00`-`0C07`) can now be used in the main.scm in San Andreas: DE
+
 ### 0.8.4 - Dec 17, 2021
 
 - for San Andreas: The Definitive Edition:

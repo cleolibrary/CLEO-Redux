@@ -37,6 +37,8 @@ Other:
 
 CLEO Redux only supports the PC version of each game.
 
+For the complete reference on supported features refer to this page: https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix
+
 ### Relation to CLEO Library
 
 CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded [here](https://cleo.li/download.html). CLEO Redux is _another_ CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code.
@@ -121,7 +123,7 @@ At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.
 
 Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition.
 
-For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (`Win64`). To remediate this issue CLEO will fallback to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log`and the `CLEO` directory can be found there.
+For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (`Win64`). To remediate this issue CLEO will fallback to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there. See also the [troubleshooting guide](TROUBLESHOOTING.md).
 
 ### Uninstallation
 
