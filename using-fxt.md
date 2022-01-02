@@ -2,6 +2,8 @@
 
 ### Static FXT files
 
+Demo: https://youtu.be/ctsKy7WnY9o
+
 CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `CLEO\CLEO_TEXT` folder. The file name can be any valid name. 
 
 Each FXT file contains a list of the key-value entries in the following format:
@@ -29,6 +31,8 @@ You can find the commands available in each game in the Sanny Builder Library, e
 
 
 ### FxtStore
+
+Demo: https://youtu.be/FLyYyrGz1Xg
 
 CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named `FxtStore` with the following interface:
 

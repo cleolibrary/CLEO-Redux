@@ -139,6 +139,7 @@ CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\c
 
 - `AllowCs` - when set to `1` CLEO loads and executes `*.cs` files located in the CLEO directory. Enabled by default.
 - `AllowJs` - when set to `1` CLEO loads and executes `*.js` files located in the CLEO directory. Enabled by default.
+- `AllowFxt` - when set to `1` CLEO loads and [uses](#custom-text) `*.fxt` files located in the CLEO\CLEO_TEXT directory. Enabled by default.
 - `CheckUpdates` - when set to `1` CLEO check if there is a new update available for download during the game startup. Enabled by default.
 - `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo_redux.log` file (see [Log](#log))
 - `PermissionLevel` - sets the permission level for unsafe operations (see below). Default is `Lax`.
@@ -473,6 +474,13 @@ if (op(0x0248, 101)) {
 }
 ```
 
+
+
+
+
+## Custom Text
+
+CLEO Redux supports custom text content without the need to edit game files. See [this guide](using-fxt.md) for more information.
 ## Dev Features
 
 ### SCM Log
@@ -483,7 +491,7 @@ CLEO Redux has built-in support for tracking SCM instructions. To enable trace f
 
 CLEO monitors active scripts and reloads them in game as they change
 
-Demo: https://www.youtube.com/watch?v=WanLojClqFw.
+Demo: https://www.youtube.com/watch?v=WanLojClqFw
 
 Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically
 
