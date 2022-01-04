@@ -69,7 +69,7 @@ FxtStore.delete('MY_KEY')
 Text.PrintHelp('MY_KEY') // this displays "Text from FXT file" again
 ```
 
-A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies one single shared FXT storage (which is different from the FXT files anyway, so temporary shadowing of the static content is still possible). This behavior may change in the future.
+A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.
 
 Custom text can be constructed dynamically, e.g.:
 
