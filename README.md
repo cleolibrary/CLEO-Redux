@@ -39,7 +39,7 @@ Other:
 
 CLEO Redux only supports the PC version of each game.
 
-For the complete reference on supported features refer to this page: https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix
+For the complete reference on supported features refer to this page: https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix. Also there are known limitations [listed here](unsupported.md).
 
 ### Relation to CLEO Library
 
