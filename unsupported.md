@@ -1,6 +1,6 @@
 ## Unsupported or limited support scenarios
 
-Despite our best effort some scenarios while available in game are not supported or supported with limitations in JavaScript code. Some of them are imposed by the nature of JavaScript language or the difficulties in bridging JavaScript and the native code.
+Despite our best effort some scenarios while available in game are not supported or supported with limitations by CLEO Redux. Some of them are imposed by the nature of SCM format or JavaScript language or the difficulties in bridging JavaScript and the native code.
 
 Check the [Features support page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix) to find out high-level features and the status of their support in different games.
 
