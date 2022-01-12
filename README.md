@@ -98,7 +98,6 @@ At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.
 
 - Ultimate ASI Loader by ThirteenAG is required, see [Installation](#installation) notes
 - there is no CLEO version displaying in the main menu
-- function `showTextBox` does not work in JS scripts
 - opcodes for custom commands are different, only a few are supported:
 
   - 0C00 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00)
@@ -109,6 +108,8 @@ At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.
   - 0C05 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05)
   - 0C06 [WRITE_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06)
   - 0C07 [READ_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07)
+  - 0C08 [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08)
+  - 0C09 [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) 
 
 - Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:
 
@@ -121,6 +122,8 @@ At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.
 {$O 0C05=0,terminate_this_custom_script }
 {$O 0C06=5,write_memory %1d% size %2d% value %3d% virtual_protect %4d% ib %5d% }
 {$O 0C07=5,%5d% = read_memory %1d% size %2d% virtual_protect %3d% ib %4d% }
+{$O 0C08=-1,call_function %1d% ib %2d% num_params %3d%}
+{$O 0C09=-1,call_function_return %1d% ib %2d% num_params %3d%}
 ```
 
 Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition.
@@ -260,7 +263,7 @@ When JavaScript is enabled CLEO Redux needs commands definitions from https://li
 | GTA III, re3 | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json) | `0.200`
 | GTA VC, reVC | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json) | `0.201`
 | GTA San Andreas (Classic) 1.0 | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json) | `0.202`
-| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json) | `0.204`
+| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json) | `0.209`
 
 ### Script Lifecycle
 
