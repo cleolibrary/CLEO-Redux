@@ -230,7 +230,7 @@ Note a few key differences here. First of all, `Memory.Fn` methods don't invoke 
 
 The second difference is that there are no `numParams` and `pop` parameters. Each `Fn` method figures them out automatically.
 
-By default a returned result is considered a 32-bit signed integer value. If the function something another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:
+By default a returned result is considered a 32-bit signed integer value. If the function returns another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:
 
 ```js
     var flag = Memory.Fn.CdeclU8(0x1234567)()

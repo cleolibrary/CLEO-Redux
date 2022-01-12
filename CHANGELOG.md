@@ -1,3 +1,16 @@
+### 0.8.6 - Jan 12, 2022
+
+- add [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08) and [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) commands in San Andreas: The Definitive Edition
+- add `Memory.Fn.X64` convenience methods for [calling functions from JavaScript on the x64 platform](using-memory-64.md#calling-foreign-functions)
+- `showTextBox` now works in San Andreas: The Definitive Edition
+- fixed an issue with FxtStore object not showing in VS Code autocomplete
+- fixed an issue with text draw not working in GTA San Andreas
+- fixed an issue in CLEO dev builds causing the game crash on startup while checking for an update
+
+#### BREAKING CHANGE
+
+- minimum required version of `sa_unreal.json` is `0.209`
+
 ### 0.8.5 - Jan 1, 2022
 - add support for [static FXT files](using-fxt.md#static-fxt-files) in `CLEO_TEXT` folder
 - add support for [private FXT storage](using-fxt.md#fxtstore) in each JS script

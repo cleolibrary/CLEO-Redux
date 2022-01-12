@@ -32,7 +32,18 @@ interface Memory {
     ToI16(value: int): int;
     ToI32(value: int): int;
 
-    Translate(symbol: string): int;
+    CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: number[]): void;
+    CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: number[]): int;
+    Fn: {
+        X64(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64I8(address: int): (...funcParams: int[]) => int;
+        X64I16(address: int): (...funcParams: int[]) => int;
+        X64I32(address: int): (...funcParams: int[]) => int;
+        X64U8(address: int): (...funcParams: int[]) => int;
+        X64U16(address: int): (...funcParams: int[]) => int;
+        X64U32(address: int): (...funcParams: int[]) => int;
+    }
+
 }
 ```
 
@@ -114,3 +125,75 @@ To get a quick idea what to expect from those methods see the following examples
 ```
 
 Alternatively, use appropriate methods to read/write the value as a float (`ReadFloat`/`WriteFloat`) or as an unsigned integer (`ReadUXXX`/`WriteUXXX`).
+
+### Calling Foreign Functions
+
+`Memory` object allows to invoke a foreign (native) function by its address using one of the following methods:
+
+- `Memory.CallFunction` - binds to [00C8 CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08)
+- `Memory.CallFunctionReturn` - binds to [00C9 CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09)
+
+
+```js
+    Memory.CallFunction(0xEFFB30, true, 1, 13)
+```
+where `0xEFFB30` is the function offset relative to IMAGE BASE (think of it a randomized start address of the game memory), `true` is the `ib` flag (see below), `1` is the number of input arguments, and `13` are the only argument passed into the function.
+
+
+The `ib` parameter in `Memory.CallFunction` has the same meaning as in memory read/write commands. When set to `true` CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to `false` no changes to the first argument are made.
+
+`Memory.CallFunctionReturn` has the same interface but additionally it writes the result of the function to a variable.
+
+CLEO Redux supports calling foreign functions with up to 16 parameters.
+
+**Note that usage of any of the call methods requires the `mem` [permission](README.md#Permissions)**.
+
+**KNOWN ISSUE**
+
+Due to implementation details on x64 platform CLEO currently does not support passing floating-point arguments to a callee function. You can only use integer numbers. For the same reason you can't call functions returning a floating-point value with `Memory.CallFunctionReturn`.
+
+#### Convenience methods with Fn object
+
+`Memory.Fn` provides convenient methods for calling different types of foreign functions.
+
+```ts
+    Fn: {
+        X64(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64I8(address: int): (...funcParams: int[]) => int;
+        X64I16(address: int): (...funcParams: int[]) => int;
+        X64I32(address: int): (...funcParams: int[]) => int;
+        X64U8(address: int): (...funcParams: int[]) => int;
+        X64U16(address: int): (...funcParams: int[]) => int;
+        X64U32(address: int): (...funcParams: int[]) => int;
+    }
+```
+
+These methods is designed to cover all supported return types. For example, this code
+
+```js
+    Memory.CallFunction(0xEFFB30, true, 1, 13)
+```
+
+can also be written as
+
+```js
+    Memory.Fn.X64(0xEFFB30, true)(13)
+```
+
+Note a few key differences here. First of all, `Memory.Fn` methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:
+
+```js
+    var f = Memory.Fn.X64(0xEFFB30, true);
+    f(13) // calls function 0xEFFB30 with the argument of 13
+    f(11) // calls method 0xEFFB30 with the argument of 11
+```
+
+The second difference is that there is no `numParams` parameter. Each `Fn` method figures it out automatically.
+
+By default a returned result is considered a 64-bit signed integer value. If the function returns another type (e.g. a boolean), use one of the methods matching the function signature:
+
+```js
+    var flag = Memory.Fn.X64U8(0x1234567, true)()
+```
+
+This code invokes a function at `0x1234567` + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value. 
