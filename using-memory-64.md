@@ -38,12 +38,13 @@ interface Memory {
 
     Fn: {
         X64(address: int, ib: boolean): (...funcParams: int[]) => int;
-        X64I8(address: int): (...funcParams: int[]) => int;
-        X64I16(address: int): (...funcParams: int[]) => int;
-        X64I32(address: int): (...funcParams: int[]) => int;
-        X64U8(address: int): (...funcParams: int[]) => int;
-        X64U16(address: int): (...funcParams: int[]) => int;
-        X64U32(address: int): (...funcParams: int[]) => int;
+        X64Float(address: int, ib: boolean): (...funcParams: int[]) => float;
+        X64I8(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64I16(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64I32(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64U8(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64U16(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64U32(address: int, ib: boolean): (...funcParams: int[]) => int;
     }
 }
 ```
@@ -163,12 +164,12 @@ CLEO Redux supports calling foreign functions with up to 16 parameters.
     Fn: {
         X64(address: int, ib: boolean): (...funcParams: int[]) => int;
         X64Float(address: int, ib: boolean): (...funcParams: int[]) => float;
-        X64I8(address: int): (...funcParams: int[]) => int;
-        X64I16(address: int): (...funcParams: int[]) => int;
-        X64I32(address: int): (...funcParams: int[]) => int;
-        X64U8(address: int): (...funcParams: int[]) => int;
-        X64U16(address: int): (...funcParams: int[]) => int;
-        X64U32(address: int): (...funcParams: int[]) => int;
+        X64I8(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64I16(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64I32(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64U8(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64U16(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64U32(address: int, ib: boolean): (...funcParams: int[]) => int;
     }
 ```
 
