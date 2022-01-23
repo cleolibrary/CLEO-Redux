@@ -1,5 +1,17 @@
 Here you can find answers to the frequently asked questions about support for The Trilogy remaster.
 
+- [What versions are supported?](#what-versions-are-supported)
+- [How to install CLEO Redux in The Definition Edition?](#how-to-install-cleo-redux-in-the-definition-edition)
+- [What if I can't find the CLEO directory?](#what-if-i-cant-find-the-cleo-directory)
+- [How to uninstall CLEO Redux?](#how-to-uninstall-cleo-redux)
+- [Is there any difference from support of the classic games?](#is-there-any-difference-from-support-of-the-classic-games)
+- [Can I use original opcodes?](#can-i-use-original-opcodes)
+- [How do I know what commands can I use in JavaScript?](#how-do-i-know-what-commands-can-i-use-in-javascript)
+- [Can I use CLEO opcodes?](#can-i-use-cleo-opcodes)
+- [Can I work with the game memory or call the game functions?](#can-i-work-with-the-game-memory-or-call-the-game-functions)
+- [How do I compile CLEO scripts with Sanny Builder?](#how-do-i-compile-cleo-scripts-with-sanny-builder)
+- [I can't find an answer to my question here, where do I go?](#i-cant-find-an-answer-to-my-question-here-where-do-i-go)
+
 ### What versions are supported?
 
 - GTA III: The Definitive Edition **1.0.0.14718** 
