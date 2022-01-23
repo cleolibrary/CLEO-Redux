@@ -71,9 +71,9 @@ Classic:
 
 Remasters (The Trilogy):
 
-- GTA III v1.0.0.14718
-- GTA Vice City v1.0.0.14718
-- San Andreas 1.0.0.14296, 1.0.0.14388, v1.0.0.14718 (Title Update 1.03)
+- GTA III 1.0.0.14718
+- GTA Vice City 1.0.0.14718
+- San Andreas 1.0.0.14296, 1.0.0.14388, 1.0.0.14718 (Title Update 1.03)
 
 See [The Definitive Edition FAQ](the-definitive-edition-faq.md) for the details.
 
