@@ -12,11 +12,8 @@ The following items are known to be not working and there is no specific timelin
 
 ### Unsupported features in JS
 
-
 - commands requiring an scm variable (e.g. countdown timers). [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/10).
 
 - commands implicitly loading models or textures (such as widgets) [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/12). You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. 
 
 - you can't call the game functions that need references to variables to store the result. There is no "take an address of the variable" syntax.
-
-- in x64 games (SA: DE) you can't call game functions that need floating-point values. All input arguments are treated as 64-bit signed integers. You may need to use other means to invoke the native code (e.g. DLL injection)

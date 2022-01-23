@@ -1,8 +1,52 @@
 # CLEO Redux
 
-[![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)](https://discord.gg/d5dZSfgBZr) 
+[![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)](https://discord.gg/d5dZSfgBZr)
 [![YouTube Channel](https://img.shields.io/badge/YouTube-Channel-FF0000?style=for-the-badge)](https://www.youtube.com/playlist?list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb)
 
+- [CLEO Redux](#cleo-redux)
+  - [Getting Started](#getting-started)
+    - [What is CLEO Redux?](#what-is-cleo-redux)
+    - [Supported Languages](#supported-languages)
+    - [Supported Releases](#supported-releases)
+    - [Relation to CLEO Library](#relation-to-cleo-library)
+      - [Running CLEO Redux as a standalone software](#running-cleo-redux-as-a-standalone-software)
+      - [Running CLEO Redux as an addon to CLEO library](#running-cleo-redux-as-an-addon-to-cleo-library)
+  - [Installation](#installation)
+    - [First time setup](#first-time-setup)
+    - [Compatibility with re3 and reVC](#compatibility-with-re3-and-revc)
+    - [Compatibility with The Trilogy: The Definitive Edition](#compatibility-with-the-trilogy-the-definitive-edition)
+    - [Uninstallation](#uninstallation)
+  - [Configuration](#configuration)
+    - [General Configuration](#general-configuration)
+    - [Permissions](#permissions)
+      - [All](#all)
+      - [Lax](#lax)
+      - [Strict](#strict)
+      - [None](#none)
+  - [Log](#log)
+  - [Custom Scripts](#custom-scripts)
+    - [Adding a new script](#adding-a-new-script)
+    - [Removing the script](#removing-the-script)
+    - [Custom Commands](#custom-commands)
+    - [Writing CS scripts](#writing-cs-scripts)
+    - [Writing JS scripts](#writing-js-scripts)
+    - [Integration with Visual Studio Code](#integration-with-visual-studio-code)
+  - [JavaScript Support](#javascript-support)
+    - [Prerequisites](#prerequisites)
+    - [Script Lifecycle](#script-lifecycle)
+    - [Native Commands](#native-commands)
+      - [Class ScriptObject vs Object](#class-scriptobject-vs-object)
+      - [Class Math](#class-math)
+      - [Fluent Interface](#fluent-interface)
+      - [Imports](#imports)
+      - [Examples](#examples)
+    - [Custom Bindings](#custom-bindings)
+    - [Deprecated](#deprecated)
+  - [Custom Text](#custom-text)
+  - [Dev Features](#dev-features)
+    - [SCM Log](#scm-log)
+    - [Hot Reload](#hot-reload)
+  - [License](#license)
 
 ## Getting Started
 
@@ -18,8 +62,6 @@ CLEO Redux supports compiled binary scripts (`*.cs`) in the native SCM format an
 
 CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.
 
-JavaScript is enabled by default. To disable it open up `CLEO\.config\cleo.ini` and change `AllowJs` to `0`.
-
 ### Supported Releases
 
 Classic:
@@ -28,9 +70,13 @@ Classic:
 - GTA Vice City 1.0
 - GTA San Andreas 1.0 (only with [CLEO 4.4](https://github.com/cleolibrary/CLEO4))
 
-Remasters:
+Remasters (The Trilogy):
 
-- San Andreas: The Definitive Edition 1.0.0.14296, 1.0.0.14388, v1.0.0.14718 (Title Update 1.03) (see [Compatibility details](#compatibility-with-the-trilogy-the-definitive-edition))
+- GTA III v1.0.0.14718
+- GTA Vice City v1.0.0.14718
+- San Andreas 1.0.0.14296, 1.0.0.14388, v1.0.0.14718 (Title Update 1.03)
+
+See [The Definitive Edition FAQ](the-definitive-edition-faq.md) for the details.
 
 Other:
 
@@ -39,7 +85,7 @@ Other:
 
 CLEO Redux only supports the PC version of each game.
 
-For the complete reference on supported features refer to this page: https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix. Also there are known limitations [listed here](unsupported.md).
+For the complete reference on supported features [refer to this page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix). Also there are known limitations [listed here](unsupported.md).
 
 ### Relation to CLEO Library
 
@@ -63,10 +109,9 @@ This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO
 
 ## Installation
 
-If you run San Andreas: The Definitive Edition:
+If you run The Definitive Edition (GTA III, VC, or SA):
 
-- Download and install [Ultimate ASI Loader x64](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip) by ThirteenAG (place `version.dll` to the `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64` directory)
-- Copy `cleo_redux64.asi` to the same directory.
+- [Follow this guide](the-definitive-edition-faq.md#how-to-install-cleo-redux-in-the-definition-edition).
 
 For all other games:
 
@@ -75,8 +120,6 @@ For all other games:
 - Run the game
 
 Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads `.asi` files as addons to the Miles Sound System library. No extra software is required.
-
-You should see the words "CLEO Redux" and the current version in the bottom-right corner of the game menu (except in San Andreas: The Definitive Edition).
 
 ### First time setup
 
@@ -94,41 +137,7 @@ When running on `re3` and `reVC` make sure the game directory contains the file 
 
 ### Compatibility with The Trilogy: The Definitive Edition
 
-At the moment CLEO Redux only supports San Andreas: The Definitive Edition `1.0.0.14296`, `1.0.0.14388`, `v1.0.0.14718` (Title Update 1.03). There are some key differences from other games:
-
-- Ultimate ASI Loader by ThirteenAG is required, see [Installation](#installation) notes
-- there is no CLEO version displaying in the main menu
-- opcodes for custom commands are different, only a few are supported:
-
-  - 0C00 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00)
-  - 0C01 [INT_ADD](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01)
-  - 0C02 [INT_SUB](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02)
-  - 0C03 [INT_MUL](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03)
-  - 0C04 [INT_DIV](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04)
-  - 0C05 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05)
-  - 0C06 [WRITE_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06)
-  - 0C07 [READ_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07)
-  - 0C08 [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08)
-  - 0C09 [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) 
-
-- Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:
-
-```
-{$O 0C00=1,  is_key_pressed %1d% }
-{$O 0C01=3,%3d% = %1d% + %2d% }
-{$O 0C02=3,%3d% = %1d% - %2d% }
-{$O 0C03=3,%3d% = %1d% * %2d% }
-{$O 0C04=3,%3d% = %1d% / %2d% }
-{$O 0C05=0,terminate_this_custom_script }
-{$O 0C06=5,write_memory %1d% size %2d% value %3d% virtual_protect %4d% ib %5d% }
-{$O 0C07=5,%5d% = read_memory %1d% size %2d% virtual_protect %3d% ib %4d% }
-{$O 0C08=-1,call_function %1d% ib %2d% num_params %3d%}
-{$O 0C09=-1,call_function_return %1d% ib %2d% num_params %3d%}
-```
-
-Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition.
-
-For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (`Win64`). To remediate this issue CLEO will fallback to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there. See also the [troubleshooting guide](TROUBLESHOOTING.md).
+Check [The Definitive Edition FAQ](the-definitive-edition-faq.md)
 
 ### Uninstallation
 
@@ -189,6 +198,14 @@ No unsafe operation is allowed.
 
 CLEO logs important events and errors in the `cleo_redux.log` file located in the game directory (or `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`, see [First Time Setup](#first-time-setup) note). This file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.
 
+To stream events in your terminal while testing a script, run:
+
+```
+tail -f cleo_redux.log
+```
+
+`tail` is a unix command so a compatible environment is needed (for example Git Bash).
+
 ## Custom Scripts
 
 ### Adding a new script
@@ -201,7 +218,7 @@ Delete the script file from `CLEO` directory. Some scripts may require extra ste
 
 ### Custom Commands
 
-Note: the following commands are for classic games only. For San Andreas: The Definitive Edition [check this information](#compatibility-with-the-trilogy-the-definitive-edition).
+Note: the following commands are for classic games only. For The Definitive Edition [check this information](the-definitive-edition-faq.md#can-i-use-cleo-opcodes).
 
 - 0A8C [WRITE_MEMORY](https://library.sannybuilder.com/#/gta3/CLEO/0A8C) (**UNSAFE** - requires `mem` permission)
 - 0A8D [READ_MEMORY](https://library.sannybuilder.com/#/gta3/CLEO/0A8D) (**UNSAFE** - requires `mem` permission)
@@ -218,13 +235,17 @@ Note: the following commands are for classic games only. For San Andreas: The De
 
 ### Writing CS scripts
 
-Use [Sanny Builder 3](https://sannybuilder.com) in GTA III, GTA VC or GTA SA edit modes respectively. Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition. Check out [this page](https://cleo.li/scripts.html) for more information.
+Use [Sanny Builder 3](https://sannybuilder.com) in GTA III, GTA VC or GTA SA edit modes respectively. Check out [this page](https://cleo.li/scripts.html) for more information.
+
+[Check the FAQ](the-definitive-edition-faq.md#how-do-i-compile-cleo-scripts-with-sanny-builder) for the information on CS support in the remastered games.
 
 ### Writing JS scripts
 
 Use VS Code (recommended) or any editor of your choice. Create a new file with `.js` extension and put it in the CLEO folder. See [JavaScript support](#javascript-support) for extra information.
 
-Note: The runtime supports scripts in [ECMAScript 5.1 standard](https://262.ecma-international.org/5.1). It means you won't be able to use the most recent JavaScript features out of the box, however you can use any transpiler, such as [Babel](https://babeljs.io/) or [TypeScript](https://www.typescriptlang.org/), to downlevel unsupported ES6+ code to ES5.
+The runtime supports scripts in [ECMAScript 2020 standard](https://262.ecma-international.org/11.0/). It means you are able to use the most recent JavaScript features out of the box, such as imports, classes, arrow functions, etc.
+
+CLEO Redux is not Node.js. Don't expect sockets, file system operations or other Node.js features to be available here.
 
 ### Integration with Visual Studio Code
 
@@ -258,12 +279,14 @@ This line instructs VS Code where to look for the commands definitions for the a
 
 When JavaScript is enabled CLEO Redux needs commands definitions from https://library.sannybuilder.com/. On the first run CLEO tries to download them and put into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download a required file (see the table below) and place it in the `CLEO/.config` directory.
 
-| Game | File | Minumum Required Version |
-| --- | --- | --- | 
-| GTA III, re3 | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json) | `0.200`
-| GTA VC, reVC | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json) | `0.201`
-| GTA San Andreas (Classic) 1.0 | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json) | `0.202`
-| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json) | `0.209`
+| Game                                | File                                                                                                 | Minumum Required Version |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
+| GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.200`                  |
+| GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.201`                  |
+| GTA San Andreas (Classic) 1.0       | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json)                            | `0.202`                  |
+| GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.204`                  |
+| Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.205`                  |
+| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.209`                  |
 
 ### Script Lifecycle
 
@@ -332,6 +355,22 @@ Destructor methods interrupt the chain. E.g. given the code:
 
 the chain can not continue after delete method as the character gets removed and its handle is not longer valid.
 
+#### Imports
+
+You can import other script files in your code to make the code modular and share the common logic. The runtime supports the `import` statement as described in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+
+To avoid running the included `.js` files as standalone scripts, either put them into a separate folder (e.g. `CLEO/includes/`) or use the extension `.mjs`.
+
+```js
+import func from "./other"; // imports default export from other.js or other.mjs located in the same directory
+
+import { PedType } from "./includes/types"; // imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
+
+import data from "./vehicles.json"; // imports vehicles.json as a JavaScript value (an array, object).
+```
+
+Currently only import of `.js` (`.mjs`) and `.json` files is supported.
+
 #### Examples
 
 If you were to change the time of day to 22:00, run the following command
@@ -385,7 +424,9 @@ Also check out the [example scripts](examples).
 
 ### Custom Bindings
 
-- `GAME` - current game id. Possible values: `gta3`, `vc`, `re3`, `reVC`, `sa`, `sa_unreal`
+The following variables and functions are only available in JavaScript code.
+
+- `GAME` - current game id. Possible values: `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`
 
 ```js
 if (GAME === "gta3") {
@@ -479,13 +520,10 @@ if (op(0x0248, 101)) {
 }
 ```
 
-
-
-
-
 ## Custom Text
 
 CLEO Redux supports custom text content without the need to edit game files. See [this guide](using-fxt.md) for more information.
+
 ## Dev Features
 
 ### SCM Log

@@ -1,3 +1,27 @@
+### 0.9.0 - Jan 23, 2022
+
+- add support for JS scripts in **GTA III: The Definitive Edition (v1.0.0.14718)** and **Vice City: The Definitive Edition (v1.0.0.14718)** (some limitations apply, see [Feature support](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix) for the details)
+- add support for modern ES6+ syntax (arrow functions, const/let, classes, more methods in the standard library, etc), see [Mines Drop script](examples/mines-drop.js) as an example
+- add support for [importing other scripts and JSON files](README.md#Imports)
+
+For 64-bit games (The Trilogy):
+
+- you can now call game functions with floating-point arguments - thanks to @ThirteenAG. 
+- new command `Memory.CallFunctionReturnFloat` that is similar to `Memory.CallFunctionReturn` but is used for functions that return a floating-point number
+```js
+  let x = Memory.FromFloat(123.456);
+  let x = Memory.FromFloat(456.555);
+  let groundZ = Memory.CallFunctionReturnFloat(0x100cc50, true, 2, x, y);
+```
+- new convenience method `Memory.Fn.X64Float` that can be used for functions that return a floating-point number:
+
+```js
+  let CWorldFindGroundZForCoord = Memory.Fn.X64Float(0x100cc50, true);
+  let x = Memory.FromFloat(123.456);
+  let x = Memory.FromFloat(456.555);
+  let groundZ = CWorldFindGroundZForCoord(x, y);
+```
+
 ### 0.8.6 - Jan 12, 2022
 
 - add [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08) and [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) commands in San Andreas: The Definitive Edition

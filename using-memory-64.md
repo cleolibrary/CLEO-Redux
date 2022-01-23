@@ -32,8 +32,10 @@ interface Memory {
     ToI16(value: int): int;
     ToI32(value: int): int;
 
-    CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: number[]): void;
-    CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: number[]): int;
+    CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: int[]): void;
+    CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: int[]): int;
+    CallFunctionReturnFloat(address: int, ib: boolean, numParams: int, ...funcParams: int[]): float;
+
     Fn: {
         X64(address: int, ib: boolean): (...funcParams: int[]) => int;
         X64I8(address: int): (...funcParams: int[]) => int;
@@ -43,7 +45,6 @@ interface Memory {
         X64U16(address: int): (...funcParams: int[]) => int;
         X64U32(address: int): (...funcParams: int[]) => int;
     }
-
 }
 ```
 
@@ -130,27 +131,29 @@ Alternatively, use appropriate methods to read/write the value as a float (`Read
 
 `Memory` object allows to invoke a foreign (native) function by its address using one of the following methods:
 
-- `Memory.CallFunction` - binds to [00C8 CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08)
-- `Memory.CallFunctionReturn` - binds to [00C9 CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09)
-
+- `Memory.CallFunction`
+- `Memory.CallFunctionReturn`
+- `Memory.CallFunctionReturnFloat`
 
 ```js
     Memory.CallFunction(0xEFFB30, true, 1, 13)
 ```
 where `0xEFFB30` is the function offset relative to IMAGE BASE (think of it a randomized start address of the game memory), `true` is the `ib` flag (see below), `1` is the number of input arguments, and `13` are the only argument passed into the function.
 
-
 The `ib` parameter in `Memory.CallFunction` has the same meaning as in memory read/write commands. When set to `true` CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to `false` no changes to the first argument are made.
 
-`Memory.CallFunctionReturn` has the same interface but additionally it writes the result of the function to a variable.
+To pass floating-point values to the function, convert the value to integer using `Memory.FromFloat`:
+
+```js
+    Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
+```
+
+The returned value of the function called with `Memory.CallFunction` is ignored. To read the result use `Memory.CallFunctionReturn` that has the same parameters. Use `Memory.CallFunctionReturnFloat` to call a function that returns a floating-point value.
+
 
 CLEO Redux supports calling foreign functions with up to 16 parameters.
 
 **Note that usage of any of the call methods requires the `mem` [permission](README.md#Permissions)**.
-
-**KNOWN ISSUE**
-
-Due to implementation details on x64 platform CLEO currently does not support passing floating-point arguments to a callee function. You can only use integer numbers. For the same reason you can't call functions returning a floating-point value with `Memory.CallFunctionReturn`.
 
 #### Convenience methods with Fn object
 
@@ -159,6 +162,7 @@ Due to implementation details on x64 platform CLEO currently does not support pa
 ```ts
     Fn: {
         X64(address: int, ib: boolean): (...funcParams: int[]) => int;
+        X64Float(address: int, ib: boolean): (...funcParams: int[]) => float;
         X64I8(address: int): (...funcParams: int[]) => int;
         X64I16(address: int): (...funcParams: int[]) => int;
         X64I32(address: int): (...funcParams: int[]) => int;
@@ -197,3 +201,9 @@ By default a returned result is considered a 64-bit signed integer value. If the
 ```
 
 This code invokes a function at `0x1234567` + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value. 
+
+```js
+    var float = Memory.Fn.X64Float(0x456789, true)()
+```
+
+This code invokes a function at `0x456789` + IMAGE_BASE with no arguments and stores the result as a floating-point value. 
