@@ -37,8 +37,8 @@
     - [Class ScriptObject vs Object](#class-scriptobject-vs-object)
     - [Class Math](#class-math)
     - [Fluent Interface](#fluent-interface)
-    - [Imports](#imports)
     - [Examples](#examples)
+  - [Imports](#imports)
   - [Custom Bindings](#custom-bindings)
   - [Deprecated](#deprecated)
 - [Custom Text](#custom-text)
@@ -354,22 +354,6 @@ Destructor methods interrupt the chain. E.g. given the code:
 
 the chain can not continue after delete method as the character gets removed and its handle is not longer valid.
 
-#### Imports
-
-You can import other script files in your code to make the code modular and share the common logic. The runtime supports the `import` statement as described in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
-
-To avoid running the included `.js` files as standalone scripts, either put them into a separate folder (e.g. `CLEO/includes/`) or use the extension `.mjs`.
-
-```js
-import func from "./other"; // imports default export from other.js or other.mjs located in the same directory
-
-import { PedType } from "./includes/types"; // imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
-
-import data from "./vehicles.json"; // imports vehicles.json as a JavaScript value (an array, object).
-```
-
-Currently only import of `.js` (`.mjs`) and `.json` files is supported.
-
 #### Examples
 
 If you were to change the time of day to 22:00, run the following command
@@ -420,6 +404,22 @@ infernus.explode();
 This would be the equivalent to the opcode `020B: explode_car $infernus` or `EXPLODE_CAR $infernus` in SCM scripts.
 
 Also check out the [example scripts](examples).
+
+### Imports
+
+You can import other script files in your code to make the code modular and share the common logic. The runtime supports the `import` statement as described in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+
+To avoid running the included `.js` files as standalone scripts, either put them into a separate folder (e.g. `CLEO/includes/`) or use the extension `.mjs`.
+
+```js
+import func from "./other"; // imports default export from other.js or other.mjs located in the same directory
+
+import { PedType } from "./includes/types"; // imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
+
+import data from "./vehicles.json"; // imports vehicles.json as a JavaScript value (an array, object).
+```
+
+Currently only import of `.js` (`.mjs`) and `.json` files is supported.
 
 ### Custom Bindings
 
