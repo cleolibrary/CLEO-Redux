@@ -27,11 +27,11 @@ Here you can find answers to the frequently asked questions about support for Th
 
 ### What if I can't find the CLEO directory?
 
-For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (`Win64`). To remediate this issue CLEO will fallback to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there. See also the [troubleshooting guide](TROUBLESHOOTING.md).
+For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (`Win64`). To remediate this issue CLEO fallbacks to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there. See also the [troubleshooting guide](TROUBLESHOOTING.md).
 
 ### How to uninstall CLEO Redux?
 
-- Delete `cleo_redux.asi` (or `cleo_redux64.asi`).
+- Delete `cleo_redux64.asi`.
 - Delete the `CLEO` folder (optional).
 - Delete the `cleo_redux.log` (optional)
 
