@@ -5,7 +5,7 @@ Check out [this information](https://github.com/cleolibrary/CLEO-Redux#compatibi
 ## Game crash with CLEO on San Andreas: The Definitive Edition
 
 - make sure you installed the 64-bit version of Ultimate ASI Loader ([direct link to the latest release](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip)).
-  - Put `version.dll` to `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64`)
+  - Put `version.dll` to `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64`
 - make sure you run the latest CLEO Redux version (0.8.2 and above)
 - delete config files from `Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor`
 - run the game (or Rockstar Games Launcher) as administrator
