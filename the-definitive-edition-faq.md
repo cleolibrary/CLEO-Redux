@@ -1,7 +1,7 @@
 Here you can find answers to the frequently asked questions about support for The Trilogy remaster.
 
 - [What versions are supported?](#what-versions-are-supported)
-- [How to install CLEO Redux in The Definition Edition?](#how-to-install-cleo-redux-in-the-definition-edition)
+- [How to install CLEO Redux in The Definitive Edition?](#how-to-install-cleo-redux-in-the-definitive-edition)
 - [What if I can't find the CLEO directory?](#what-if-i-cant-find-the-cleo-directory)
 - [How to uninstall CLEO Redux?](#how-to-uninstall-cleo-redux)
 - [Is there any difference from support of the classic games?](#is-there-any-difference-from-support-of-the-classic-games)
@@ -18,7 +18,7 @@ Here you can find answers to the frequently asked questions about support for Th
 - GTA Vice City: The Definitive Edition **1.0.0.14718** 
 - San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** 
 
-### How to install CLEO Redux in The Definition Edition?
+### How to install CLEO Redux in The Definitive Edition?
 
 - Download and install [Ultimate ASI Loader x64](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip) by ThirteenAG (place `version.dll` to the `Gameface\Binaries\Win64` directory)
 - Copy `cleo_redux64.asi` to the same directory.
