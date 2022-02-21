@@ -110,7 +110,7 @@ This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO
 
 If you run The Definitive Edition (GTA III, VC, or SA):
 
-- [Follow this guide](the-definitive-edition-faq.md#how-to-install-cleo-redux-in-the-definition-edition).
+- [Follow this guide](the-definitive-edition-faq.md#how-to-install-cleo-redux-in-the-definitive-edition).
 
 For all other games:
 
