@@ -556,7 +556,7 @@ Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Libr
 
 ### SDK
 
-CLEO Redux provides a C++ and Rust SDK for developing custom commands. Find more information in the [Using SDK](./using-sdk.md) guide.
+CLEO Redux provides a [C++ and Rust SDK](./plugins/SDK) for developing custom commands. Find more information in the [Using SDK](./using-sdk.md) guide.
 
 ## License
 
