@@ -31,6 +31,23 @@ interface Math {
     sin(x: number): number;
     sqrt(x: number): number;
     tan(x: number): number;
+    clz32(x: number): number;
+    imul(x: number, y: number): number;
+    sign(x: number): number;
+    log10(x: number): number;
+    log2(x: number): number;
+    log1p(x: number): number;
+    expm1(x: number): number;
+    cosh(x: number): number;
+    sinh(x: number): number;
+    tanh(x: number): number;
+    acosh(x: number): number;
+    asinh(x: number): number;
+    atanh(x: number): number;
+    hypot(...values: number[]): number;
+    trunc(x: number): number;
+    fround(x: number): number;
+    cbrt(x: number): number;
 
     // GTA III, GTA Vice City, GTA SA commands
     ConvertMetersToFeet(meters: int): int;

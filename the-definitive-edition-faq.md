@@ -85,6 +85,8 @@ Note that Sanny Builder does not support these new opcodes out-of-the-box yet. T
 {$O 0C09=-1,call_function_return %1d% ib %2d% num_params %3d%}
 ```
 
+This list might not be complete as there are custom plugins with extra commands (see [Using SDK](./using-sdk.md)). Refer to [Sanny Builder Library](https://library.sannybuilder.com) for the complete list of available commands for each game.
+
 ### Can I work with the game memory or call the game functions?
 
 Yes, check the [Memory guide](using-memory-64.md)

@@ -29,7 +29,6 @@
   - [Custom Commands](#custom-commands)
   - [Writing CS scripts](#writing-cs-scripts)
   - [Writing JS scripts](#writing-js-scripts)
-  - [Integration with Visual Studio Code](#integration-with-visual-studio-code)
 - [JavaScript Support](#javascript-support)
   - [Prerequisites](#prerequisites)
   - [Script Lifecycle](#script-lifecycle)
@@ -43,8 +42,10 @@
   - [Deprecated](#deprecated)
 - [Custom Text](#custom-text)
 - [Dev Features](#dev-features)
+  - [Integration with Visual Studio Code](#integration-with-visual-studio-code)
   - [SCM Log](#scm-log)
   - [Hot Reload](#hot-reload)
+  - [SDK](#sdk)
 - [License](#license)
 
 ## Getting Started
@@ -117,6 +118,8 @@ For all other games:
 - Copy `cleo_redux.asi` to the game directory.
 
 - Run the game
+
+Plugins for CLEO Redux (`*.cleo`) should be copied to the `CLEO\CLEO_PLUGINS` directory.
 
 Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads `.asi` files as addons to the Miles Sound System library. No extra software is required.
 
@@ -232,6 +235,8 @@ Note: the following commands are for classic games only. For The Definitive Edit
 - 0AA8 [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8) (**UNSAFE** - requires `mem` permission)
 - 0AB0 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/gta3/CLEO/0AB0)
 
+This list might not be complete as there are custom plugins with extra commands (see [Using SDK](./using-sdk.md)). Refer to [Sanny Builder Library](https://library.sannybuilder.com) for the complete list of available commands for each game.
+
 ### Writing CS scripts
 
 Use [Sanny Builder 3](https://sannybuilder.com) in GTA III, GTA VC or GTA SA edit modes respectively. Check out [this page](https://cleo.li/scripts.html) for more information.
@@ -246,32 +251,6 @@ The runtime supports scripts in [ECMAScript 2020 standard](https://262.ecma-inte
 
 CLEO Redux is not Node.js. Don't expect sockets, file system operations or other Node.js features to be available here.
 
-### Integration with Visual Studio Code
-
-See demo: https://youtu.be/jqz8_lGnG4g
-
-CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your `*.js` script to get the full autocomplete support:
-
-For `GTA III` or `re3`:
-
-```
-/// <reference path=".config/gta3.d.ts" />
-```
-
-For `Vice City` or `reVC`
-
-```
-/// <reference path=".config/vc.d.ts" />
-```
-
-For `San Andreas`
-
-```
-/// <reference path=".config/sa.d.ts" />
-```
-
-This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
-
 ## JavaScript Support
 
 ### Prerequisites
@@ -280,12 +259,12 @@ When JavaScript is enabled CLEO Redux needs commands definitions from https://li
 
 | Game                                | File                                                                                                 | Minumum Required Version |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
-| GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.200`                  |
-| GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.201`                  |
-| GTA San Andreas (Classic) 1.0       | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json)                            | `0.202`                  |
-| GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.204`                  |
-| Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.205`                  |
-| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.209`                  |
+| GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.208`                  |
+| GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.210`                  |
+| GTA San Andreas (Classic) 1.0       | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json)                            | `0.210`                  |
+| GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.210`                  |
+| Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.212`                  |
+| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.216`                  |
 
 ### Script Lifecycle
 
@@ -461,6 +440,8 @@ while (true) {
 }
 ```
 
+- `__dirname` - an absolute path to the directory with the current file
+
 - `log(...values)` - prints comma-separated `{values}` to the `cleo_redux.log`
 
 ```js
@@ -490,6 +471,12 @@ exit("Script ended");
 ```
 
 - family of static methods in the `Memory` class for manipulating different data types. See the [Memory guide](using-memory.md) for more information.
+
+- `native(command_name, ...input_args)` - a low-level function to execute any in-game command using its name `{command_name}`
+
+```js
+native("SET_TIME_OF_DAY", 12, 30); // sets the time of day to 12:30
+```
 
 ### Deprecated
 
@@ -525,6 +512,32 @@ CLEO Redux supports custom text content without the need to edit game files. See
 
 ## Dev Features
 
+### Integration with Visual Studio Code
+
+See demo: https://youtu.be/jqz8_lGnG4g
+
+CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your `*.js` script to get the full autocomplete support:
+
+For `GTA III` or `re3`:
+
+```
+/// <reference path=".config/gta3.d.ts" />
+```
+
+For `Vice City` or `reVC`
+
+```
+/// <reference path=".config/vc.d.ts" />
+```
+
+For `San Andreas`
+
+```
+/// <reference path=".config/sa.d.ts" />
+```
+
+This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
+
 ### SCM Log
 
 CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up `cleo.ini` and change `LogOpcodes` to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.
@@ -540,6 +553,10 @@ Adding a new script file in CLEO directory or deleting one while the game is run
 Demo: https://www.youtube.com/watch?v=LAi2syrsxJg
 
 Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).
+
+### SDK
+
+CLEO Redux provides a C++ and Rust SDK for developing custom commands. Find more information in the [Using SDK](./using-sdk.md) guide.
 
 ## License
 

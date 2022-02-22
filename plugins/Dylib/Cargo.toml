@@ -1,0 +1,15 @@
+[package]
+name = "dylib"
+version = "1.0.2"
+edition = "2021"
+authors = ["Seemann <mail@sannybuilder.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ctor = "0.1.21"
+libloading = "0.7.3"
+cleo_redux_sdk = "0.0.4"

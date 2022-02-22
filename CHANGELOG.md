@@ -1,3 +1,42 @@
+### 0.9.1 - Feb 22, 2022
+
+- add [SDK for developing custom commands](using-sdk.md) in C++ and Rust
+- add support for fallible commands in JS (also known as `IF and SET` commands in SCM scripts), they return `undefined` when failing, e.g. `DynamicLibrary.Load` or `Char.IsInAnySearchlight`)
+- two new plugins adding commands to work with DLL (`dylib.cleo`) and INI files (`IniFiles.cleo`) in all supported games
+- add `__dirname` variable in JS scripts that resolves to the current file's directory
+- add a new function [native](README.md#custom-bindings) that calls a scripting command by name (similar to `op`):
+
+```ts
+/** Executes a named command with the given arguments */
+declare function native<T>(name: string, ...args: any[]): T;
+```
+
+```js
+const lib = native("LOAD_DYNAMIC_LIBRARY", "test.dll");
+```
+
+- fix a rounding issue with floating-point numbers in GTA 3
+- fix an issue with imports not working in JS when the CLEO folder is located in the AppData directory
+- fix an issue with the `showTextBox` command in San Andreas displaying some garbage text
+- fix a conversion error when the `showTextBox` command is given an integer argument
+- fix an issue with scripts permissions not being validated for JS scripts
+- fix an issue when the object returned as a result of some commands (`Object.GrabEntityOnRope()`, `Heli.GrabEntityOnWinch()` and like) did not have relevant fields wrapped in a class instance
+
+**INSTALLATION STEPS**
+
+https://github.com/cleolibrary/CLEO-Redux/blob/master/README.md#installation
+
+**BREAKING CHANGES**
+
+| Game                                | File                                                                                                 | Minumum Required Version |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
+| GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.208`                  |
+| GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.210`                  |
+| GTA San Andreas (Classic) 1.0       | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json)                            | `0.210`                  |
+| GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.210`                  |
+| Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.212`                  |
+| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.216`                  |
+
 ### 0.9.0 - Jan 23, 2022
 
 - add support for JS scripts in **GTA III: The Definitive Edition (v1.0.0.14718)** and **Vice City: The Definitive Edition (v1.0.0.14718)** (some limitations apply, see [Feature support](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix) for the details)
@@ -6,20 +45,22 @@
 
 For 64-bit games (The Trilogy):
 
-- you can now call game functions with floating-point arguments - thanks to @ThirteenAG. 
+- you can now call game functions with floating-point arguments - thanks to @ThirteenAG.
 - new command `Memory.CallFunctionReturnFloat` that is similar to `Memory.CallFunctionReturn` but is used for functions that return a floating-point number
+
 ```js
-  let x = Memory.FromFloat(123.456);
-  let x = Memory.FromFloat(456.555);
-  let groundZ = Memory.CallFunctionReturnFloat(0x100cc50, true, 2, x, y);
+let x = Memory.FromFloat(123.456);
+let y = Memory.FromFloat(456.555);
+let groundZ = Memory.CallFunctionReturnFloat(0x100cc50, true, 2, x, y);
 ```
+
 - new convenience method `Memory.Fn.X64Float` that can be used for functions that return a floating-point number:
 
 ```js
-  let CWorldFindGroundZForCoord = Memory.Fn.X64Float(0x100cc50, true);
-  let x = Memory.FromFloat(123.456);
-  let x = Memory.FromFloat(456.555);
-  let groundZ = CWorldFindGroundZForCoord(x, y);
+let CWorldFindGroundZForCoord = Memory.Fn.X64Float(0x100cc50, true);
+let x = Memory.FromFloat(123.456);
+let y = Memory.FromFloat(456.555);
+let groundZ = CWorldFindGroundZForCoord(x, y);
 ```
 
 ### 0.8.6 - Jan 12, 2022
@@ -27,52 +68,54 @@ For 64-bit games (The Trilogy):
 - add [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08) and [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) commands in San Andreas: The Definitive Edition
 - add `Memory.Fn.X64` convenience methods for [calling functions from JavaScript on the x64 platform](using-memory-64.md#calling-foreign-functions)
 - `showTextBox` now works in San Andreas: The Definitive Edition
-- fixed an issue with FxtStore object not showing in VS Code autocomplete
-- fixed an issue with text draw not working in GTA San Andreas
-- fixed an issue in CLEO dev builds causing the game crash on startup while checking for an update
+- fix an issue with FxtStore object not showing in VS Code autocomplete
+- fix an issue with text draw not working in GTA San Andreas
+- fix an issue in CLEO dev builds causing the game crash on startup while checking for an update
 
 #### BREAKING CHANGE
 
 - minimum required version of `sa_unreal.json` is `0.209`
 
 ### 0.8.5 - Jan 1, 2022
+
 - add support for [static FXT files](using-fxt.md#static-fxt-files) in `CLEO_TEXT` folder
 - add support for [private FXT storage](using-fxt.md#fxtstore) in each JS script
-- fixed an issue when [scripts permissions](README.md#permissions) were not validated for CLEO scripts
-- fixed an issue when the game may crash on the script reload
+- fix an issue when [scripts permissions](README.md#permissions) were not validated for CLEO scripts
+- fix an issue when the game may crash on the script reload
 - [custom CLEO opcodes](README.md#compatibility-with-the-trilogy-the-definitive-edition) (`0C00`-`0C07`) can now be used in the main.scm in San Andreas: DE
 
 ### 0.8.4 - Dec 17, 2021
 
 - for San Andreas: The Definitive Edition:
+
   - new opcodes `0C06 WRITE_MEMORY` and `0C07 READ_MEMORY`, as well as corresponding JavaScript commands: `Memory.Write` and `Memory.Read`. [Read the guide](using-memory-64.md) for more information
-  - fixed an issue with opcodes `0C01`, `0C02`, `0C03`, `0C04` crashing the game
+  - fix an issue with opcodes `0C01`, `0C02`, `0C03`, `0C04` crashing the game
 
 - for all games:
-  - improved stability of JS scripts (https://github.com/cleolibrary/CLEO-Redux/issues/22)
-  - fixed an issue when scripts permissions were not validated for CLEO scripts
+  - improve stability of JS scripts (https://github.com/cleolibrary/CLEO-Redux/issues/22)
+  - fix an issue when scripts permissions were not validated for CLEO scripts
 
 #### BREAKING CHANGES
 
 CLEO Redux for San Andreas: The Definitive Edition now uses `sa_unreal.json` from https://github.com/sannybuilder/library.
 
-| Game | Minumum Required Version |
-| --- | --- | 
-| GTA III, re3 | `0.200`
-| GTA VC, reVC | `0.201`
-| GTA San Andreas (Classic) 1.0 | `0.202`
-| San Andreas: The Definitive Edition | `0.204`
+| Game                                | Minumum Required Version |
+| ----------------------------------- | ------------------------ |
+| GTA III, re3                        | `0.200`                  |
+| GTA VC, reVC                        | `0.201`                  |
+| GTA San Andreas (Classic) 1.0       | `0.202`                  |
+| San Andreas: The Definitive Edition | `0.204`                  |
 
 ### 0.8.3 - Dec 8, 2021
 
-- fixed a critical bug in CS scripts scheduler causing abnormal behavior (mostly resulting in slow execution) (https://github.com/cleolibrary/CLEO-Redux/issues/21)
-- fixed an issue making coronas created in CLEO scripts not render (https://github.com/cleolibrary/CLEO-Redux/issues/23)
+- fix a critical bug in CS scripts scheduler causing abnormal behavior (mostly resulting in slow execution) (https://github.com/cleolibrary/CLEO-Redux/issues/21)
+- fix an issue making coronas created in CLEO scripts not render (https://github.com/cleolibrary/CLEO-Redux/issues/23)
 
 ### 0.8.2 - Dec 4, 2021
 
 - CLEO now uses AppData directory if there is no write permissions in the current game directory (see [First Time Setup](README.md#first-time-setup) note)
 - add fluent interface for methods on constructible entities. See demo: https://www.youtube.com/watch?v=LLgJ0fWbklg
-- fixed an issue when a script could run during game pause (when the game menu is active)
+- fix an issue when a script could run during game pause (when the game menu is active)
 
 ### 0.8.1 - Dec 1, 2021
 
@@ -82,7 +125,7 @@ CLEO Redux for San Andreas: The Definitive Edition now uses `sa_unreal.json` fro
 
 - new 64-bit version of CLEO Redux (cleo_redux64.asi). It's intended to work only with remastered games.
 - [initial support](README.md#compatibility-with-the-trilogy-the-definitive-edition) for San Andreas: The Definitive Edition v1.0.0.14296 and v1.0.0.14388
-- fixed an issue when scripts might not reload after loading a save file
+- fix an issue when scripts might not reload after loading a save file
 
 #### KNOWN ISSUES:
 
