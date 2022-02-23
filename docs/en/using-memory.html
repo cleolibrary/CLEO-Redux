@@ -226,7 +226,9 @@
 <p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code> and <code>5</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
 <pre><code class="language-js">    Memory.Write(addr, 0x90, 10, true) // &quot;noping&quot; 10 bytes of code starting from addr
 </code></pre>
-<p><strong>Note that usage of any of the read/write methods requires the <code>mem</code> <a href="README.html#Permissions">permission</a></strong>.</p>
+<blockquote>
+<p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
@@ -266,7 +268,9 @@
 <pre><code class="language-js">    Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456))
 </code></pre>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
-<p><strong>Note that usage of any of the call methods requires the <code>mem</code> <a href="README.html#Permissions">permission</a></strong>.</p>
+<blockquote>
+<p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
 <h4 id="convenience-methods-with-fn-object"><a class="header" href="#convenience-methods-with-fn-object">Convenience methods with Fn object</a></h4>
 <p><code>Memory.Fn</code> provides a lot of convenient methods for calling different types of foreign functions.</p>
 <pre><code class="language-ts">Fn: {

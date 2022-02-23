@@ -157,8 +157,8 @@
 <p>See <a href="the-definitive-edition-faq.html">The Definitive Edition FAQ</a> for the details.</p>
 <p>Other:</p>
 <ul>
-<li>re3 (see <a href="introduction.html#compatibility-with-re3-and-revc">Compatibility details</a>)</li>
-<li>reVC (see <a href="introduction.html#compatibility-with-re3-and-revc">Compatibility details</a>)</li>
+<li>re3 (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
+<li>reVC (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
 </ul>
 <p>CLEO Redux only supports the PC version of each game.</p>
 <p>For the complete reference on supported features <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">refer to this page</a>. Also there are known limitations <a href="unsupported.html">listed here</a>.</p>
@@ -169,7 +169,7 @@
 <p>At the moment CLEO Redux can not be considered as a complete replacement for CLEO Library due to the lack of support for many widely used CLEO commands. To solve this issue and get the best out of the two libraries, CLEO Redux supports two different usage strategies.</p>
 <p>CLEO Redux can run as a standalone software, or as an addon to CLEO Library. In the first case your game directory would only contain <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>) file. In the second case, your game directory would have both <code>cleo.asi</code> (or <code>III.CLEO.asi</code> or <code>VC.CLEO.asi</code>) and <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>).</p>
 <h2 id="running-cleo-redux-as-a-standalone-software"><a class="header" href="#running-cleo-redux-as-a-standalone-software">Running CLEO Redux as a standalone software</a></h2>
-<p>As a standalone software CLEO Redux runs compiled scripts and JavaScript and provides access to all native script commands. It also provides a limited set of <a href="relation-to-cleo-library.html#custom-commands">custom commands</a> backward-compatible to CLEO Library. Existing CLEO scripts may not work if they use custom commands (for example from a third-party plugin) not supported by CLEO Redux.</p>
+<p>As a standalone software CLEO Redux runs compiled scripts and JavaScript and provides access to all native script commands. It also provides a limited set of <a href="./custom-commands.html">custom commands</a> backward-compatible to CLEO Library. Existing CLEO scripts may not work if they use custom commands (for example from a third-party plugin) not supported by CLEO Redux.</p>
 <p>This mode does not work in the classic GTA San Andreas.</p>
 <h2 id="running-cleo-redux-as-an-addon-to-cleo-library"><a class="header" href="#running-cleo-redux-as-an-addon-to-cleo-library">Running CLEO Redux as an addon to CLEO library</a></h2>
 <p>As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for <a href="https://library.sannybuilder.com/#/gta3/classes/File">files</a> or <a href="https://library.sannybuilder.com/#/gta3/classes/DynamicLibrary">dynamic libraries</a>.</p>
@@ -211,7 +211,7 @@
 <p>Run the game once to complete the installation.</p>
 </li>
 </ul>
-<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="installation-classic-games.html#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="./prerequisites.html">JavaScript support</a>. It won't happen on subsequent runs.</p>
 <p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
 <blockquote>
 <p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
@@ -226,7 +226,7 @@
 <p>Run the game once to complete the installation.</p>
 </li>
 </ul>
-<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="installation-re3-revc.html#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="./prerequisites.html">JavaScript support</a>. It won't happen on subsequent runs.</p>
 <p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
 <blockquote>
 <p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
@@ -245,13 +245,13 @@
 <p>Run the game once to complete the installation.</p>
 </li>
 </ul>
-<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="installation-definitive-edition.html#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="./prerequisites.html">JavaScript support</a>. It won't happen on subsequent runs.</p>
 <p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
 <blockquote>
 <p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
-<p>Plugins are optional programs adding extra scripting commands with the help of <a href="./sdk.html">CLEO Redux SDK</a>. They have a <code>.cleo</code> extension.</p>
+<p>Plugins are optional programs adding extra scripting commands with the help of <a href="./using-sdk.html">CLEO Redux SDK</a>. They have a <code>.cleo</code> extension.</p>
 <p>Plugins should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
 <h2 id="adding-a-new-script"><a class="header" href="#adding-a-new-script">Adding a new script</a></h2>
@@ -269,7 +269,7 @@
 <li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="permissions"><a class="header" href="#permissions">Permissions</a></h1>
-<p>CLEO Redux acknowledges some <a href="permissions.html#custom-commands">custom commands</a> (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.</p>
+<p>CLEO Redux acknowledges some <a href="./custom-commands.html">custom commands</a> (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.</p>
 <p>There are four available levels:</p>
 <h2 id="all"><a class="header" href="#all">All</a></h2>
 <p>Any unsafe operation is allowed. Use this only when you trust the scripts you run.</p>
@@ -289,8 +289,8 @@
 <h2 id="none"><a class="header" href="#none">None</a></h2>
 <p>No unsafe operation is allowed.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scripts-1"><a class="header" href="#scripts-1">Scripts</a></h1>
-<p>CLEO Redux provides a runtime capable of executing compiled binary scripts (<code>*.cs</code>) in the native <a href="./cs-scripts.html">SCM format</a> and plain text scripts (<code>*.js</code>) written in <a href="./javascript.html">JavaScript</a>.</p>
-<p>To find the information on how to install the script <a href="./installation-scripts.html">see this page</a>.</p>
+<p>CLEO Redux provides a runtime capable of executing <a href="./compiled-scripts.html">compiled binary scripts</a> (<code>*.cs</code>) in the native SCM format and plain text scripts (<code>*.js</code>) written in <a href="./javascript.html">JavaScript</a>.</p>
+<p>To find the information on how to install scripts <a href="./installation-scripts.html">see this page</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="compiled-scripts"><a class="header" href="#compiled-scripts">Compiled Scripts</a></h1>
 <p>CLEO Redux can execute scripts compiled in the game's native <a href="https://gtamods.com/wiki/SCM_Instruction">binary SCM format</a>. Such scripts have a <code>.cs</code> extension. They are subject to the <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">limitations</a> of SCM code.</p>
 <p><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">Check the FAQ</a> for the information on CS support in the remastered games.</p>
@@ -335,7 +335,7 @@
 <p>This list might not be complete as there are custom plugins with extra commands (see <a href="./using-sdk.html">Using SDK</a>). Refer to <a href="https://library.sannybuilder.com">Sanny Builder Library</a> for the complete list of available commands for each game.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
 <p>CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.</p>
-<p>To make a JS script use VS Code (recommended) or any editor of your choice. Create a new file with <code>.js</code> extension and put it in the CLEO folder. See <a href="javascript.html#javascript-support">JavaScript support</a> for extra information.</p>
+<p>To make a JS script use VS Code (recommended) or any editor of your choice. Create a new file with <code>.js</code> extension and put it in the CLEO folder. See <a href="./script-lifecycle.html">Script lifecycle</a> for extra information.</p>
 <p>The runtime supports <a href="https://262.ecma-international.org/11.0/">ECMAScript 2020 standard</a>. It means you are able to use the most recent JavaScript features out of the box, such as imports, classes, arrow functions, etc.</p>
 <blockquote>
 <p>CLEO Redux is not Node.js. Don't expect sockets, file system operations or other Node.js features to be available here.</p>
@@ -369,9 +369,11 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scriptobject-vs-object"><a class="header" href="#scriptobject-vs-object">ScriptObject vs Object</a></h1>
 <p>Sanny Builder Library defines a static class <code>Object</code> to group commands allowing to create and manipulate 3D objects in-game. At the same time JavaScript has the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">native Object class</a> with its own methods.</p>
 <p>To avoid mixing the two, CLEO Redux uses <code>ScriptObject</code> class instead of the Library's <code>Object</code> with <a href="https://library.sannybuilder.com/#/gta3/classes/Object">the same interface</a>.</p>
-<pre><code class="language-js">var x = ScriptObject.Create(modelId, x, y, z); // opcode 0107, creates a new object in the game
+<pre><code class="language-js">// opcode 0107, creates a new object in the game
+var x = ScriptObject.Create(modelId, x, y, z); 
 
-var x = Object.create(null); // native JavaScript code, creates a new object in JS memory
+// native JavaScript code, creates a new object in JS memory
+var x = Object.create(null); 
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="using-math-object"><a class="header" href="#using-math-object">Using Math Object</a></h1>
 <p>JavaScript has a built-in <code>Math</code> object that provides common mathematical operations, such as <code>abs</code>, <code>sin</code>, <code>cos</code>, <code>random</code>, <code>pow</code>, <code>sqr</code>, etc. CLEO Redux extends this object to include extra operations supported by the game. The interface of <code>Math</code> looks as follows:</p>
@@ -529,7 +531,9 @@ var x = Object.create(null); // native JavaScript code, creates a new object in 
 <p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code> and <code>5</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
 <pre><code class="language-js">    Memory.Write(addr, 0x90, 10, true) // &quot;noping&quot; 10 bytes of code starting from addr
 </code></pre>
-<p><strong>Note that usage of any of the read/write methods requires the <code>mem</code> <a href="README.html#Permissions">permission</a></strong>.</p>
+<blockquote>
+<p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
@@ -569,7 +573,9 @@ var x = Object.create(null); // native JavaScript code, creates a new object in 
 <pre><code class="language-js">    Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456))
 </code></pre>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
-<p><strong>Note that usage of any of the call methods requires the <code>mem</code> <a href="README.html#Permissions">permission</a></strong>.</p>
+<blockquote>
+<p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
 <h4 id="convenience-methods-with-fn-object"><a class="header" href="#convenience-methods-with-fn-object">Convenience methods with Fn object</a></h4>
 <p><code>Memory.Fn</code> provides a lot of convenient methods for calling different types of foreign functions.</p>
 <pre><code class="language-ts">Fn: {
@@ -708,7 +714,9 @@ var x = Object.create(null); // native JavaScript code, creates a new object in 
 <p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code>, <code>5</code>, <code>6</code>, <code>7</code> and <code>9</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
 <pre><code class="language-js">    Memory.Write(offset, 0x90, 10, true, true) // &quot;noping&quot; 10 bytes of code starting from offset+image base
 </code></pre>
-<p><strong>Note that usage of any of the read/write methods requires the <code>mem</code> <a href="README.html#Permissions">permission</a></strong>.</p>
+<blockquote>
+<p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
 <h3 id="casting-methods-1"><a class="header" href="#casting-methods-1">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
@@ -738,7 +746,9 @@ var x = Object.create(null); // native JavaScript code, creates a new object in 
 </code></pre>
 <p>The returned value of the function called with <code>Memory.CallFunction</code> is ignored. To read the result use <code>Memory.CallFunctionReturn</code> that has the same parameters. Use <code>Memory.CallFunctionReturnFloat</code> to call a function that returns a floating-point value.</p>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
-<p><strong>Note that usage of any of the call methods requires the <code>mem</code> <a href="README.html#Permissions">permission</a></strong>.</p>
+<blockquote>
+<p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
 <h4 id="convenience-methods-with-fn-object-1"><a class="header" href="#convenience-methods-with-fn-object-1">Convenience methods with Fn object</a></h4>
 <p><code>Memory.Fn</code> provides convenient methods for calling different types of foreign functions.</p>
 <pre><code class="language-ts">    Fn: {
@@ -782,12 +792,12 @@ p.giveWeapon(2, 100)
   .setCoordinates(1144, -600, 14)
   .setBleeding(true);
 </code></pre>
-<p><a href="https://www.youtube.com/watch?v=LLgJ0fWbklg">See demo</a>.</p>
+<p><a href="https://www.youtube.com/watch?v=LLgJ0fWbklg">See demo on YouTube</a>.</p>
 <p>Destructor methods interrupt the chain. E.g. given the code:</p>
 <p><code>Char.Create(0, 0, 0, 0, 0).setCoordinates(0, 0, 0).delete()</code></p>
 <p>the chain can not continue after delete method as the character gets removed and its handle is not longer valid.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="imports"><a class="header" href="#imports">Imports</a></h1>
-<p>You can import other script files in your code to make the code modular and share the common logic. The runtime supports the <code>import</code> statement as described in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import</p>
+<p>You can import other script files in your code to make the code modular and share the common logic. The runtime supports the <code>import</code> statement as described in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">this article</a>.</p>
 <p>To avoid running the included <code>.js</code> files as standalone scripts, either put them into a separate folder (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
 <pre><code class="language-js">// imports default export from other.js or other.mjs located in the same directory
 import func from &quot;./other&quot;; 
@@ -979,7 +989,7 @@ showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;
 <div style="break-before: page; page-break-before: always;"></div><h1 id="other-features"><a class="header" href="#other-features">Other Features</a></h1>
 <p>CLEO Redux puts focus on improving dev experience and make scripting process easier. </p>
 <h2 id="integration-with-visual-studio-code"><a class="header" href="#integration-with-visual-studio-code">Integration with Visual Studio Code</a></h2>
-<p>See demo: https://youtu.be/jqz8_lGnG4g</p>
+<p><a href="https://youtu.be/jqz8_lGnG4g">See demo on YouTube</a></p>
 <p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
 <p>For <code>GTA III</code> or <code>re3</code>:</p>
 <pre><code>/// &lt;reference path=&quot;.config/gta3.d.ts&quot; /&gt;
@@ -995,14 +1005,14 @@ showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;
 <p>CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up <code>cleo.ini</code> and change <code>LogOpcodes</code> to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.</p>
 <h2 id="hot-reload"><a class="header" href="#hot-reload">Hot Reload</a></h2>
 <p>CLEO monitors active scripts and reloads them in game as they change</p>
-<p>Demo: https://www.youtube.com/watch?v=WanLojClqFw</p>
+<p><a href="https://www.youtube.com/watch?v=WanLojClqFw">See demo on YouTube</a></p>
 <p>Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically</p>
-<p>Demo: https://www.youtube.com/watch?v=LAi2syrsxJg</p>
+<p><a href="https://www.youtube.com/watch?v=LAi2syrsxJg">See demo on YouTube</a></p>
 <p>Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="custom-text-fxt"><a class="header" href="#custom-text-fxt">Custom Text (FXT)</a></h1>
 <p>CLEO Redux supports custom text content without the need to edit game files.</p>
 <h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
-<p>Demo: https://youtu.be/ctsKy7WnY9o</p>
+<p><a href="https://youtu.be/ctsKy7WnY9o">See demo on YouTube</a></p>
 <p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> folder. The file name can be any valid name. </p>
 <p>Each FXT file contains a list of the key-value entries in the following format:</p>
 <pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
@@ -1018,7 +1028,7 @@ showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;
 </code></pre>
 <p>You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text</p>
 <h2 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h2>
-<p>Demo: https://youtu.be/FLyYyrGz1Xg</p>
+<p><a href="https://youtu.be/FLyYyrGz1Xg">See demo on YouTube</a></p>
 <p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
 <pre><code class="language-ts">declare interface FxtStore {
   /**
@@ -1074,7 +1084,7 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h2>
-<p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="./plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
+<p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
 <h3 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h3>
 <p>CLEO Redux provides SDK for both 32-bit and 64-bit games. There is one notable change between the two: on the 32-bit platform the SDK functions <code>GetIntParam</code> and <code>SetIntParam</code> operate on signed 32-bit numbers, whereas on the 64-bit platform they operate on signed 64-bit numbers (declared as the type <code>isize</code>).</p>
 <h3 id="plugin-structure"><a class="header" href="#plugin-structure">Plugin structure</a></h3>
@@ -1125,7 +1135,7 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
     WriteString(value: string, path: string, section: string, key: string): boolean;
 }
 </code></pre>
-<p>See more information in Sanny Builder Library: https://library.sannybuilder.com/#/sa_unreal/classes/IniFile. The usage of the <code>IniFile</code> class requires an <code>fs</code> <a href="README.html#permissions">permission</a>.</p>
+<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile">See more information</a> in Sanny Builder Library. The usage of the <code>IniFile</code> class requires an <code>fs</code> <a href="./permissions.html">permission</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-sdk"><a class="header" href="#rust-sdk">Rust SDK</a></h1>
 <p>Rust SDK uses similar to C++ interface with some extra wrapping methods to allow easily convert between C and Rust types. The header file is available as a <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> on crates.io. See the documentation <a href="https://docs.rs/cleo_redux_sdk/latest/">here</a>.</p>
 <h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
@@ -1137,7 +1147,7 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
     getProcedure(procName: string): int | undefined;
 }
 </code></pre>
-<p>See more information in Sanny Builder Library: https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary. The usage of the <code>DynamicLibrary</code> class requires a <code>dll</code> <a href="README.html#permissions">permission</a>.</p>
+<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary">See more information</a> in Sanny Builder Library. The usage of the <code>DynamicLibrary</code> class requires a <code>dll</code> <a href="./permissions.html">permission</a>.</p>
 
                     </main>
 
