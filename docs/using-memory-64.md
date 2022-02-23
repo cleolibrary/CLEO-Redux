@@ -1,6 +1,6 @@
-Note: This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games [click here](./using-memory.md).
+> This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games [click here](./using-memory.md).
 
-## Using Memory Object
+# Memory Object (x64)
 
 An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
 

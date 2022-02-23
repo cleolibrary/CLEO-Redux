@@ -1,4 +1,6 @@
-# Using FXT
+# Custom Text (FXT)
+
+CLEO Redux supports custom text content without the need to edit game files.
 
 ## Static FXT files
 

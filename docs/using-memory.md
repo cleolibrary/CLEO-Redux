@@ -1,6 +1,6 @@
-Note: This guide is for the classic era games. For the information on using the Memory class in the definitive editions [click here](./using-memory-64.md).
+> This guide is for the classic era games. For the information on using the Memory class in the definitive editions [click here](./using-memory-64.md).
 
-## Using Memory Object
+# Memory Object
 
 An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
 
