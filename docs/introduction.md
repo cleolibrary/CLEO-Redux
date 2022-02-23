@@ -1,14 +1,10 @@
 # Introduction
  
-CLEO Redux is a scripting runtime for the GTA 3D era games. It is a proud member of the CLEO family and provides familiar experience to anyone who used CLEO Library for the classic GTA San Andreas or its re-implementations for other games. The main goal of CLEO is to provide a way to easily customize the game with countless user-made scripts.
+CLEO Redux is a scripting runtime for the GTA 3D era games. It is a proud member of the CLEO family and provides familiar experience to anyone who used original CLEO Library for the classic GTA San Andreas or its re-implementations for other games. The main goal of CLEO is to provide a way to easily customize the game with countless user-made scripts.
 
 If you're new to CLEO visit the [official website](https://cleo.li/) to find more information about it.
 
-## Supported Languages
 
-CLEO Redux supports compiled binary scripts (`*.cs`) in the native SCM format and plain text scripts (`*.js`) written in JavaScript.
-
-CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.
 
 ## Supported Releases
 

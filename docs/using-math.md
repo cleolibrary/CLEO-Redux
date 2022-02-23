@@ -67,7 +67,7 @@ interface Math {
 
 The first group includes the native constants and methods provided by the JavaScript runtime. They start with a lowercase letter, e.g. `Math.abs`. You can find the detailed documentation for these methods [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math).
 
-Then the game-specific commands go. Following the naming convention, each method that is bound to a script opcode starts with a capital letter, e.g. `Math.RandomIntInRange` (opcode 0209). You can find the documentation in [Sanny Builder Library](https://library.sannybuilder.com/).
+Then the game-specific commands follow. According to the naming convention, each method that is bound to a script opcode starts with a capital letter, e.g. `Math.RandomIntInRange` (opcode 0209). You can find the documentation in [Sanny Builder Library](https://library.sannybuilder.com/).
 
 
 ```js
@@ -75,3 +75,6 @@ Then the game-specific commands go. Following the naming convention, each method
     var f = Math.ConvertMetersToFeet(10) // f = 32
     var pi = Math.floor(Math.PI) // pi = 3
 ```
+
+
+Native `Math` methods were given a higher priority over the game commands with the same functionality. For example, to calculate an absolute value of the number, there is [Math.abs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs), not [Math.Abs](https://library.sannybuilder.com/#/gta3?q=%22abs%22).
