@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SDK - CLEO Redux</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">1.1.</strong> Relation to CLEO Library</a></li></ol></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">2.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">2.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">2.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">2.4.</strong> Plugins</a></li><li class="chapter-item expanded "><a href="installation-scripts.html"><strong aria-hidden="true">2.5.</strong> Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="permissions.html"><strong aria-hidden="true">3.1.</strong> Permissions</a></li></ol></li><li class="chapter-item expanded "><a href="supported-languages.html"><strong aria-hidden="true">4.</strong> Supported Languages</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="scm.html"><strong aria-hidden="true">4.1.</strong> SCM</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.2.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisites.html"><strong aria-hidden="true">4.2.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="script-lifecycle.html"><strong aria-hidden="true">4.2.2.</strong> Script Lifecycle</a></li><li class="chapter-item expanded "><a href="script-object-vs-object.html"><strong aria-hidden="true">4.2.3.</strong> ScriptObject vs Object</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">4.2.4.</strong> Using Math Object</a></li><li class="chapter-item expanded "><a href="fluent-interface.html"><strong aria-hidden="true">4.2.5.</strong> Fluent Interface</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="log.html"><strong aria-hidden="true">5.1.</strong> Log</a></li></ol></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">6.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">7.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-memory.html"><strong aria-hidden="true">7.2.</strong> Using Memory</a></li><li class="chapter-item expanded "><a href="using-memory-64.html"><strong aria-hidden="true">7.3.</strong> Using Memory (x64)</a></li></ol></li><li class="chapter-item expanded "><a href="using-sdk.html" class="active"><strong aria-hidden="true">8.</strong> SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-sdk.html"><strong aria-hidden="true">8.1.</strong> C++ SDK</a></li><li class="chapter-item expanded "><a href="rust-sdk.html"><strong aria-hidden="true">8.2.</strong> Rust SDK</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CLEO Redux</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h2 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h2>
+<p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="./plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
+<h3 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h3>
+<p>CLEO Redux provides SDK for both 32-bit and 64-bit games. There is one notable change between the two: on the 32-bit platform the SDK functions <code>GetIntParam</code> and <code>SetIntParam</code> operate on signed 32-bit numbers, whereas on the 64-bit platform they operate on signed 64-bit numbers (declared as the type <code>isize</code>).</p>
+<h3 id="plugin-structure"><a class="header" href="#plugin-structure">Plugin structure</a></h3>
+<p>Each plugin is a dynamic library with the <code>.cleo</code> extension that must be placed in <code>CLEO\CLEO_PLUGINS</code>. CLEO Redux scans this directory on startup and loads all <code>.cleo</code> files using WinAPI's function <code>LoadLibrary</code>. To register a handler for the new command the plugin must call <code>RegisterCommand</code> in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with the one argument which is a pointer to the current context. This pointer must be used for calling other SDK methods.</p>
+<h3 id="naming-convention"><a class="header" href="#naming-convention">Naming convention</a></h3>
+<p>It's recommended for 64-bit plugins to have <code>64</code> in their names (e.g. <code>myplugin64.cleo</code>).</p>
+<h3 id="unsafe-commands"><a class="header" href="#unsafe-commands">Unsafe commands</a></h3>
+<p>Commands that use low-level WinAPI and can potentially damage user environment must be explicitly registered with a permission token (third argument to the <code>RegisterCommand</code>). User can disallow usage of unsafe commands in the scripts using <a href="https://github.com/cleolibrary/CLEO-Redux#permissions">permission config</a>. At the moment three permission tokens are used: <code>mem</code>, <code>fs</code>, and <code>dll</code>. They mark commands operating with the host process, user files and external libraries.</p>
+<h3 id="command-interface"><a class="header" href="#command-interface">Command interface</a></h3>
+<p>CLEO Redux uses <a href="https://library.sannybuilder.com">Sanny Builder Library</a> to know an interface of any command. For a new command to become available in the scripts, the JSON file (<code>gta3.json</code>, <code>vc.json</code>, <code>sa.json</code>) must have the command definition, including the name that matches with the value that the plugin uses <code>RegisterCommand</code> with. E.g. if the plugin registers <code>SHOW_MESSAGE</code> command, the JSON file must have a command with the name property set to <code>SHOW_MESSAGE</code>. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. <code>GetXXXParam</code> for each input argument and <code>SetXXXParam</code> for each output argument).</p>
+<h4 id="claiming-opcodes"><a class="header" href="#claiming-opcodes">Claiming Opcodes</a></h4>
+<p>Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers on GitHub https://github.com/sannybuilder/library/issues</p>
+<h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
+<p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions will ensure each command claims only available id. Also it helps to track and document plugins in one single place.</p>
+<h3 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h3>
+<p>The current version is <code>1</code>. Changes to SDK will advance this number by one.</p>
+<h3 id="path-resolution-convention"><a class="header" href="#path-resolution-convention">Path Resolution Convention</a></h3>
+<p>String arguments representing a path to the directory or file must be normalized using SDK's function <code>ResolvePath</code>. This function takes a path and returns the absolute path resolved by the following rules:</p>
+<ul>
+<li>an absolute path gets resolved as is</li>
+<li>path starting with &quot;CLEO/&quot; or &quot;CLEO\&quot; gets resolved relative to the CLEO directory which is either
+<ul>
+<li>{game}\CLEO or</li>
+<li>{user}\AppData\Roaming\CLEO Redux\CLEO</li>
+</ul>
+</li>
+<li>all other paths get resolved relative to the current working directory (the game directory)</li>
+</ul>
+<h3 id="string-arguments"><a class="header" href="#string-arguments">String Arguments</a></h3>
+<p>Strings passed in and out of the SDK methods are UTF-8 encoded. </p>
+<p>If the script uses an integer value where a string is expected SDK treats this number as a pointer to a null-terminated UTF-8 character sequence to read, or to a large enough buffer to store the result to:</p>
+<pre><code class="language-js">IniFile.WriteString(0xDEADBEEF, &quot;my.ini&quot;, &quot;section&quot;, &quot;key&quot;)
+</code></pre>
+<p>SDK will read a string from the address <code>0xDEADBEEF</code> and write it to the ini file.</p>
+<pre><code>0AF4: read_string_from_ini_file 'my.ini' section 'section' key 'key' store_to 0xDEADBEEF
+</code></pre>
+<p>SDK will read a string from the ini file and write it at the address <code>0xDEADBEEF</code>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="using-memory-64.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="cpp-sdk.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="using-memory-64.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="cpp-sdk.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
