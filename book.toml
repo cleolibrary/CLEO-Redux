@@ -1,0 +1,6 @@
+[book]
+authors = ["Seemann"]
+language = "en"
+multilingual = false
+src = "docs"
+title = "CLEO Redux"
