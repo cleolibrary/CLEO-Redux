@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic Games</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 and reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html" class="active"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> What is CLEO Redux?</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html" class="active"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">5.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">6.2.</strong> Using Math Object</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,7 +134,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <ul>
+                        <h1 id="the-definitive-edition"><a class="header" href="#the-definitive-edition">The Definitive Edition</a></h1>
+<ul>
 <li>
 <p>Download and install <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">Ultimate ASI Loader x64</a> by ThirteenAG (place <code>version.dll</code> to the <code>Gameface\Binaries\Win64</code> directory)</p>
 </li>
@@ -142,11 +143,14 @@
 <p>Copy <code>cleo_redux64.asi</code> to the same directory.</p>
 </li>
 <li>
-<p>Run the game once and you should get a new CLEO directory created in the same directory. If that did not happen, check below.</p>
+<p>Run the game once to complete the installation.</p>
 </li>
 </ul>
-<h3 id="what-if-i-cant-find-the-cleo-directory"><a class="header" href="#what-if-i-cant-find-the-cleo-directory">What if I can't find the CLEO directory?</a></h3>
-<p>For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (<code>Win64</code>). To remediate this issue CLEO fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there. See also the <a href="TROUBLESHOOTING.html">troubleshooting guide</a>.</p>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
 
                     </main>
 

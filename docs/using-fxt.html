@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Plugins - CLEO Redux</title>
+        <title>Using FXT - CLEO Redux</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> What is CLEO Redux?</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html" class="active"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">5.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">6.2.</strong> Using Math Object</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> What is CLEO Redux?</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">5.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html" class="active"><strong aria-hidden="true">6.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">6.2.</strong> Using Math Object</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,18 +134,68 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
-<p>Plugins are optional programs adding extra scripting commands with the help of <a href="./sdk.html">CLEO Redux SDK</a>. They have a <code>.cleo</code> extension.</p>
-<p>Plugins should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
+                        <h1 id="using-fxt"><a class="header" href="#using-fxt">Using FXT</a></h1>
+<h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
+<p>Demo: https://youtu.be/ctsKy7WnY9o</p>
+<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> folder. The file name can be any valid name. </p>
+<p>Each FXT file contains a list of the key-value entries in the following format:</p>
+<pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
+&lt;KEY2&gt; &lt;TEXT2&gt;
+...
+&lt;KEYN&gt; &lt;TEXTN&gt;
+</code></pre>
+<p>There should be a single space character between a key and a value. The key's maximum length is 7 characters. Try using unique keys that are unlikely to clash with other entries. The text length is unlimited, however each game may impose its own limitations.</p>
+<p>CLEO loads FXT files on startup and merges their content in a single dictionary. It also monitors the files and reloads them if any change is made.</p>
+<p>You can also find an editor for FXT files on the cleo.li website: https://cleo.li/download.html</p>
+<p>To display the custom content in game, use the <code>Text</code> class. The key defined in the FXT file is usually the first argument to Text commands, e.g.</p>
+<pre><code>Text.PrintHelp('KEY1') // will display &lt;TEXT1&gt;
+</code></pre>
+<p>You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text</p>
+<h2 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h2>
+<p>Demo: https://youtu.be/FLyYyrGz1Xg</p>
+<p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
+<pre><code class="language-ts">declare interface FxtStore {
+  /**
+   * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
+   * @param key GXT key that can be used in text commands (7 characters max)
+   * @param value text content
+   */
+  insert(key: string, value: string): void;
+  /**
+   * Removes the text content associated with the key in the local fxt storage
+   * @param key GXT key
+   */
+  delete(key: string): void;
+}
+</code></pre>
+<p>Using <code>FxtStore</code> you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:</p>
+<p>custom.fxt:</p>
+<pre><code>MY_KEY Text from FXT file
+</code></pre>
+<p>custom.js:</p>
+<pre><code class="language-js">Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot;
+FxtStore.insert('MY_KEY', 'Text from script');
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from script&quot;
+FxtStore.delete('MY_KEY')
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
+</code></pre>
+<p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
+<p>Custom text can be constructed dynamically, e.g.:</p>
+<pre><code class="language-js">while(true) {
+    wait(0);
+    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
+    Text.PrintHelp('TIME') // this displays &quot;Timestamp: &quot; and the updated timestamp value
+}
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="installation-definitive-edition.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="unsupported.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
-                            <a rel="next" href="troubleshooting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="using-math.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         <div style="clear: both"></div>
@@ -154,10 +204,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="installation-definitive-edition.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="unsupported.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
-                    <a rel="next" href="troubleshooting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="using-math.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

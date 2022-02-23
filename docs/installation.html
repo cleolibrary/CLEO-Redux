@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html" class="active"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic Games</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 and reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> What is CLEO Redux?</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html" class="active"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">5.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">6.2.</strong> Using Math Object</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,21 +134,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>If you run The Definitive Edition (GTA III, VC, or SA):</p>
+                        <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>Depending on the game CLEO Redux installation may require a few extra steps. Check the relevant guides below:</p>
 <ul>
-<li><a href="the-definitive-edition-faq.html#how-to-install-cleo-redux-in-the-definitive-edition">Follow this guide</a>.</li>
+<li><a href="./installation-classic-games.html">Installation for Classic GTA III, GTA VC, GTA SA</a></li>
+<li><a href="./installation-re3-revc.html">Installation for re3 or reVC</a></li>
+<li><a href="./installation-definitive-edition.html">Installation for The Trilogy: The Definitive Edition</a></li>
 </ul>
-<p>For all other games:</p>
+<blockquote>
+<p>Note that CLEO Redux recognizes the target game purely by the executable name it is running from. </p>
 <ul>
-<li>
-<p>Copy <code>cleo_redux.asi</code> to the game directory.</p>
-</li>
-<li>
-<p>Run the game</p>
-</li>
+<li>GTA III - <code>gta3.exe</code></li>
+<li>GTA VC - <code>gta-vc.exe</code></li>
+<li>GTA SA - <code>gta_sa.exe</code>, <code>gta-sa.exe</code>, or <code>gta_sa_compact.exe</code></li>
+<li>re3 - <code>re3.exe</code></li>
+<li>reVC - <code>reVC.exe</code></li>
+<li>GTA 3: DE - <code>libertycity.exe</code></li>
+<li>GTA VC: DE - <code>vicecity.exe</code></li>
+<li>GTA SA: DE - <code>sanandreas.exe</code></li>
 </ul>
-<p>Plugins for CLEO Redux (<code>*.cleo</code>) should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
-<p>Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads <code>.asi</code> files as addons to the Miles Sound System library. No extra software is required.</p>
+<p>Names matching is case-insensitive. For classic games CLEO Redux always assumes version 1.0. </p>
+</blockquote>
 
                     </main>
 

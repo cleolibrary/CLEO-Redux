@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>re3 and reVC - CLEO Redux</title>
+        <title>re3 or reVC - CLEO Redux</title>
         <!-- Custom HTML head -->
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
@@ -75,7 +75,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic Games</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html" class="active"><strong aria-hidden="true">3.2.</strong> re3 and reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> What is CLEO Redux?</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html" class="active"><strong aria-hidden="true">3.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">5.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">6.2.</strong> Using Math Object</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -134,15 +134,21 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+                        <h1 id="re3-or-revc"><a class="header" href="#re3-or-revc">re3 or reVC</a></h1>
 <ul>
 <li>
 <p>Copy <code>cleo_redux.asi</code> to the game directory (with the main executable file).</p>
 </li>
 <li>
-<p>Run the game</p>
+<p>Run the game once to complete the installation.</p>
 </li>
 </ul>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
 
                     </main>

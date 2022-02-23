@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> Welcome</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic Games</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 and reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="welcome.html"><strong aria-hidden="true">1.</strong> What is CLEO Redux?</a></li><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">2.</strong> Relation to CLEO Library</a></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">3.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">3.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">3.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">3.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">3.4.</strong> Plugins</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">5.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">6.2.</strong> Using Math Object</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -135,7 +135,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>CLEO Redux is a scripting runtime for the GTA 3D era games. It is a proud member of the CLEO family and provides familiar experience to anyone who used CLEO Library for the classic GTA San Andreas or its re-implementations for other games. The main goal of CLEO is to provide a way to easily customize the game with countless user-made scripts.</p>
+                        <h1 id="what-is-cleo-redux"><a class="header" href="#what-is-cleo-redux">What is CLEO Redux?</a></h1>
+<p>CLEO Redux is a scripting runtime for the GTA 3D era games. It is a proud member of the CLEO family and provides familiar experience to anyone who used CLEO Library for the classic GTA San Andreas or its re-implementations for other games. The main goal of CLEO is to provide a way to easily customize the game with countless user-made scripts.</p>
 <p>If you're new to CLEO visit the <a href="https://cleo.li/">official website</a> to find more information about it.</p>
 <h2 id="supported-languages"><a class="header" href="#supported-languages">Supported Languages</a></h2>
 <p>CLEO Redux supports compiled binary scripts (<code>*.cs</code>) in the native SCM format and plain text scripts (<code>*.js</code>) written in JavaScript.</p>
@@ -161,7 +162,8 @@
 </ul>
 <p>CLEO Redux only supports the PC version of each game.</p>
 <p>For the complete reference on supported features <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">refer to this page</a>. Also there are known limitations <a href="unsupported.html">listed here</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><p>CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded <a href="https://cleo.li/download.html">here</a>. CLEO Redux is <em>another</em> CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="relation-to-cleo-library"><a class="header" href="#relation-to-cleo-library">Relation to CLEO Library</a></h1>
+<p>CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded <a href="https://cleo.li/download.html">here</a>. CLEO Redux is <em>another</em> CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code.</p>
 <p>At the moment CLEO Redux can not be considered as a complete replacement for CLEO Library due to the lack of support for many widely used CLEO commands. To solve this issue and get the best out of the two libraries, CLEO Redux supports two different usage strategies.</p>
 <p>CLEO Redux can run as a standalone software, or as an addon to CLEO Library. In the first case your game directory would only contain <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>) file. In the second case, your game directory would have both <code>cleo.asi</code> (or <code>III.CLEO.asi</code> or <code>VC.CLEO.asi</code>) and <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>).</p>
 <h2 id="running-cleo-redux-as-a-standalone-software"><a class="header" href="#running-cleo-redux-as-a-standalone-software">Running CLEO Redux as a standalone software</a></h2>
@@ -170,42 +172,60 @@
 <h2 id="running-cleo-redux-as-an-addon-to-cleo-library"><a class="header" href="#running-cleo-redux-as-an-addon-to-cleo-library">Running CLEO Redux as an addon to CLEO library</a></h2>
 <p>As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for <a href="https://library.sannybuilder.com/#/gta3/classes/File">files</a> or <a href="https://library.sannybuilder.com/#/gta3/classes/DynamicLibrary">dynamic libraries</a>.</p>
 <p>This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO Library exists.</p>
-<div style="break-before: page; page-break-before: always;"></div><p>If you run The Definitive Edition (GTA III, VC, or SA):</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>Depending on the game CLEO Redux installation may require a few extra steps. Check the relevant guides below:</p>
 <ul>
-<li><a href="the-definitive-edition-faq.html#how-to-install-cleo-redux-in-the-definitive-edition">Follow this guide</a>.</li>
+<li><a href="./installation-classic-games.html">Installation for Classic GTA III, GTA VC, GTA SA</a></li>
+<li><a href="./installation-re3-revc.html">Installation for re3 or reVC</a></li>
+<li><a href="./installation-definitive-edition.html">Installation for The Trilogy: The Definitive Edition</a></li>
 </ul>
-<p>For all other games:</p>
+<blockquote>
+<p>Note that CLEO Redux recognizes the target game purely by the executable name it is running from. </p>
 <ul>
-<li>
-<p>Copy <code>cleo_redux.asi</code> to the game directory.</p>
-</li>
-<li>
-<p>Run the game</p>
-</li>
+<li>GTA III - <code>gta3.exe</code></li>
+<li>GTA VC - <code>gta-vc.exe</code></li>
+<li>GTA SA - <code>gta_sa.exe</code>, <code>gta-sa.exe</code>, or <code>gta_sa_compact.exe</code></li>
+<li>re3 - <code>re3.exe</code></li>
+<li>reVC - <code>reVC.exe</code></li>
+<li>GTA 3: DE - <code>libertycity.exe</code></li>
+<li>GTA VC: DE - <code>vicecity.exe</code></li>
+<li>GTA SA: DE - <code>sanandreas.exe</code></li>
 </ul>
-<p>Plugins for CLEO Redux (<code>*.cleo</code>) should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
-<p>Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads <code>.asi</code> files as addons to the Miles Sound System library. No extra software is required.</p>
-<div style="break-before: page; page-break-before: always;"></div><ul>
-<li>
-<p>Copy <code>cleo_redux.asi</code> to the game directory (with the main executable file).</p>
-</li>
-<li>
-<p>Run the game</p>
-</li>
-</ul>
-<p>You should get a new CLEO directory created in the same directory.</p>
-<p>Note: CLEO Redux does not alter any game files. It exploits the fact that the game natively loads <code>.asi</code> files as addons to the Miles Sound System library. No extra software is required.</p>
-<div style="break-before: page; page-break-before: always;"></div><p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>Names matching is case-insensitive. For classic games CLEO Redux always assumes version 1.0. </p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="classic-gta-iii-gta-vc-gta-sa"><a class="header" href="#classic-gta-iii-gta-vc-gta-sa">Classic GTA III, GTA VC, GTA SA</a></h1>
 <ul>
 <li>
 <p>Copy <code>cleo_redux.asi</code> to the game directory (with the main executable file).</p>
 </li>
 <li>
-<p>Run the game</p>
+<p>Run the game once to complete the installation.</p>
 </li>
 </ul>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="installation-classic-games.html#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<p>CLEO Redux does not alter any game files. It exploits the fact that the game natively loads <code>.asi</code> files as addons to the Miles Sound System library. No extra software is required.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="re3-or-revc"><a class="header" href="#re3-or-revc">re3 or reVC</a></h1>
+<ul>
+<li>
+<p>Copy <code>cleo_redux.asi</code> to the game directory (with the main executable file).</p>
+</li>
+<li>
+<p>Run the game once to complete the installation.</p>
+</li>
+</ul>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="installation-re3-revc.html#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
-<div style="break-before: page; page-break-before: always;"></div><ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-definitive-edition"><a class="header" href="#the-definitive-edition">The Definitive Edition</a></h1>
+<ul>
 <li>
 <p>Download and install <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">Ultimate ASI Loader x64</a> by ThirteenAG (place <code>version.dll</code> to the <code>Gameface\Binaries\Win64</code> directory)</p>
 </li>
@@ -213,14 +233,175 @@
 <p>Copy <code>cleo_redux64.asi</code> to the same directory.</p>
 </li>
 <li>
-<p>Run the game once and you should get a new CLEO directory created in the same directory. If that did not happen, check below.</p>
+<p>Run the game once to complete the installation.</p>
 </li>
 </ul>
-<h3 id="what-if-i-cant-find-the-cleo-directory"><a class="header" href="#what-if-i-cant-find-the-cleo-directory">What if I can't find the CLEO directory?</a></h3>
-<p>For many people running their game with CLEO Redux installed results in the immediate crash. It happens if there is no write permissions in the current directory (<code>Win64</code>). To remediate this issue CLEO fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there. See also the <a href="TROUBLESHOOTING.html">troubleshooting guide</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="plugins-installation"><a class="header" href="#plugins-installation">Plugins Installation</a></h1>
-<p>Plugins are optional extensions adding extra scripting commands with the help of <a href="./sdk.html">CLEO Redux SDK</a>. They have a <code>.cleo</code> extension.</p>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="installation-definitive-edition.html#javascript-support">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
+<p>Plugins are optional programs adding extra scripting commands with the help of <a href="./sdk.html">CLEO Redux SDK</a>. They have a <code>.cleo</code> extension.</p>
 <p>Plugins should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
+<h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
+<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
+<h2 id="game-crashes-with-cleo-on-san-andreas-the-definitive-edition"><a class="header" href="#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></h2>
+<ul>
+<li>make sure you installed the 64-bit version of Ultimate ASI Loader (<a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">direct link to the latest release</a>).
+<ul>
+<li>Put <code>version.dll</code> to <code>Gameface\Binaries\Win64</code></li>
+</ul>
+</li>
+<li>make sure you run the latest CLEO Redux version (0.8.2 and above)</li>
+<li>delete config files from <code>Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor</code></li>
+<li>run the game (or Rockstar Games Launcher) as administrator</li>
+</ul>
+<p>If CLEO can't create files in <code>Gameface\Binaries\Win64</code> it uses another path at <code>C:\Users\&lt;your_usename&gt;\AppData\Roaming\CLEO Redux</code>. There should be <code>cleo_redux.log</code> and the CLEO folder where all your scripts go.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unsupported-or-limited-support-scenarios"><a class="header" href="#unsupported-or-limited-support-scenarios">Unsupported or limited support scenarios</a></h1>
+<p>Despite our best effort some scenarios while available in game are not supported or supported with limitations by CLEO Redux. Some of them are imposed by the nature of SCM format or JavaScript language or the difficulties in bridging JavaScript and the native code.</p>
+<p>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">Features support page</a> to find out high-level features and the status of their support in different games.</p>
+<p>The following items are known to be not working and there is no specific timeline on getting them fixed.</p>
+<h2 id="unsupported-features-in-cs"><a class="header" href="#unsupported-features-in-cs">Unsupported features in CS</a></h2>
+<ul>
+<li>in x64 games (SA: DE) you can't read and write 64-bit values as the script engine only supports 32-bit values. You may need to use other means to access the game memory (e.g. from JavaScript)</li>
+</ul>
+<h2 id="unsupported-features-in-js"><a class="header" href="#unsupported-features-in-js">Unsupported features in JS</a></h2>
+<ul>
+<li>
+<p>commands requiring an scm variable (e.g. countdown timers). <a href="https://github.com/cleolibrary/CLEO-Redux/issues/10">Tracking issue</a>.</p>
+</li>
+<li>
+<p>commands implicitly loading models or textures (such as widgets) <a href="https://github.com/cleolibrary/CLEO-Redux/issues/12">Tracking issue</a>. You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. </p>
+</li>
+<li>
+<p>you can't call the game functions that need references to variables to store the result. There is no &quot;take an address of the variable&quot; syntax.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="using-fxt"><a class="header" href="#using-fxt">Using FXT</a></h1>
+<h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
+<p>Demo: https://youtu.be/ctsKy7WnY9o</p>
+<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> folder. The file name can be any valid name. </p>
+<p>Each FXT file contains a list of the key-value entries in the following format:</p>
+<pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
+&lt;KEY2&gt; &lt;TEXT2&gt;
+...
+&lt;KEYN&gt; &lt;TEXTN&gt;
+</code></pre>
+<p>There should be a single space character between a key and a value. The key's maximum length is 7 characters. Try using unique keys that are unlikely to clash with other entries. The text length is unlimited, however each game may impose its own limitations.</p>
+<p>CLEO loads FXT files on startup and merges their content in a single dictionary. It also monitors the files and reloads them if any change is made.</p>
+<p>You can also find an editor for FXT files on the cleo.li website: https://cleo.li/download.html</p>
+<p>To display the custom content in game, use the <code>Text</code> class. The key defined in the FXT file is usually the first argument to Text commands, e.g.</p>
+<pre><code>Text.PrintHelp('KEY1') // will display &lt;TEXT1&gt;
+</code></pre>
+<p>You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text</p>
+<h2 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h2>
+<p>Demo: https://youtu.be/FLyYyrGz1Xg</p>
+<p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
+<pre><code class="language-ts">declare interface FxtStore {
+  /**
+   * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
+   * @param key GXT key that can be used in text commands (7 characters max)
+   * @param value text content
+   */
+  insert(key: string, value: string): void;
+  /**
+   * Removes the text content associated with the key in the local fxt storage
+   * @param key GXT key
+   */
+  delete(key: string): void;
+}
+</code></pre>
+<p>Using <code>FxtStore</code> you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:</p>
+<p>custom.fxt:</p>
+<pre><code>MY_KEY Text from FXT file
+</code></pre>
+<p>custom.js:</p>
+<pre><code class="language-js">Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot;
+FxtStore.insert('MY_KEY', 'Text from script');
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from script&quot;
+FxtStore.delete('MY_KEY')
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
+</code></pre>
+<p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
+<p>Custom text can be constructed dynamically, e.g.:</p>
+<pre><code class="language-js">while(true) {
+    wait(0);
+    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
+    Text.PrintHelp('TIME') // this displays &quot;Timestamp: &quot; and the updated timestamp value
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="using-math-object"><a class="header" href="#using-math-object">Using Math Object</a></h1>
+<p>JavaScript has a built-in <code>Math</code> object that provides common mathematical operations, such as <code>abs</code>, <code>sin</code>, <code>cos</code>, <code>random</code>, <code>pow</code>, <code>sqr</code>, etc. CLEO Redux extends this object to include extra operations supported by the game. The interface of <code>Math</code> looks as follows:</p>
+<pre><code class="language-ts">interface Math {
+    // native code
+    readonly E: number;
+    readonly LN10: number;
+    readonly LN2: number;
+    readonly LOG2E: number;
+    readonly LOG10E: number;
+    readonly PI: number;
+    readonly SQRT1_2: number;
+    readonly SQRT2: number;
+    abs(x: number): number;
+    acos(x: number): number;
+    asin(x: number): number;
+    atan(x: number): number;
+    atan2(y: number, x: number): number;
+    ceil(x: number): number;
+    cos(x: number): number;
+    exp(x: number): number;
+    floor(x: number): number;
+    log(x: number): number;
+    max(...values: number[]): number;
+    min(...values: number[]): number;
+    pow(x: number, y: number): number;
+    random(): number;
+    round(x: number): number;
+    sin(x: number): number;
+    sqrt(x: number): number;
+    tan(x: number): number;
+    clz32(x: number): number;
+    imul(x: number, y: number): number;
+    sign(x: number): number;
+    log10(x: number): number;
+    log2(x: number): number;
+    log1p(x: number): number;
+    expm1(x: number): number;
+    cosh(x: number): number;
+    sinh(x: number): number;
+    tanh(x: number): number;
+    acosh(x: number): number;
+    asinh(x: number): number;
+    atanh(x: number): number;
+    hypot(...values: number[]): number;
+    trunc(x: number): number;
+    fround(x: number): number;
+    cbrt(x: number): number;
+
+    // GTA III, GTA Vice City, GTA SA commands
+    ConvertMetersToFeet(meters: int): int;
+    RandomFloatInRange(min: float, max: float): float;
+    RandomIntInRange(min: int, max: int): int;
+
+    // GTA Vice City, GTA SA commands
+    GetDistanceBetweenCoords2D(fromX: float, fromY: float, toX: float, toZ: float): float;
+    GetDistanceBetweenCoords3D(fromX: float, fromY: float, fromZ: float, toX: float, toY: float, toZ: float): float;
+
+    // GTA SA commands
+    GetAngleBetween2DVectors(xVector1: float, yVector1: float, xVector2: float, yVector2: float): float;
+    GetHeadingFromVector2D(_p1: float, _p2: float): float;
+    LimitAngle(value: float): float;
+}
+</code></pre>
+<p>The first group includes the native constants and methods provided by the JavaScript runtime. They start with a lowercase letter, e.g. <code>Math.abs</code>. You can find the detailed documentation for these methods <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">here</a>.</p>
+<p>Then the game-specific commands go. Following the naming convention, each method that is bound to a script opcode starts with a capital letter, e.g. <code>Math.RandomIntInRange</code> (opcode 0209). You can find the documentation in <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>.</p>
+<pre><code class="language-js">    var x = Math.abs(-1); // x = 1
+    var f = Math.ConvertMetersToFeet(10) // f = 32
+    var pi = Math.floor(Math.PI) // pi = 3
+</code></pre>
 
                     </main>
 
