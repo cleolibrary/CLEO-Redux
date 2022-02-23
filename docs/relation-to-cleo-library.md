@@ -8,7 +8,7 @@ CLEO Redux can run as a standalone software, or as an addon to CLEO Library. In 
 
 ## Running CLEO Redux as a standalone software
 
-As a standalone software CLEO Redux runs compiled scripts and JavaScript and provides access to all native script commands. It also provides a limited set of [custom commands](#custom-commands) backward-compatible to CLEO Library. Existing CLEO scripts may not work if they use custom commands (for example from a third-party plugin) not supported by CLEO Redux.
+As a standalone software CLEO Redux runs compiled scripts and JavaScript and provides access to all native script commands. It also provides a limited set of [custom commands](./custom-commands.md) backward-compatible to CLEO Library. Existing CLEO scripts may not work if they use custom commands (for example from a third-party plugin) not supported by CLEO Redux.
 
 This mode does not work in the classic GTA San Andreas.
 

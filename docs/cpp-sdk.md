@@ -17,4 +17,4 @@ interface IniFile {
 }
 ```
 
-See more information in Sanny Builder Library: https://library.sannybuilder.com/#/sa_unreal/classes/IniFile. The usage of the `IniFile` class requires an `fs` [permission](README.md#permissions).
+[See more information](https://library.sannybuilder.com/#/sa_unreal/classes/IniFile) in Sanny Builder Library. The usage of the `IniFile` class requires an `fs` [permission](./permissions.md).

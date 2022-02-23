@@ -15,5 +15,5 @@ declare class DynamicLibrary {
 }
 ```
 
-See more information in Sanny Builder Library: https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary. The usage of the `DynamicLibrary` class requires a `dll` [permission](README.md#permissions).
+[See more information](https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary) in Sanny Builder Library. The usage of the `DynamicLibrary` class requires a `dll` [permission](./permissions.md).
 

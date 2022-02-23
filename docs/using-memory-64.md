@@ -106,7 +106,7 @@ In the `Write` method any `size` larger than `0` is allowed. Sizes `3`, `5`, `6`
     Memory.Write(offset, 0x90, 10, true, true) // "noping" 10 bytes of code starting from offset+image base
 ```
 
-**Note that usage of any of the read/write methods requires the `mem` [permission](README.md#Permissions)**.
+> The usage of any of the read/write methods requires the `mem` [permission](./permissions.md).
 
 
 ### Casting methods
@@ -154,7 +154,7 @@ The returned value of the function called with `Memory.CallFunction` is ignored.
 
 CLEO Redux supports calling foreign functions with up to 16 parameters.
 
-**Note that usage of any of the call methods requires the `mem` [permission](README.md#Permissions)**.
+> The usage of any of the call methods requires the `mem` [permission](./permissions.md).
 
 #### Convenience methods with Fn object
 

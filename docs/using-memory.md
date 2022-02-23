@@ -103,7 +103,7 @@ In the `Write` method any `size` larger than `0` is allowed. Sizes `3` and `5` o
     Memory.Write(addr, 0x90, 10, true) // "noping" 10 bytes of code starting from addr
 ```
 
-**Note that usage of any of the read/write methods requires the `mem` [permission](README.md#Permissions)**.
+> The usage of any of the read/write methods requires the `mem` [permission](./permissions.md).
 
 
 ### Casting methods
@@ -171,7 +171,7 @@ Note that all arguments are read as 32-bit signed integers. If you need to provi
 
 CLEO Redux supports calling foreign functions with up to 16 parameters.
 
-**Note that usage of any of the call methods requires the `mem` [permission](README.md#Permissions)**.
+> The usage of any of the call methods requires the `mem` [permission](./permissions.md).
 
 #### Convenience methods with Fn object
 

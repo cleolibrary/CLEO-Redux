@@ -1,6 +1,6 @@
 # Imports
 
-You can import other script files in your code to make the code modular and share the common logic. The runtime supports the `import` statement as described in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+You can import other script files in your code to make the code modular and share the common logic. The runtime supports the `import` statement as described in [this article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
 To avoid running the included `.js` files as standalone scripts, either put them into a separate folder (e.g. `CLEO/includes/`) or use the extension `.mjs`.
 

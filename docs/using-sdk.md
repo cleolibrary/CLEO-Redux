@@ -1,6 +1,6 @@
 ## CLEO Redux SDK
 
-SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides [SDK for the C++ and Rust languages](./plugins/SDK).
+SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides [SDK for the C++ and Rust languages](https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/SDK).
 
 ### Platforms Support
 

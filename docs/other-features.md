@@ -4,7 +4,7 @@ CLEO Redux puts focus on improving dev experience and make scripting process eas
 
 ## Integration with Visual Studio Code
 
-See demo: https://youtu.be/jqz8_lGnG4g
+[See demo on YouTube](https://youtu.be/jqz8_lGnG4g)
 
 VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your `*.js` script to get the full autocomplete support:
 
@@ -36,10 +36,10 @@ CLEO Redux has built-in support for tracking SCM instructions. To enable trace f
 
 CLEO monitors active scripts and reloads them in game as they change
 
-Demo: https://www.youtube.com/watch?v=WanLojClqFw
+[See demo on YouTube](https://www.youtube.com/watch?v=WanLojClqFw)
 
 Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically
 
-Demo: https://www.youtube.com/watch?v=LAi2syrsxJg
+[See demo on YouTube](https://www.youtube.com/watch?v=LAi2syrsxJg)
 
 Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).

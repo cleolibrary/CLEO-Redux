@@ -24,8 +24,8 @@ See [The Definitive Edition FAQ](the-definitive-edition-faq.md) for the details.
 
 Other:
 
-- re3 (see [Compatibility details](#compatibility-with-re3-and-revc))
-- reVC (see [Compatibility details](#compatibility-with-re3-and-revc))
+- re3 (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
+- reVC (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
 
 CLEO Redux only supports the PC version of each game.
 

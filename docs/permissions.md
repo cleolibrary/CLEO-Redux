@@ -1,7 +1,7 @@
 # Permissions
 
 
-CLEO Redux acknowledges some [custom commands](#custom-commands) (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.
+CLEO Redux acknowledges some [custom commands](./custom-commands.md) (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.
 
 There are four available levels:
 

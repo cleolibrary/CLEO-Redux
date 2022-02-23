@@ -6,7 +6,9 @@ Sanny Builder Library defines a static class `Object` to group commands allowing
 To avoid mixing the two, CLEO Redux uses `ScriptObject` class instead of the Library's `Object` with [the same interface](https://library.sannybuilder.com/#/gta3/classes/Object).
 
 ```js
-var x = ScriptObject.Create(modelId, x, y, z); // opcode 0107, creates a new object in the game
+// opcode 0107, creates a new object in the game
+var x = ScriptObject.Create(modelId, x, y, z); 
 
-var x = Object.create(null); // native JavaScript code, creates a new object in JS memory
+// native JavaScript code, creates a new object in JS memory
+var x = Object.create(null); 
 ```

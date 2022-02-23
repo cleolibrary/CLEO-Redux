@@ -13,7 +13,7 @@ p.giveWeapon(2, 100)
   .setBleeding(true);
 ```
 
-[See demo](https://www.youtube.com/watch?v=LLgJ0fWbklg).
+[See demo on YouTube](https://www.youtube.com/watch?v=LLgJ0fWbklg).
 
 Destructor methods interrupt the chain. E.g. given the code:
 
