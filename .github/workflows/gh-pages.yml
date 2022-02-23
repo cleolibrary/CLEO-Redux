@@ -23,7 +23,7 @@ jobs:
       - name: Install mdbook
         run: curl -L https://github.com/rust-lang/mdBook/releases/download/v$MDBOOK/mdbook-v$MDBOOK-x86_64-unknown-linux-gnu.tar.gz | tar xz -C ~/.cargo/bin
       - name: Build book
-        run: mdbook build -d website/docs
+        run: mdbook build -d website/docs/en
 
       - name: Deploy gh-pages
         uses: peaceiris/actions-gh-pages@v3
