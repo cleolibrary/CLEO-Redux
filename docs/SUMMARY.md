@@ -12,7 +12,7 @@
 - [Configuration](./config.md)
   - [Permissions](./permissions.md)
 
-- [Supported Languages](./supported-languages.md)
+- [Runtime](./runtime.md)
   - [SCM](./scm.md)
   - [JavaScript](./javascript.md)
     - [Prerequisites](./prerequisites.md)
