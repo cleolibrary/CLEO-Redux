@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="sidebar-visible no-js rust">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -31,7 +31,7 @@
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -57,7 +57,7 @@
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
             html.classList.remove('no-js')
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             html.classList.add('js');
         </script>
@@ -76,7 +76,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">1.1.</strong> Relation to CLEO Library</a></li></ol></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">2.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">2.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">2.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">2.4.</strong> Plugins</a></li><li class="chapter-item expanded "><a href="installation-scripts.html"><strong aria-hidden="true">2.5.</strong> Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="permissions.html"><strong aria-hidden="true">3.1.</strong> Permissions</a></li></ol></li><li class="chapter-item expanded "><a href="runtime.html"><strong aria-hidden="true">4.</strong> Runtime</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="scm.html"><strong aria-hidden="true">4.1.</strong> SCM</a></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.2.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisites.html"><strong aria-hidden="true">4.2.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="script-lifecycle.html"><strong aria-hidden="true">4.2.2.</strong> Script Lifecycle</a></li><li class="chapter-item expanded "><a href="script-object-vs-object.html"><strong aria-hidden="true">4.2.3.</strong> ScriptObject vs Object</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">4.2.4.</strong> Using Math Object</a></li><li class="chapter-item expanded "><a href="fluent-interface.html"><strong aria-hidden="true">4.2.5.</strong> Fluent Interface</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="log.html"><strong aria-hidden="true">5.1.</strong> Log</a></li></ol></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">6.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Development</div></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">7.1.</strong> Using FXT</a></li><li class="chapter-item expanded "><a href="using-memory.html"><strong aria-hidden="true">7.2.</strong> Using Memory</a></li><li class="chapter-item expanded "><a href="using-memory-64.html"><strong aria-hidden="true">7.3.</strong> Using Memory (x64)</a></li></ol></li><li class="chapter-item expanded "><a href="using-sdk.html"><strong aria-hidden="true">8.</strong> SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-sdk.html"><strong aria-hidden="true">8.1.</strong> C++ SDK</a></li><li class="chapter-item expanded "><a href="rust-sdk.html"><strong aria-hidden="true">8.2.</strong> Rust SDK</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">1.1.</strong> Relation to CLEO Library</a></li></ol></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">2.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">2.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">2.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">2.4.</strong> Plugins</a></li><li class="chapter-item expanded "><a href="installation-scripts.html"><strong aria-hidden="true">2.5.</strong> Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="permissions.html"><strong aria-hidden="true">3.1.</strong> Permissions</a></li></ol></li><li class="chapter-item expanded "><a href="scripts.html"><strong aria-hidden="true">4.</strong> Scripts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="compiled-scripts.html"><strong aria-hidden="true">4.1.</strong> Compiled Scripts (.cs)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="custom-commands.html"><strong aria-hidden="true">4.1.1.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.2.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisites.html"><strong aria-hidden="true">4.2.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="script-lifecycle.html"><strong aria-hidden="true">4.2.2.</strong> Script Lifecycle</a></li><li class="chapter-item expanded "><a href="script-object-vs-object.html"><strong aria-hidden="true">4.2.3.</strong> ScriptObject vs Object</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">4.2.4.</strong> Math Object</a></li><li class="chapter-item expanded "><a href="using-memory.html"><strong aria-hidden="true">4.2.5.</strong> Memory Object</a></li><li class="chapter-item expanded "><a href="using-memory-64.html"><strong aria-hidden="true">4.2.6.</strong> Memory Object (x64)</a></li><li class="chapter-item expanded "><a href="fluent-interface.html"><strong aria-hidden="true">4.2.7.</strong> Fluent Interface</a></li><li class="chapter-item expanded "><a href="imports.html"><strong aria-hidden="true">4.2.8.</strong> Imports</a></li><li class="chapter-item expanded "><a href="js-bindings.html"><strong aria-hidden="true">4.2.9.</strong> Bindings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="deprecated-bindings.html"><strong aria-hidden="true">4.2.9.1.</strong> Deprecated</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="log.html"><strong aria-hidden="true">5.1.</strong> Log</a></li><li class="chapter-item expanded "><a href="the-definitive-edition-faq.html"><strong aria-hidden="true">5.2.</strong> Support for The Definitive Edition</a></li></ol></li><li class="chapter-item expanded "><a href="other-features.html"><strong aria-hidden="true">6.</strong> Other Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Custom Text (FXT)</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">6.2.</strong> Unsupported Features</a></li></ol></li><li class="chapter-item expanded "><a href="using-sdk.html"><strong aria-hidden="true">7.</strong> SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-sdk.html"><strong aria-hidden="true">7.1.</strong> C++ SDK</a></li><li class="chapter-item expanded "><a href="rust-sdk.html"><strong aria-hidden="true">7.2.</strong> Rust SDK</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -94,8 +94,8 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
@@ -110,6 +110,9 @@
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/cleolibrary/CLEO-Redux" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
                         </a>
                     </div>
                 </div>
@@ -159,6 +162,8 @@
 </ul>
 <p>CLEO Redux only supports the PC version of each game.</p>
 <p>For the complete reference on supported features <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">refer to this page</a>. Also there are known limitations <a href="unsupported.html">listed here</a>.</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<p>CLEO Redux is available under the <a href="https://re.cleo.li/LICENSE.txt">end-user license agreement</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="relation-to-cleo-library"><a class="header" href="#relation-to-cleo-library">Relation to CLEO Library</a></h1>
 <p>CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded <a href="https://cleo.li/download.html">here</a>. CLEO Redux is <em>another</em> CLEO implementation made from scratch with a few distinctive features, such as single code base for all games, or support for JavaScript code.</p>
 <p>At the moment CLEO Redux can not be considered as a complete replacement for CLEO Library due to the lack of support for many widely used CLEO commands. To solve this issue and get the best out of the two libraries, CLEO Redux supports two different usage strategies.</p>
@@ -283,32 +288,51 @@
 </blockquote>
 <h2 id="none"><a class="header" href="#none">None</a></h2>
 <p>No unsafe operation is allowed.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="runtime"><a class="header" href="#runtime">Runtime</a></h1>
-<p>CLEO Redux provides a runtime capable of executing compiled binary scripts (<code>*.cs</code>) in the native <a href="./scm.html">SCM format</a> and plain text scripts (<code>*.js</code>) written in <a href="./javascript.html">JavaScript</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="scm"><a class="header" href="#scm">SCM</a></h1>
-<p>CLEO Redux can execute scripts compiled in the game's native binary SCM format. Such scripts have a <code>.cs</code> extension. </p>
-<blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scripts-1"><a class="header" href="#scripts-1">Scripts</a></h1>
+<p>CLEO Redux provides a runtime capable of executing compiled binary scripts (<code>*.cs</code>) in the native <a href="./cs-scripts.html">SCM format</a> and plain text scripts (<code>*.js</code>) written in <a href="./javascript.html">JavaScript</a>.</p>
+<p>To find the information on how to install the script <a href="./installation-scripts.html">see this page</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="compiled-scripts"><a class="header" href="#compiled-scripts">Compiled Scripts</a></h1>
+<p>CLEO Redux can execute scripts compiled in the game's native <a href="https://gtamods.com/wiki/SCM_Instruction">binary SCM format</a>. Such scripts have a <code>.cs</code> extension. They are subject to the <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">limitations</a> of SCM code.</p>
 <p><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">Check the FAQ</a> for the information on CS support in the remastered games.</p>
-</blockquote>
+<h2 id="writing-a-compiled-script"><a class="header" href="#writing-a-compiled-script">Writing a Compiled Script</a></h2>
 <blockquote>
-<p>At the moment CLEO Redux only provides a few custom commands. Most of the commands implemented in CLEO Library or its plugins are not available yet.</p>
+<p>For a detailed step-by-step tutorial <a href="https://gtamods.com/wiki/CLEO/Tutorial">visit this page</a>. It's applicable to CLEO Redux.</p>
 </blockquote>
-<h2 id="writing-a-cleo-script"><a class="header" href="#writing-a-cleo-script">Writing a CLEO Script</a></h2>
-<p>To create a new script use <a href="https://sannybuilder.com">Sanny Builder 3</a> in GTA III, GTA VC or GTA SA edit modes respectively. Add a directive <code>{$CLEO .cs}</code> at the top of your script and run &quot;Compile and Copy&quot;. Sanny Builder will create a new CS file in the CLEO directory. </p>
-<p>CLEO scripts are subject to the <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">limitations of SCM code</a>. Each script has a set of local variables (16 in GTA3 and VC; 32 in San Andreas) and 2 self-incrementing counters (timers).</p>
-<p>There are a few basic rules to follow when writing CLEO scripts:</p>
+<p>To create a new script use <a href="https://sannybuilder.com">Sanny Builder 3</a> in GTA III, GTA VC or GTA SA edit modes respectively. Add a directive <code>{$CLEO .cs}</code> at the top of your script, write the code and run &quot;Compile and Copy&quot;. Sanny Builder will create a new CS file in the CLEO directory. </p>
+<p>At the moment CLEO Redux only provides a few custom commands. Most of the commands implemented in CLEO Library or its plugins are not available yet.</p>
+<p>There are a few basic rules to follow when writing compiled scripts:</p>
 <ol>
 <li>
 <p>One file - one script. CLEO only supports one script per file.</p>
 </li>
 <li>
-<p>Never use opcode <code>004E</code> in the CLEO scripts. This opcode is only supported in the <code>main.scm</code>. Use opcode <a href="https://library.sannybuilder.com/#/sa/CLEO/0A93?p=1&amp;v=1">0A93</a> to terminate a CLEO script.</p>
+<p>Never use opcode <code>004E</code> to terminate a script. This opcode is only supported in the <code>main.scm</code>. Use <a href="https://library.sannybuilder.com/#/sa/CLEO/0A93?p=1&amp;v=1">0A93</a> instead.</p>
 </li>
 <li>
-<p>Minimize the usage of global variables in the CLEO script as it might break the game scripts in the <code>main.scm</code>. Some well-known variables such $PLAYER_CHAR, $PLAYER_ACTOR and $ONMISSION can be used.</p>
+<p>Minimize the usage of global variables as they might conflict with other scripts. Some well-known variables such <code>$PLAYER_CHAR</code>, <code>$PLAYER_ACTOR</code> and <code>$ONMISSION</code> can be used.</p>
 </li>
 </ol>
-<p>CLEO Redux does not support saving the script status and there are no plans on adding this feature.</p>
+<p>CLEO Redux does not support saving the script status (a feature of CLEO Library) and there are no plans on adding this feature.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-commands"><a class="header" href="#custom-commands">Custom Commands</a></h1>
+<blockquote>
+<p>The following commands are for classic games only. For The Definitive Edition <a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">check this information</a>.</p>
+</blockquote>
+<p>CLEO Redux supports all original opcodes available in the given game. On top of those it adds a few new commands listed below. Note that they strictly match the opcodes of CLEO Library.</p>
+<ul>
+<li>0A8C <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">WRITE_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0A8D <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">READ_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0A8E <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8E">INT_ADD</a></li>
+<li>0A8F <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8F">INT_SUB</a></li>
+<li>0A90 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A90">INT_MUL</a></li>
+<li>0A91 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A91">INT_DIV</a></li>
+<li>0A93 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A93">TERMINATE_THIS_CUSTOM_SCRIPT</a></li>
+<li>0AA5 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA5">CALL_FUNCTION</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AA6 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA6">CALL_FUNCTION_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AA7 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA7">CALL_METHOD</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AA8 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA8">CALL_METHOD_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AB0 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AB0">IS_KEY_PRESSED</a></li>
+</ul>
+<p>This list might not be complete as there are custom plugins with extra commands (see <a href="./using-sdk.html">Using SDK</a>). Refer to <a href="https://library.sannybuilder.com">Sanny Builder Library</a> for the complete list of available commands for each game.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
 <p>CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.</p>
 <p>To make a JS script use VS Code (recommended) or any editor of your choice. Create a new file with <code>.js</code> extension and put it in the CLEO folder. See <a href="javascript.html#javascript-support">JavaScript support</a> for extra information.</p>
@@ -419,122 +443,10 @@ var x = Object.create(null); // native JavaScript code, creates a new object in 
     var pi = Math.floor(Math.PI) // pi = 3
 </code></pre>
 <p>Native <code>Math</code> methods were given a higher priority over the game commands with the same functionality. For example, to calculate an absolute value of the number, there is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs">Math.abs</a>, not <a href="https://library.sannybuilder.com/#/gta3?q=%22abs%22">Math.Abs</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="fluent-interface"><a class="header" href="#fluent-interface">Fluent Interface</a></h1>
-<p>Methods on constructible entities (such as <code>Player</code>, <code>Car</code>, <code>Char</code> -- any entities created via a constructor method) support chaining (also known as Fluent Interface). It allows to write code like this:</p>
-<pre><code class="language-js">var p = new Player(0);
-
-p.giveWeapon(2, 100)
-  .setHealth(5)
-  .setCurrentWeapon(2)
-  .getChar()
-  .setCoordinates(1144, -600, 14)
-  .setBleeding(true);
-</code></pre>
-<p><a href="https://www.youtube.com/watch?v=LLgJ0fWbklg">See demo</a>.</p>
-<p>Destructor methods interrupt the chain. E.g. given the code:</p>
-<p><code>Char.Create(0, 0, 0, 0, 0).setCoordinates(0, 0, 0).delete()</code></p>
-<p>the chain can not continue after delete method as the character gets removed and its handle is not longer valid.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
-<h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
-<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
-<p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
-<h2 id="game-crashes-with-cleo-on-san-andreas-the-definitive-edition"><a class="header" href="#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></h2>
-<ul>
-<li>make sure you installed the 64-bit version of Ultimate ASI Loader (<a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">direct link to the latest release</a>).
-<ul>
-<li>Put <code>version.dll</code> to <code>Gameface\Binaries\Win64</code></li>
-</ul>
-</li>
-<li>make sure you run the latest CLEO Redux version (0.8.2 and above)</li>
-<li>delete config files from <code>Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor</code></li>
-<li>run the game (or Rockstar Games Launcher) as administrator</li>
-</ul>
-<p>If CLEO can't create files in <code>Gameface\Binaries\Win64</code> it uses another path at <code>C:\Users\&lt;your_usename&gt;\AppData\Roaming\CLEO Redux</code>. There should be <code>cleo_redux.log</code> and the CLEO folder where all your scripts go.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="log"><a class="header" href="#log">Log</a></h1>
-<p>CLEO logs important events and errors immediately as they occur in the <code>cleo_redux.log</code> file located in the game directory.</p>
-<blockquote>
-<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>This guide is for the classic era games. For the information on using the Memory class in the definitive editions <a href="./using-memory-64.html">click here</a>.</p>
 </blockquote>
-<p>The log file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.</p>
-<p>To stream events in your terminal while testing a script, run:</p>
-<pre><code>tail -f cleo_redux.log
-</code></pre>
-<p><code>tail</code> is a unix command so a compatible environment is needed (for example Git Bash).</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="unsupported-or-limited-support-scenarios"><a class="header" href="#unsupported-or-limited-support-scenarios">Unsupported or limited support scenarios</a></h1>
-<p>Despite our best effort some scenarios while available in game are not supported or supported with limitations by CLEO Redux. Some of them are imposed by the nature of SCM format or JavaScript language or the difficulties in bridging JavaScript and the native code.</p>
-<p>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">Features support page</a> to find out high-level features and the status of their support in different games.</p>
-<p>The following items are known to be not working and there is no specific timeline on getting them fixed.</p>
-<h2 id="unsupported-features-in-cs"><a class="header" href="#unsupported-features-in-cs">Unsupported features in CS</a></h2>
-<ul>
-<li>in x64 games (SA: DE) you can't read and write 64-bit values as the script engine only supports 32-bit values. You may need to use other means to access the game memory (e.g. from JavaScript)</li>
-</ul>
-<h2 id="unsupported-features-in-js"><a class="header" href="#unsupported-features-in-js">Unsupported features in JS</a></h2>
-<ul>
-<li>
-<p>commands requiring an scm variable (e.g. countdown timers). <a href="https://github.com/cleolibrary/CLEO-Redux/issues/10">Tracking issue</a>.</p>
-</li>
-<li>
-<p>commands implicitly loading models or textures (such as widgets) <a href="https://github.com/cleolibrary/CLEO-Redux/issues/12">Tracking issue</a>. You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. </p>
-</li>
-<li>
-<p>you can't call the game functions that need references to variables to store the result. There is no &quot;take an address of the variable&quot; syntax.</p>
-</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="using-fxt"><a class="header" href="#using-fxt">Using FXT</a></h1>
-<h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
-<p>Demo: https://youtu.be/ctsKy7WnY9o</p>
-<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> folder. The file name can be any valid name. </p>
-<p>Each FXT file contains a list of the key-value entries in the following format:</p>
-<pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
-&lt;KEY2&gt; &lt;TEXT2&gt;
-...
-&lt;KEYN&gt; &lt;TEXTN&gt;
-</code></pre>
-<p>There should be a single space character between a key and a value. The key's maximum length is 7 characters. Try using unique keys that are unlikely to clash with other entries. The text length is unlimited, however each game may impose its own limitations.</p>
-<p>CLEO loads FXT files on startup and merges their content in a single dictionary. It also monitors the files and reloads them if any change is made.</p>
-<p>You can also find an editor for FXT files on the cleo.li website: https://cleo.li/download.html</p>
-<p>To display the custom content in game, use the <code>Text</code> class. The key defined in the FXT file is usually the first argument to Text commands, e.g.</p>
-<pre><code>Text.PrintHelp('KEY1') // will display &lt;TEXT1&gt;
-</code></pre>
-<p>You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text</p>
-<h2 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h2>
-<p>Demo: https://youtu.be/FLyYyrGz1Xg</p>
-<p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
-<pre><code class="language-ts">declare interface FxtStore {
-  /**
-   * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
-   * @param key GXT key that can be used in text commands (7 characters max)
-   * @param value text content
-   */
-  insert(key: string, value: string): void;
-  /**
-   * Removes the text content associated with the key in the local fxt storage
-   * @param key GXT key
-   */
-  delete(key: string): void;
-}
-</code></pre>
-<p>Using <code>FxtStore</code> you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:</p>
-<p>custom.fxt:</p>
-<pre><code>MY_KEY Text from FXT file
-</code></pre>
-<p>custom.js:</p>
-<pre><code class="language-js">Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot;
-FxtStore.insert('MY_KEY', 'Text from script');
-Text.PrintHelp('MY_KEY') // this displays &quot;Text from script&quot;
-FxtStore.delete('MY_KEY')
-Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
-</code></pre>
-<p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
-<p>Custom text can be constructed dynamically, e.g.:</p>
-<pre><code class="language-js">while(true) {
-    wait(0);
-    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
-    Text.PrintHelp('TIME') // this displays &quot;Timestamp: &quot; and the updated timestamp value
-}
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><p>Note: This guide is for the classic era games. For the information on using the Memory class in the definitive editions <a href="./using-memory-64.html">click here</a>.</p>
-<h2 id="using-memory-object"><a class="header" href="#using-memory-object">Using Memory Object</a></h2>
+<h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
     ReadFloat(address: int, vp: boolean): float;
@@ -715,8 +627,10 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
     }
 </code></pre>
 <p>At the moment <code>Memory.Translate</code> should only be used in <code>re3</code> and <code>reVC</code>. In other games you will be getting <code>0</code> as a result most of the time.</p>
-<div style="break-before: page; page-break-before: always;"></div><p>Note: This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games <a href="./using-memory.html">click here</a>.</p>
-<h2 id="using-memory-object-1"><a class="header" href="#using-memory-object-1">Using Memory Object</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games <a href="./using-memory.html">click here</a>.</p>
+</blockquote>
+<h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
     ReadFloat(address: int, vp: boolean, ib: boolean): float;
@@ -857,6 +771,308 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
 <pre><code class="language-js">    var float = Memory.Fn.X64Float(0x456789, true)()
 </code></pre>
 <p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fluent-interface"><a class="header" href="#fluent-interface">Fluent Interface</a></h1>
+<p>Methods on constructible entities (such as <code>Player</code>, <code>Car</code>, <code>Char</code> -- any entities created via a constructor method) support chaining (also known as Fluent Interface). It allows to write code like this:</p>
+<pre><code class="language-js">var p = new Player(0);
+
+p.giveWeapon(2, 100)
+  .setHealth(5)
+  .setCurrentWeapon(2)
+  .getChar()
+  .setCoordinates(1144, -600, 14)
+  .setBleeding(true);
+</code></pre>
+<p><a href="https://www.youtube.com/watch?v=LLgJ0fWbklg">See demo</a>.</p>
+<p>Destructor methods interrupt the chain. E.g. given the code:</p>
+<p><code>Char.Create(0, 0, 0, 0, 0).setCoordinates(0, 0, 0).delete()</code></p>
+<p>the chain can not continue after delete method as the character gets removed and its handle is not longer valid.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="imports"><a class="header" href="#imports">Imports</a></h1>
+<p>You can import other script files in your code to make the code modular and share the common logic. The runtime supports the <code>import</code> statement as described in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import</p>
+<p>To avoid running the included <code>.js</code> files as standalone scripts, either put them into a separate folder (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
+<pre><code class="language-js">// imports default export from other.js or other.mjs located in the same directory
+import func from &quot;./other&quot;; 
+
+// imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
+import { PedType } from &quot;./includes/types&quot;; 
+
+// imports vehicles.json as a JavaScript value (an array, object).
+import data from &quot;./vehicles.json&quot;;
+</code></pre>
+<p>Currently only import of <code>.js</code> (<code>.mjs</code>) and <code>.json</code> files is supported.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bindings"><a class="header" href="#bindings">Bindings</a></h1>
+<p>The following variables and functions are only available in JavaScript code.</p>
+<h2 id="variables"><a class="header" href="#variables">Variables</a></h2>
+<h3 id="game"><a class="header" href="#game">GAME</a></h3>
+<p>current game id. Possible values: <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code></p>
+<pre><code class="language-js">if (GAME === &quot;gta3&quot;) {
+  showTextBox(&quot;This is GTA III&quot;);
+}
+if (GAME === &quot;sa&quot;) {
+  showTextBox(&quot;This is San Andreas&quot;);
+}
+if (GAME === &quot;sa_unreal&quot;) {
+  showTextBox(&quot;This is San Andreas: The Definitive Edition&quot;);
+}
+</code></pre>
+<h3 id="onmission"><a class="header" href="#onmission">ONMISSION</a></h3>
+<p>global flag controlling whether the player is on a mission now.</p>
+<pre><code class="language-js">if (!ONMISSION) {
+  showTextBox(&quot;Not on a mission. Setting ONMISSION to true&quot;);
+  ONMISSION = true;
+}
+</code></pre>
+<h3 id="timera-timerb"><a class="header" href="#timera-timerb">TIMERA, TIMERB</a></h3>
+<p>two auto-incrementing timers useful for measuring time intervals.</p>
+<pre><code class="language-js">while (true) {
+  TIMERA = 0;
+  // wait 1000 ms
+  while (TIMERA &lt; 1000) {
+    wait(0);
+  }
+  showTextBox(&quot;1 second passed&quot;);
+}
+</code></pre>
+<h3 id="__dirname"><a class="header" href="#__dirname">__dirname</a></h3>
+<p>an absolute path to the directory with the current file</p>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="log"><a class="header" href="#log">log</a></h3>
+<p><code>log(...values)</code> prints comma-separated <code>{values}</code> to the <code>cleo_redux.log</code></p>
+<pre><code class="language-js">var x = 1;
+log(&quot;value of x is &quot;, x);
+</code></pre>
+<h3 id="wait"><a class="header" href="#wait">wait</a></h3>
+<p><code>wait(timeInMs)</code> pauses the script execution for at least <code>{timeInMs}</code> milliseconds</p>
+<pre><code class="language-js">while (true) {
+  wait(1000);
+  log(&quot;1 second passed&quot;);
+}
+</code></pre>
+<h3 id="showtextbox"><a class="header" href="#showtextbox">showTextBox</a></h3>
+<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box</p>
+<pre><code class="language-js">showTextBox(&quot;Hello, world!&quot;);
+</code></pre>
+<h3 id="exit"><a class="header" href="#exit">exit</a></h3>
+<p><code>exit(reason?)</code> terminates the script immediately. <code>exit</code> function accepts an optional string argument that will be added to the <code>cleo_redux.log</code>.</p>
+<pre><code class="language-js">exit(&quot;Script ended&quot;);
+</code></pre>
+<h3 id="native"><a class="header" href="#native">native</a></h3>
+<p><code>native(command_name, ...input_args)</code> is a low-level function to execute any in-game command using its name <code>{command_name}</code></p>
+<pre><code class="language-js">native(&quot;SET_TIME_OF_DAY&quot;, 12, 30); // sets the time of day to 12:30
+</code></pre>
+<h2 id="static-objects"><a class="header" href="#static-objects">Static Objects</a></h2>
+<h3 id="memory"><a class="header" href="#memory">Memory</a></h3>
+<ul>
+<li><code>Memory</code> object allows to manipulate the process memory. See the <a href="using-memory.html">Memory guide</a> for more information.</li>
+</ul>
+<h3 id="math"><a class="header" href="#math">Math</a></h3>
+<ul>
+<li><code>Math</code> object is a standard object available in the JS runtime that provides common mathematical operations. CLEO Redux extends it with some extra commands. See the <a href="using-math.html">Math object</a> for more information.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="deprecated"><a class="header" href="#deprecated">Deprecated</a></h1>
+<p>Usage of the following commands is not recommended.</p>
+<h1 id="op"><a class="header" href="#op">op</a></h1>
+<p><code>op(opcode_id, ...input_args)</code> - a low-level function to execute any in-game command with opcode <code>{opcode_id}</code>.</p>
+<p>For the commands that return a single value, the result is this value.</p>
+<p>For the commands that return multiple values, the result is an object where each key corresponds to a returned value. The key names match the output names given in the command definition</p>
+<p>For the conditional commands the result is the boolean value <code>true</code> or <code>false</code></p>
+<pre><code class="language-js">op(0x00c0, 12, 30); // sets the time of day to 12:30
+</code></pre>
+<pre><code class="language-js">var pos = op(0x0054, 0); // returns player 0 coordinates vector {x, y, z}
+showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;, pos.y, &quot; z = &quot;, pos.z);
+</code></pre>
+<pre><code class="language-js">if (op(0x0248, 101)) {
+  // checks the condition
+  showTextBox(&quot;Model with id 101 has been loaded&quot;);
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
+<h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
+<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
+<h2 id="game-crashes-with-cleo-on-san-andreas-the-definitive-edition"><a class="header" href="#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></h2>
+<ul>
+<li>make sure you installed the 64-bit version of Ultimate ASI Loader (<a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">direct link to the latest release</a>).
+<ul>
+<li>Put <code>version.dll</code> to <code>Gameface\Binaries\Win64</code></li>
+</ul>
+</li>
+<li>make sure you run the latest CLEO Redux version (0.8.2 and above)</li>
+<li>delete config files from <code>Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor</code></li>
+<li>run the game (or Rockstar Games Launcher) as administrator</li>
+</ul>
+<p>If CLEO can't create files in <code>Gameface\Binaries\Win64</code> it uses another path at <code>C:\Users\&lt;your_usename&gt;\AppData\Roaming\CLEO Redux</code>. There should be <code>cleo_redux.log</code> and the CLEO folder where all your scripts go.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="log-1"><a class="header" href="#log-1">Log</a></h1>
+<p>CLEO logs important events and errors immediately as they occur in the <code>cleo_redux.log</code> file located in the game directory.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<p>The log file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.</p>
+<p>To stream events in your terminal while testing a script, run:</p>
+<pre><code>tail -f cleo_redux.log
+</code></pre>
+<p><code>tail</code> is a unix command so a compatible environment is needed (for example Git Bash).</p>
+<div style="break-before: page; page-break-before: always;"></div><p>Here you can find answers to the frequently asked questions about support for The Trilogy remaster.</p>
+<ul>
+<li><a href="the-definitive-edition-faq.html#what-versions-are-supported">What versions are supported?</a></li>
+<li><a href="the-definitive-edition-faq.html#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></li>
+<li><a href="the-definitive-edition-faq.html#can-i-use-original-opcodes">Can I use original opcodes?</a></li>
+<li><a href="the-definitive-edition-faq.html#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></li>
+<li><a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></li>
+<li><a href="the-definitive-edition-faq.html#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></li>
+<li><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">How do I compile CLEO scripts with Sanny Builder?</a></li>
+<li><a href="the-definitive-edition-faq.html#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></li>
+</ul>
+<h3 id="what-versions-are-supported"><a class="header" href="#what-versions-are-supported">What versions are supported?</a></h3>
+<ul>
+<li>GTA III: The Definitive Edition <strong>1.0.0.14718</strong> </li>
+<li>GTA Vice City: The Definitive Edition <strong>1.0.0.14718</strong> </li>
+<li>San Andreas: The Definitive Edition <strong>1.0.0.14296</strong>, <strong>1.0.0.14388</strong>, <strong>1.0.0.14718</strong> </li>
+</ul>
+<h3 id="is-there-any-difference-from-support-of-the-classic-games"><a class="header" href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></h3>
+<p>There is. CLEO does not display the version in the game menu. Also CLEO can run only JS scripts in GTA III and GTA VC. In San Andreas both CS and JS scripts are supported.</p>
+<h3 id="can-i-use-original-opcodes"><a class="header" href="#can-i-use-original-opcodes">Can I use original opcodes?</a></h3>
+<p>Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a>.</p>
+<h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
+<p>After each game run, CLEO generates a d.ts file in the CLEO.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code. </p>
+<p>To enable autocomplete in VS Code include the following line in your JS script:</p>
+<pre><code class="language-js">/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+</code></pre>
+<p>Update the file name accordingly depending on which game your script is for.</p>
+<h3 id="can-i-use-cleo-opcodes"><a class="header" href="#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></h3>
+<p>Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not supported. But CLEO Redux adds its own new opcodes for some operations.</p>
+<ul>
+<li>0C00 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00">IS_KEY_PRESSED</a></li>
+<li>0C01 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01">INT_ADD</a></li>
+<li>0C02 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02">INT_SUB</a></li>
+<li>0C03 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03">INT_MUL</a></li>
+<li>0C04 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04">INT_DIV</a></li>
+<li>0C05 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05">TERMINATE_THIS_CUSTOM_SCRIPT</a></li>
+<li>0C06 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06">WRITE_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0C07 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07">READ_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0C08 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08">CALL_FUNCTION</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0C09 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09">CALL_FUNCTION_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+</ul>
+<p>Note that Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:</p>
+<pre><code>{$O 0C00=1,  is_key_pressed %1d% }
+{$O 0C01=3,%3d% = %1d% + %2d% }
+{$O 0C02=3,%3d% = %1d% - %2d% }
+{$O 0C03=3,%3d% = %1d% * %2d% }
+{$O 0C04=3,%3d% = %1d% / %2d% }
+{$O 0C05=0,terminate_this_custom_script }
+{$O 0C06=5,write_memory %1d% size %2d% value %3d% virtual_protect %4d% ib %5d% }
+{$O 0C07=5,%5d% = read_memory %1d% size %2d% virtual_protect %3d% ib %4d% }
+{$O 0C08=-1,call_function %1d% ib %2d% num_params %3d%}
+{$O 0C09=-1,call_function_return %1d% ib %2d% num_params %3d%}
+</code></pre>
+<p>This list might not be complete as there are custom plugins with extra commands (see <a href="./using-sdk.html">Using SDK</a>). Refer to <a href="https://library.sannybuilder.com">Sanny Builder Library</a> for the complete list of available commands for each game.</p>
+<h3 id="can-i-work-with-the-game-memory-or-call-the-game-functions"><a class="header" href="#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></h3>
+<p>Yes, check the <a href="using-memory-64.html">Memory guide</a></p>
+<h3 id="how-do-i-compile-cleo-scripts-with-sanny-builder"><a class="header" href="#how-do-i-compile-cleo-scripts-with-sanny-builder">How do I compile CLEO scripts with Sanny Builder?</a></h3>
+<p>Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition. Note that CLEO Redux does not support CS scripts in GTA III: DE and VC: DE. JS scripts are supported in all games.</p>
+<h3 id="i-cant-find-an-answer-to-my-question-here-where-do-i-go"><a class="header" href="#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></h3>
+<ul>
+<li>Check the <a href="TROUBLESHOOTING.html">troubleshooting guide</a>.</li>
+<li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/issues">GitHub tickets</a></li>
+<li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">Feature support page</a></li>
+<li>Ask a question in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="other-features"><a class="header" href="#other-features">Other Features</a></h1>
+<p>CLEO Redux puts focus on improving dev experience and make scripting process easier. </p>
+<h2 id="integration-with-visual-studio-code"><a class="header" href="#integration-with-visual-studio-code">Integration with Visual Studio Code</a></h2>
+<p>See demo: https://youtu.be/jqz8_lGnG4g</p>
+<p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
+<p>For <code>GTA III</code> or <code>re3</code>:</p>
+<pre><code>/// &lt;reference path=&quot;.config/gta3.d.ts&quot; /&gt;
+</code></pre>
+<p>For <code>Vice City</code> or <code>reVC</code></p>
+<pre><code>/// &lt;reference path=&quot;.config/vc.d.ts&quot; /&gt;
+</code></pre>
+<p>For <code>San Andreas</code></p>
+<pre><code>/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+</code></pre>
+<p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
+<h2 id="scm-log"><a class="header" href="#scm-log">SCM Log</a></h2>
+<p>CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up <code>cleo.ini</code> and change <code>LogOpcodes</code> to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.</p>
+<h2 id="hot-reload"><a class="header" href="#hot-reload">Hot Reload</a></h2>
+<p>CLEO monitors active scripts and reloads them in game as they change</p>
+<p>Demo: https://www.youtube.com/watch?v=WanLojClqFw</p>
+<p>Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically</p>
+<p>Demo: https://www.youtube.com/watch?v=LAi2syrsxJg</p>
+<p>Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-text-fxt"><a class="header" href="#custom-text-fxt">Custom Text (FXT)</a></h1>
+<p>CLEO Redux supports custom text content without the need to edit game files.</p>
+<h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
+<p>Demo: https://youtu.be/ctsKy7WnY9o</p>
+<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> folder. The file name can be any valid name. </p>
+<p>Each FXT file contains a list of the key-value entries in the following format:</p>
+<pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
+&lt;KEY2&gt; &lt;TEXT2&gt;
+...
+&lt;KEYN&gt; &lt;TEXTN&gt;
+</code></pre>
+<p>There should be a single space character between a key and a value. The key's maximum length is 7 characters. Try using unique keys that are unlikely to clash with other entries. The text length is unlimited, however each game may impose its own limitations.</p>
+<p>CLEO loads FXT files on startup and merges their content in a single dictionary. It also monitors the files and reloads them if any change is made.</p>
+<p>You can also find an editor for FXT files on the cleo.li website: https://cleo.li/download.html</p>
+<p>To display the custom content in game, use the <code>Text</code> class. The key defined in the FXT file is usually the first argument to Text commands, e.g.</p>
+<pre><code>Text.PrintHelp('KEY1') // will display &lt;TEXT1&gt;
+</code></pre>
+<p>You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text</p>
+<h2 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h2>
+<p>Demo: https://youtu.be/FLyYyrGz1Xg</p>
+<p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
+<pre><code class="language-ts">declare interface FxtStore {
+  /**
+   * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
+   * @param key GXT key that can be used in text commands (7 characters max)
+   * @param value text content
+   */
+  insert(key: string, value: string): void;
+  /**
+   * Removes the text content associated with the key in the local fxt storage
+   * @param key GXT key
+   */
+  delete(key: string): void;
+}
+</code></pre>
+<p>Using <code>FxtStore</code> you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:</p>
+<p>custom.fxt:</p>
+<pre><code>MY_KEY Text from FXT file
+</code></pre>
+<p>custom.js:</p>
+<pre><code class="language-js">Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot;
+FxtStore.insert('MY_KEY', 'Text from script');
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from script&quot;
+FxtStore.delete('MY_KEY')
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
+</code></pre>
+<p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
+<p>Custom text can be constructed dynamically, e.g.:</p>
+<pre><code class="language-js">while(true) {
+    wait(0);
+    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
+    Text.PrintHelp('TIME') // this displays &quot;Timestamp: &quot; and the updated timestamp value
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unsupported-or-limited-support-scenarios"><a class="header" href="#unsupported-or-limited-support-scenarios">Unsupported or limited support scenarios</a></h1>
+<p>Despite our best effort some scenarios while available in game are not supported or supported with limitations by CLEO Redux. Some of them are imposed by the nature of SCM format or JavaScript language or the difficulties in bridging JavaScript and the native code.</p>
+<p>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">Features support page</a> to find out high-level features and the status of their support in different games.</p>
+<p>The following items are known to be not working and there is no specific timeline on getting them fixed.</p>
+<h2 id="unsupported-features-in-cs"><a class="header" href="#unsupported-features-in-cs">Unsupported features in CS</a></h2>
+<ul>
+<li>in x64 games (SA: DE) you can't read and write 64-bit values as the script engine only supports 32-bit values. You may need to use other means to access the game memory (e.g. from JavaScript)</li>
+</ul>
+<h2 id="unsupported-features-in-js"><a class="header" href="#unsupported-features-in-js">Unsupported features in JS</a></h2>
+<ul>
+<li>
+<p>commands requiring an scm variable (e.g. countdown timers). <a href="https://github.com/cleolibrary/CLEO-Redux/issues/10">Tracking issue</a>.</p>
+</li>
+<li>
+<p>commands implicitly loading models or textures (such as widgets) <a href="https://github.com/cleolibrary/CLEO-Redux/issues/12">Tracking issue</a>. You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. </p>
+</li>
+<li>
+<p>you can't call the game functions that need references to variables to store the result. There is no &quot;take an address of the variable&quot; syntax.</p>
+</li>
+</ul>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h2>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="./plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
 <h3 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h3>
