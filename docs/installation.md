@@ -18,3 +18,11 @@ Depending on the game CLEO Redux installation may require a few extra steps. Che
 > * GTA SA: DE - `sanandreas.exe`
 >
 > Names matching is case-insensitive. For classic games CLEO Redux always assumes version 1.0. 
+
+## Uninstallation
+
+To uninstall CLEO Redux perform the following steps:
+
+- Delete `cleo_redux.asi` (or `cleo_redux64.asi`).
+- Delete the `CLEO` folder (optional).
+- Delete the `cleo_redux.log` (optional)
