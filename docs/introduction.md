@@ -4,8 +4,6 @@ CLEO Redux is a scripting runtime for the GTA 3D era games. It is a proud member
 
 If you're new to CLEO visit the [official website](https://cleo.li/) to find more information about it.
 
-
-
 ## Supported Releases
 
 Classic:
@@ -16,9 +14,7 @@ Classic:
 
 Remasters (The Trilogy):
 
-- CLEO supports Title Update 1.03 and Title Update 1.04.
-
-See [The Definitive Edition FAQ](the-definitive-edition-faq.md) for the details.
+- Title Update 1.03 and Title Update 1.04 (see [details](./the-definitive-edition-faq.md))
 
 Other:
 
