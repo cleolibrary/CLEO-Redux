@@ -11,9 +11,9 @@ Here you can find answers to the frequently asked questions about support for Th
 
 ### What versions are supported?
 
-- GTA III: The Definitive Edition **1.0.0.14718** 
-- GTA Vice City: The Definitive Edition **1.0.0.14718** 
-- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** 
+- GTA III: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15284** (Title Update 1.04)
+- GTA Vice City: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15399** (Title Update 1.04)
+- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** (Title Update 1.03), **1.0.0.15483** (Title Update 1.04)
 
 ### Is there any difference from support of the classic games?
 

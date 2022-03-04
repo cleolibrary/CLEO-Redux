@@ -1,3 +1,10 @@
+### 0.9.2 - Mar 04, 2022
+
+- add support for The Definitive Edition Title Update 1.04 (GTA III DE 1.0.0.15284, VC DE 1.0.0.15399, SA DE 1.0.0.15483)
+- fix an issue with string arguments in Memory call commands in GTA San Andreas (https://github.com/cleolibrary/CLEO-Redux/issues/36)
+- fix an issue with scripts not working if the path to the game directory has square brackets `[`, `]`
+
+
 ### 0.9.1 - Feb 22, 2022
 
 - add [SDK for developing custom commands](using-sdk.md) in C++ and Rust

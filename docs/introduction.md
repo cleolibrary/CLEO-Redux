@@ -16,9 +16,7 @@ Classic:
 
 Remasters (The Trilogy):
 
-- GTA III 1.0.0.14718
-- GTA Vice City 1.0.0.14718
-- San Andreas 1.0.0.14296, 1.0.0.14388, 1.0.0.14718 (Title Update 1.03)
+- CLEO supports Title Update 1.03 and Title Update 1.04.
 
 See [The Definitive Edition FAQ](the-definitive-edition-faq.md) for the details.
 

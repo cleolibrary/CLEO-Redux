@@ -14,6 +14,6 @@ In the standalone mode your game directory contains `cleo_redux.asi` (or `cleo_r
 
 ## Running CLEO Redux as an addon to CLEO library
 
-As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for [files](https://library.sannybuilder.com/#/gta3/classes/File) or [dynamic libraries](https://library.sannybuilder.com/#/gta3/classes/DynamicLibrary).
+As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for [files](https://library.sannybuilder.com/#/gta3/classes/File).
 
 In the delegate mode your game directory contains both `cleo.asi` (or `III.CLEO.asi` or `VC.CLEO.asi`) from CLEO Library and `cleo_redux.asi` (or `cleo_redux64.asi`). This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO Library exists.
