@@ -4,7 +4,7 @@ When JavaScript is enabled CLEO Redux needs commands definitions from [Sanny Bui
 
 On the first run CLEO tries to download a definition file (see the table below) and put it into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the `CLEO/.config` directory.
 
-| Game                                | File                                                                                                 | Minumum Required Version |
+| Game                                | File                                                                                                 | Minimum Required Version |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
 | GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.208`                  |
 | GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.210`                  |

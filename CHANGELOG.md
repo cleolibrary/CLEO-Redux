@@ -35,7 +35,7 @@ https://github.com/cleolibrary/CLEO-Redux/blob/master/README.md#installation
 
 **BREAKING CHANGES**
 
-| Game                                | File                                                                                                 | Minumum Required Version |
+| Game                                | File                                                                                                 | Minimum Required Version |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
 | GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.208`                  |
 | GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.210`                  |
@@ -106,7 +106,7 @@ let groundZ = CWorldFindGroundZForCoord(x, y);
 
 CLEO Redux for San Andreas: The Definitive Edition now uses `sa_unreal.json` from https://github.com/sannybuilder/library.
 
-| Game                                | Minumum Required Version |
+| Game                                | Minimum Required Version |
 | ----------------------------------- | ------------------------ |
 | GTA III, re3                        | `0.200`                  |
 | GTA VC, reVC                        | `0.201`                  |
