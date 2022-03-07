@@ -1,0 +1,1180 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>CLEO Redux</title>
+        <meta name="robots" content="noindex" />
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">1.1.</strong> Relation to CLEO Library</a></li></ol></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">2.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">2.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">2.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">2.4.</strong> Plugins</a></li><li class="chapter-item expanded "><a href="installation-scripts.html"><strong aria-hidden="true">2.5.</strong> Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="permissions.html"><strong aria-hidden="true">3.1.</strong> Permissions</a></li></ol></li><li class="chapter-item expanded "><a href="scripts.html"><strong aria-hidden="true">4.</strong> Scripts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="compiled-scripts.html"><strong aria-hidden="true">4.1.</strong> Compiled Scripts (.cs)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="custom-commands.html"><strong aria-hidden="true">4.1.1.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.2.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisites.html"><strong aria-hidden="true">4.2.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="script-lifecycle.html"><strong aria-hidden="true">4.2.2.</strong> Script Lifecycle</a></li><li class="chapter-item expanded "><a href="script-object-vs-object.html"><strong aria-hidden="true">4.2.3.</strong> ScriptObject vs Object</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">4.2.4.</strong> Math Object</a></li><li class="chapter-item expanded "><a href="using-memory.html"><strong aria-hidden="true">4.2.5.</strong> Memory Object</a></li><li class="chapter-item expanded "><a href="using-memory-64.html"><strong aria-hidden="true">4.2.6.</strong> Memory Object (x64)</a></li><li class="chapter-item expanded "><a href="fluent-interface.html"><strong aria-hidden="true">4.2.7.</strong> Fluent Interface</a></li><li class="chapter-item expanded "><a href="imports.html"><strong aria-hidden="true">4.2.8.</strong> Imports</a></li><li class="chapter-item expanded "><a href="js-bindings.html"><strong aria-hidden="true">4.2.9.</strong> Bindings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="deprecated-bindings.html"><strong aria-hidden="true">4.2.9.1.</strong> Deprecated</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="log.html"><strong aria-hidden="true">5.1.</strong> Log</a></li><li class="chapter-item expanded "><a href="the-definitive-edition-faq.html"><strong aria-hidden="true">5.2.</strong> Support for The Definitive Edition</a></li></ol></li><li class="chapter-item expanded "><a href="other-features.html"><strong aria-hidden="true">6.</strong> Other Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Custom Text (FXT)</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">6.2.</strong> Unsupported Features</a></li></ol></li><li class="chapter-item expanded "><a href="using-sdk.html"><strong aria-hidden="true">7.</strong> SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-sdk.html"><strong aria-hidden="true">7.1.</strong> C++ SDK</a></li><li class="chapter-item expanded "><a href="rust-sdk.html"><strong aria-hidden="true">7.2.</strong> Rust SDK</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CLEO Redux</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/cleolibrary/CLEO-Redux" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="Введение"><a class="header" href="#Введение">Введение</a></h1>
+<p>CLEO Redux is a scripting runtime for the GTA 3D era games. It is a proud member of the CLEO family and provides familiar experience to anyone who used original CLEO Library for the classic GTA San Andreas or its re-implementations for other games. The main goal of CLEO is to provide a way to easily customize the game with countless user-made scripts.</p>
+<p>If you're new to CLEO visit the <a href="https://cleo.li/">official website</a> to find more information about it.</p>
+<h2 id="supported-releases"><a class="header" href="#supported-releases">Supported Releases</a></h2>
+<p>Classic:</p>
+<ul>
+<li>GTA III 1.0</li>
+<li>GTA Vice City 1.0</li>
+<li>GTA San Andreas 1.0 (only with <a href="https://github.com/cleolibrary/CLEO4">CLEO 4.4</a>)</li>
+</ul>
+<p>Remasters (The Trilogy):</p>
+<ul>
+<li>Title Update 1.03 and Title Update 1.04 (see <a href="./the-definitive-edition-faq.html">details</a>)</li>
+</ul>
+<p>Other:</p>
+<ul>
+<li>re3 (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
+<li>reVC (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
+</ul>
+<p>CLEO Redux only supports the PC version of each game.</p>
+<p>For the complete reference on supported features <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">refer to this page</a>. Also there are known limitations <a href="unsupported.html">listed here</a>.</p>
+<h2 id="license"><a class="header" href="#license">License</a></h2>
+<p>CLEO Redux is available under the <a href="https://re.cleo.li/LICENSE.txt">end-user license agreement</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="relation-to-cleo-library"><a class="header" href="#relation-to-cleo-library">Relation to CLEO Library</a></h1>
+<p>CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded <a href="https://cleo.li/download.html">here</a>. CLEO Redux is <em>another</em> CLEO implementation made from scratch with a few distinctive features, such as single code base for all games and JavaScript support.</p>
+<p>At the moment CLEO Redux can not be considered as a complete replacement for CLEO Library due to the lack of support for many widely used CLEO commands. To solve this issue and get the best out of the two libraries, CLEO Redux supports two different usage strategies.</p>
+<p>CLEO Redux can run as a standalone software, or as an addon to CLEO Library.</p>
+<h2 id="running-cleo-redux-as-a-standalone-software"><a class="header" href="#running-cleo-redux-as-a-standalone-software">Running CLEO Redux as a standalone software</a></h2>
+<p>As a standalone software CLEO Redux runs compiled scripts and JavaScript and provides access to all native script commands. It also provides a limited set of <a href="./custom-commands.html">custom commands</a> backward-compatible to CLEO Library. Existing CLEO scripts may not work if they use custom commands (for example from a third-party plugin) not supported by CLEO Redux.</p>
+<p>In the standalone mode your game directory contains <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>) file and there is no <code>cleo.asi</code> (or <code>III.CLEO.asi</code> or <code>VC.CLEO.asi</code>) file from CLEO Library. This mode does not work in the classic GTA San Andreas.</p>
+<h2 id="running-cleo-redux-as-an-addon-to-cleo-library"><a class="header" href="#running-cleo-redux-as-an-addon-to-cleo-library">Running CLEO Redux as an addon to CLEO library</a></h2>
+<p>As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for <a href="https://library.sannybuilder.com/#/gta3/classes/File">files</a>.</p>
+<p>In the delegate mode your game directory contains both <code>cleo.asi</code> (or <code>III.CLEO.asi</code> or <code>VC.CLEO.asi</code>) from CLEO Library and <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>). This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO Library exists.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<p>Depending on the game CLEO Redux installation may require a few extra steps. Check the relevant guides below:</p>
+<ul>
+<li><a href="./installation-classic-games.html">Installation for Classic GTA III, GTA VC, GTA SA</a></li>
+<li><a href="./installation-re3-revc.html">Installation for re3 or reVC</a></li>
+<li><a href="./installation-definitive-edition.html">Installation for The Trilogy: The Definitive Edition</a></li>
+</ul>
+<blockquote>
+<p>Note that CLEO Redux recognizes the target game purely by the executable name it is running from. </p>
+<ul>
+<li>GTA III - <code>gta3.exe</code></li>
+<li>GTA VC - <code>gta-vc.exe</code></li>
+<li>GTA SA - <code>gta_sa.exe</code>, <code>gta-sa.exe</code>, or <code>gta_sa_compact.exe</code></li>
+<li>re3 - <code>re3.exe</code></li>
+<li>reVC - <code>reVC.exe</code></li>
+<li>GTA 3: DE - <code>libertycity.exe</code></li>
+<li>GTA VC: DE - <code>vicecity.exe</code></li>
+<li>GTA SA: DE - <code>sanandreas.exe</code></li>
+</ul>
+<p>Names matching is case-insensitive. For classic games CLEO Redux always assumes version 1.0. </p>
+</blockquote>
+<h2 id="uninstallation"><a class="header" href="#uninstallation">Uninstallation</a></h2>
+<p>To uninstall CLEO Redux perform the following steps:</p>
+<ul>
+<li>Delete <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>).</li>
+<li>Delete the <code>CLEO</code> folder (optional).</li>
+<li>Delete the <code>cleo_redux.log</code> (optional)</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="classic-gta-iii-gta-vc-gta-sa"><a class="header" href="#classic-gta-iii-gta-vc-gta-sa">Classic GTA III, GTA VC, GTA SA</a></h1>
+<ul>
+<li>
+<p>Copy <code>cleo_redux.asi</code> to the game directory (with the main executable file).</p>
+</li>
+<li>
+<p>Run the game once to complete the installation.</p>
+</li>
+</ul>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="./prerequisites.html">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<p>CLEO Redux does not alter any game files. It exploits the fact that the game natively loads <code>.asi</code> files as addons to the Miles Sound System library. No extra software is required.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="re3-or-revc"><a class="header" href="#re3-or-revc">re3 or reVC</a></h1>
+<ul>
+<li>
+<p>Copy <code>cleo_redux.asi</code> to the game directory (with the main executable file).</p>
+</li>
+<li>
+<p>Run the game once to complete the installation.</p>
+</li>
+</ul>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="./prerequisites.html">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="the-definitive-edition"><a class="header" href="#the-definitive-edition">The Definitive Edition</a></h1>
+<ul>
+<li>
+<p>Download and install <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">Ultimate ASI Loader x64</a> by ThirteenAG (place <code>version.dll</code> to the <code>Gameface\Binaries\Win64</code> directory)</p>
+</li>
+<li>
+<p>Copy <code>cleo_redux64.asi</code> to the same directory.</p>
+</li>
+<li>
+<p>Run the game once to complete the installation.</p>
+</li>
+</ul>
+<p>There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for <a href="./prerequisites.html">JavaScript support</a>. It won't happen on subsequent runs.</p>
+<p>A new folder named <code>CLEO</code> should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
+<p>Plugins are optional programs adding extra scripting commands with the help of <a href="./using-sdk.html">CLEO Redux SDK</a>. They have a <code>.cleo</code> extension.</p>
+<p>Plugins should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
+<h2 id="adding-a-new-script"><a class="header" href="#adding-a-new-script">Adding a new script</a></h2>
+<p>Generally a script file (<code>.cs</code>, <code>.js</code>) should just be copied to the <code>CLEO</code> directory. Some scripts may require extra steps for installation. In case of any issues check the script documentation or ask its author.</p>
+<h2 id="removing-the-script"><a class="header" href="#removing-the-script">Removing the script</a></h2>
+<p>Delete the script file from <code>CLEO</code> directory. Some scripts may require extra steps for undoing the installation. In case of any issues check the script documentation or ask its author.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
+<p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
+<ul>
+<li><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the CLEO directory. Enabled by default.</li>
+<li><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> files located in the CLEO directory. Enabled by default.</li>
+<li><code>AllowFxt</code> - when set to <code>1</code> CLEO loads and <a href="config.html#custom-text">uses</a> <code>*.fxt</code> files located in the CLEO\CLEO_TEXT directory. Enabled by default.</li>
+<li><code>CheckUpdates</code> - when set to <code>1</code> CLEO check if there is a new update available for download during the game startup. Enabled by default.</li>
+<li><code>LogOpcodes</code> - when set to <code>1</code> CLEO logs all executed opcodes in custom scripts. This log is part of the <code>cleo_redux.log</code> file (see <a href="./log.html">Log</a>)</li>
+<li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="permissions"><a class="header" href="#permissions">Permissions</a></h1>
+<p>CLEO Redux acknowledges some <a href="./custom-commands.html">custom commands</a> (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.</p>
+<p>There are four available levels:</p>
+<h2 id="all"><a class="header" href="#all">All</a></h2>
+<p>Any unsafe operation is allowed. Use this only when you trust the scripts you run.</p>
+<h2 id="lax"><a class="header" href="#lax">Lax</a></h2>
+<p>This is the default permission level.</p>
+<p>No unsafe operation is allowed unless the script explicitly requests it. Currently to request a permission, the name of the script file must include the permissions tokens wrapped in square brackets.</p>
+<p>For example, if the script wants to access the memory via <code>0A8D READ_MEMORY</code> the file name must contain <code>[mem]</code>, e.g. <code>cool-spawner[mem].cs</code>. If the file is named differently CLEO rejects <code>0A8D</code> and the script crashes.</p>
+<h2 id="strict"><a class="header" href="#strict">Strict</a></h2>
+<p>No unsafe operation is allowed unless the script explicitly requests it (see <code>&quot;Lax&quot;</code>) and the CLEO config file permits this type of operation under the <code>Permissions</code> section.</p>
+<p>Permissions section in <code>cleo.ini</code> allows to enable or disable groups of unsafe operations by using the permission tokens. For example,</p>
+<pre><code class="language-ini">mem=0
+</code></pre>
+<p>disables all memory-related opcodes even if the script has the <code>[mem]</code> token in the file name.</p>
+<blockquote>
+<p><code>Permissions</code> section in the <code>cleo.ini</code> only takes effect when <code>PermissionLevel</code> is <code>Strict</code>.</p>
+</blockquote>
+<h2 id="none"><a class="header" href="#none">None</a></h2>
+<p>No unsafe operation is allowed.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scripts-1"><a class="header" href="#scripts-1">Scripts</a></h1>
+<p>CLEO Redux provides a runtime capable of executing <a href="./compiled-scripts.html">compiled binary scripts</a> (<code>*.cs</code>) in the native SCM format and plain text scripts (<code>*.js</code>) written in <a href="./javascript.html">JavaScript</a>.</p>
+<p>To find the information on how to install scripts <a href="./installation-scripts.html">see this page</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="compiled-scripts"><a class="header" href="#compiled-scripts">Compiled Scripts</a></h1>
+<p>CLEO Redux can execute scripts compiled in the game's native <a href="https://gtamods.com/wiki/SCM_Instruction">binary SCM format</a>. Such scripts have a <code>.cs</code> extension. They are subject to the <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">limitations</a> of SCM code.</p>
+<p><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">Check the FAQ</a> for the information on CS support in the remastered games.</p>
+<h2 id="writing-a-compiled-script"><a class="header" href="#writing-a-compiled-script">Writing a Compiled Script</a></h2>
+<blockquote>
+<p>For a detailed step-by-step tutorial <a href="https://gtamods.com/wiki/CLEO/Tutorial">visit this page</a>. It's applicable to CLEO Redux.</p>
+</blockquote>
+<p>To create a new script use <a href="https://sannybuilder.com">Sanny Builder 3</a> in GTA III, GTA VC or GTA SA edit modes respectively. Add a directive <code>{$CLEO .cs}</code> at the top of your script, write the code and run &quot;Compile and Copy&quot;. Sanny Builder will create a new CS file in the CLEO directory. </p>
+<p>At the moment CLEO Redux only provides a few custom commands. Most of the commands implemented in CLEO Library or its plugins are not available yet.</p>
+<p>There are a few basic rules to follow when writing compiled scripts:</p>
+<ol>
+<li>
+<p>One file - one script. CLEO only supports one script per file.</p>
+</li>
+<li>
+<p>Never use opcode <code>004E</code> to terminate a script. This opcode is only supported in the <code>main.scm</code>. Use <a href="https://library.sannybuilder.com/#/sa/CLEO/0A93?p=1&amp;v=1">0A93</a> instead.</p>
+</li>
+<li>
+<p>Minimize the usage of global variables as they might conflict with other scripts. Some well-known variables such <code>$PLAYER_CHAR</code>, <code>$PLAYER_ACTOR</code> and <code>$ONMISSION</code> can be used.</p>
+</li>
+</ol>
+<p>CLEO Redux does not support saving the script status (a feature of CLEO Library) and there are no plans on adding this feature.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-commands"><a class="header" href="#custom-commands">Custom Commands</a></h1>
+<blockquote>
+<p>The following commands are for classic games only. For The Definitive Edition <a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">check this information</a>.</p>
+</blockquote>
+<p>CLEO Redux supports all original opcodes available in the given game. On top of those it adds a few new commands listed below. Note that they strictly match the opcodes of CLEO Library.</p>
+<ul>
+<li>0A8C <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">WRITE_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0A8D <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">READ_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0A8E <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8E">INT_ADD</a></li>
+<li>0A8F <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8F">INT_SUB</a></li>
+<li>0A90 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A90">INT_MUL</a></li>
+<li>0A91 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A91">INT_DIV</a></li>
+<li>0A93 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A93">TERMINATE_THIS_CUSTOM_SCRIPT</a></li>
+<li>0AA5 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA5">CALL_FUNCTION</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AA6 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA6">CALL_FUNCTION_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AA7 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA7">CALL_METHOD</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AA8 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA8">CALL_METHOD_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AB0 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AB0">IS_KEY_PRESSED</a></li>
+</ul>
+<p>This list might not be complete as there are custom plugins with extra commands (see <a href="./using-sdk.html">Using SDK</a>). Refer to <a href="https://library.sannybuilder.com">Sanny Builder Library</a> for the complete list of available commands for each game.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
+<p>CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.</p>
+<p>To make a JS script use VS Code (recommended) or any editor of your choice. Create a new file with <code>.js</code> extension and put it in the CLEO folder. See <a href="./script-lifecycle.html">Script lifecycle</a> for extra information.</p>
+<p>The runtime supports <a href="https://262.ecma-international.org/11.0/">ECMAScript 2020 standard</a>. It means you are able to use the most recent JavaScript features out of the box, such as imports, classes, arrow functions, etc.</p>
+<blockquote>
+<p>CLEO Redux is not Node.js. Don't expect sockets, file system operations or other Node.js features to be available here.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h1>
+<p>When JavaScript is enabled CLEO Redux needs commands definitions from <a href="https://library.sannybuilder.com">Sanny Builder Library</a>. They bring in the type information and convenient classes wrapping all available scripting commands.</p>
+<p>On the first run CLEO tries to download a definition file (see the table below) and put it into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
+<table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.208</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.210</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.210</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.210</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.212</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.216</code></td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
+<p>A file with the JavaScript code should have a <code>.js</code> extension and contain valid instructions. The script may have no instructions (the empty script). It runs as soon as the the new game starts or a save file is loaded.</p>
+<p>Valid instructions include a code conforming to the ECMAScript 2020 standard and custom bindings available in the CLEO Redux runtime. If the runtime encounters an unknown or <a href="./permissions.html">illegal</a> instruction the execution halts and a new error is <a href="./log.html">logged</a> in <code>cleo_redux.log</code></p>
+<p>The script terminates automatically when the last instruction has been executed. The runtime also terminates stuck scripts to prevent the game from freezing. The stuck script is the one that took more than <code>2</code> seconds to run since the last wait command. If that happened, check out your loops, some of the are missing the wait command.</p>
+<pre><code class="language-js">while (true) {
+  // meaningless infinite loop normally freezing the game
+  // will be terminated after two seconds
+}
+</code></pre>
+<p>The runtime will terminate this script. To avoid that, add the wait command</p>
+<pre><code class="language-js">while (true) {
+  wait(250);
+  // still meaningless, but does not freeze the game
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="scriptobject-vs-object"><a class="header" href="#scriptobject-vs-object">ScriptObject vs Object</a></h1>
+<p>Sanny Builder Library defines a static class <code>Object</code> to group commands allowing to create and manipulate 3D objects in-game. At the same time JavaScript has the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">native Object class</a> with its own methods.</p>
+<p>To avoid mixing the two, CLEO Redux uses <code>ScriptObject</code> class instead of the Library's <code>Object</code> with <a href="https://library.sannybuilder.com/#/gta3/classes/Object">the same interface</a>.</p>
+<pre><code class="language-js">// opcode 0107, creates a new object in the game
+var x = ScriptObject.Create(modelId, x, y, z); 
+
+// native JavaScript code, creates a new object in JS memory
+var x = Object.create(null); 
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="using-math-object"><a class="header" href="#using-math-object">Using Math Object</a></h1>
+<p>JavaScript has a built-in <code>Math</code> object that provides common mathematical operations, such as <code>abs</code>, <code>sin</code>, <code>cos</code>, <code>random</code>, <code>pow</code>, <code>sqr</code>, etc. CLEO Redux extends this object to include extra operations supported by the game. The interface of <code>Math</code> looks as follows:</p>
+<pre><code class="language-ts">interface Math {
+    // native code
+    readonly E: number;
+    readonly LN10: number;
+    readonly LN2: number;
+    readonly LOG2E: number;
+    readonly LOG10E: number;
+    readonly PI: number;
+    readonly SQRT1_2: number;
+    readonly SQRT2: number;
+    abs(x: number): number;
+    acos(x: number): number;
+    asin(x: number): number;
+    atan(x: number): number;
+    atan2(y: number, x: number): number;
+    ceil(x: number): number;
+    cos(x: number): number;
+    exp(x: number): number;
+    floor(x: number): number;
+    log(x: number): number;
+    max(...values: number[]): number;
+    min(...values: number[]): number;
+    pow(x: number, y: number): number;
+    random(): number;
+    round(x: number): number;
+    sin(x: number): number;
+    sqrt(x: number): number;
+    tan(x: number): number;
+    clz32(x: number): number;
+    imul(x: number, y: number): number;
+    sign(x: number): number;
+    log10(x: number): number;
+    log2(x: number): number;
+    log1p(x: number): number;
+    expm1(x: number): number;
+    cosh(x: number): number;
+    sinh(x: number): number;
+    tanh(x: number): number;
+    acosh(x: number): number;
+    asinh(x: number): number;
+    atanh(x: number): number;
+    hypot(...values: number[]): number;
+    trunc(x: number): number;
+    fround(x: number): number;
+    cbrt(x: number): number;
+
+    // GTA III, GTA Vice City, GTA SA commands
+    ConvertMetersToFeet(meters: int): int;
+    RandomFloatInRange(min: float, max: float): float;
+    RandomIntInRange(min: int, max: int): int;
+
+    // GTA Vice City, GTA SA commands
+    GetDistanceBetweenCoords2D(fromX: float, fromY: float, toX: float, toZ: float): float;
+    GetDistanceBetweenCoords3D(fromX: float, fromY: float, fromZ: float, toX: float, toY: float, toZ: float): float;
+
+    // GTA SA commands
+    GetAngleBetween2DVectors(xVector1: float, yVector1: float, xVector2: float, yVector2: float): float;
+    GetHeadingFromVector2D(_p1: float, _p2: float): float;
+    LimitAngle(value: float): float;
+}
+</code></pre>
+<p>The first group includes the native constants and methods provided by the JavaScript runtime. They start with a lowercase letter, e.g. <code>Math.abs</code>. You can find the detailed documentation for these methods <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">here</a>.</p>
+<p>Then the game-specific commands follow. According to the naming convention, each method that is bound to a script opcode starts with a capital letter, e.g. <code>Math.RandomIntInRange</code> (opcode 0209). You can find the documentation in <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>.</p>
+<pre><code class="language-js">    var x = Math.abs(-1); // x = 1
+    var f = Math.ConvertMetersToFeet(10) // f = 32
+    var pi = Math.floor(Math.PI) // pi = 3
+</code></pre>
+<p>Native <code>Math</code> methods were given a higher priority over the game commands with the same functionality. For example, to calculate an absolute value of the number, there is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs">Math.abs</a>, not <a href="https://library.sannybuilder.com/#/gta3?q=%22abs%22">Math.Abs</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>This guide is for the classic era games. For the information on using the Memory class in the definitive editions <a href="./using-memory-64.html">click here</a>.</p>
+</blockquote>
+<h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
+<p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
+<pre><code class="language-ts">interface Memory {
+    ReadFloat(address: int, vp: boolean): float;
+    WriteFloat(address: int, value: float, vp: boolean): void;
+    ReadI8(address: int, vp: boolean): int;
+    ReadI16(address: int, vp: boolean): int;
+    ReadI32(address: int, vp: boolean): int;
+    ReadU8(address: int, vp: boolean): int;
+    ReadU16(address: int, vp: boolean): int;
+    ReadU32(address: int, vp: boolean): int;
+    WriteI8(address: int, value: int, vp: boolean): void;
+    WriteI16(address: int, value: int, vp: boolean): void;
+    WriteI32(address: int, value: int, vp: boolean): void;
+    WriteU8(address: int, value: int, vp: boolean): void;
+    WriteU16(address: int, value: int, vp: boolean): void;
+    WriteU32(address: int, value: int, vp: boolean): void;
+    Read(address: int, size: int, vp: boolean): int;
+    Write(address: int, size: int, value: int, vp: boolean): void;
+
+    ToFloat(value: int): float;
+    FromFloat(value: float): int;
+    ToU8(value: int): int;
+    ToU16(value: int): int;
+    ToU32(value: int): int;
+    ToI8(value: int): int;
+    ToI16(value: int): int;
+    ToI32(value: int): int;
+
+    Translate(symbol: string): int;
+
+    CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
+    CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
+    CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    Fn: {
+        Cdecl(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
+        CdeclI8(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclI16(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclI32(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclU8(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclU16(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclU32(address: int): (...funcParams: int[]) =&gt; int;
+
+        Stdcall(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallFloat(address: int): (...funcParams: int[]) =&gt; float;
+        StdcallI8(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallI16(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallI32(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallU8(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallU16(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallU32(address: int): (...funcParams: int[]) =&gt; int;
+
+        Thiscall(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallFloat(address: int, struct: int): (...funcParams: int[]) =&gt; float;
+        ThiscallI8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallI16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallI32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallU8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallU16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallU32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    }
+}
+</code></pre>
+<h3 id="reading-and-writing-values"><a class="header" href="#reading-and-writing-values">Reading and Writing Values</a></h3>
+<p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
+<pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false)
+</code></pre>
+<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). </p>
+<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
+<pre><code class="language-js">    var x = Memory.ReadI8(address, true)
+</code></pre>
+<p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
+<pre><code class="language-js">    var gravity = Memory.ReadFloat(gravityAddress, false);
+    gravity += 0.05;
+    Memory.WriteFloat(gravityAddress, gravity, false);
+</code></pre>
+<p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to opcodes <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">0A8D READ_MEMORY</a> and <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">0A8C WRITE_MEMORY</a> and produce the same result. </p>
+<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code> or <code>4</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format. </p>
+<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code> and <code>5</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
+<pre><code class="language-js">    Memory.Write(addr, 0x90, 10, true) // &quot;noping&quot; 10 bytes of code starting from addr
+</code></pre>
+<blockquote>
+<p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
+<h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
+<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
+<p>To get a quick idea what to expect from those methods see the following examples:</p>
+<pre><code class="language-js">    Memory.FromFloat(1.0) =&gt; 1065353216
+    Memory.ToFloat(1065353216) =&gt; 1.0
+    Memory.ToU8(-1) =&gt; 255
+    Memory.ToU16(-1) =&gt; 65535
+    Memory.ToU32(-1) =&gt; 4294967295
+    Memory.ToI8(255) =&gt; -1
+    Memory.ToI16(65535) =&gt; -1
+    Memory.ToI32(4294967295) =&gt; -1
+</code></pre>
+<p>Alternatively, use appropriate methods to read/write the value as a float (<code>ReadFloat</code>/<code>WriteFloat</code>) or as an unsigned integer (<code>ReadUXXX</code>/<code>WriteUXXX</code>).</p>
+<h3 id="calling-foreign-functions"><a class="header" href="#calling-foreign-functions">Calling Foreign Functions</a></h3>
+<p><code>Memory</code> object allows to invoke a foreign (native) function by its address using one of the following methods:</p>
+<ul>
+<li><code>Memory.CallFunction</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA5">0AA5 CALL_FUNCTION</a></li>
+<li><code>Memory.CallFunctionReturn</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA7">0AA7 CALL_FUNCTION_RETURN</a></li>
+<li><code>Memory.CallMethod</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA6">CALL_METHOD</a></li>
+<li><code>Memory.CallMethodReturn</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA8">CALL_METHOD_RETURN</a></li>
+</ul>
+<pre><code class="language-js">    Memory.CallFunction(0x1234567, 2, 0, 1000, 2000)
+</code></pre>
+<p>where <code>0x1234567</code> is the address of the function, <code>2</code> is the number of arguments, <code>0</code> is the <code>pop</code> parameter (see below),  <code>1000</code> and <code>2000</code> are the two arguments passed into the function.</p>
+<p>Note that legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:</p>
+<pre><code>0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
+</code></pre>
+<p>where <code>2000</code> is the second argument passed to the function located at 0x1234567 and <code>1000</code> is the first one.</p>
+<p>The third parameter (<code>pop</code>) in <code>Memory.CallFunction</code> defines the calling convention. When it is set to <code>0</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall">stdcall</a> convention. When it is set to the same value as <code>numParam</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl">cdecl</a> convention. Any other value breaks the code.</p>
+<p><code>Memory.CallFunctionReturn</code> has the same interface but additionally it writes the result of the function to a variable.</p>
+<p><code>Memory.CallMethod</code> invokes a method of an object:</p>
+<pre><code class="language-js">    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+</code></pre>
+<p>The second parameter (<code>0x7001234</code>) is the object address. The <code>pop</code> parameter is always <code>0</code> (the method uses the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#thiscall">thiscall</a> convention).</p>
+<p>To call the method and get the result out of it, use <code>Memory.CallMethodReturn</code>.</p>
+<p>Note that all arguments are read as 32-bit signed integers. If you need to provide an argument of the float type, use <code>Memory.FromFloat</code>, e.g.</p>
+<pre><code class="language-js">    Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456))
+</code></pre>
+<p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
+<blockquote>
+<p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
+<h4 id="convenience-methods-with-fn-object"><a class="header" href="#convenience-methods-with-fn-object">Convenience methods with Fn object</a></h4>
+<p><code>Memory.Fn</code> provides a lot of convenient methods for calling different types of foreign functions.</p>
+<pre><code class="language-ts">Fn: {
+        Cdecl(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
+        CdeclI8(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclI16(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclI32(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclU8(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclU16(address: int): (...funcParams: int[]) =&gt; int;
+        CdeclU32(address: int): (...funcParams: int[]) =&gt; int;
+
+        Stdcall(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallFloat(address: int): (...funcParams: int[]) =&gt; float;
+        StdcallI8(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallI16(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallI32(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallU8(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallU16(address: int): (...funcParams: int[]) =&gt; int;
+        StdcallU32(address: int): (...funcParams: int[]) =&gt; int;
+
+        Thiscall(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallFloat(address: int, struct: int): (...funcParams: int[]) =&gt; float;
+        ThiscallI8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallI16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallI32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallU8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallU16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+        ThiscallU32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    }
+</code></pre>
+<p>These methods is designed to cover all possible function signatures. For example, this code</p>
+<pre><code class="language-js">    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+</code></pre>
+<p>can also be written as</p>
+<pre><code class="language-js">    Memory.Fn.Thiscall(0x2345678, 0x7001234)(1000, 2000)
+</code></pre>
+<p>Note a few key differences here. First of all, <code>Memory.Fn</code> methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:</p>
+<pre><code class="language-js">    var myMethod = Memory.Fn.Thiscall(0x2345678, 0x7001234);
+    myMethod(1000, 2000); // calls method 0x2345678 with arguments 1000 and 2000
+    myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
+</code></pre>
+<p>The second difference is that there are no <code>numParams</code> and <code>pop</code> parameters. Each <code>Fn</code> method figures them out automatically.</p>
+<p>By default a returned result is considered a 32-bit signed integer value. If the function returns another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:</p>
+<pre><code class="language-js">    var flag = Memory.Fn.CdeclU8(0x1234567)()
+</code></pre>
+<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as a 8-bit unsigned integer value. </p>
+<h3 id="finding-memory-addresses-in-re3-and-revc"><a class="header" href="#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></h3>
+<p>Since <code>re3</code> and <code>reVC</code> use address space layout randomization (ASLR) feature, it can be difficult to locate needed addresses. CLEO Redux provides a helper function <code>Memory.Translate</code> that accepts a name of the function or variable and returns its current address. If the requested symbol is not found, the result is 0.</p>
+<pre><code class="language-js">    var addr = Memory.Translate(&quot;CTheScripts::MainScriptSize&quot;);
+
+    // check if address is not zero
+    if (addr) {
+        showTextBox(&quot;MainScriptSize = &quot; + Memory.ReadI32(addr, 0))
+    }
+</code></pre>
+<p>At the moment <code>Memory.Translate</code> should only be used in <code>re3</code> and <code>reVC</code>. In other games you will be getting <code>0</code> as a result most of the time.</p>
+<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<p>This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games <a href="./using-memory.html">click here</a>.</p>
+</blockquote>
+<h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
+<p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
+<pre><code class="language-ts">interface Memory {
+    ReadFloat(address: int, vp: boolean, ib: boolean): float;
+    WriteFloat(address: int, value: float, vp: boolean, ib: boolean): void;
+    ReadI8(address: int, vp: boolean, ib: boolean): int;
+    ReadI16(address: int, vp: boolean, ib: boolean): int;
+    ReadI32(address: int, vp: boolean, ib: boolean): int;
+    ReadU8(address: int, vp: boolean, ib: boolean): int;
+    ReadU16(address: int, vp: boolean, ib: boolean): int;
+    ReadU32(address: int, vp: boolean, ib: boolean): int;
+    WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
+    Read(address: int, size: int, vp: boolean, ib: boolean): int;
+    Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
+
+    ToFloat(value: int): float;
+    FromFloat(value: float): int;
+    ToU8(value: int): int;
+    ToU16(value: int): int;
+    ToU32(value: int): int;
+    ToI8(value: int): int;
+    ToI16(value: int): int;
+    ToI32(value: int): int;
+
+    CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: int[]): void;
+    CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: int[]): int;
+    CallFunctionReturnFloat(address: int, ib: boolean, numParams: int, ...funcParams: int[]): float;
+
+    Fn: {
+        X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
+        X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    }
+}
+</code></pre>
+<h3 id="reading-and-writing-values-1"><a class="header" href="#reading-and-writing-values-1">Reading and Writing Values</a></h3>
+<p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
+<pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false, false)
+</code></pre>
+<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). As the definitive editions use the ASLR feature their absolute memory addresses change when the game runs because the start address changes. Consider the following example:</p>
+<pre><code>0x1400000000 ImageBase
+...
+...
+0x1400000020 SomeValue
+</code></pre>
+<p>You want to change <code>SomeValue</code> that is currently located at <code>0x1400000020</code>. You can do it with <code>Memory.Write(0x1400000020, 1, 1, false, false)</code>. However on the next game run the memory layout might look like this:</p>
+<pre><code>0x1500000000 ImageBase
+...
+...
+0x1500000020 SomeValue
+</code></pre>
+<p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use Memory.Write as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
+<p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
+<pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
+</code></pre>
+<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
+<pre><code class="language-js">    var x = Memory.ReadI8(offset, true, true)
+</code></pre>
+<p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
+<pre><code class="language-js">    var gravity = Memory.ReadFloat(gravityOffset, false, true);
+    gravity += 0.05;
+    Memory.WriteFloat(gravityOffset, gravity, false, true);
+</code></pre>
+<p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to the Rust code that reads and write the memory. In JavaScript code you can use input arguments as large as 53-bit numbers.</p>
+<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code>, <code>4</code> or <code>8</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format. </p>
+<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code>, <code>5</code>, <code>6</code>, <code>7</code> and <code>9</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
+<pre><code class="language-js">    Memory.Write(offset, 0x90, 10, true, true) // &quot;noping&quot; 10 bytes of code starting from offset+image base
+</code></pre>
+<blockquote>
+<p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
+<h3 id="casting-methods-1"><a class="header" href="#casting-methods-1">Casting methods</a></h3>
+<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
+<p>To get a quick idea what to expect from those methods see the following examples:</p>
+<pre><code class="language-js">    Memory.FromFloat(1.0) =&gt; 1065353216
+    Memory.ToFloat(1065353216) =&gt; 1.0
+    Memory.ToU8(-1) =&gt; 255
+    Memory.ToU16(-1) =&gt; 65535
+    Memory.ToU32(-1) =&gt; 4294967295
+    Memory.ToI8(255) =&gt; -1
+    Memory.ToI16(65535) =&gt; -1
+    Memory.ToI32(4294967295) =&gt; -1
+</code></pre>
+<p>Alternatively, use appropriate methods to read/write the value as a float (<code>ReadFloat</code>/<code>WriteFloat</code>) or as an unsigned integer (<code>ReadUXXX</code>/<code>WriteUXXX</code>).</p>
+<h3 id="calling-foreign-functions-1"><a class="header" href="#calling-foreign-functions-1">Calling Foreign Functions</a></h3>
+<p><code>Memory</code> object allows to invoke a foreign (native) function by its address using one of the following methods:</p>
+<ul>
+<li><code>Memory.CallFunction</code></li>
+<li><code>Memory.CallFunctionReturn</code></li>
+<li><code>Memory.CallFunctionReturnFloat</code></li>
+</ul>
+<pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
+</code></pre>
+<p>where <code>0xEFFB30</code> is the function offset relative to IMAGE BASE (think of it a randomized start address of the game memory), <code>true</code> is the <code>ib</code> flag (see below), <code>1</code> is the number of input arguments, and <code>13</code> are the only argument passed into the function.</p>
+<p>The <code>ib</code> parameter in <code>Memory.CallFunction</code> has the same meaning as in memory read/write commands. When set to <code>true</code> CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to <code>false</code> no changes to the first argument are made.</p>
+<p>To pass floating-point values to the function, convert the value to integer using <code>Memory.FromFloat</code>:</p>
+<pre><code class="language-js">    Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
+</code></pre>
+<p>The returned value of the function called with <code>Memory.CallFunction</code> is ignored. To read the result use <code>Memory.CallFunctionReturn</code> that has the same parameters. Use <code>Memory.CallFunctionReturnFloat</code> to call a function that returns a floating-point value.</p>
+<p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
+<blockquote>
+<p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
+<h4 id="convenience-methods-with-fn-object-1"><a class="header" href="#convenience-methods-with-fn-object-1">Convenience methods with Fn object</a></h4>
+<p><code>Memory.Fn</code> provides convenient methods for calling different types of foreign functions.</p>
+<pre><code class="language-ts">    Fn: {
+        X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
+        X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    }
+</code></pre>
+<p>These methods is designed to cover all supported return types. For example, this code</p>
+<pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
+</code></pre>
+<p>can also be written as</p>
+<pre><code class="language-js">    Memory.Fn.X64(0xEFFB30, true)(13)
+</code></pre>
+<p>Note a few key differences here. First of all, <code>Memory.Fn</code> methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:</p>
+<pre><code class="language-js">    var f = Memory.Fn.X64(0xEFFB30, true);
+    f(13) // calls function 0xEFFB30 with the argument of 13
+    f(11) // calls method 0xEFFB30 with the argument of 11
+</code></pre>
+<p>The second difference is that there is no <code>numParams</code> parameter. Each <code>Fn</code> method figures it out automatically.</p>
+<p>By default a returned result is considered a 64-bit signed integer value. If the function returns another type (e.g. a boolean), use one of the methods matching the function signature:</p>
+<pre><code class="language-js">    var flag = Memory.Fn.X64U8(0x1234567, true)()
+</code></pre>
+<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value. </p>
+<pre><code class="language-js">    var float = Memory.Fn.X64Float(0x456789, true)()
+</code></pre>
+<p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value. </p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fluent-interface"><a class="header" href="#fluent-interface">Fluent Interface</a></h1>
+<p>Methods on constructible entities (such as <code>Player</code>, <code>Car</code>, <code>Char</code> -- any entities created via a constructor method) support chaining (also known as Fluent Interface). It allows to write code like this:</p>
+<pre><code class="language-js">var p = new Player(0);
+
+p.giveWeapon(2, 100)
+  .setHealth(5)
+  .setCurrentWeapon(2)
+  .getChar()
+  .setCoordinates(1144, -600, 14)
+  .setBleeding(true);
+</code></pre>
+<p><a href="https://www.youtube.com/watch?v=LLgJ0fWbklg">See demo on YouTube</a>.</p>
+<p>Destructor methods interrupt the chain. E.g. given the code:</p>
+<p><code>Char.Create(0, 0, 0, 0, 0).setCoordinates(0, 0, 0).delete()</code></p>
+<p>the chain can not continue after delete method as the character gets removed and its handle is not longer valid.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="imports"><a class="header" href="#imports">Imports</a></h1>
+<p>You can import other script files in your code to make the code modular and share the common logic. The runtime supports the <code>import</code> statement as described in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">this article</a>.</p>
+<p>To avoid running the included <code>.js</code> files as standalone scripts, either put them into a separate folder (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
+<pre><code class="language-js">// imports default export from other.js or other.mjs located in the same directory
+import func from &quot;./other&quot;; 
+
+// imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
+import { PedType } from &quot;./includes/types&quot;; 
+
+// imports vehicles.json as a JavaScript value (an array, object).
+import data from &quot;./vehicles.json&quot;;
+</code></pre>
+<p>Currently only import of <code>.js</code> (<code>.mjs</code>) and <code>.json</code> files is supported.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bindings"><a class="header" href="#bindings">Bindings</a></h1>
+<p>The following variables and functions are only available in JavaScript code.</p>
+<h2 id="variables"><a class="header" href="#variables">Variables</a></h2>
+<h3 id="game"><a class="header" href="#game">GAME</a></h3>
+<p>current game id. Possible values: <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code></p>
+<pre><code class="language-js">if (GAME === &quot;gta3&quot;) {
+  showTextBox(&quot;This is GTA III&quot;);
+}
+if (GAME === &quot;sa&quot;) {
+  showTextBox(&quot;This is San Andreas&quot;);
+}
+if (GAME === &quot;sa_unreal&quot;) {
+  showTextBox(&quot;This is San Andreas: The Definitive Edition&quot;);
+}
+</code></pre>
+<h3 id="onmission"><a class="header" href="#onmission">ONMISSION</a></h3>
+<p>global flag controlling whether the player is on a mission now.</p>
+<pre><code class="language-js">if (!ONMISSION) {
+  showTextBox(&quot;Not on a mission. Setting ONMISSION to true&quot;);
+  ONMISSION = true;
+}
+</code></pre>
+<h3 id="timera-timerb"><a class="header" href="#timera-timerb">TIMERA, TIMERB</a></h3>
+<p>two auto-incrementing timers useful for measuring time intervals.</p>
+<pre><code class="language-js">while (true) {
+  TIMERA = 0;
+  // wait 1000 ms
+  while (TIMERA &lt; 1000) {
+    wait(0);
+  }
+  showTextBox(&quot;1 second passed&quot;);
+}
+</code></pre>
+<h3 id="__dirname"><a class="header" href="#__dirname">__dirname</a></h3>
+<p>an absolute path to the directory with the current file</p>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="log"><a class="header" href="#log">log</a></h3>
+<p><code>log(...values)</code> prints comma-separated <code>{values}</code> to the <code>cleo_redux.log</code></p>
+<pre><code class="language-js">var x = 1;
+log(&quot;value of x is &quot;, x);
+</code></pre>
+<h3 id="wait"><a class="header" href="#wait">wait</a></h3>
+<p><code>wait(timeInMs)</code> pauses the script execution for at least <code>{timeInMs}</code> milliseconds</p>
+<pre><code class="language-js">while (true) {
+  wait(1000);
+  log(&quot;1 second passed&quot;);
+}
+</code></pre>
+<h3 id="showtextbox"><a class="header" href="#showtextbox">showTextBox</a></h3>
+<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box</p>
+<pre><code class="language-js">showTextBox(&quot;Hello, world!&quot;);
+</code></pre>
+<h3 id="exit"><a class="header" href="#exit">exit</a></h3>
+<p><code>exit(reason?)</code> terminates the script immediately. <code>exit</code> function accepts an optional string argument that will be added to the <code>cleo_redux.log</code>.</p>
+<pre><code class="language-js">exit(&quot;Script ended&quot;);
+</code></pre>
+<h3 id="native"><a class="header" href="#native">native</a></h3>
+<p><code>native(command_name, ...input_args)</code> is a low-level function to execute any in-game command using its name <code>{command_name}</code></p>
+<pre><code class="language-js">native(&quot;SET_TIME_OF_DAY&quot;, 12, 30); // sets the time of day to 12:30
+</code></pre>
+<h2 id="static-objects"><a class="header" href="#static-objects">Static Objects</a></h2>
+<h3 id="memory"><a class="header" href="#memory">Memory</a></h3>
+<ul>
+<li><code>Memory</code> object allows to manipulate the process memory. See the <a href="using-memory.html">Memory guide</a> for more information.</li>
+</ul>
+<h3 id="math"><a class="header" href="#math">Math</a></h3>
+<ul>
+<li><code>Math</code> object is a standard object available in the JS runtime that provides common mathematical operations. CLEO Redux extends it with some extra commands. See the <a href="using-math.html">Math object</a> for more information.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="deprecated"><a class="header" href="#deprecated">Deprecated</a></h1>
+<p>Usage of the following commands is not recommended.</p>
+<h1 id="op"><a class="header" href="#op">op</a></h1>
+<p><code>op(opcode_id, ...input_args)</code> - a low-level function to execute any in-game command with opcode <code>{opcode_id}</code>.</p>
+<p>For the commands that return a single value, the result is this value.</p>
+<p>For the commands that return multiple values, the result is an object where each key corresponds to a returned value. The key names match the output names given in the command definition</p>
+<p>For the conditional commands the result is the boolean value <code>true</code> or <code>false</code></p>
+<pre><code class="language-js">op(0x00c0, 12, 30); // sets the time of day to 12:30
+</code></pre>
+<pre><code class="language-js">var pos = op(0x0054, 0); // returns player 0 coordinates vector {x, y, z}
+showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;, pos.y, &quot; z = &quot;, pos.z);
+</code></pre>
+<pre><code class="language-js">if (op(0x0248, 101)) {
+  // checks the condition
+  showTextBox(&quot;Model with id 101 has been loaded&quot;);
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
+<h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
+<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
+<h2 id="game-crashes-with-cleo-on-san-andreas-the-definitive-edition"><a class="header" href="#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></h2>
+<ul>
+<li>make sure you installed the 64-bit version of Ultimate ASI Loader (<a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">direct link to the latest release</a>).
+<ul>
+<li>Put <code>version.dll</code> to <code>Gameface\Binaries\Win64</code></li>
+</ul>
+</li>
+<li>make sure you run the latest CLEO Redux version (0.8.2 and above)</li>
+<li>delete config files from <code>Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor</code></li>
+<li>run the game (or Rockstar Games Launcher) as administrator</li>
+</ul>
+<p>If CLEO can't create files in <code>Gameface\Binaries\Win64</code> it uses another path at <code>C:\Users\&lt;your_usename&gt;\AppData\Roaming\CLEO Redux</code>. There should be <code>cleo_redux.log</code> and the CLEO folder where all your scripts go.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="log-1"><a class="header" href="#log-1">Log</a></h1>
+<p>CLEO logs important events and errors immediately as they occur in the <code>cleo_redux.log</code> file located in the game directory.</p>
+<blockquote>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+</blockquote>
+<p>The log file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.</p>
+<p>To stream events in your terminal while testing a script, run:</p>
+<pre><code>tail -f cleo_redux.log
+</code></pre>
+<p><code>tail</code> is a unix command so a compatible environment is needed (for example Git Bash).</p>
+<div style="break-before: page; page-break-before: always;"></div><p>Here you can find answers to the frequently asked questions about support for The Trilogy remaster.</p>
+<ul>
+<li><a href="the-definitive-edition-faq.html#what-versions-are-supported">What versions are supported?</a></li>
+<li><a href="the-definitive-edition-faq.html#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></li>
+<li><a href="the-definitive-edition-faq.html#can-i-use-original-opcodes">Can I use original opcodes?</a></li>
+<li><a href="the-definitive-edition-faq.html#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></li>
+<li><a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></li>
+<li><a href="the-definitive-edition-faq.html#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></li>
+<li><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">How do I compile CLEO scripts with Sanny Builder?</a></li>
+<li><a href="the-definitive-edition-faq.html#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></li>
+</ul>
+<h3 id="what-versions-are-supported"><a class="header" href="#what-versions-are-supported">What versions are supported?</a></h3>
+<ul>
+<li>GTA III: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15284</strong> (Title Update 1.04)</li>
+<li>GTA Vice City: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15399</strong> (Title Update 1.04)</li>
+<li>San Andreas: The Definitive Edition <strong>1.0.0.14296</strong>, <strong>1.0.0.14388</strong>, <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15483</strong> (Title Update 1.04)</li>
+</ul>
+<h3 id="is-there-any-difference-from-support-of-the-classic-games"><a class="header" href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></h3>
+<p>There is. CLEO does not display the version in the game menu. Also CLEO can run only JS scripts in GTA III and GTA VC. In San Andreas both CS and JS scripts are supported.</p>
+<h3 id="can-i-use-original-opcodes"><a class="header" href="#can-i-use-original-opcodes">Can I use original opcodes?</a></h3>
+<p>Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a>.</p>
+<h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
+<p>After each game run, CLEO generates a d.ts file in the CLEO.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code. </p>
+<p>To enable autocomplete in VS Code include the following line in your JS script:</p>
+<pre><code class="language-js">/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+</code></pre>
+<p>Update the file name accordingly depending on which game your script is for.</p>
+<h3 id="can-i-use-cleo-opcodes"><a class="header" href="#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></h3>
+<p>Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not supported. But CLEO Redux adds its own new opcodes for some operations.</p>
+<ul>
+<li>0C00 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00">IS_KEY_PRESSED</a></li>
+<li>0C01 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01">INT_ADD</a></li>
+<li>0C02 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02">INT_SUB</a></li>
+<li>0C03 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03">INT_MUL</a></li>
+<li>0C04 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04">INT_DIV</a></li>
+<li>0C05 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05">TERMINATE_THIS_CUSTOM_SCRIPT</a></li>
+<li>0C06 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06">WRITE_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0C07 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07">READ_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0C08 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08">CALL_FUNCTION</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0C09 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09">CALL_FUNCTION_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+</ul>
+<p>Note that Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:</p>
+<pre><code>{$O 0C00=1,  is_key_pressed %1d% }
+{$O 0C01=3,%3d% = %1d% + %2d% }
+{$O 0C02=3,%3d% = %1d% - %2d% }
+{$O 0C03=3,%3d% = %1d% * %2d% }
+{$O 0C04=3,%3d% = %1d% / %2d% }
+{$O 0C05=0,terminate_this_custom_script }
+{$O 0C06=5,write_memory %1d% size %2d% value %3d% virtual_protect %4d% ib %5d% }
+{$O 0C07=5,%5d% = read_memory %1d% size %2d% virtual_protect %3d% ib %4d% }
+{$O 0C08=-1,call_function %1d% ib %2d% num_params %3d%}
+{$O 0C09=-1,call_function_return %1d% ib %2d% num_params %3d%}
+</code></pre>
+<p>This list might not be complete as there are custom plugins with extra commands (see <a href="./using-sdk.html">Using SDK</a>). Refer to <a href="https://library.sannybuilder.com">Sanny Builder Library</a> for the complete list of available commands for each game.</p>
+<h3 id="can-i-work-with-the-game-memory-or-call-the-game-functions"><a class="header" href="#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></h3>
+<p>Yes, check the <a href="using-memory-64.html">Memory guide</a></p>
+<h3 id="how-do-i-compile-cleo-scripts-with-sanny-builder"><a class="header" href="#how-do-i-compile-cleo-scripts-with-sanny-builder">How do I compile CLEO scripts with Sanny Builder?</a></h3>
+<p>Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition. Note that CLEO Redux does not support CS scripts in GTA III: DE and VC: DE. JS scripts are supported in all games.</p>
+<h3 id="i-cant-find-an-answer-to-my-question-here-where-do-i-go"><a class="header" href="#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></h3>
+<ul>
+<li>Check the <a href="TROUBLESHOOTING.html">troubleshooting guide</a>.</li>
+<li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/issues">GitHub tickets</a></li>
+<li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">Feature support page</a></li>
+<li>Ask a question in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="other-features"><a class="header" href="#other-features">Other Features</a></h1>
+<p>CLEO Redux puts focus on improving dev experience and make scripting process easier. </p>
+<h2 id="integration-with-visual-studio-code"><a class="header" href="#integration-with-visual-studio-code">Integration with Visual Studio Code</a></h2>
+<p><a href="https://youtu.be/jqz8_lGnG4g">See demo on YouTube</a></p>
+<p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
+<p>For <code>GTA III</code> or <code>re3</code>:</p>
+<pre><code>/// &lt;reference path=&quot;.config/gta3.d.ts&quot; /&gt;
+</code></pre>
+<p>For <code>Vice City</code> or <code>reVC</code></p>
+<pre><code>/// &lt;reference path=&quot;.config/vc.d.ts&quot; /&gt;
+</code></pre>
+<p>For <code>San Andreas</code></p>
+<pre><code>/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+</code></pre>
+<p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
+<h2 id="scm-log"><a class="header" href="#scm-log">SCM Log</a></h2>
+<p>CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up <code>cleo.ini</code> and change <code>LogOpcodes</code> to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.</p>
+<h2 id="hot-reload"><a class="header" href="#hot-reload">Hot Reload</a></h2>
+<p>CLEO monitors active scripts and reloads them in game as they change</p>
+<p><a href="https://www.youtube.com/watch?v=WanLojClqFw">See demo on YouTube</a></p>
+<p>Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically</p>
+<p><a href="https://www.youtube.com/watch?v=LAi2syrsxJg">See demo on YouTube</a></p>
+<p>Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-text-fxt"><a class="header" href="#custom-text-fxt">Custom Text (FXT)</a></h1>
+<p>CLEO Redux supports custom text content without the need to edit game files.</p>
+<h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
+<p><a href="https://youtu.be/ctsKy7WnY9o">See demo on YouTube</a></p>
+<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> folder. The file name can be any valid name. </p>
+<p>Each FXT file contains a list of the key-value entries in the following format:</p>
+<pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
+&lt;KEY2&gt; &lt;TEXT2&gt;
+...
+&lt;KEYN&gt; &lt;TEXTN&gt;
+</code></pre>
+<p>There should be a single space character between a key and a value. The key's maximum length is 7 characters. Try using unique keys that are unlikely to clash with other entries. The text length is unlimited, however each game may impose its own limitations.</p>
+<p>CLEO loads FXT files on startup and merges their content in a single dictionary. It also monitors the files and reloads them if any change is made.</p>
+<p>You can also find an editor for FXT files on the cleo.li website: https://cleo.li/download.html</p>
+<p>To display the custom content in game, use the <code>Text</code> class. The key defined in the FXT file is usually the first argument to Text commands, e.g.</p>
+<pre><code>Text.PrintHelp('KEY1') // will display &lt;TEXT1&gt;
+</code></pre>
+<p>You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text</p>
+<h2 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h2>
+<p><a href="https://youtu.be/FLyYyrGz1Xg">See demo on YouTube</a></p>
+<p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
+<pre><code class="language-ts">declare interface FxtStore {
+  /**
+   * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
+   * @param key GXT key that can be used in text commands (7 characters max)
+   * @param value text content
+   */
+  insert(key: string, value: string): void;
+  /**
+   * Removes the text content associated with the key in the local fxt storage
+   * @param key GXT key
+   */
+  delete(key: string): void;
+}
+</code></pre>
+<p>Using <code>FxtStore</code> you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:</p>
+<p>custom.fxt:</p>
+<pre><code>MY_KEY Text from FXT file
+</code></pre>
+<p>custom.js:</p>
+<pre><code class="language-js">Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot;
+FxtStore.insert('MY_KEY', 'Text from script');
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from script&quot;
+FxtStore.delete('MY_KEY')
+Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
+</code></pre>
+<p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
+<p>Custom text can be constructed dynamically, e.g.:</p>
+<pre><code class="language-js">while(true) {
+    wait(0);
+    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
+    Text.PrintHelp('TIME') // this displays &quot;Timestamp: &quot; and the updated timestamp value
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="unsupported-or-limited-support-scenarios"><a class="header" href="#unsupported-or-limited-support-scenarios">Unsupported or limited support scenarios</a></h1>
+<p>Despite our best effort some scenarios while available in game are not supported or supported with limitations by CLEO Redux. Some of them are imposed by the nature of SCM format or JavaScript language or the difficulties in bridging JavaScript and the native code.</p>
+<p>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">Features support page</a> to find out high-level features and the status of their support in different games.</p>
+<p>The following items are known to be not working and there is no specific timeline on getting them fixed.</p>
+<h2 id="unsupported-features-in-cs"><a class="header" href="#unsupported-features-in-cs">Unsupported features in CS</a></h2>
+<ul>
+<li>in x64 games (SA: DE) you can't read and write 64-bit values as the script engine only supports 32-bit values. You may need to use other means to access the game memory (e.g. from JavaScript)</li>
+</ul>
+<h2 id="unsupported-features-in-js"><a class="header" href="#unsupported-features-in-js">Unsupported features in JS</a></h2>
+<ul>
+<li>
+<p>commands requiring an scm variable (e.g. countdown timers). <a href="https://github.com/cleolibrary/CLEO-Redux/issues/10">Tracking issue</a>.</p>
+</li>
+<li>
+<p>commands implicitly loading models or textures (such as widgets) <a href="https://github.com/cleolibrary/CLEO-Redux/issues/12">Tracking issue</a>. You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. </p>
+</li>
+<li>
+<p>you can't call the game functions that need references to variables to store the result. There is no &quot;take an address of the variable&quot; syntax.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h2 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h2>
+<p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
+<h3 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h3>
+<p>CLEO Redux provides SDK for both 32-bit and 64-bit games. There is one notable change between the two: on the 32-bit platform the SDK functions <code>GetIntParam</code> and <code>SetIntParam</code> operate on signed 32-bit numbers, whereas on the 64-bit platform they operate on signed 64-bit numbers (declared as the type <code>isize</code>).</p>
+<h3 id="plugin-structure"><a class="header" href="#plugin-structure">Plugin structure</a></h3>
+<p>Each plugin is a dynamic library with the <code>.cleo</code> extension that must be placed in <code>CLEO\CLEO_PLUGINS</code>. CLEO Redux scans this directory on startup and loads all <code>.cleo</code> files using WinAPI's function <code>LoadLibrary</code>. To register a handler for the new command the plugin must call <code>RegisterCommand</code> in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with the one argument which is a pointer to the current context. This pointer must be used for calling other SDK methods.</p>
+<h3 id="naming-convention"><a class="header" href="#naming-convention">Naming convention</a></h3>
+<p>It's recommended for 64-bit plugins to have <code>64</code> in their names (e.g. <code>myplugin64.cleo</code>).</p>
+<h3 id="unsafe-commands"><a class="header" href="#unsafe-commands">Unsafe commands</a></h3>
+<p>Commands that use low-level WinAPI and can potentially damage user environment must be explicitly registered with a permission token (third argument to the <code>RegisterCommand</code>). User can disallow usage of unsafe commands in the scripts using <a href="https://github.com/cleolibrary/CLEO-Redux#permissions">permission config</a>. At the moment three permission tokens are used: <code>mem</code>, <code>fs</code>, and <code>dll</code>. They mark commands operating with the host process, user files and external libraries.</p>
+<h3 id="command-interface"><a class="header" href="#command-interface">Command interface</a></h3>
+<p>CLEO Redux uses <a href="https://library.sannybuilder.com">Sanny Builder Library</a> to know an interface of any command. For a new command to become available in the scripts, the JSON file (<code>gta3.json</code>, <code>vc.json</code>, <code>sa.json</code>) must have the command definition, including the name that matches with the value that the plugin uses <code>RegisterCommand</code> with. E.g. if the plugin registers <code>SHOW_MESSAGE</code> command, the JSON file must have a command with the name property set to <code>SHOW_MESSAGE</code>. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. <code>GetXXXParam</code> for each input argument and <code>SetXXXParam</code> for each output argument).</p>
+<h4 id="claiming-opcodes"><a class="header" href="#claiming-opcodes">Claiming Opcodes</a></h4>
+<p>Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers on GitHub https://github.com/sannybuilder/library/issues</p>
+<h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
+<p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions will ensure each command claims only available id. Also it helps to track and document plugins in one single place.</p>
+<h3 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h3>
+<p>The current version is <code>1</code>. Changes to SDK will advance this number by one.</p>
+<h3 id="path-resolution-convention"><a class="header" href="#path-resolution-convention">Path Resolution Convention</a></h3>
+<p>String arguments representing a path to the directory or file must be normalized using SDK's function <code>ResolvePath</code>. This function takes a path and returns the absolute path resolved by the following rules:</p>
+<ul>
+<li>an absolute path gets resolved as is</li>
+<li>path starting with &quot;CLEO/&quot; or &quot;CLEO\&quot; gets resolved relative to the CLEO directory which is either
+<ul>
+<li>{game}\CLEO or</li>
+<li>{user}\AppData\Roaming\CLEO Redux\CLEO</li>
+</ul>
+</li>
+<li>all other paths get resolved relative to the current working directory (the game directory)</li>
+</ul>
+<h3 id="string-arguments"><a class="header" href="#string-arguments">String Arguments</a></h3>
+<p>Strings passed in and out of the SDK methods are UTF-8 encoded. </p>
+<p>If the script uses an integer value where a string is expected SDK treats this number as a pointer to a null-terminated UTF-8 character sequence to read, or to a large enough buffer to store the result to:</p>
+<pre><code class="language-js">IniFile.WriteString(0xDEADBEEF, &quot;my.ini&quot;, &quot;section&quot;, &quot;key&quot;)
+</code></pre>
+<p>SDK will read a string from the address <code>0xDEADBEEF</code> and write it to the ini file.</p>
+<pre><code>0AF4: read_string_from_ini_file 'my.ini' section 'section' key 'key' store_to 0xDEADBEEF
+</code></pre>
+<p>SDK will read a string from the ini file and write it at the address <code>0xDEADBEEF</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="c-sdk"><a class="header" href="#c-sdk">C++ SDK</a></h1>
+<p>Custom plugins may call methods exposed by CLEO Redux using a provided <code>.lib</code> file. Include <code>cleo_redux_sdk.h</code> in your DLL project and link the binary with <code>cleo_redux.lib</code> (or <code>cleo_redux64.lib</code> if the target platform is x86_64) and you can start writing new commands.</p>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>See the <code>IniFiles</code> plugin that includes a project for Visual Studio 2019. It adds a static class <code>IniFile</code> with the following methods:</p>
+<pre><code class="language-ts">interface IniFile {
+    ReadFloat(path: string, section: string, key: string): float | undefined;
+    ReadInt(path: string, section: string, key: string): int | undefined;
+    ReadString(path: string, section: string, key: string): string | undefined;
+    WriteFloat(value: float, path: string, section: string, key: string): boolean;
+    WriteInt(value: int, path: string, section: string, key: string): boolean;
+    WriteString(value: string, path: string, section: string, key: string): boolean;
+}
+</code></pre>
+<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile">See more information</a> in Sanny Builder Library. The usage of the <code>IniFile</code> class requires an <code>fs</code> <a href="./permissions.html">permission</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="rust-sdk"><a class="header" href="#rust-sdk">Rust SDK</a></h1>
+<p>Rust SDK uses similar to C++ interface with some extra wrapping methods to allow easily convert between C and Rust types. The header file is available as a <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> on crates.io. See the documentation <a href="https://docs.rs/cleo_redux_sdk/latest/">here</a>.</p>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<p>See the <code>Dylib</code> plugin. It adds a class <code>DynamicLibrary</code> with the following methods:</p>
+<pre><code class="language-ts">declare class DynamicLibrary {
+    constructor(handle: number);
+    static Load(libraryFileName: string): DynamicLibrary | undefined;
+    free(): void;
+    getProcedure(procName: string): int | undefined;
+}
+</code></pre>
+<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary">See more information</a> in Sanny Builder Library. The usage of the <code>DynamicLibrary</code> class requires a <code>dll</code> <a href="./permissions.html">permission</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+    </body>
+</html>

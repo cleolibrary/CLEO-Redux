@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Memory Object (x64) - CLEO Redux</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">1.1.</strong> Relation to CLEO Library</a></li></ol></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-classic-games.html"><strong aria-hidden="true">2.1.</strong> Classic GTA III, GTA VC, GTA SA</a></li><li class="chapter-item expanded "><a href="installation-re3-revc.html"><strong aria-hidden="true">2.2.</strong> re3 or reVC</a></li><li class="chapter-item expanded "><a href="installation-definitive-edition.html"><strong aria-hidden="true">2.3.</strong> The Definitive Edition</a></li><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">2.4.</strong> Plugins</a></li><li class="chapter-item expanded "><a href="installation-scripts.html"><strong aria-hidden="true">2.5.</strong> Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">3.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="permissions.html"><strong aria-hidden="true">3.1.</strong> Permissions</a></li></ol></li><li class="chapter-item expanded "><a href="scripts.html"><strong aria-hidden="true">4.</strong> Scripts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="compiled-scripts.html"><strong aria-hidden="true">4.1.</strong> Compiled Scripts (.cs)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="custom-commands.html"><strong aria-hidden="true">4.1.1.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">4.2.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="prerequisites.html"><strong aria-hidden="true">4.2.1.</strong> Prerequisites</a></li><li class="chapter-item expanded "><a href="script-lifecycle.html"><strong aria-hidden="true">4.2.2.</strong> Script Lifecycle</a></li><li class="chapter-item expanded "><a href="script-object-vs-object.html"><strong aria-hidden="true">4.2.3.</strong> ScriptObject vs Object</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">4.2.4.</strong> Math Object</a></li><li class="chapter-item expanded "><a href="using-memory.html"><strong aria-hidden="true">4.2.5.</strong> Memory Object</a></li><li class="chapter-item expanded "><a href="using-memory-64.html" class="active"><strong aria-hidden="true">4.2.6.</strong> Memory Object (x64)</a></li><li class="chapter-item expanded "><a href="fluent-interface.html"><strong aria-hidden="true">4.2.7.</strong> Fluent Interface</a></li><li class="chapter-item expanded "><a href="imports.html"><strong aria-hidden="true">4.2.8.</strong> Imports</a></li><li class="chapter-item expanded "><a href="js-bindings.html"><strong aria-hidden="true">4.2.9.</strong> Bindings</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="deprecated-bindings.html"><strong aria-hidden="true">4.2.9.1.</strong> Deprecated</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">5.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="log.html"><strong aria-hidden="true">5.1.</strong> Log</a></li><li class="chapter-item expanded "><a href="the-definitive-edition-faq.html"><strong aria-hidden="true">5.2.</strong> Support for The Definitive Edition</a></li></ol></li><li class="chapter-item expanded "><a href="other-features.html"><strong aria-hidden="true">6.</strong> Other Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">6.1.</strong> Custom Text (FXT)</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">6.2.</strong> Unsupported Features</a></li></ol></li><li class="chapter-item expanded "><a href="using-sdk.html"><strong aria-hidden="true">7.</strong> SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-sdk.html"><strong aria-hidden="true">7.1.</strong> C++ SDK</a></li><li class="chapter-item expanded "><a href="rust-sdk.html"><strong aria-hidden="true">7.2.</strong> Rust SDK</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CLEO Redux</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/cleolibrary/CLEO-Redux" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/cleolibrary/CLEO-Redux/edit/master/src/using-memory-64.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <blockquote>
+<p>This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games <a href="./using-memory.html">click here</a>.</p>
+</blockquote>
+<h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
+<p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
+<pre><code class="language-ts">interface Memory {
+    ReadFloat(address: int, vp: boolean, ib: boolean): float;
+    WriteFloat(address: int, value: float, vp: boolean, ib: boolean): void;
+    ReadI8(address: int, vp: boolean, ib: boolean): int;
+    ReadI16(address: int, vp: boolean, ib: boolean): int;
+    ReadI32(address: int, vp: boolean, ib: boolean): int;
+    ReadU8(address: int, vp: boolean, ib: boolean): int;
+    ReadU16(address: int, vp: boolean, ib: boolean): int;
+    ReadU32(address: int, vp: boolean, ib: boolean): int;
+    WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
+    Read(address: int, size: int, vp: boolean, ib: boolean): int;
+    Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
+
+    ToFloat(value: int): float;
+    FromFloat(value: float): int;
+    ToU8(value: int): int;
+    ToU16(value: int): int;
+    ToU32(value: int): int;
+    ToI8(value: int): int;
+    ToI16(value: int): int;
+    ToI32(value: int): int;
+
+    CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: int[]): void;
+    CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: int[]): int;
+    CallFunctionReturnFloat(address: int, ib: boolean, numParams: int, ...funcParams: int[]): float;
+
+    Fn: {
+        X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
+        X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    }
+}
+</code></pre>
+<h3 id="reading-and-writing-values"><a class="header" href="#reading-and-writing-values">Reading and Writing Values</a></h3>
+<p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
+<pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false, false)
+</code></pre>
+<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). As the definitive editions use the ASLR feature their absolute memory addresses change when the game runs because the start address changes. Consider the following example:</p>
+<pre><code>0x1400000000 ImageBase
+...
+...
+0x1400000020 SomeValue
+</code></pre>
+<p>You want to change <code>SomeValue</code> that is currently located at <code>0x1400000020</code>. You can do it with <code>Memory.Write(0x1400000020, 1, 1, false, false)</code>. However on the next game run the memory layout might look like this:</p>
+<pre><code>0x1500000000 ImageBase
+...
+...
+0x1500000020 SomeValue
+</code></pre>
+<p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use Memory.Write as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
+<p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
+<pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
+</code></pre>
+<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
+<pre><code class="language-js">    var x = Memory.ReadI8(offset, true, true)
+</code></pre>
+<p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
+<pre><code class="language-js">    var gravity = Memory.ReadFloat(gravityOffset, false, true);
+    gravity += 0.05;
+    Memory.WriteFloat(gravityOffset, gravity, false, true);
+</code></pre>
+<p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to the Rust code that reads and write the memory. In JavaScript code you can use input arguments as large as 53-bit numbers.</p>
+<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code>, <code>4</code> or <code>8</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format. </p>
+<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code>, <code>5</code>, <code>6</code>, <code>7</code> and <code>9</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
+<pre><code class="language-js">    Memory.Write(offset, 0x90, 10, true, true) // &quot;noping&quot; 10 bytes of code starting from offset+image base
+</code></pre>
+<blockquote>
+<p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
+<h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
+<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
+<p>To get a quick idea what to expect from those methods see the following examples:</p>
+<pre><code class="language-js">    Memory.FromFloat(1.0) =&gt; 1065353216
+    Memory.ToFloat(1065353216) =&gt; 1.0
+    Memory.ToU8(-1) =&gt; 255
+    Memory.ToU16(-1) =&gt; 65535
+    Memory.ToU32(-1) =&gt; 4294967295
+    Memory.ToI8(255) =&gt; -1
+    Memory.ToI16(65535) =&gt; -1
+    Memory.ToI32(4294967295) =&gt; -1
+</code></pre>
+<p>Alternatively, use appropriate methods to read/write the value as a float (<code>ReadFloat</code>/<code>WriteFloat</code>) or as an unsigned integer (<code>ReadUXXX</code>/<code>WriteUXXX</code>).</p>
+<h3 id="calling-foreign-functions"><a class="header" href="#calling-foreign-functions">Calling Foreign Functions</a></h3>
+<p><code>Memory</code> object allows to invoke a foreign (native) function by its address using one of the following methods:</p>
+<ul>
+<li><code>Memory.CallFunction</code></li>
+<li><code>Memory.CallFunctionReturn</code></li>
+<li><code>Memory.CallFunctionReturnFloat</code></li>
+</ul>
+<pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
+</code></pre>
+<p>where <code>0xEFFB30</code> is the function offset relative to IMAGE BASE (think of it a randomized start address of the game memory), <code>true</code> is the <code>ib</code> flag (see below), <code>1</code> is the number of input arguments, and <code>13</code> are the only argument passed into the function.</p>
+<p>The <code>ib</code> parameter in <code>Memory.CallFunction</code> has the same meaning as in memory read/write commands. When set to <code>true</code> CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to <code>false</code> no changes to the first argument are made.</p>
+<p>To pass floating-point values to the function, convert the value to integer using <code>Memory.FromFloat</code>:</p>
+<pre><code class="language-js">    Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
+</code></pre>
+<p>The returned value of the function called with <code>Memory.CallFunction</code> is ignored. To read the result use <code>Memory.CallFunctionReturn</code> that has the same parameters. Use <code>Memory.CallFunctionReturnFloat</code> to call a function that returns a floating-point value.</p>
+<p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
+<blockquote>
+<p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
+</blockquote>
+<h4 id="convenience-methods-with-fn-object"><a class="header" href="#convenience-methods-with-fn-object">Convenience methods with Fn object</a></h4>
+<p><code>Memory.Fn</code> provides convenient methods for calling different types of foreign functions.</p>
+<pre><code class="language-ts">    Fn: {
+        X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
+        X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+        X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    }
+</code></pre>
+<p>These methods is designed to cover all supported return types. For example, this code</p>
+<pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
+</code></pre>
+<p>can also be written as</p>
+<pre><code class="language-js">    Memory.Fn.X64(0xEFFB30, true)(13)
+</code></pre>
+<p>Note a few key differences here. First of all, <code>Memory.Fn</code> methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:</p>
+<pre><code class="language-js">    var f = Memory.Fn.X64(0xEFFB30, true);
+    f(13) // calls function 0xEFFB30 with the argument of 13
+    f(11) // calls method 0xEFFB30 with the argument of 11
+</code></pre>
+<p>The second difference is that there is no <code>numParams</code> parameter. Each <code>Fn</code> method figures it out automatically.</p>
+<p>By default a returned result is considered a 64-bit signed integer value. If the function returns another type (e.g. a boolean), use one of the methods matching the function signature:</p>
+<pre><code class="language-js">    var flag = Memory.Fn.X64U8(0x1234567, true)()
+</code></pre>
+<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value. </p>
+<pre><code class="language-js">    var float = Memory.Fn.X64Float(0x456789, true)()
+</code></pre>
+<p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value. </p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="using-memory.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="fluent-interface.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="using-memory.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="fluent-interface.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
