@@ -1,64 +1,105 @@
 ## CLEO Redux SDK
 
-SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides [SDK for the C++ and Rust languages](https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/SDK).
+SDK позволяет создавать новые скриптовые команды для любой игры, которую поддерживает CLEO Redux. Он не зависит от названия игры и базовой среды выполнения (CS или JS). На данный момент CLEO предоставляет SDK для языков C++ и Rust.
 
-### Platforms Support
+### Поддержка платформ
 
-CLEO Redux provides SDK for both 32-bit and 64-bit games. There is one notable change between the two: on the 32-bit platform the SDK functions `GetIntParam` and `SetIntParam` operate on signed 32-bit numbers, whereas on the 64-bit platform they operate on signed 64-bit numbers (declared as the type `isize`).
+CLEO Redux предоставляет SDK как для 32-битных, так и для 64-битных игр. Между ними есть одно заметное отличие: на 32-битной платформе функции SDK `GetIntParam` и `SetIntParam` работают с 32-битными числами со знаком, тогда как на 64-битной платформе они работают с 64-битными числами со знаком (объявлено как тип `isize`).
 
-### Plugin structure
+### Структура плагина
 
-Each plugin is a dynamic library with the `.cleo` extension that must be placed in `CLEO\CLEO_PLUGINS`. CLEO Redux scans this directory on startup and loads all `.cleo` files using WinAPI's function `LoadLibrary`. To register a handler for the new command the plugin must call `RegisterCommand` in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with the one argument which is a pointer to the current context. This pointer must be used for calling other SDK methods.
+Каждый плагин представляет собой динамическую библиотеку с расширением `.cleo`, которую необходимо поместить в `CLEO\CLEO_PLUGINS`. CLEO Redux сканирует этот каталог при запуске и загружает все файлы `.cleo`, используя функцию WinAPI `LoadLibrary`. Чтобы зарегистрировать обработчик для новой команды, плагин должен вызвать `RegisterCommand` в функции DllMain. Как только пользовательский скрипт встречает эту команду, CLEO Redux вызывает обработчик с одним аргументом, который является указателем на текущий контекст. Этот указатель необходимо использовать для вызова других методов SDK.
 
-### Naming convention
+### Соглашение об именовании
 
-It's recommended for 64-bit plugins to have `64` in their names (e.g. `myplugin64.cleo`).
+Для 64-битных плагинов рекомендуется использовать `64` в именах (например, `myplugin64.cleo`).
 
-### Unsafe commands
+### Небезопасные команды
 
-Commands that use low-level WinAPI and can potentially damage user environment must be explicitly registered with a permission token (third argument to the `RegisterCommand`). User can disallow usage of unsafe commands in the scripts using [permission config](https://github.com/cleolibrary/CLEO-Redux#permissions). At the moment three permission tokens are used: `mem`, `fs`, and `dll`. They mark commands operating with the host process, user files and external libraries.
+Команды, использующие низкоуровневый WinAPI и потенциально способные нанести вред среде пользователя, должны быть явно зарегистрированы с помощью токена разрешения (третий аргумент `RegisterCommand`). Пользователь может запретить использование небезопасных команд в скриптах с помощью [настройки разрешений](https://github.com/TheFantomKiller420/CLEO-Redux-rus-local/blob/master/readme.md#разрешения). На данный момент используются три токена разрешений: `mem`, `fs` и `dll`. Ими отмечаются команды, работающие с хост-процессом, пользовательскими файлами и внешними библиотеками.
 
-### Command interface
+### Командный интерфейс
 
-CLEO Redux uses [Sanny Builder Library](https://library.sannybuilder.com) to know an interface of any command. For a new command to become available in the scripts, the JSON file (`gta3.json`, `vc.json`, `sa.json`) must have the command definition, including the name that matches with the value that the plugin uses `RegisterCommand` with. E.g. if the plugin registers `SHOW_MESSAGE` command, the JSON file must have a command with the name property set to `SHOW_MESSAGE`. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. `GetXXXParam` for each input argument and `SetXXXParam` for each output argument).
+CLEO Redux использует [Sanny Builder Library](https://library.sannybuilder.com), чтобы узнать интерфейс любой команды. Чтобы новая команда стала доступной в сценариях, файл JSON (`gta3.json`, `vc.json`, `sa.json`) должен иметь определение команды, включая имя, совпадающее со значением, которое плагин использует `RegisterCommand` с. Например. если подключаемый модуль регистрирует команду `SHOW_MESSAGE`, в файле JSON должна быть команда со свойством имени, установленным на `SHOW_MESSAGE`. Количество и порядок входных и выходных параметров в определении должны соответствовать порядку методов, используемых подключаемым модулем (т. е. `GetXXXParam` для каждого входного аргумента и `SetXXXParam` для каждого выходного аргумента).
 
-#### Claiming Opcodes
+#### Запрос кодов операций
 
-Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers on GitHub https://github.com/sannybuilder/library/issues
+Коды операций назначаются новым командам в Sanny Builder Library в зависимости от их доступности, сходства с существующими командами в других играх и других факторов. Чтобы запросить код операции, обратитесь к сопровождающим Sanny Builder Library на GitHub https://github.com/sannybuilder/library/issues.
 
-#### Why use command names and not an id for the command lookup?
+#### Зачем использовать имена команд, а не идентификатор для поиска команды?
 
-One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions will ensure each command claims only available id. Also it helps to track and document plugins in one single place.
+Одной из распространенных проблем с плагинами CLEO Library было то, что команды, созданные разными людьми, часто имели конфликты идентификаторов. Если два плагина добавляют команды с одинаковым идентификатором, использовать их оба невозможно. Использование строковых имен сводит к минимуму коллизии с пользовательскими плагинами, а также с собственными кодами операций. Определения библиотеки гарантируют, что каждая команда требует только доступный идентификатор. Также это помогает отслеживать и документировать плагины в одном месте.
 
-### SDK Version
+### Версия SDK
 
-The current version is `1`. Changes to SDK will advance this number by one.
+Текущая версия `1`. Изменения в SDK увеличат это число на единицу.
 
-### Path Resolution Convention
+### Соглашение о разрешении пути
 
-String arguments representing a path to the directory or file must be normalized using SDK's function `ResolvePath`. This function takes a path and returns the absolute path resolved by the following rules:
+Строковые аргументы, представляющие путь к каталогу или файлу, должны быть нормализованы с помощью функции SDK `ResolvePath`. Эта функция принимает путь и возвращает абсолютный путь, разрешенный по следующим правилам:
 
-- an absolute path gets resolved as is
-- path starting with "CLEO/" or "CLEO\\" gets resolved relative to the CLEO directory which is either
-  - {game}\CLEO or
-  - {user}\AppData\Roaming\CLEO Redux\CLEO
-- all other paths get resolved relative to the current working directory (the game directory)
+- абсолютный путь разрешается как есть
+- путь, начинающийся с "CLEO/" или "CLEO\\", разрешается относительно каталога CLEO, который либо
+  - {игра}\CLEO или
+  - {пользователь}\AppData\Roaming\CLEO Redux\CLEO
+- все остальные пути разрешаются относительно текущего рабочего каталога (каталог игры)
 
 
-### String Arguments
+### Строковые аргументы
 
-Strings passed in and out of the SDK methods are UTF-8 encoded. 
+Строки, передаваемые в методы SDK имеют кодировку UTF-8.
 
-If the script uses an integer value where a string is expected SDK treats this number as a pointer to a null-terminated UTF-8 character sequence to read, or to a large enough buffer to store the result to:
+Если сценарий использует целочисленное значение вместо ожидаемой строки, SDK обрабатывает это число как указатель на последовательность символов UTF-8, заканчивающуюся нулем, для чтения или на достаточно большой буфер для сохранения результата:
 
 ```js
 IniFile.WriteString(0xDEADBEEF, "my.ini", "section", "key")
 ```
 
-SDK will read a string from the address `0xDEADBEEF` and write it to the ini file.
+SDK прочитает строку с адреса `0xDEADBEEF` и запишет ее в ini-файл.
 
 ```
 0AF4: read_string_from_ini_file 'my.ini' section 'section' key 'key' store_to 0xDEADBEEF
 ```
 
-SDK will read a string from the ini file and write it at the address `0xDEADBEEF`.
+SDK прочитает строку из ini-файла и запишет ее по адресу `0xDEADBEEF`.
+
+### C++ SDK
+
+Пользовательские плагины могут вызывать методы, предоставляемые CLEO Redux, используя предоставленный файл `.lib`. Включите `cleo_redux_sdk.h` в свой проект DLL и свяжите двоичный файл с `cleo_redux.lib` (или `cleo_redux64.lib`, если целевая платформа x86_64), и вы сможете начать писать новые команды.
+
+#### Пример
+
+См. подключаемый модуль `IniFiles`, который включает проект для Visual Studio 2019. Он добавляет статический класс `IniFile` со следующими методами:
+
+```ts
+interface IniFile {
+    ReadFloat(path: string, section: string, key: string): float | undefined;
+    ReadInt(path: string, section: string, key: string): int | undefined;
+    ReadString(path: string, section: string, key: string): string | undefined;
+    WriteFloat(value: float, path: string, section: string, key: string): boolean;
+    WriteInt(value: int, path: string, section: string, key: string): boolean;
+    WriteString(value: string, path: string, section: string, key: string): boolean;
+}
+```
+
+Дополнительную информацию см. в библиотеке Sanny Builder: https://library.sannybuilder.com/#/sa_unreal/classes/IniFile. Для использования класса `IniFile` требуется `fs` [разрешение](readme.md#разрешения).
+
+### Rust SDK
+
+Rust SDK использует интерфейс, аналогичный интерфейсу C++, с некоторыми дополнительными методами переноса, позволяющими легко конвертировать типы C и Rust. Заголовочный файл доступен в виде [crate](https://crates.io/crates/cleo_redux_sdk) на crates.io. См. документацию [здесь](https://docs.rs/cleo_redux_sdk/latest/).
+
+#### Пример
+
+См. плагин `Dylib`. Он добавляет класс `DynamicLibrary` со следующими методами:
+
+```ts
+declare class DynamicLibrary {
+    constructor(handle: number);
+    static Load(libraryFileName: string): DynamicLibrary | undefined;
+    free(): void;
+    getProcedure(procName: string): int | undefined;
+}
+```
+
+Дополнительную информацию см. в Sanny Builder Library: https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary. Для использования класса `DynamicLibrary` требуется `dll` [разрешение](readme.md#разрешения).
+

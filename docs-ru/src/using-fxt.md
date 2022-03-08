@@ -1,14 +1,12 @@
-# Custom Text (FXT)
+## Использование FXT
 
-CLEO Redux supports custom text content without the need to edit game files.
+### Статические файлы FXT
 
-## Static FXT files
+Демонстрация: https://youtu.be/ctsKy7WnY9o
 
-[See demo on YouTube](https://youtu.be/ctsKy7WnY9o)
+CLEO Redux может загружать и обслуживать статический текстовый контент. Создайте новый файл с расширением `.fxt` и поместите его в папку `CLEO\CLEO_TEXT`. Имя файла может быть любым допустимым именем.
 
-CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `CLEO\CLEO_TEXT` folder. The file name can be any valid name. 
-
-Each FXT file contains a list of the key-value entries in the following format:
+Каждый файл FXT содержит список записей ключ-значение в следующем формате:
 
 ```
 <KEY1> <TEXT1>
@@ -17,44 +15,44 @@ Each FXT file contains a list of the key-value entries in the following format:
 <KEYN> <TEXTN>
 ```
 
-There should be a single space character between a key and a value. The key's maximum length is 7 characters. Try using unique keys that are unlikely to clash with other entries. The text length is unlimited, however each game may impose its own limitations.
+Между ключом и значением должен быть один пробел. Максимальная длина ключа составляет 7 символов. Попробуйте использовать уникальные ключи, которые вряд ли будут конфликтовать с другими записями. Длина текста не ограничена, однако каждая игра может накладывать свои ограничения.
 
-CLEO loads FXT files on startup and merges their content in a single dictionary. It also monitors the files and reloads them if any change is made.
+CLEO загружает файлы FXT при запуске и объединяет их содержимое в один словарь. Он также отслеживает файлы и перезагружает их, если вносятся какие-либо изменения.
 
-You can also find an editor for FXT files on the cleo.li website: https://cleo.li/download.html
+Вы также можете найти редактор файлов FXT на сайте cleo.li: https://cleo.li/download.html
 
-To display the custom content in game, use the `Text` class. The key defined in the FXT file is usually the first argument to Text commands, e.g.
+Чтобы отобразить пользовательский контент в игре, используйте класс `Text`. Ключ, определенный в файле FXT, обычно является первым аргументом текстовых команд, например.
 
 ```
-Text.PrintHelp('KEY1') // will display <TEXT1>
+Text.PrintHelp('KEY1') // будет отображаться <TEXT1>
 ```
 
-You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text
+Вы можете найти команды, доступные в каждой игре, в библиотеке Sanny Builder, например. для Сан-Андреас: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text
 
 
-## FxtStore
+### FxtStore
 
-[See demo on YouTube](https://youtu.be/FLyYyrGz1Xg)
+Демонстрация: https://youtu.be/FLyYyrGz1Xg
 
-CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named `FxtStore` with the following interface:
+CLEO Redux предоставляет интерфейс для управления произвольным текстом непосредственно в коде JavaScript. Существует статическая переменная с именем `FxtStore` со следующим интерфейсом:
 
 ```ts
 declare interface FxtStore {
   /**
-   * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
-   * @param key GXT key that can be used in text commands (7 characters max)
-   * @param value text content
+   * Вставляет новое текстовое содержимое в хранилище fxt сценария, перезаписывая предыдущее содержимое и затеняя статические fxt с тем же ключом.
+   * Ключ @param Ключ GXT, который можно использовать в текстовых командах (максимум 7 символов).
+   * Текстовое содержимое значения @param.
    */
   insert(key: string, value: string): void;
   /**
-   * Removes the text content associated with the key in the local fxt storage
-   * @param key GXT key
+   * Удаляет текстовое содержимое, связанное с ключом, в локальном хранилище fxt.
+   * Ключ @param Ключ GXT.
    */
   delete(key: string): void;
 }
 ```
 
-Using `FxtStore` you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:
+Используя `FxtStore`, вы можете создавать уникальные ключи и значения в сценарии и помещать их в локальное хранилище FXT. Каждому скрипту принадлежит личное хранилище, и ключи одного скрипта не будут конфликтовать с другими скриптами. Также ключи, определенные в FxtStore, будут дублировать те же ключи, что и в статических файлах FXT. Рассмотрим пример:
 
 custom.fxt:
 ```
@@ -64,22 +62,22 @@ MY_KEY Text from FXT file
 custom.js:
 
 ```js
-Text.PrintHelp('MY_KEY') // this displays "Text from FXT file"
+Text.PrintHelp('MY_KEY') // Это отображает "Текст из файла FXT".
 FxtStore.insert('MY_KEY', 'Text from script');
-Text.PrintHelp('MY_KEY') // this displays "Text from script"
+Text.PrintHelp('MY_KEY') // Это отображает "Текст из сценария".
 FxtStore.delete('MY_KEY')
-Text.PrintHelp('MY_KEY') // this displays "Text from FXT file" again
+Text.PrintHelp('MY_KEY') // Это отображает "Текст из файла FXT" снова.
 ```
 
-A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.
+Частное хранилище FXT не поддерживается в San Andreas: The Definitive Edition. Каждый скрипт изменяет глобальное хранилище FXT. Это поведение может измениться в будущем.
 
-Custom text can be constructed dynamically, e.g.:
+Пользовательский текст может создаваться динамически, например:
 
 ```js
 while(true) {
     wait(0);
     FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
-    Text.PrintHelp('TIME') // this displays "Timestamp: " and the updated timestamp value
+    Text.PrintHelp('TIME') // Отобразится "Timestamp: " и обновленное значение timestamp.
 }
 ```
 

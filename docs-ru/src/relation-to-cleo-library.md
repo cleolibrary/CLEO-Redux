@@ -1,19 +1,19 @@
-# Relation to CLEO Library
+# Связь с CLEO Library
 
-CLEO is a common name for the custom libraries designed and created for GTA III, Vice City or San Andreas. Each version can be found and downloaded [here](https://cleo.li/download.html). CLEO Redux is _another_ CLEO implementation made from scratch with a few distinctive features, such as single code base for all games and JavaScript support.
+CLEO — это общее название пользовательских библиотек, разработанных и созданных для GTA III, Vice City или San Andreas. Каждую версию можно найти и скачать [здесь](https://cleo.li/download.html). CLEO Redux — это _другая_ реализация CLEO, созданная с нуля, с несколькими отличительными особенностями, такими как единая кодовая база для всех игр или поддержка кода JavaScript.
 
-At the moment CLEO Redux can not be considered as a complete replacement for CLEO Library due to the lack of support for many widely used CLEO commands. To solve this issue and get the best out of the two libraries, CLEO Redux supports two different usage strategies.
+На данный момент CLEO Redux не может рассматриваться как полноценная замена CLEO Library из-за отсутствия поддержки многих широко используемых CLEO-команд. Чтобы решить эту проблему и получить максимальную отдачу от двух библиотек, CLEO Redux поддерживает две разные стратегии использования.
 
-CLEO Redux can run as a standalone software, or as an addon to CLEO Library.
+CLEO Redux может работать как отдельное ПО или как дополнение к CLEO Library. В первом случае ваша директория с игрой будет содержать только файл `cleo_redux.asi` (или `cleo_redux64.asi`). Во втором случае в вашем каталоге с игрой будут и `cleo.asi` (или `III.CLEO.asi`, и `VC.CLEO.asi`), и `cleo_redux.asi` (или `cleo_redux64.asi`).
 
-## Running CLEO Redux as a standalone software
+## Запуск CLEO Redux как отдельного ПО
 
-As a standalone software CLEO Redux runs compiled scripts and JavaScript and provides access to all native script commands. It also provides a limited set of [custom commands](./custom-commands.md) backward-compatible to CLEO Library. Existing CLEO scripts may not work if they use custom commands (for example from a third-party plugin) not supported by CLEO Redux.
+Как отдельное ПО CLEO Redux запускает скомпилированные скрипты и JavaScript и предоставляет доступ ко всем командам собственного скрипта. Он также предоставляет ограниченный набор [команд](./custom-commands.md), обратно совместимых с библиотекой CLEO. Существующие CLEO-скрипты могут не работать, если они используют пользовательские команды (например, из стороннего плагина), не поддерживаемые CLEO Redux.
 
-In the standalone mode your game directory contains `cleo_redux.asi` (or `cleo_redux64.asi`) file and there is no `cleo.asi` (or `III.CLEO.asi` or `VC.CLEO.asi`) file from CLEO Library. This mode does not work in the classic GTA San Andreas.
+Этот режим не работает в классической GTA San Andreas.
 
-## Running CLEO Redux as an addon to CLEO library
+## Запуск CLEO Redux в качестве дополнения к библиотеке CLEO
 
-As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for [files](https://library.sannybuilder.com/#/gta3/classes/File).
+В качестве дополнения CLEO Redux работает вместе с CLEO Library, делегируя ему всю заботу о пользовательских скриптах. Это означает, что все пользовательские скрипты и плагины, созданные для библиотеки CLEO, будут продолжать работать точно так же. CLEO Redux управляет только JS-скриптами. Все пользовательские команды становятся доступными для среды выполнения JavaScript, что означает, что вы можете использовать команды, которые в настоящее время не реализованы нативно в CLEO Redux, например, для [файлов](https://library.sannybuilder.com/#/gta3/classes/File).
 
-In the delegate mode your game directory contains both `cleo.asi` (or `III.CLEO.asi` or `VC.CLEO.asi`) from CLEO Library and `cleo_redux.asi` (or `cleo_redux64.asi`). This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO Library exists.
+Этот режим работает в классической GTA III, GTA Vice City и GTA San Andreas, где существует библиотека CLEO.

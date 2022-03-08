@@ -1,43 +1,64 @@
-Here you can find answers to the frequently asked questions about support for The Trilogy remaster.
+Здесь вы можете найти ответы на часто задаваемые вопросы о поддержке ремастера The Trilogy.
 
-- [What versions are supported?](#what-versions-are-supported)
-- [Is there any difference from support of the classic games?](#is-there-any-difference-from-support-of-the-classic-games)
-- [Can I use original opcodes?](#can-i-use-original-opcodes)
-- [How do I know what commands can I use in JavaScript?](#how-do-i-know-what-commands-can-i-use-in-javascript)
-- [Can I use CLEO opcodes?](#can-i-use-cleo-opcodes)
-- [Can I work with the game memory or call the game functions?](#can-i-work-with-the-game-memory-or-call-the-game-functions)
-- [How do I compile CLEO scripts with Sanny Builder?](#how-do-i-compile-cleo-scripts-with-sanny-builder)
-- [I can't find an answer to my question here, where do I go?](#i-cant-find-an-answer-to-my-question-here-where-do-i-go)
+- [Какие версии поддерживаются?](#какие-версии-поддерживаются)
+- [Как установить CLEO Redux в The Definitive Edition?](#как-установить-cleo-redux-в-the-definitive-edition)
+- [Что делать, если я не могу найти каталог CLEO?](#что-делать-если-я-не-могу-найти-каталог-cleo)
+- [Как удалить CLEO Redux?](#как-удалить-cleo-redux)
+- [Есть ли отличия от поддержки классических игр?](#есть-ли-отличия-от-поддержки-классических-игр)
+- [Могу ли я использовать оригинальные опкоды?](#могу-ли-я-использовать-оригинальные-опкоды)
+- [Как узнать, какие команды можно использовать в JavaScript?](#как-узнать-какие-команды-можно-использовать-в-javascript)
+- [Могу ли я использовать опкоды CLEO?](#могу-ли-я-использовать-опкоды-cleo)
+- [Можно ли работать с памятью игры или вызывать функции игры?](#можно-ли-работать-с-памятью-игры-или-вызывать-функции-игры)
+- [Как компилировать CLEO-скрипты с помощью Sanny Builder?](#как-компилировать-cleo-скрипты-с-помощью-sanny-builder)
+- [Я не могу найти здесь ответ на свой вопрос, куда мне обратиться?](#я-не-могу-найти-здесь-ответ-на-свой-вопрос-куда-мне-обратиться)
 
-### What versions are supported?
+### Какие версии поддерживаются?
 
-- GTA III: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15284** (Title Update 1.04)
-- GTA Vice City: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15399** (Title Update 1.04)
-- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** (Title Update 1.03), **1.0.0.15483** (Title Update 1.04)
+- GTA III: The Definitive Edition **1.0.0.14718** 
+- GTA Vice City: The Definitive Edition **1.0.0.14718** 
+- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** 
 
-### Is there any difference from support of the classic games?
+### Как установить CLEO Redux в The Definitive Edition?
 
-There is. CLEO does not display the version in the game menu. Also CLEO can run only JS scripts in GTA III and GTA VC. In San Andreas both CS and JS scripts are supported.
+- Загрузите и установите [Ultimate ASI Loader x64](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip) от [ThirteenAG](https://github.com/ThirteenAG) (поместите `version.dll` в каталог `Gameface\Binaries\Win64`).
 
-### Can I use original opcodes?
+- Скопируйте `cleo_redux64.asi` в тот же каталог.
 
-Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in [our Discord](https://discord.gg/d5dZSfgBZr).
+- Запустите игру один раз, и вы должны создать новый каталог CLEO в том же каталоге. Если этого не произошло, проверьте ниже.
 
-### How do I know what commands can I use in JavaScript?
+### Что делать, если я не могу найти каталог CLEO?
 
-After each game run, CLEO generates a d.ts file in the CLEO\.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code. 
+У многих людей запуск игры с установленным CLEO Redux приводит к немедленному вылету. Это происходит, если в текущем каталоге (`Win64`) нет прав на запись. Чтобы исправить эту проблему, CLEO использует альтернативный путь в `C:\Users\<Ваше_имя_пользователя>\AppData\Roaming\CLEO Redux`. Там можно найти `cleo_redux.log` и каталог `CLEO`. См. также [руководство по устранению неполадок](TROUBLESHOOTING.md).
 
-To enable autocomplete in VS Code include the following line in your JS script:
+### Как удалить CLEO Redux?
+
+- Удалите `cleo_redux64.asi`.
+- Удалите папку `CLEO` (необязательно).
+- Удалите `cleo_redux.log` (необязательно)
+
+### Есть ли отличия от поддержки классических игр?
+
+Есть. CLEO не отображает версию в меню игры. Также CLEO может запускать только JS-скрипты в GTA III и GTA VC. В San Andreas поддерживаются как скрипты CS, так и JS.
+
+### Могу ли я использовать оригинальные опкоды?
+
+Да, ты можешь. Обратитесь к Sanny Builder Library: https://library.sannybuilder.com/#/sa_unreal. Обратите внимание, что некоторые коды операций были изменены по сравнению с классическими играми, поэтому не ожидайте, что все будет работать так же, как в классических играх. Если вы столкнулись с проблемой, найдите помощь в [нашем Discord](https://discord.gg/d5dZSfgBZr).
+
+### Как узнать, какие команды можно использовать в JavaScript?
+
+После каждого запуска игры CLEO создает файл d.ts в каталоге CLEO\.config. Он называется gta3.d.ts, vc.d.ts или sa.d.ts в зависимости от игры. В этом файле перечислены все поддерживаемые функции и методы, которые вы можете использовать в коде JavaScript.
+
+Чтобы включить автозаполнение в VS Code, включите в свой JS-скрипт следующую строку:
 
 ```js
 /// <reference path=".config/sa.d.ts" />
 ```
 
-Update the file name accordingly depending on which game your script is for.
+Обновите имя файла соответственно в зависимости от того, для какой игры предназначен ваш скрипт.
 
-### Can I use CLEO opcodes?
+### Могу ли я использовать опкоды CLEO?
 
-Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not supported. But CLEO Redux adds its own new opcodes for some operations.
+Опкоды из библиотеки CLEO (CLEO 4 или CLEO для GTA III и Vice City) не поддерживаются. Но CLEO Redux добавляет свои новые опкоды для некоторых операций.
 
   - 0C00 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00)
   - 0C01 [INT_ADD](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01)
@@ -45,12 +66,12 @@ Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not sup
   - 0C03 [INT_MUL](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03)
   - 0C04 [INT_DIV](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04)
   - 0C05 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05)
-  - 0C06 [WRITE_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06) (**UNSAFE** - requires `mem` permission)
-  - 0C07 [READ_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07) (**UNSAFE** - requires `mem` permission)
-  - 0C08 [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08) (**UNSAFE** - requires `mem` permission)
-  - 0C09 [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) (**UNSAFE** - requires `mem` permission)
+  - 0C06 [WRITE_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06) (**UNSAFE** - требует `mem` разрешение)
+  - 0C07 [READ_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07) (**UNSAFE** - требует `mem` разрешение)
+  - 0C08 [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08) (**UNSAFE** - требует `mem` разрешение)
+  - 0C09 [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) (**UNSAFE** - требует `mem` разрешение)
 
-Note that Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:
+Обратите внимание, что Sanny Builder еще не поддерживает эти новые коды операций «из коробки». Чтобы включить новые коды операций в ваших сценариях CS, добавьте следующие строки поверх вашего сценария:
 
 ```
 {$O 0C00=1,  is_key_pressed %1d% }
@@ -65,19 +86,18 @@ Note that Sanny Builder does not support these new opcodes out-of-the-box yet. T
 {$O 0C09=-1,call_function_return %1d% ib %2d% num_params %3d%}
 ```
 
-This list might not be complete as there are custom plugins with extra commands (see [Using SDK](./using-sdk.md)). Refer to [Sanny Builder Library](https://library.sannybuilder.com) for the complete list of available commands for each game.
+### Можно ли работать с памятью игры или вызывать функции игры?
 
-### Can I work with the game memory or call the game functions?
+Да, проверьте [Руководство по использованию памяти](using-memory-64.md).
 
-Yes, check the [Memory guide](using-memory-64.md)
+### Как компилировать CLEO-скрипты с помощью Sanny Builder?
 
-### How do I compile CLEO scripts with Sanny Builder?
+Используйте режим SA Mobile для компиляции CLEO-скриптов для San Andreas: The Definitive Edition. Обратите внимание, что CLEO Redux не поддерживает CS-скрипты в GTA III: DE и VC: DE. JS-скрипты поддерживаются во всех играх.
 
-Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition. Note that CLEO Redux does not support CS scripts in GTA III: DE and VC: DE. JS scripts are supported in all games.
+### Я не могу найти здесь ответ на свой вопрос, куда мне обратиться?
 
-### I can't find an answer to my question here, where do I go?
-
-- Check the [troubleshooting guide](TROUBLESHOOTING.md).
-- Check the [GitHub tickets](https://github.com/cleolibrary/CLEO-Redux/issues)
-- Check the [Feature support page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix)
-- Ask a question in [our Discord](https://discord.gg/d5dZSfgBZr)
+- Проверьте основной [файл readme](readme.md).
+- Ознакомьтесь с [руководством по устранению неполадок](TROUBLESHOOTING.md).
+- Проверьте [вопросы GitHub](https://github.com/cleolibrary/CLEO-Redux/issues).
+- Проверьте [страницу поддержки функций](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix).
+- Задать вопрос в [нашем Discord](https://discord.gg/d5dZSfgBZr).

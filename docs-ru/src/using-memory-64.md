@@ -1,8 +1,8 @@
-> This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games [click here](./using-memory.md).
+Примечание. Это руководство предназначено для обновленных игр, работающих как 64-разрядные приложения. Для получения информации об использовании класса Memory в играх классической эпохи [нажмите здесь](./using-memory.md).
 
-# Memory Object (x64)
+## Использование объекта памяти
 
-An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
+Внутренний объект `Memory` предоставляет методы для доступа и управления данными или кодом в текущем процессе. Он имеет следующий интерфейс:
 
 ```ts
 interface Memory {
@@ -49,15 +49,15 @@ interface Memory {
 }
 ```
 
-### Reading and Writing Values
+### Чтение и запись значений
 
-Group of memory access methods (`ReadXXX`/`WriteXXX`) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use `Memory.WriteFloat`, e.g.:
+Группа методов доступа к памяти (`ReadXXX`/`WriteXXX`) может использоваться для чтения или изменения значений, хранящихся в памяти. Каждый метод предназначен для определенного типа данных. Чтобы изменить значение с плавающей запятой (которое в исходной игре занимает 4 байта), используйте `Memory.WriteFloat`, например:
 
 ```js
     Memory.WriteFloat(address, 1.0, false, false)
 ```
 
-where `address` is a variable storing the memory location, `1.0` is the value to write, the first `false` means it's not necessary to change the memory protection with `VirtualProtect` (the address is already writable). The second `false` is the value of the `ib` flag that instructs CLEO to treat the `address` either as an absolute address (`ib` = `false`) or a relative offset to the current image base address (`ib` = `true`). As the definitive editions use the ASLR feature their absolute memory addresses change when the game runs because the start address changes. Consider the following example:
+Где `address` — это переменная, хранящая адрес памяти, `1.0` — это значение для записи, первое «false» означает, что нет необходимости изменять защиту памяти с помощью `VirtualProtect` (адрес уже доступен для записи). Второй `false` — это значение флага `ib`, который предписывает CLEO рассматривать `address` либо как абсолютный адрес (`ib` = `false`), либо как относительное смещение к текущему базовому адресу образа (`ib` = `true`). Поскольку в окончательных версиях используется функция ASLR, их абсолютные адреса памяти меняются при запуске игры из-за изменения начального адреса. Рассмотрим следующий пример:
 
 ```
 0x1400000000 ImageBase
@@ -65,7 +65,7 @@ where `address` is a variable storing the memory location, `1.0` is the value to
 ...
 0x1400000020 SomeValue
 ```
-You want to change `SomeValue` that is currently located at `0x1400000020`. You can do it with `Memory.Write(0x1400000020, 1, 1, false, false)`. However on the next game run the memory layout might look like this:
+Вы хотите изменить `SomeValue`, которое в настоящее время находится по адресу `0x1400000020`. Вы можете сделать это с помощью `Memory.Write(0x1400000020, 1, 1, false, false)`. Однако при следующем запуске игры расположение памяти может выглядеть так:
 
 ```
 0x1500000000 ImageBase
@@ -74,21 +74,21 @@ You want to change `SomeValue` that is currently located at `0x1400000020`. You 
 0x1500000020 SomeValue
 ```
 
-effectively breaking the script. In this case, calculate a relative offset from the image base ( `0x1500000020` - `0x1500000000` = `0x20` ), that will be permanent for the particular game version. Use Memory.Write as follows: `Memory.Write(0x20, 1, 1, false, true)`. CLEO will sum up the offset (`0x20`) with the current value of the image base (`0x1400000000`, `0x1500000000`, etc) and write to the correct absolute address.
+Эффективно ломая сценарий. В этом случае рассчитайте относительное смещение от базы изображения (`0x1500000020` - `0x1500000000` = `0x20`), которое будет постоянным для конкретной версии игры. Используйте Memory.Write следующим образом: `Memory.Write(0x20, 1, 1, false, true)`. CLEO суммирует смещение (`0x20`) с текущим значением базы изображения (`0x1400000000`, `0x1500000000` и т. д.) и записывает по правильному абсолютному адресу.
 
-For your convenience you can find the current value of the image base in the `cleo_redux.log`, e.g.:
+Для вашего удобства вы можете узнать текущее значение базы образа в `cleo_redux.log`, например:
 
 ```
 09:27:35 [INFO] Image base address 0x7ff7d1f50000
 ```
 
-Similarly, to read a value from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a `char` or `uint8`) use `Memory.ReadI8`, e.g.:
+Точно так же, чтобы прочитать значение из памяти, используйте один из методов `ReadXXX`, в зависимости от того, какой тип данных содержит адрес памяти. Например, чтобы прочитать 8-битное целое число со знаком (также известное как `char` или `uint8`), используйте `Memory.ReadI8`, например:
 
 ```js
     var x = Memory.ReadI8(offset, true, true)
 ```
 
-variable `x` now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses `true` as the last argument, which means the default protection attribute for this address will be changed to `PAGE_EXECUTE_READWRITE` before the read.
+Переменная `x` теперь содержит 8-битное целое число в диапазоне (0..255). Чтобы показать возможные варианты, в этом примере в качестве последнего аргумента используется `true`, что означает, что атрибут защиты по умолчанию для этого адреса будет изменен на `PAGE_EXECUTE_READWRITE` перед чтением.
 
 ```js
     var gravity = Memory.ReadFloat(gravityOffset, false, true);
@@ -96,24 +96,24 @@ variable `x` now holds a 8-bit integer value in the range (0..255). For the sake
     Memory.WriteFloat(gravityOffset, gravity, false, true);
 ```
 
-Finally, last two methods `Read` and `Write` is what other methods use under the hood. They have direct binding to the Rust code that reads and write the memory. In JavaScript code you can use input arguments as large as 53-bit numbers.
+Наконец, последние два метода `Read` и `Write` — это то, что другие методы используют под капотом. Они имеют прямую привязку к коду Rust, который читает и записывает память. В коде JavaScript вы можете использовать входные аргументы размером до 53-битных чисел.
 
-The `size` parameter in the `Read` method can only be `1`, `2`, `4` or `8`. CLEO treats the `value` as a signed integer stored in the little-endian format. 
+Параметр `size` в методе `Read` может быть только `1`, `2`, `4` или `8. CLEO обрабатывает `value` как целое число со знаком, хранящееся в формате с прямым порядком байтов. 
 
-In the `Write` method any `size` larger than `0` is allowed. Sizes `3`, `5`, `6`, `7` and `9` onwards can only be used together with a single byte `value`.  CLEO uses them to fill a continious block of memory starting at the `address` with the given `value` (think of it as `memset` in C++).
+В методе `Write` допускается любой `size` больше `0`. Размеры «`3`, `5`, `6`, `7` и `9` и далее могут использоваться только вместе с одним байтом `value`. CLEO использует их для заполнения непрерывного блока памяти, начиная с `address`, заданным `value` (подумайте об этом как о `memset` в C++).
 
 ```js
-    Memory.Write(offset, 0x90, 10, true, true) // "noping" 10 bytes of code starting from offset+image base
+    Memory.Write(offset, 0x90, 10, true, true) // "noping" 10 байт кода, начиная с базы смещения+изображения
 ```
 
-> The usage of any of the read/write methods requires the `mem` [permission](./permissions.md).
+**Обратите внимание, что для использования любого из методов чтения/записи требуется `mem` [разрешение](readme.md#разрешения)**.
 
 
-### Casting methods
+### Метод приведения типов
 
-By default `Read` and `Write` methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods `ToXXX`/`FromXXX`. They act similarly to [reinterpret_cast](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160) operator in C++.
+По умолчанию методы `Read` и `Write` обрабатывают данные как целочисленные значения со знаком. Это может быть неудобно, если память содержит значение с плавающей запятой в формате IEEE 754 или большое 32-битное целое число со знаком (например, указатель). В этом случае используйте методы приведения `ToXXX`/`FromXXX`. Они действуют аналогично оператору [reinterpret_cast](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160) в C++.
 
-To get a quick idea what to expect from those methods see the following examples:
+Чтобы получить представление о том, чего ожидать от этих методов, см. следующие примеры:
 
 ```js
     Memory.FromFloat(1.0) => 1065353216
@@ -126,11 +126,11 @@ To get a quick idea what to expect from those methods see the following examples
     Memory.ToI32(4294967295) => -1
 ```
 
-Alternatively, use appropriate methods to read/write the value as a float (`ReadFloat`/`WriteFloat`) or as an unsigned integer (`ReadUXXX`/`WriteUXXX`).
+В качестве альтернативы используйте соответствующие методы для чтения/записи значения в виде числа с плавающей запятой (`ReadFloat`/`WriteFloat`) или целого числа без знака (`ReadUCX`/`WriteUXXX`).
 
-### Calling Foreign Functions
+### Вызов внешних функций
 
-`Memory` object allows to invoke a foreign (native) function by its address using one of the following methods:
+Объект `Memory` позволяет вызвать чужую (собственную) функцию по ее адресу одним из следующих способов:
 
 - `Memory.CallFunction`
 - `Memory.CallFunctionReturn`
@@ -139,26 +139,26 @@ Alternatively, use appropriate methods to read/write the value as a float (`Read
 ```js
     Memory.CallFunction(0xEFFB30, true, 1, 13)
 ```
-where `0xEFFB30` is the function offset relative to IMAGE BASE (think of it a randomized start address of the game memory), `true` is the `ib` flag (see below), `1` is the number of input arguments, and `13` are the only argument passed into the function.
+Где `0xEFFB30` — это смещение функции относительно IMAGE BASE (представьте себе, что это случайный начальный адрес игровой памяти), `true` — это флаг `ib` (см. ниже), `1` – количество входных аргументов, и `13` — единственный аргумент, передаваемый в функцию.
 
-The `ib` parameter in `Memory.CallFunction` has the same meaning as in memory read/write commands. When set to `true` CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to `false` no changes to the first argument are made.
+Параметр `ib` в `Memory.CallFunction` имеет то же значение, что и в командах чтения/записи памяти. При значении `true` CLEO добавляет текущий известный адрес базы образа к значению, указанному в качестве первого аргумента, для вычисления абсолютного адреса памяти функции. Если установлено значение `false`, первый аргумент не изменяется.
 
-To pass floating-point values to the function, convert the value to integer using `Memory.FromFloat`:
+Чтобы передать функции значения с плавающей запятой, преобразуйте значение в целое число, используя `Memory.FromFloat`:
 
 ```js
     Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
 ```
 
-The returned value of the function called with `Memory.CallFunction` is ignored. To read the result use `Memory.CallFunctionReturn` that has the same parameters. Use `Memory.CallFunctionReturnFloat` to call a function that returns a floating-point value.
+Возвращаемое значение функции, вызванной с помощью `Memory.CallFunction`, игнорируется. Чтобы прочитать результат, используйте `Memory.CallFunctionReturn` с теми же параметрами. Используйте `Memory.CallFunctionReturnFloat` для вызова функции, которая возвращает значение с плавающей запятой.
 
 
-CLEO Redux supports calling foreign functions with up to 16 parameters.
+CLEO Redux поддерживает вызов сторонних функций с параметрами до 16.
 
-> The usage of any of the call methods requires the `mem` [permission](./permissions.md).
+**Обратите внимание, что для использования любого из методов вызова требуется `mem` [разрешение](readme.md#разрешения)**.
 
-#### Convenience methods with Fn object
+#### Удобные методы с объектом Fn
 
-`Memory.Fn` provides convenient methods for calling different types of foreign functions.
+`Memory.Fn` предоставляет удобные методы для вызова различных типов внешних функций.
 
 ```ts
     Fn: {
@@ -173,38 +173,38 @@ CLEO Redux supports calling foreign functions with up to 16 parameters.
     }
 ```
 
-These methods is designed to cover all supported return types. For example, this code
+Эти методы предназначены для охвата всех поддерживаемых типов возврата. Например, этот код:
 
 ```js
     Memory.CallFunction(0xEFFB30, true, 1, 13)
 ```
 
-can also be written as
+Также можно записать как:
 
 ```js
     Memory.Fn.X64(0xEFFB30, true)(13)
 ```
 
-Note a few key differences here. First of all, `Memory.Fn` methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:
+Обратите внимание на несколько ключевых отличий. Прежде всего, методы `Memory.Fn` не вызывают внешнюю функцию напрямую. Вместо этого они возвращают новую функцию JavaScript, которую можно сохранить в переменной и повторно использовать для многократного вызова связанной внешней функции с разными аргументами:
 
 ```js
     var f = Memory.Fn.X64(0xEFFB30, true);
-    f(13) // calls function 0xEFFB30 with the argument of 13
-    f(11) // calls method 0xEFFB30 with the argument of 11
+    f(13) // вызывает функцию 0xEFFB30 с аргументом 13
+    f(11) // вызывает метод 0xEFFB30 с аргументом 11
 ```
 
-The second difference is that there is no `numParams` parameter. Each `Fn` method figures it out automatically.
+Второе отличие состоит в том, что здесь нет параметра `numParams`. Каждый метод `Fn` вычисляет это автоматически.
 
-By default a returned result is considered a 64-bit signed integer value. If the function returns another type (e.g. a boolean), use one of the methods matching the function signature:
+По умолчанию возвращаемый результат считается 64-битным целым числом со знаком. Если функция возвращает другой тип (например, логическое значение), используйте один из методов, соответствующих сигнатуре функции:
 
 ```js
     var flag = Memory.Fn.X64U8(0x1234567, true)()
 ```
 
-This code invokes a function at `0x1234567` + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value. 
+Этот код вызывает функцию по адресу `0x1234567` + IMAGE_BASE без аргументов и сохраняет результат как 8-битное целое число без знака.
 
 ```js
     var float = Memory.Fn.X64Float(0x456789, true)()
 ```
 
-This code invokes a function at `0x456789` + IMAGE_BASE with no arguments and stores the result as a floating-point value. 
+Этот код вызывает функцию по адресу `0x456789` + IMAGE_BASE без аргументов и сохраняет результат как значение с плавающей запятой.

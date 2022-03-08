@@ -4,12 +4,12 @@
 
 {{#include ./re3-reVC-notes.md}}
 
-## Game crashes with CLEO on San Andreas: The Definitive Edition
+## Краш игры с CLEO на San Andreas: The Definitive Edition
 
-- make sure you installed the 64-bit version of Ultimate ASI Loader ([direct link to the latest release](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip)).
-  - Put `version.dll` to `Gameface\Binaries\Win64`
-- make sure you run the latest CLEO Redux version (0.8.2 and above)
-- delete config files from `Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor`
-- run the game (or Rockstar Games Launcher) as administrator
+- Убедитесь, что вы установили 64-битную версию Ultimate ASI Loader ([прямая ссылка на последний релиз](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip)).
+  - Поместите `version.dll` в `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64`
+- убедитесь, что у вас установлена последняя версия CLEO Redux (0.8.2 и выше)
+- удалить файлы конфигурации из `Documents\Rockstar Games\GTA San Andreas Definitive Edition\Config\WindowsNoEditor`
+- запустить игру (или Rockstar Games Launcher) от имени администратора
 
-If CLEO can't create files in `Gameface\Binaries\Win64` it uses another path at `C:\Users\<your_usename>\AppData\Roaming\CLEO Redux`. There should be `cleo_redux.log` and the CLEO folder where all your scripts go.
+Если CLEO не может создавать файлы в `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64`, он будет использовать другой каталог в `C:\Users\<ваше_имя>\AppData\Roaming\CLEO Redux`. Там должен быть `cleo_redux.log` и папка CLEO, куда попадают все ваши скрипты.

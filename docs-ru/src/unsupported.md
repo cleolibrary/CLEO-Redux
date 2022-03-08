@@ -1,19 +1,19 @@
-# Unsupported or limited support scenarios
+## Неподдерживаемые или ограниченные сценарии поддержки
 
-Despite our best effort some scenarios while available in game are not supported or supported with limitations by CLEO Redux. Some of them are imposed by the nature of SCM format or JavaScript language or the difficulties in bridging JavaScript and the native code.
+Несмотря на все наши усилия, некоторые сценарии, доступные в игре, не поддерживаются или поддерживаются с ограничениями CLEO Redux. Некоторые из них обусловлены природой формата SCM или языка JavaScript или трудностями соединения JavaScript и нативного кода.
 
-Check the [Features support page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix) to find out high-level features and the status of their support in different games.
+Посетите [страницу поддержки функций](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix) чтобы узнать высокоуровневые фичи и статус их поддержки в разных играх.
 
-The following items are known to be not working and there is no specific timeline on getting them fixed.
+Известно, что следующие элементы не работают, и нет конкретных сроков их исправления.
 
-## Unsupported features in CS
+### Неподдерживаемые функции в CS
 
-- in x64 games (SA: DE) you can't read and write 64-bit values as the script engine only supports 32-bit values. You may need to use other means to access the game memory (e.g. from JavaScript)
+- В играх x64 (SA:DE) вы не можете читать и записывать 64-битные значения, так как скриптовый движок поддерживает только 32-битные значения. Возможно, вам придется использовать другие средства для доступа к памяти игры (например, из JavaScript).
 
-## Unsupported features in JS
+### Неподдерживаемые функции в JS
 
-- commands requiring an scm variable (e.g. countdown timers). [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/10).
+- Команды, требующие переменной scm (например, таймеры обратного отсчета). [Проблема с отслеживанием](https://github.com/cleolibrary/CLEO-Redux/issues/10).
 
-- commands implicitly loading models or textures (such as widgets) [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/12). You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. 
+- Команды, неявно загружающие модели или текстуры (например, виджеты) [Проблема с отслеживанием](https://github.com/cleolibrary/CLEO-Redux/issues/12). Вы можете обойти проблему, предварительно загрузив необходимые ресурсы, например. сначала вызывая их в сценарии `.CS`.
 
-- you can't call the game functions that need references to variables to store the result. There is no "take an address of the variable" syntax.
+- нельзя вызывать игровые функции, которым нужны ссылки на переменные для сохранения результата. Нет синтаксиса "take an address of the variable".
