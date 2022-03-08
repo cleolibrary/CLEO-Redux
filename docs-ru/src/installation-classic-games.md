@@ -1,10 +1,10 @@
 
-# Classic GTA III, GTA VC, GTA SA
+# Классика GTA III, GTA VC, GTA SA
 
-- Copy `cleo_redux.asi` to the game directory (with the main executable file).
+- Скопируйте `cleo_redux.asi` в папку с игрой.
 
-- Run the game once to complete the installation.
+- Запустите игру, чтобы завершить установку
 
 {{#include ./first-run-notes.md}}
 
-CLEO Redux does not alter any game files. It exploits the fact that the game natively loads `.asi` files as addons to the Miles Sound System library. No extra software is required.
+Примечание: CLEO Redux не изменяет игровые файлы. Он использует тот факт, что игра изначально загружает файлы `.asi` в качестве дополнений к библиотеке Miles Sound System. Никакого дополнительного ПО не требуется.

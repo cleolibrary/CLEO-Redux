@@ -1,14 +1,13 @@
-# ScriptObject vs Object
+# Сравнение ScriptObject и Object
 
+Библиотека Sanny Builder определяет статический класс `Object` для группировки команд, позволяющих создавать и управлять трехмерными объектами в игре. В то же время в JavaScript есть [собственный класс Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) со своими методами.
 
-Sanny Builder Library defines a static class `Object` to group commands allowing to create and manipulate 3D objects in-game. At the same time JavaScript has the [native Object class](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object) with its own methods.
-
-To avoid mixing the two, CLEO Redux uses `ScriptObject` class instead of the Library's `Object` with [the same interface](https://library.sannybuilder.com/#/gta3/classes/Object).
+Чтобы не смешивать их, CLEO Redux использует класс `ScriptObject` вместо класса `Object` из библиотеки с [тем же интерфейсом](https://library.sannybuilder.com/#/gta3/classes/Object).
 
 ```js
-// opcode 0107, creates a new object in the game
+// код операции 0107, создает новый объект в игре
 var x = ScriptObject.Create(modelId, x, y, z); 
 
-// native JavaScript code, creates a new object in JS memory
+// собственный код JavaScript, создает новый объект в памяти JS
 var x = Object.create(null); 
 ```

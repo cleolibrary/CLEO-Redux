@@ -1,9 +1,9 @@
-# Scripts
+# Скрипты
 
-## Adding a new script
+### Добавление нового скрипта
 
-Generally a script file (`.cs`, `.js`) should just be copied to the `CLEO` directory. Some scripts may require extra steps for installation. In case of any issues check the script documentation or ask its author.
+Обычно файл скрипта нужно просто скопировать в каталог `CLEO`. Для установки некоторых скриптов могут потребоваться дополнительные действия. В случае каких-либо проблем проверьте документацию скрипта или обратитесь к его автору. 
 
-## Removing the script
+### Удаление скрипта
 
-Delete the script file from `CLEO` directory. Some scripts may require extra steps for undoing the installation. In case of any issues check the script documentation or ask its author.
+Удалите файл скрипта из каталога `CLEO`. Некоторые сценарии могут потребовать дополнительных действий для отмены установки. В случае каких-либо проблем проверьте документацию скрипта или обратитесь к его автору. 

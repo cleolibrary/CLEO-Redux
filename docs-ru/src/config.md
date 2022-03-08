@@ -2,9 +2,9 @@
 
 CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\cleo.ini`.
 
-- `AllowCs` - when set to `1` CLEO loads and executes `*.cs` files located in the CLEO directory. Enabled by default.
-- `AllowJs` - when set to `1` CLEO loads and executes `*.js` files located in the CLEO directory. Enabled by default.
-- `AllowFxt` - when set to `1` CLEO loads and [uses](#custom-text) `*.fxt` files located in the CLEO\CLEO_TEXT directory. Enabled by default.
-- `CheckUpdates` - when set to `1` CLEO check if there is a new update available for download during the game startup. Enabled by default.
-- `LogOpcodes` - when set to `1` CLEO logs all executed opcodes in custom scripts. This log is part of the `cleo_redux.log` file (see [Log](./log.md))
-- `PermissionLevel` - sets the [permission level](./permissions.md) for unsafe operations (see below). Default is `Lax`.
+- `AllowCs` - при значении `1` CLEO загружает и выполняет файлы `*.cs`, расположенные в каталоге CLEO. Включено по умолчанию.
+- `AllowJs` - при значении `1` CLEO загружает и выполняет файлы `*.js`, расположенные в каталоге CLEO. Включено по умолчанию.
+- `AllowFxt` - при значении `1` CLEO загружает и [использует](./using-fxt.md) файлы `*.fxt`, расположенные в каталоге CLEO\CLEO_TEXT. Включено по умолчанию.
+- `CheckUpdates` - при значении `1` CLEO проверяет наличие нового обновления, доступного для скачивания, при запуске игры. Включено по умолчанию.
+- `LogOpcodes` - при значении `1` CLEO регистрирует все выполненные опкоды в пользовательских скриптах. Этот журнал является частью файла `cleo_redux.log` (см. [Лог](./log.md))
+- `PermissionLevel` - устанавливает уровень [разрешений](./permissions.md) для небезопасных операций (см. ниже). По умолчанию используется «слабый».

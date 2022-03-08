@@ -1,10 +1,10 @@
-# Troubleshooting
+# Решение проблем
 
-## CLEO does not work with re3 or reVC
+## Если CLEO не работает с re3 или reVC
 
 {{#include ./re3-reVC-notes.md}}
 
-## Краш игры с CLEO на San Andreas: The Definitive Edition
+## Если CLEO крашит San Andreas: The Definitive Edition
 
 - Убедитесь, что вы установили 64-битную версию Ultimate ASI Loader ([прямая ссылка на последний релиз](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip)).
   - Поместите `version.dll` в `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64`

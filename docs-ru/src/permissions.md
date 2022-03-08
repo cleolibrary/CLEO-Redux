@@ -1,36 +1,35 @@
-# Permissions
+# Разрешения
 
+CLEO Redux признает некоторые [пользовательские команды](./custom-commands.md) (коды операций) небезопасными и требует от пользователя решить, запускать их или нет. Необработанный доступ к памяти процесса, загрузка внешних библиотек или выполнение сетевых запросов могут быть вредными и вызывать нежелательные побочные эффекты. Поэтому CLEO вводит уровни разрешений для запуска небезопасного кода.
 
-CLEO Redux acknowledges some [custom commands](./custom-commands.md) (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.
-
-There are four available levels:
+Доступны четыре уровня:
 
 ## All
 
-Any unsafe operation is allowed. Use this only when you trust the scripts you run.
+Допускаются любые небезопасные операции. Используйте это только в том случае, если вы доверяете сценариям, которые запускаете.
 
 ## Lax
 
-This is the default permission level.
+Это уровень разрешений по умолчанию.
 
-No unsafe operation is allowed unless the script explicitly requests it. Currently to request a permission, the name of the script file must include the permissions tokens wrapped in square brackets.
+Никакая небезопасная операция не разрешена, если сценарий явно не запрашивает ее. В настоящее время для запроса разрешения имя файла сценария должно включать маркеры разрешений, заключенные в квадратные скобки.
 
-For example, if the script wants to access the memory via `0A8D READ_MEMORY` the file name must contain `[mem]`, e.g. `cool-spawner[mem].cs`. If the file is named differently CLEO rejects `0A8D` and the script crashes.
+Например, если скрипт хочет получить доступ к памяти через `0A8D READ_MEMORY`, имя файла должно содержать `[mem]`, т.е. `крутой спаунер[mem].cs`. Если файл называется по-другому, CLEO отвергает `0A8D`, и скрипт вылетает.
 
 ## Strict
 
-No unsafe operation is allowed unless the script explicitly requests it (see `"Lax"`) and the CLEO config file permits this type of operation under the `Permissions` section.
+Никакая небезопасная операция не разрешена, если сценарий явно не запрашивает ее (см. `"Слабые"`), а файл конфигурации CLEO разрешает этот тип операции в разделе `Разрешения`. 
 
-Permissions section in `cleo.ini` allows to enable or disable groups of unsafe operations by using the permission tokens. For example,
+Раздел разрешений в `cleo.ini` позволяет включать или отключать группы небезопасных операций с помощью токенов разрешений. Например,
 
 ```ini
 mem=0
 ```
 
-disables all memory-related opcodes even if the script has the `[mem]` token in the file name.
+отключает все коды операций, связанные с памятью, даже если скрипт имеет токен `[mem]` в имени файла.
 
-> `Permissions` section in the `cleo.ini` only takes effect when `PermissionLevel` is `Strict`.
+Примечание. Раздел `Permissions` в `cleo.ini` вступает в силу только в том случае, если `PermissionLevel` имеет значение `Strict`.
 
 ## None
 
-No unsafe operation is allowed.
+Небезопасная работа не допускается.

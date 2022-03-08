@@ -1,5 +1,5 @@
-There could be a noticeable lag during the first game run as CLEO Redux downloads the files necessary for [JavaScript support](./prerequisites.md). It won't happen on subsequent runs.
+Во время первого запуска игры может быть заметное отставание, так как CLEO Redux загружает файлы, необходимые для [поддержки JavaScript](./javascript.md). При последующих запусках этого не произойдет.
 
-A new folder named `CLEO` should appear in the game directory. This is the primary location for all CLEO scripts, plugins and configs.
+Также в папке с игрой\* должна появиться новая папка с именем `CLEO`. Это основное место для всех CLEO-скриптов, плагинов и конфигов.
 
 {{#include ./cleo-directory-note.md}}

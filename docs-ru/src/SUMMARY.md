@@ -27,7 +27,7 @@
     - [Объект Math](./using-math.md)
     - [Объект Memory](./using-memory.md)
     - [Объект Memory (x64)](./using-memory-64.md)
-    - [Текучий интерфейс](./fluent-interface.md)
+    - [Цепочки методов](./fluent-interface.md)
     - [Импорты](./imports.md)
     - [Привязки](./js-bindings.md)
       - [Устаревшие](./deprecated-bindings.md)

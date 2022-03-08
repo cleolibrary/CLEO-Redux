@@ -1,10 +1,10 @@
-# Installation
+# Установка
 
-Depending on the game CLEO Redux installation may require a few extra steps. Check the relevant guides below:
+Порядок установки CLEO Redux может отличаться в зависимости от игры. Обратитесь к одному из нижеперечисленных гайдов:
 
-- [Installation for Classic GTA III, GTA VC, GTA SA](./installation-classic-games.md)
-- [Installation for re3 or reVC](./installation-re3-revc.md)
-- [Installation for The Trilogy: The Definitive Edition](./installation-definitive-edition.md)
+- [Классика GTA III, GTA VC, GTA SA](./installation-classic-games.md)
+- [re3 и reVC](./installation-re3-revc.md)
+- [The Trilogy: The Definitive Edition](./installation-definitive-edition.md)
 
 > Note that CLEO Redux recognizes the target game purely by the executable name it is running from. 
 >
@@ -19,10 +19,8 @@ Depending on the game CLEO Redux installation may require a few extra steps. Che
 >
 > Names matching is case-insensitive. For classic games CLEO Redux always assumes version 1.0. 
 
-## Uninstallation
+## Удаление
 
-To uninstall CLEO Redux perform the following steps:
-
-- Delete `cleo_redux.asi` (or `cleo_redux64.asi`).
-- Delete the `CLEO` folder (optional).
-- Delete the `cleo_redux.log` (optional)
+- Удалите `cleo_redux.asi` (или `cleo_redux64.asi`).
+- Удалите папку `CLEO` (необязательно).
+- Удалите `cleo_redux.log` (необязательно).

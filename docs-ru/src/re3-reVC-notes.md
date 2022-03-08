@@ -1,4 +1,4 @@
 
-CLEO Redux only supports "Windows D3D9 MSS 32bit" version of `re3` or `reVC`.
+CLEO Redux поддерживает только «Windows D3D9 MSS 32bit» версию `re3` или `reVC`.
 
-When running on `re3` and `reVC` make sure the game directory contains the file `re3.pdb` (for **re3**) or `reVC.pdb` (for **reVC**). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.
+При запуске на `re3` и `reVC` убедитесь, что в каталоге игры есть файл `re3.pdb` (для **re3**) или `reVC.pdb` (для **reVC**). Из-за динамического характера адресов памяти в этих реализациях CLEO Redux использует отладочную информацию, хранящуюся в файле PDB, для правильного определения своего местоположения.

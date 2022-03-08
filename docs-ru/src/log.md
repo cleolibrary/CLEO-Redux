@@ -1,15 +1,12 @@
-# Log
+# Лог
 
-CLEO logs important events and errors immediately as they occur in the `cleo_redux.log` file located in the game directory.
 
-{{#include ./cleo-directory-note.md}}
+CLEO регистрирует важные события и ошибки в файле `cleo_redux.log` расположенном в папке с игрой (или `C:\Users\<ваше_имя_пользователя>\AppData\Roaming\CLEO Redux`, см. [Первичная настройка](#первичная-настройка) примечание). Этот файл перезаписывается при каждом запуске игры. Если у вас возникнут какие-либо проблемы при использовании CLEO Redux, начните исследовать основную причину с этого файла.
 
-The log file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.
-
-To stream events in your terminal while testing a script, run:
+Чтобы транслировать события в вашем терминале во время тестирования скрипта, запустите:
 
 ```
 tail -f cleo_redux.log
 ```
 
-`tail` is a unix command so a compatible environment is needed (for example Git Bash).
+`tail` - это команда unix, поэтому необходима совместимая среда (например, Git Bash).

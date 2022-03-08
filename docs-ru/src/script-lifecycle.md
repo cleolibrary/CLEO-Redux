@@ -1,23 +1,22 @@
-# Script Lifecycle
+# Жизненный цикл скрипта
 
-A file with the JavaScript code should have a `.js` extension and contain valid instructions. The script may have no instructions (the empty script). It runs as soon as the the new game starts or a save file is loaded.
 
-Valid instructions include a code conforming to the ECMAScript 2020 standard and custom bindings available in the CLEO Redux runtime. If the runtime encounters an unknown or [illegal](./permissions.md) instruction the execution halts and a new error is [logged](./log.md) in `cleo_redux.log`
+Файл с кодом JavaScript должен иметь расширение `*.js` и содержать известные инструкции, как описано ниже. Скрипт может не иметь инструкций (пустой скрипт). Он запускается, как только начинается новая игра или загружается файл сохранения.
 
-The script terminates automatically when the last instruction has been executed. The runtime also terminates stuck scripts to prevent the game from freezing. The stuck script is the one that took more than `2` seconds to run since the last wait command. If that happened, check out your loops, some of the are missing the wait command.
+Скрипт завершается автоматически после выполнения последней инструкции. Среда выполнения также завершает зависшие сценарии, чтобы игра не зависала. Застрявший скрипт — это тот, которому потребовалось более 2 секунд для запуска с момента последней команды ожидания. Если это произошло, проверьте свои циклы, в некоторых из них отсутствует команда ожидания.
 
 ```js
 while (true) {
-  // meaningless infinite loop normally freezing the game
-  // will be terminated after two seconds
+  // бессмысленный бесконечный цикл, обычно зависающий в игре
+  // будет завершено через две секунды
 }
 ```
 
-The runtime will terminate this script. To avoid that, add the wait command
+Среда выполнения завершит этот скрипт. Чтобы этого избежать, добавьте команду ожидания
 
 ```js
 while (true) {
   wait(250);
-  // still meaningless, but does not freeze the game
+  // все равно бессмысленно, но не зависает в игре
 }
 ```

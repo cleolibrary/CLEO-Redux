@@ -1,8 +1,9 @@
 # The Definitive Edition
 
-- Download and install [Ultimate ASI Loader x64](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip) by ThirteenAG (place `version.dll` to the `Gameface\Binaries\Win64` directory)
-- Copy `cleo_redux64.asi` to the same directory.
+- Загрузите и установите [Ultimate ASI Loader x64](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip) от [ThirteenAG](https://github.com/ThirteenAG) (поместите `version.dll` в каталог `Gameface\Binaries\Win64`).
 
-- Run the game once to complete the installation.
+- Скопируйте `cleo_redux64.asi` в тот же каталог.
+
+- Запустите игру, чтобы завершить установку
 
 {{#include ./first-run-notes.md}}

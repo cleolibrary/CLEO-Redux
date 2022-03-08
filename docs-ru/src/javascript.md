@@ -1,9 +1,9 @@
 # JavaScript
 
-CLEO Redux targets JavaScript as the primary language for custom scripts. JavaScript is a popular programming language with rich ecosystem and plenty of available information. It's free from SCM language limits and pitfalls such as lack of support for functions, arrays, or the low number of variables.
+CLEO Redux ориентируется на JavaScript как на основной язык для пользовательских скриптов. JavaScript — популярный язык программирования с богатой экосистемой и большим количеством доступной информации. Он свободен от ограничений и ловушек языка SCM, таких как отсутствие поддержки функций, массивов или малое количество переменных.
 
-To make a JS script use VS Code (recommended) or any editor of your choice. Create a new file with `.js` extension and put it in the CLEO folder. See [Script lifecycle](./script-lifecycle.md) for extra information.
+Используйте VS Code (рекомендуется) или любой редактор по вашему выбору. Создайте новый файл с расширением `.js` и поместите его в папку CLEO. Дополнительную информацию см. в разделе [Поддержка JavaScript](#поддержка-javascript).
 
-The runtime supports [ECMAScript 2020 standard](https://262.ecma-international.org/11.0/). It means you are able to use the most recent JavaScript features out of the box, such as imports, classes, arrow functions, etc.
+Среда выполнения поддерживает сценарии в [стандарте ECMAScript 2020](https://262.ecma-international.org/11.0/). Это означает, что вы можете использовать самые последние функции JavaScript из коробки, такие как импорт, классы, стрелочные функции и т.д.
 
-> CLEO Redux is not Node.js. Don't expect sockets, file system operations or other Node.js features to be available here.
+> CLEO Redux — это не Node.js. Не ожидайте, что здесь будут доступны сокеты, операции с файловой системой или другие функции Node.js.

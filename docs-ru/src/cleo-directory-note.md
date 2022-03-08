@@ -1,2 +1,2 @@
 
-> If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there.
+> Если CLEO не обладает правами на запись в директории `GTA San Andreas - Definitive Edition\Gameface\Binaries\Win64`, он будет использовать другой каталог в `C:\Users\<ваше_имя>\AppData\Roaming\CLEO Redux`. Там должен быть `cleo_redux.log` и папка CLEO, куда попадают все ваши скрипты.

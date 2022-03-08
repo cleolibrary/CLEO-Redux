@@ -1,6 +1,6 @@
-# Fluent Interface
+# Цепочки методов
 
-Methods on constructible entities (such as `Player`, `Car`, `Char` -- any entities created via a constructor method) support chaining (also known as Fluent Interface). It allows to write code like this:
+Методы конструируемых сущностей (таких как `Player`, `Car`, `Char` – любые сущности, созданные с помощью метода конструктора) поддерживают цепочку (также известную как Fluent Interface). Это позволяет писать такой код:
 
 ```js
 var p = new Player(0);
@@ -13,10 +13,10 @@ p.giveWeapon(2, 100)
   .setBleeding(true);
 ```
 
-[See demo on YouTube](https://www.youtube.com/watch?v=LLgJ0fWbklg).
+Посмотреть демонстрацию: https://www.youtube.com/watch?v=LLgJ0fWbklg.
 
-Destructor methods interrupt the chain. E.g. given the code:
+Методы деструктора прерывают цепочку. Например. учитывая код:
 
 `Char.Create(0, 0, 0, 0, 0).setCoordinates(0, 0, 0).delete()`
 
-the chain can not continue after delete method as the character gets removed and its handle is not longer valid.
+Цепочка не может продолжаться после метода удаления, так как символ удаляется, а его дескриптор больше не действителен.

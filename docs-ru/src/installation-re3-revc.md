@@ -1,8 +1,8 @@
-# re3 or reVC
+# re3 и reVC
 
-- Copy `cleo_redux.asi` to the game directory (with the main executable file).
+- Скопируйте `cleo_redux.asi` в папку с игрой.
 
-- Run the game once to complete the installation.
+- Запустите игру, чтобы завершить установку
 
 {{#include ./first-run-notes.md}}
 
