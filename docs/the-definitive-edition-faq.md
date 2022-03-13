@@ -77,7 +77,7 @@ Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Editi
 
 ### I can't find an answer to my question here, where do I go?
 
-- Check the [troubleshooting guide](TROUBLESHOOTING.md).
+- Check the [troubleshooting guide](troubleshooting.md).
 - Check the [GitHub tickets](https://github.com/cleolibrary/CLEO-Redux/issues)
 - Check the [Feature support page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix)
 - Ask a question in [our Discord](https://discord.gg/d5dZSfgBZr)

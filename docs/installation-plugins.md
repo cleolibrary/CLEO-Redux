@@ -10,4 +10,4 @@ Plugins should be copied to the `CLEO\CLEO_PLUGINS` directory.
 | ---------- | ----------------------------------------- | ---- |
 | IniFiles   | Reading from and writing to INI files     | [src](https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/IniFiles) - [download](https://github.com/cleolibrary/CLEO-Redux/releases/download/0.9.2/CLEO_Redux-0.9.2+IniFiles+Dylib.zip)    |
 | Dylib      | Loading DLL files and importing functions | [src](https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Dylib) - [download](https://github.com/cleolibrary/CLEO-Redux/releases/download/0.9.2/CLEO_Redux-0.9.2+IniFiles+Dylib.zip)     |
-| ImGuiRedux | Dear ImGui bindings                       | https://github.com/user-grinch/ImGuiRedux     |
+| ImGuiRedux | Dear ImGui bindings                       | [https://github.com/user-grinch/ImGuiRedux](https://github.com/user-grinch/ImGuiRedux)     |
