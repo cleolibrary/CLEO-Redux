@@ -2,7 +2,7 @@
 authors = ["Seemann"]
 language = "ru"
 multilingual = false
-src = "src"
+src = "."
 title = "CLEO Redux"
 
 
