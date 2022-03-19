@@ -39,7 +39,7 @@ The current version is `1`. Changes to SDK will advance this number by one.
 String arguments representing a path to the directory or file must be normalized using SDK's function `ResolvePath`. This function takes a path and returns the absolute path resolved by the following rules:
 
 - an absolute path gets resolved as is
-- path starting with "CLEO/" or "CLEO\\" gets resolved relative to the CLEO directory which is either
+- path starting with "CLEO/" or "CLEO\\" gets resolved relative to the [CLEO directory](./cleo-directory.md) which is either
   - {game}\CLEO or
   - {user}\AppData\Roaming\CLEO Redux\CLEO
 - all other paths get resolved relative to the current working directory (the game directory)

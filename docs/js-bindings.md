@@ -109,3 +109,7 @@ native("SET_TIME_OF_DAY", 12, 30); // sets the time of day to 12:30
 
 
 - `Math` object is a standard object available in the JS runtime that provides common mathematical operations. CLEO Redux extends it with some extra commands. See the [Math object](using-math.md) for more information.
+
+### FxtStore
+
+- `FxtStore` allows to update the content of in-game texts. See the [Custom Text](./using-fxt.md) guide for details.

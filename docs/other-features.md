@@ -38,7 +38,7 @@ CLEO monitors active scripts and reloads them in game as they change
 
 [See demo on YouTube](https://www.youtube.com/watch?v=WanLojClqFw)
 
-Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically
+Adding a new script file in the [CLEO directory](./cleo-directory.md) or deleting one while the game is running starts or stops the script automatically
 
 [See demo on YouTube](https://www.youtube.com/watch?v=LAi2syrsxJg)
 

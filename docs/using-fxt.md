@@ -6,7 +6,7 @@ CLEO Redux supports custom text content without the need to edit game files.
 
 [See demo on YouTube](https://youtu.be/ctsKy7WnY9o)
 
-CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `CLEO\CLEO_TEXT` folder. The file name can be any valid name. 
+CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `CLEO\CLEO_TEXT` [folder](./cleo-directory.md). The file name can be any valid name. 
 
 Each FXT file contains a list of the key-value entries in the following format:
 
@@ -21,15 +21,15 @@ There should be a single space character between a key and a value. The key's ma
 
 CLEO loads FXT files on startup and merges their content in a single dictionary. It also monitors the files and reloads them if any change is made.
 
-You can also find an editor for FXT files on the cleo.li website: https://cleo.li/download.html
+You can also download an editor for FXT files from the [CLEO library website](https://cleo.li/download.html).
 
-To display the custom content in game, use the `Text` class. The key defined in the FXT file is usually the first argument to Text commands, e.g.
+To display the custom content in game, use the `Text` class. The key defined in the FXT file is usually the first argument to the `Text` class methods, e.g.
 
 ```
-Text.PrintHelp('KEY1') // will display <TEXT1>
+Text.PrintHelp('KEY1') // displays <TEXT1>
 ```
 
-You can find the commands available in each game in the Sanny Builder Library, e.g. for San Andreas: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text
+You can find the commands available in each game in the Sanny Builder Library, e.g. [for San Andreas: DE](https://library.sannybuilder.com/#/sa_unreal/classes/Text).
 
 
 ## FxtStore

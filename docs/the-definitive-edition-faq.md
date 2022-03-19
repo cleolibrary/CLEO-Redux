@@ -69,7 +69,7 @@ This list might not be complete as there are custom plugins with extra commands 
 
 ### Can I work with the game memory or call the game functions?
 
-Yes, check the [Memory guide](using-memory-64.md)
+Yes, check the [Memory guide](using-memory-64.md).
 
 ### How do I compile CLEO scripts with Sanny Builder?
 
