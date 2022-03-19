@@ -1,0 +1,13 @@
+[book]
+authors = ["Seemann"]
+language = "en"
+multilingual = false
+src = "."
+title = "CLEO Redux"
+
+
+[output.html]
+default-theme = "rust"
+preferred-dark-theme = "rust"
+git-repository-url = "https://github.com/cleolibrary/CLEO-Redux"
+edit-url-template = "https://github.com/cleolibrary/CLEO-Redux/edit/master/{path}"
