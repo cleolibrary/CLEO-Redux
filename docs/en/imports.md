@@ -16,3 +16,5 @@ import data from "./vehicles.json";
 ```
 
 Currently only import of `.js` (`.mjs`) and `.json` files is supported.
+
+> See also [Organizing Scripts](http://localhost:3000/script-lifecycle.html#organizing-scripts).

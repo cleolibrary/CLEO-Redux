@@ -13,3 +13,9 @@
 - run the game (or Rockstar Games Launcher) as administrator
 
 If CLEO can't create files in `Gameface\Binaries\Win64` it uses another path at `C:\Users\<your_usename>\AppData\Roaming\CLEO Redux`. There should be `cleo_redux.log` and the CLEO folder where all your scripts go.
+
+## My problem is not listed there
+
+- Check the [GitHub tickets](https://github.com/cleolibrary/CLEO-Redux/issues)
+- Check the [Feature support page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix)
+- Ask a question in [our Discord](https://discord.gg/d5dZSfgBZr)

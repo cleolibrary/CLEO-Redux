@@ -41,6 +41,7 @@
 - [Other Features](./other-features.md)
   - [Custom Text (FXT)](./using-fxt.md)
   - [Unsupported Features](./unsupported.md)
+  - [Embedding to custom host](./embedding.md)
 
 - [SDK](./using-sdk.md)
   - [C++ SDK](./cpp-sdk.md)

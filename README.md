@@ -21,15 +21,12 @@ while (true) {
 }
 ```
 
-[See more examples](https://github.com/cleolibrary/CLEO-Redux/tree/master/examples
-)
-
+[See more examples](https://github.com/cleolibrary/CLEO-Redux/tree/master/examples)
 
 ## Documentation
 
 * English: https://re.cleo.li/docs
 * Russian: https://re.cleo.li/docs/ru (by [TheFantomKiller420](https://github.com/TheFantomKiller420))
-
 
 ## Installation
 
