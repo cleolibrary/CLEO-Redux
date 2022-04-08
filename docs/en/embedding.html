@@ -147,11 +147,54 @@
 <p>CLEO Redux can be embedded and run JS scripts on any host. To achieve it the target process should load <code>cleo_redux.asi</code> and launch the runtime. This feature is highly experimental and subject to change at any moment.</p>
 <h2 id="loading-into-custom-process"><a class="header" href="#loading-into-custom-process">Loading into custom process</a></h2>
 <p>There are multiple ways of loading ASI file into the target process. <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> is one of them. The host can load CLEO ASI file as a dynamic library when needed.</p>
-<h2 id="starting-cleo-runtime"><a class="header" href="#starting-cleo-runtime">Starting CLEO runtime</a></h2>
+<h2 id="starting-the-cleo-runtime"><a class="header" href="#starting-the-cleo-runtime">Starting the CLEO runtime</a></h2>
 <p>To start the runtime on an unknown host automatically, open a <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them.</p>
+<h3 id="manually-controlling-the-runtime"><a class="header" href="#manually-controlling-the-runtime">Manually Controlling the Runtime</a></h3>
 <p>The host can start the runtime and advance its main loop using SDK methods <code>RuntimeInit</code> and <code>RuntimeNextTick</code>.</p>
+<p>This is how it can be implemented in Rust:</p>
+<pre><code class="language-toml">[dependencies]
+ctor = &quot;0.1.21&quot;
+cleo_redux_sdk = &quot;0.0.6&quot;
+</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>use std::time;
+use ctor::*;
+use cleo_redux_sdk;
+
+#[cfg_attr(target_arch = &quot;x86&quot;, link(name = &quot;cleo_redux&quot;))]
+#[cfg_attr(target_arch = &quot;x86_64&quot;, link(name = &quot;cleo_redux64&quot;))]
+
+#[ctor]
+fn init() {
+    use std::thread;
+
+    // load CLEO scripts, FXT, enable file watcher
+    cleo_redux_sdk::runtime_init();
+
+    // init time variables
+    const FPS: i32 = 30;
+    let time_step = 1000 / FPS;
+    let started = time::Instant::now();
+
+    thread::spawn(move || loop {
+        let current_time = time::Instant::now() - started;
+
+        // advance main loop providing current time and time step
+        // current time is used to determine whether a script should &quot;wake up&quot; after wait command
+        // time step is used to increment TIMERA and TIMERB variables
+        cleo_redux_sdk::runtime_next_tick(current_time.as_millis() as u32, time_step);
+
+
+        // pause for at least time step ms
+        thread::sleep(time::Duration::from_millis(time_step as u64));
+    });
+}
+<span class="boring">}
+</span></code></pre></pre>
 <h2 id="available-commands"><a class="header" href="#available-commands">Available Commands</a></h2>
-<p>In self-hosted mode CLEO Redux supports native <a href="./js-bindings.html">bindings</a> and commands made with <a href="./using-sdk.html">the SDK</a>.</p>
+<p>In self-hosted mode CLEO Redux supports native <a href="./js-bindings.html">bindings</a> and commands made with <a href="./using-sdk.html">the SDK</a>. It uses <code>.config\cleo.json</code> for command definitions. You can <a href="https://library.sannybuilder.com/#/sa/generate">download this file</a> from Sanny Builder Library. Add necessary plugins and click Download.</p>
 
                     </main>
 
