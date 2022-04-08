@@ -179,12 +179,12 @@ fn init() {
     let started = time::Instant::now();
 
     thread::spawn(move || loop {
-        let current_time = time::Instant::now() - started;
+        let current_time = started.elapsed().as_millis() as u32;
 
         // advance main loop providing current time and time step
         // current time is used to determine whether a script should &quot;wake up&quot; after wait command
         // time step is used to increment TIMERA and TIMERB variables
-        cleo_redux_sdk::runtime_next_tick(current_time.as_millis() as u32, time_step);
+        cleo_redux_sdk::runtime_next_tick(current_time, time_step);
 
 
         // pause for at least time step ms
