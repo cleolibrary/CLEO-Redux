@@ -141,7 +141,7 @@
                 <div id="content" class="content">
                     <main>
                         <blockquote>
-<p>This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games <a href="./using-memory.html">click here</a>.</p>
+<p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
 </blockquote>
 <h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
@@ -240,9 +240,9 @@
 <h3 id="calling-foreign-functions"><a class="header" href="#calling-foreign-functions">Calling Foreign Functions</a></h3>
 <p><code>Memory</code> object allows to invoke a foreign (native) function by its address using one of the following methods:</p>
 <ul>
-<li><code>Memory.CallFunction</code></li>
-<li><code>Memory.CallFunctionReturn</code></li>
-<li><code>Memory.CallFunctionReturnFloat</code></li>
+<li><code>Memory.CallFunction</code> - calls a function at the address and discards the returned value</li>
+<li><code>Memory.CallFunctionReturn</code> - calls a function and at the address and returns an integer value</li>
+<li><code>Memory.CallFunctionReturnFloat</code> - calls a function and at the address and returns a floating-point value</li>
 </ul>
 <pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
 </code></pre>

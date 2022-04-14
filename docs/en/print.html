@@ -267,6 +267,7 @@
 <p>Delete the script file from <code>CLEO</code> directory. Some scripts may require extra steps for undoing the installation. In case of any issues check the script documentation or ask its author.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
 <p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
+<h2 id="general"><a class="header" href="#general">General</a></h2>
 <ul>
 <li><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
 <li><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
@@ -275,7 +276,14 @@
 <li><code>LogOpcodes</code> - when set to <code>1</code> CLEO logs all executed opcodes in custom scripts. This log is part of the <code>cleo_redux.log</code> file (see <a href="./log.html">Log</a>)</li>
 <li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="permissions"><a class="header" href="#permissions">Permissions</a></h1>
+<h2 id="host"><a class="header" href="#host">Host</a></h2>
+<ul>
+<li><code>EnableSelfHost</code> - when set to <code>1</code> CLEO runs in the self-host mode. Only applicable on an Unknown host. See the <a href="./embedding.html">Emdedding</a> guide for more information.</li>
+<li><code>SelfHostFps</code> - the amount of iterations per second the CLEO's main loop will do. Only applicable when <code>EnableSelfHost</code> is <code>1</code>. Default is <code>30</code>.</li>
+</ul>
+<h2 id="permissions"><a class="header" href="#permissions">Permissions</a></h2>
+<p>This section lists permission tokens and sets whether they are allowed or not in the <a href="./permissions.html#strict">Strict mode</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="permissions-1"><a class="header" href="#permissions-1">Permissions</a></h1>
 <p>CLEO Redux acknowledges some <a href="./custom-commands.html">custom commands</a> (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.</p>
 <p>There are four available levels:</p>
 <h2 id="all"><a class="header" href="#all">All</a></h2>
@@ -769,7 +777,7 @@ var x = Object.create(null);
 </code></pre>
 <p>At the moment <code>Memory.Translate</code> should only be used in <code>re3</code> and <code>reVC</code>. In other games you will be getting <code>0</code> as a result most of the time.</p>
 <div style="break-before: page; page-break-before: always;"></div><blockquote>
-<p>This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games <a href="./using-memory.html">click here</a>.</p>
+<p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
 </blockquote>
 <h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
@@ -868,9 +876,9 @@ var x = Object.create(null);
 <h3 id="calling-foreign-functions-1"><a class="header" href="#calling-foreign-functions-1">Calling Foreign Functions</a></h3>
 <p><code>Memory</code> object allows to invoke a foreign (native) function by its address using one of the following methods:</p>
 <ul>
-<li><code>Memory.CallFunction</code></li>
-<li><code>Memory.CallFunctionReturn</code></li>
-<li><code>Memory.CallFunctionReturnFloat</code></li>
+<li><code>Memory.CallFunction</code> - calls a function at the address and discards the returned value</li>
+<li><code>Memory.CallFunctionReturn</code> - calls a function and at the address and returns an integer value</li>
+<li><code>Memory.CallFunctionReturnFloat</code> - calls a function and at the address and returns a floating-point value</li>
 </ul>
 <pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
 </code></pre>
@@ -1186,7 +1194,7 @@ fn init() {
 </span></code></pre></pre>
 <h2 id="available-commands"><a class="header" href="#available-commands">Available Commands</a></h2>
 <p>In the self-hosted mode CLEO Redux supports native <a href="./js-bindings.html">bindings</a> and commands made with <a href="./using-sdk.html">SDK</a>. It uses command definitions for the Unknown host from Sanny Builder Library (available for <a href="https://library.sannybuilder.com/#/unknown_x86">32-bit</a> and <a href="https://library.sannybuilder.com/#/unknown_x64">64-bit</a>). CLEO Redux automatically downloads necessary files during <a href="./prerequisites.html">the first run</a>.</p>
-<p>You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file <code>.config/unknown_x86.d.ts</code> or <code>.config/unknown_x64.d.ts</code>.</p>
+<p>You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file <code>.config/unknown.d.ts</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h2>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
 <h3 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h3>

@@ -142,6 +142,7 @@
                     <main>
                         <h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
 <p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
+<h2 id="general"><a class="header" href="#general">General</a></h2>
 <ul>
 <li><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
 <li><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
@@ -150,6 +151,13 @@
 <li><code>LogOpcodes</code> - when set to <code>1</code> CLEO logs all executed opcodes in custom scripts. This log is part of the <code>cleo_redux.log</code> file (see <a href="./log.html">Log</a>)</li>
 <li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
 </ul>
+<h2 id="host"><a class="header" href="#host">Host</a></h2>
+<ul>
+<li><code>EnableSelfHost</code> - when set to <code>1</code> CLEO runs in the self-host mode. Only applicable on an Unknown host. See the <a href="./embedding.html">Emdedding</a> guide for more information.</li>
+<li><code>SelfHostFps</code> - the amount of iterations per second the CLEO's main loop will do. Only applicable when <code>EnableSelfHost</code> is <code>1</code>. Default is <code>30</code>.</li>
+</ul>
+<h2 id="permissions"><a class="header" href="#permissions">Permissions</a></h2>
+<p>This section lists permission tokens and sets whether they are allowed or not in the <a href="./permissions.html#strict">Strict mode</a>.</p>
 
                     </main>
 
