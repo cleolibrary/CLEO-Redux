@@ -1,4 +1,4 @@
-> This guide is for the remastered games running as 64-bit applications. For the information on using the Memory class in classic era games [click here](./using-memory.md).
+> This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) [click here](./using-memory.md).
 
 # Memory Object (x64)
 
@@ -132,9 +132,9 @@ Alternatively, use appropriate methods to read/write the value as a float (`Read
 
 `Memory` object allows to invoke a foreign (native) function by its address using one of the following methods:
 
-- `Memory.CallFunction`
-- `Memory.CallFunctionReturn`
-- `Memory.CallFunctionReturnFloat`
+- `Memory.CallFunction` - calls a function at the address and discards the returned value
+- `Memory.CallFunctionReturn` - calls a function and at the address and returns an integer value
+- `Memory.CallFunctionReturnFloat` - calls a function and at the address and returns a floating-point value
 
 ```js
     Memory.CallFunction(0xEFFB30, true, 1, 13)

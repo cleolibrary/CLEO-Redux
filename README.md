@@ -3,9 +3,9 @@
 [![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)](https://discord.gg/d5dZSfgBZr)
 [![YouTube Channel](https://img.shields.io/badge/YouTube-Channel-FF0000?style=for-the-badge)](https://www.youtube.com/playlist?list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb)
 
-CLEO Redux is an experimental JavaScript runtime for GTA 3D era games.
+CLEO Redux is an experimental JavaScript runtime for GTA 3D era games and, with limited functionality, [other games or applications](https://re.cleo.li/docs/en/embedding.html).
 
-It brings a joy of enhancing the gameplay with countless mini-scripts that are easy to add and remove. Both players and developers can equally benefit from a flexible and secure environment it provides.
+Its flexible, extensible and secure environment provides rich scripting capabilities and allows easily add and remove countless mini-scripts.
 
 A complete simple script looks like this:
 
