@@ -144,11 +144,11 @@
 <blockquote>
 <p>This documentation is being worked on.</p>
 </blockquote>
-<p>CLEO Redux can be embedded and run JS scripts on any host. To achieve it the target process should load <code>cleo_redux.asi</code> and launch the runtime. This feature is highly experimental and subject to change at any moment.</p>
+<p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> gets loaded or injected and where the CLEO runtime runs. This feature is highly experimental and subject to change at any moment.</p>
 <h2 id="loading-into-custom-process"><a class="header" href="#loading-into-custom-process">Loading into custom process</a></h2>
 <p>There are multiple ways of loading ASI file into the target process. <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> is one of them. The host can load CLEO ASI file as a dynamic library when needed.</p>
-<h2 id="starting-the-cleo-runtime"><a class="header" href="#starting-the-cleo-runtime">Starting the CLEO runtime</a></h2>
-<p>To start the runtime on an unknown host automatically, open a <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them.</p>
+<h2 id="launching-the-cleo-runtime"><a class="header" href="#launching-the-cleo-runtime">Launching the CLEO runtime</a></h2>
+<p>To launch the runtime on an unknown host immediately after loading, open the <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them.</p>
 <h3 id="manually-controlling-the-runtime"><a class="header" href="#manually-controlling-the-runtime">Manually Controlling the Runtime</a></h3>
 <p>The host can start the runtime and advance its main loop using SDK methods <code>RuntimeInit</code> and <code>RuntimeNextTick</code>.</p>
 <p>This is how it can be implemented in Rust:</p>
@@ -194,7 +194,8 @@ fn init() {
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="available-commands"><a class="header" href="#available-commands">Available Commands</a></h2>
-<p>In self-hosted mode CLEO Redux supports native <a href="./js-bindings.html">bindings</a> and commands made with <a href="./using-sdk.html">the SDK</a>. It uses <code>.config\cleo.json</code> for command definitions. You can <a href="https://library.sannybuilder.com/#/sa/generate">download this file</a> from Sanny Builder Library. Add necessary plugins and click Download.</p>
+<p>In the self-hosted mode CLEO Redux supports native <a href="./js-bindings.html">bindings</a> and commands made with <a href="./using-sdk.html">SDK</a>. It uses command definitions for the Unknown host from Sanny Builder Library (available for <a href="https://library.sannybuilder.com/#/unknown_x86">32-bit</a> and <a href="https://library.sannybuilder.com/#/unknown_x64">64-bit</a>). CLEO Redux automatically downloads necessary files during <a href="./prerequisites.html">the first run</a>.</p>
+<p>You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file <code>.config/unknown_x86.d.ts</code> or <code>.config/unknown_x64.d.ts</code>.</p>
 
                     </main>
 

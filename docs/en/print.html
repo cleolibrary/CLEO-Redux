@@ -156,6 +156,7 @@
 <ul>
 <li>re3 (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
 <li>reVC (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
+<li>unknown host (see <a href="./embedding.html">details</a>)</li>
 </ul>
 <p>CLEO Redux only supports the PC version of each game.</p>
 <p>For the complete reference on supported features <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">refer to this page</a>. Also there are known limitations <a href="unsupported.html">listed here</a>.</p>
@@ -186,7 +187,7 @@
 <li>GTA SA - <code>gta_sa.exe</code>, <code>gta-sa.exe</code>, or <code>gta_sa_compact.exe</code></li>
 <li>re3 - <code>re3.exe</code></li>
 <li>reVC - <code>reVC.exe</code></li>
-<li>GTA 3: DE - <code>libertycity.exe</code></li>
+<li>GTA III: DE - <code>libertycity.exe</code></li>
 <li>GTA VC: DE - <code>vicecity.exe</code></li>
 <li>GTA SA: DE - <code>sanandreas.exe</code></li>
 </ul>
@@ -350,12 +351,14 @@
 <p>When JavaScript is enabled CLEO Redux needs commands definitions from <a href="https://library.sannybuilder.com">Sanny Builder Library</a>. They bring in the type information and convenient classes wrapping all available scripting commands.</p>
 <p>On the first run CLEO tries to download a definition file (see the table below) and put it into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.208</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.210</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.210</code></td></tr>
-<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.210</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.212</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.216</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.218</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.220</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.236</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.213</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.215</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.220</code></td></tr>
+<tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.1</code></td></tr>
+<tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.1</code></td></tr>
 </tbody></table>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
 <p>A file with the JavaScript code should have a <code>.js</code> extension and contain valid instructions. </p>
@@ -1041,6 +1044,9 @@ showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;
 <p>For <code>San Andreas</code></p>
 <pre><code>/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
 </code></pre>
+<p>For <code>Unknown</code> host</p>
+<pre><code>/// &lt;reference path=&quot;.config/unknown.d.ts&quot; /&gt;
+</code></pre>
 <p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
 <h2 id="scm-log"><a class="header" href="#scm-log">SCM Log</a></h2>
 <p>CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up <code>cleo.ini</code> and change <code>LogOpcodes</code> to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.</p>
@@ -1128,11 +1134,11 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
 <blockquote>
 <p>This documentation is being worked on.</p>
 </blockquote>
-<p>CLEO Redux can be embedded and run JS scripts on any host. To achieve it the target process should load <code>cleo_redux.asi</code> and launch the runtime. This feature is highly experimental and subject to change at any moment.</p>
+<p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> gets loaded or injected and where the CLEO runtime runs. This feature is highly experimental and subject to change at any moment.</p>
 <h2 id="loading-into-custom-process"><a class="header" href="#loading-into-custom-process">Loading into custom process</a></h2>
 <p>There are multiple ways of loading ASI file into the target process. <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> is one of them. The host can load CLEO ASI file as a dynamic library when needed.</p>
-<h2 id="starting-the-cleo-runtime"><a class="header" href="#starting-the-cleo-runtime">Starting the CLEO runtime</a></h2>
-<p>To start the runtime on an unknown host automatically, open a <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them.</p>
+<h2 id="launching-the-cleo-runtime"><a class="header" href="#launching-the-cleo-runtime">Launching the CLEO runtime</a></h2>
+<p>To launch the runtime on an unknown host immediately after loading, open the <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them.</p>
 <h3 id="manually-controlling-the-runtime"><a class="header" href="#manually-controlling-the-runtime">Manually Controlling the Runtime</a></h3>
 <p>The host can start the runtime and advance its main loop using SDK methods <code>RuntimeInit</code> and <code>RuntimeNextTick</code>.</p>
 <p>This is how it can be implemented in Rust:</p>
@@ -1178,7 +1184,8 @@ fn init() {
 <span class="boring">}
 </span></code></pre></pre>
 <h2 id="available-commands"><a class="header" href="#available-commands">Available Commands</a></h2>
-<p>In self-hosted mode CLEO Redux supports native <a href="./js-bindings.html">bindings</a> and commands made with <a href="./using-sdk.html">the SDK</a>. It uses <code>.config\cleo.json</code> for command definitions. You can <a href="https://library.sannybuilder.com/#/sa/generate">download this file</a> from Sanny Builder Library. Add necessary plugins and click Download.</p>
+<p>In the self-hosted mode CLEO Redux supports native <a href="./js-bindings.html">bindings</a> and commands made with <a href="./using-sdk.html">SDK</a>. It uses command definitions for the Unknown host from Sanny Builder Library (available for <a href="https://library.sannybuilder.com/#/unknown_x86">32-bit</a> and <a href="https://library.sannybuilder.com/#/unknown_x64">64-bit</a>). CLEO Redux automatically downloads necessary files during <a href="./prerequisites.html">the first run</a>.</p>
+<p>You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file <code>.config/unknown_x86.d.ts</code> or <code>.config/unknown_x64.d.ts</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h2>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
 <h3 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h3>
