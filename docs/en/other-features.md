@@ -26,6 +26,13 @@ For `San Andreas`
 /// <reference path=".config/sa.d.ts" />
 ```
 
+For `Unknown` host
+
+```
+/// <reference path=".config/unknown.d.ts" />
+```
+
+
 This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
 
 ## SCM Log

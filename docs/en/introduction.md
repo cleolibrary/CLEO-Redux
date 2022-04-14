@@ -20,6 +20,7 @@ Other:
 
 - re3 (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
 - reVC (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
+- unknown host (see [details](./embedding.md))
 
 CLEO Redux only supports the PC version of each game.
 

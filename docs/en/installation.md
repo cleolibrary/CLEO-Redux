@@ -13,7 +13,7 @@ Depending on the game CLEO Redux installation may require a few extra steps. Che
 > * GTA SA - `gta_sa.exe`, `gta-sa.exe`, or `gta_sa_compact.exe`
 > * re3 - `re3.exe`
 > * reVC - `reVC.exe`
-> * GTA 3: DE - `libertycity.exe`
+> * GTA III: DE - `libertycity.exe`
 > * GTA VC: DE - `vicecity.exe`
 > * GTA SA: DE - `sanandreas.exe`
 >

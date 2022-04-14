@@ -2,15 +2,15 @@
 
 > This documentation is being worked on.
 
-CLEO Redux can be embedded and run JS scripts on any host. To achieve it the target process should load `cleo_redux.asi` and launch the runtime. This feature is highly experimental and subject to change at any moment.
+CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not [supported officially](./introduction.md#supported-releases)) host. A *host* is an application in which process `cleo_redux.asi` or `cleo_redux64.asi` gets loaded or injected and where the CLEO runtime runs. This feature is highly experimental and subject to change at any moment.
 
 ## Loading into custom process
 
 There are multiple ways of loading ASI file into the target process. [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) is one of them. The host can load CLEO ASI file as a dynamic library when needed.
 
-## Starting the CLEO runtime
+## Launching the CLEO runtime
 
-To start the runtime on an unknown host automatically, open a [config file](./config.md) and set `EnableSelfHost` to `1`. When loaded as a self host CLEO Redux scans the [CLEO directory](./cleo-directory.md) for plugins and scripts and runs them.
+To launch the runtime on an unknown host immediately after loading, open the [config file](./config.md) and set `EnableSelfHost` to `1`. When loaded as a self host CLEO Redux scans the [CLEO directory](./cleo-directory.md) for plugins and scripts and runs them.
 
 ### Manually Controlling the Runtime
 
@@ -61,5 +61,6 @@ fn init() {
 
 ## Available Commands
 
-In self-hosted mode CLEO Redux supports native [bindings](./js-bindings.md) and commands made with [the SDK](./using-sdk.md). It uses `.config\cleo.json` for command definitions. You can [download this file](https://library.sannybuilder.com/#/sa/generate) from Sanny Builder Library. Add necessary plugins and click Download.
+In the self-hosted mode CLEO Redux supports native [bindings](./js-bindings.md) and commands made with [SDK](./using-sdk.md). It uses command definitions for the Unknown host from Sanny Builder Library (available for [32-bit](https://library.sannybuilder.com/#/unknown_x86) and [64-bit](https://library.sannybuilder.com/#/unknown_x64)). CLEO Redux automatically downloads necessary files during [the first run](./prerequisites.md).
 
+You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file `.config/unknown_x86.d.ts` or `.config/unknown_x64.d.ts`.
