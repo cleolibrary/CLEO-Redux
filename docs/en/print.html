@@ -439,20 +439,21 @@ import data from &quot;./vehicles.json&quot;;
 <div style="break-before: page; page-break-before: always;"></div><h1 id="bindings"><a class="header" href="#bindings">Bindings</a></h1>
 <p>The following variables and functions are only available in JavaScript code.</p>
 <h2 id="variables"><a class="header" href="#variables">Variables</a></h2>
-<h3 id="game"><a class="header" href="#game">GAME</a></h3>
-<p>current game id. Possible values: <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code></p>
-<pre><code class="language-js">if (GAME === &quot;gta3&quot;) {
+<h3 id="host-1"><a class="header" href="#host-1">HOST</a></h3>
+<p>the host name (previously available as <code>GAME</code> variable). Possible values include <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>unknown</code>. </p>
+<p>CLEO plugins can use SDK to customize the name for their needs.</p>
+<pre><code class="language-js">if (HOST === &quot;gta3&quot;) {
   showTextBox(&quot;This is GTA III&quot;);
 }
-if (GAME === &quot;sa&quot;) {
+if (HOST === &quot;sa&quot;) {
   showTextBox(&quot;This is San Andreas&quot;);
 }
-if (GAME === &quot;sa_unreal&quot;) {
-  showTextBox(&quot;This is San Andreas: The Definitive Edition&quot;);
+if (HOST === &quot;unknown&quot;) {
+  showTextBox(&quot;This host is not natively supported&quot;);
 }
 </code></pre>
 <h3 id="onmission"><a class="header" href="#onmission">ONMISSION</a></h3>
-<p>global flag controlling whether the player is on a mission now.</p>
+<p>the global flag controlling whether the player is on a mission now. Not available on an <code>unknown</code> host.</p>
 <pre><code class="language-js">if (!ONMISSION) {
   showTextBox(&quot;Not on a mission. Setting ONMISSION to true&quot;);
   ONMISSION = true;
@@ -485,7 +486,7 @@ log(&quot;value of x is &quot;, x);
 }
 </code></pre>
 <h3 id="showtextbox"><a class="header" href="#showtextbox">showTextBox</a></h3>
-<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box</p>
+<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box. Not available on an <code>unknown</code> host.</p>
 <pre><code class="language-js">showTextBox(&quot;Hello, world!&quot;);
 </code></pre>
 <h3 id="exit"><a class="header" href="#exit">exit</a></h3>
@@ -493,8 +494,22 @@ log(&quot;value of x is &quot;, x);
 <pre><code class="language-js">exit(&quot;Script ended&quot;);
 </code></pre>
 <h3 id="native"><a class="header" href="#native">native</a></h3>
-<p><code>native(command_name, ...input_args)</code> is a low-level function to execute any in-game command using its name <code>{command_name}</code></p>
+<p><code>native(command_name, ...input_args)</code> is a low-level function to execute a command using its name <code>{command_name}</code>. The command name matches <code>name</code> property in a JSON file provided by Sanny Builder Library.</p>
 <pre><code class="language-js">native(&quot;SET_TIME_OF_DAY&quot;, 12, 30); // sets the time of day to 12:30
+</code></pre>
+<p>For the commands that return a single value, the result is this value.</p>
+<pre><code class="language-js">const progress = native(&quot;GET_PROGRESS_PERCENTAGE&quot;);
+showTextBox(`Progress is ${progress}`);
+</code></pre>
+<p>For the commands that return multiple values, the result is an object where each key corresponds to a returned value. The key names match the output names given in the command definition</p>
+<pre><code class="language-js">var pos = native(&quot;GET_CHAR_COORDINATES&quot;, char); // returns char's coordinates vector {x, y, z}
+showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
+</code></pre>
+<p>For the conditional commands the result is the boolean value <code>true</code> or <code>false</code></p>
+<pre><code class="language-js">if (native(&quot;HAS_MODEL_LOADED&quot;, 101)) {
+  // checks the condition
+  showTextBox(&quot;Model with id 101 has been loaded&quot;);
+}
 </code></pre>
 <h2 id="static-objects"><a class="header" href="#static-objects">Static Objects</a></h2>
 <h3 id="memory"><a class="header" href="#memory">Memory</a></h3>
@@ -589,7 +604,7 @@ var x = Object.create(null);
 </code></pre>
 <p>Native <code>Math</code> methods were given a higher priority over the game commands with the same functionality. For example, to calculate an absolute value of the number, there is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs">Math.abs</a>, not <a href="https://library.sannybuilder.com/#/gta3?q=%22abs%22">Math.Abs</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><blockquote>
-<p>This guide is for the classic era games. For the information on using the Memory class in the definitive editions <a href="./using-memory-64.html">click here</a>.</p>
+<p>This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) <a href="./using-memory-64.html">click here</a>.</p>
 </blockquote>
 <h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
@@ -624,8 +639,11 @@ var x = Object.create(null);
 
     CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
     CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallFunctionReturnFloat(address: int, numParams: int, pop: int, ...funcParams: int[]): float;
     CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
     CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
+
     Fn: {
         Cdecl(address: int): (...funcParams: int[]) =&gt; int;
         CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
@@ -693,18 +711,34 @@ var x = Object.create(null);
 <h3 id="calling-foreign-functions"><a class="header" href="#calling-foreign-functions">Calling Foreign Functions</a></h3>
 <p><code>Memory</code> object allows to invoke a foreign (native) function by its address using one of the following methods:</p>
 <ul>
-<li><code>Memory.CallFunction</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA5">0AA5 CALL_FUNCTION</a></li>
-<li><code>Memory.CallFunctionReturn</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA7">0AA7 CALL_FUNCTION_RETURN</a></li>
-<li><code>Memory.CallMethod</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA6">CALL_METHOD</a></li>
-<li><code>Memory.CallMethodReturn</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA8">CALL_METHOD_RETURN</a></li>
+<li>
+<p><code>Memory.CallFunction</code> - calls a function at the address and discards the returned value</p>
+</li>
+<li>
+<p><code>Memory.CallFunctionReturn</code> - calls a function and at the address and returns an integer value</p>
+</li>
+<li>
+<p><code>Memory.CallFunctionReturnFloat</code> - calls a function and at the address and returns a floating-point value</p>
+</li>
+<li>
+<p><code>Memory.CallMethod</code> - calls a class instance method and discards the returned value</p>
+</li>
+<li>
+<p><code>Memory.CallMethodReturn</code> - calls a class instance method and returns an integer value</p>
+</li>
+<li>
+<p><code>Memory.CallMethodReturnFloat</code> - calls a class instance method and returns a floating-point value</p>
+</li>
 </ul>
 <pre><code class="language-js">    Memory.CallFunction(0x1234567, 2, 0, 1000, 2000)
 </code></pre>
 <p>where <code>0x1234567</code> is the address of the function, <code>2</code> is the number of arguments, <code>0</code> is the <code>pop</code> parameter (see below),  <code>1000</code> and <code>2000</code> are the two arguments passed into the function.</p>
-<p>Note that legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:</p>
+<blockquote>
+<p>Legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:</p>
 <pre><code>0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
 </code></pre>
-<p>where <code>2000</code> is the second argument passed to the function located at 0x1234567 and <code>1000</code> is the first one.</p>
+<p>where <code>2000</code> is the second argument passed to the function located at 0x1234567 and <code>1000</code> is the first one. In JS code all input arguments go in the direct order.</p>
+</blockquote>
 <p>The third parameter (<code>pop</code>) in <code>Memory.CallFunction</code> defines the calling convention. When it is set to <code>0</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall">stdcall</a> convention. When it is set to the same value as <code>numParam</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl">cdecl</a> convention. Any other value breaks the code.</p>
 <p><code>Memory.CallFunctionReturn</code> has the same interface but additionally it writes the result of the function to a variable.</p>
 <p><code>Memory.CallMethod</code> invokes a method of an object:</p>
@@ -926,21 +960,8 @@ var x = Object.create(null);
 <p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="deprecated"><a class="header" href="#deprecated">Deprecated</a></h1>
 <p>Usage of the following commands is not recommended.</p>
-<h1 id="op"><a class="header" href="#op">op</a></h1>
-<p><code>op(opcode_id, ...input_args)</code> - a low-level function to execute any in-game command with opcode <code>{opcode_id}</code>.</p>
-<p>For the commands that return a single value, the result is this value.</p>
-<p>For the commands that return multiple values, the result is an object where each key corresponds to a returned value. The key names match the output names given in the command definition</p>
-<p>For the conditional commands the result is the boolean value <code>true</code> or <code>false</code></p>
-<pre><code class="language-js">op(0x00c0, 12, 30); // sets the time of day to 12:30
-</code></pre>
-<pre><code class="language-js">var pos = op(0x0054, 0); // returns player 0 coordinates vector {x, y, z}
-showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;, pos.y, &quot; z = &quot;, pos.z);
-</code></pre>
-<pre><code class="language-js">if (op(0x0248, 101)) {
-  // checks the condition
-  showTextBox(&quot;Model with id 101 has been loaded&quot;);
-}
-</code></pre>
+<h2 id="game"><a class="header" href="#game">GAME</a></h2>
+<p><code>GAME</code> variable has been renamed to <a href="./js-bindings.html#host">HOST</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
 <h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
 <p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
@@ -1145,7 +1166,7 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
 <p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> gets loaded or injected and where the CLEO runtime runs. This feature is highly experimental and subject to change at any moment.</p>
 <p><a href="https://www.youtube.com/watch?v=rk2LvDt7UkI">See demo on YouTube</a>.</p>
 <h2 id="loading-into-custom-process"><a class="header" href="#loading-into-custom-process">Loading into custom process</a></h2>
-<p>There are multiple ways of loading ASI file into the target process. <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> is one of them. The host can load CLEO ASI file as a dynamic library when needed.</p>
+<p>There are multiple ways of loading ASI file into the target process. <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> is one of them. Or use any <a href="https://github.com/search?q=dll+injector">DLL injector</a> available on GitHub. The host can load CLEO ASI file as a dynamic library when needed.</p>
 <h2 id="launching-the-cleo-runtime"><a class="header" href="#launching-the-cleo-runtime">Launching the CLEO runtime</a></h2>
 <p>To launch the runtime on an unknown host immediately after loading, open the <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them.</p>
 <h3 id="manually-controlling-the-runtime"><a class="header" href="#manually-controlling-the-runtime">Manually Controlling the Runtime</a></h3>
@@ -1206,13 +1227,13 @@ fn init() {
 <h3 id="unsafe-commands"><a class="header" href="#unsafe-commands">Unsafe commands</a></h3>
 <p>Commands that use low-level WinAPI and can potentially damage user environment must be explicitly registered with a permission token (third argument to the <code>RegisterCommand</code>). User can disallow usage of unsafe commands in the scripts using <a href="https://github.com/cleolibrary/CLEO-Redux#permissions">permission config</a>. At the moment three permission tokens are used: <code>mem</code>, <code>fs</code>, and <code>dll</code>. They mark commands operating with the host process, user files and external libraries.</p>
 <h3 id="command-interface"><a class="header" href="#command-interface">Command interface</a></h3>
-<p>CLEO Redux uses <a href="https://library.sannybuilder.com">Sanny Builder Library</a> to know an interface of any command. For a new command to become available in the scripts, the JSON file (<code>gta3.json</code>, <code>vc.json</code>, <code>sa.json</code>) must have the command definition, including the name that matches with the value that the plugin uses <code>RegisterCommand</code> with. E.g. if the plugin registers <code>SHOW_MESSAGE</code> command, the JSON file must have a command with the name property set to <code>SHOW_MESSAGE</code>. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. <code>GetXXXParam</code> for each input argument and <code>SetXXXParam</code> for each output argument).</p>
+<p>CLEO Redux uses <a href="https://library.sannybuilder.com">Sanny Builder Library</a> to know an interface of any command. For a new command to become available in the scripts, the JSON file (<code>gta3.json</code>, <code>vc.json</code>, <code>sa.json</code>) must have the command definition, including the name that matches with the value that the plugin uses <code>RegisterCommand</code> with. E.g. if the plugin registers <code>SHOW_MESSAGE</code> command, the JSON file must have a command with the <code>name</code> property set to <code>SHOW_MESSAGE</code>. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. <code>GetXXXParam</code> for each input argument and <code>SetXXXParam</code> for each output argument).</p>
 <h4 id="claiming-opcodes"><a class="header" href="#claiming-opcodes">Claiming Opcodes</a></h4>
-<p>Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers on GitHub https://github.com/sannybuilder/library/issues</p>
+<p>Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers <a href="https://github.com/sannybuilder/library/issues">on GitHub</a>.</p>
 <h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
-<p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions will ensure each command claims only available id. Also it helps to track and document plugins in one single place.</p>
+<p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions ensure each command claims only an available id. Also it helps to track and document plugins in a single place.</p>
 <h3 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h3>
-<p>The current version is <code>1</code>. Changes to SDK will advance this number by one.</p>
+<p>The current version is <code>2</code>. Changes to SDK advance this number by one.</p>
 <h3 id="path-resolution-convention"><a class="header" href="#path-resolution-convention">Path Resolution Convention</a></h3>
 <p>String arguments representing a path to the directory or file must be normalized using SDK's function <code>ResolvePath</code>. This function takes a path and returns the absolute path resolved by the following rules:</p>
 <ul>

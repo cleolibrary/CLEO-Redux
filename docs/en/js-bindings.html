@@ -143,20 +143,21 @@
                         <h1 id="bindings"><a class="header" href="#bindings">Bindings</a></h1>
 <p>The following variables and functions are only available in JavaScript code.</p>
 <h2 id="variables"><a class="header" href="#variables">Variables</a></h2>
-<h3 id="game"><a class="header" href="#game">GAME</a></h3>
-<p>current game id. Possible values: <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code></p>
-<pre><code class="language-js">if (GAME === &quot;gta3&quot;) {
+<h3 id="host"><a class="header" href="#host">HOST</a></h3>
+<p>the host name (previously available as <code>GAME</code> variable). Possible values include <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>unknown</code>. </p>
+<p>CLEO plugins can use SDK to customize the name for their needs.</p>
+<pre><code class="language-js">if (HOST === &quot;gta3&quot;) {
   showTextBox(&quot;This is GTA III&quot;);
 }
-if (GAME === &quot;sa&quot;) {
+if (HOST === &quot;sa&quot;) {
   showTextBox(&quot;This is San Andreas&quot;);
 }
-if (GAME === &quot;sa_unreal&quot;) {
-  showTextBox(&quot;This is San Andreas: The Definitive Edition&quot;);
+if (HOST === &quot;unknown&quot;) {
+  showTextBox(&quot;This host is not natively supported&quot;);
 }
 </code></pre>
 <h3 id="onmission"><a class="header" href="#onmission">ONMISSION</a></h3>
-<p>global flag controlling whether the player is on a mission now.</p>
+<p>the global flag controlling whether the player is on a mission now. Not available on an <code>unknown</code> host.</p>
 <pre><code class="language-js">if (!ONMISSION) {
   showTextBox(&quot;Not on a mission. Setting ONMISSION to true&quot;);
   ONMISSION = true;
@@ -189,7 +190,7 @@ log(&quot;value of x is &quot;, x);
 }
 </code></pre>
 <h3 id="showtextbox"><a class="header" href="#showtextbox">showTextBox</a></h3>
-<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box</p>
+<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box. Not available on an <code>unknown</code> host.</p>
 <pre><code class="language-js">showTextBox(&quot;Hello, world!&quot;);
 </code></pre>
 <h3 id="exit"><a class="header" href="#exit">exit</a></h3>
@@ -197,8 +198,22 @@ log(&quot;value of x is &quot;, x);
 <pre><code class="language-js">exit(&quot;Script ended&quot;);
 </code></pre>
 <h3 id="native"><a class="header" href="#native">native</a></h3>
-<p><code>native(command_name, ...input_args)</code> is a low-level function to execute any in-game command using its name <code>{command_name}</code></p>
+<p><code>native(command_name, ...input_args)</code> is a low-level function to execute a command using its name <code>{command_name}</code>. The command name matches <code>name</code> property in a JSON file provided by Sanny Builder Library.</p>
 <pre><code class="language-js">native(&quot;SET_TIME_OF_DAY&quot;, 12, 30); // sets the time of day to 12:30
+</code></pre>
+<p>For the commands that return a single value, the result is this value.</p>
+<pre><code class="language-js">const progress = native(&quot;GET_PROGRESS_PERCENTAGE&quot;);
+showTextBox(`Progress is ${progress}`);
+</code></pre>
+<p>For the commands that return multiple values, the result is an object where each key corresponds to a returned value. The key names match the output names given in the command definition</p>
+<pre><code class="language-js">var pos = native(&quot;GET_CHAR_COORDINATES&quot;, char); // returns char's coordinates vector {x, y, z}
+showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
+</code></pre>
+<p>For the conditional commands the result is the boolean value <code>true</code> or <code>false</code></p>
+<pre><code class="language-js">if (native(&quot;HAS_MODEL_LOADED&quot;, 101)) {
+  // checks the condition
+  showTextBox(&quot;Model with id 101 has been loaded&quot;);
+}
 </code></pre>
 <h2 id="static-objects"><a class="header" href="#static-objects">Static Objects</a></h2>
 <h3 id="memory"><a class="header" href="#memory">Memory</a></h3>

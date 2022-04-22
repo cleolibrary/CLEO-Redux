@@ -141,7 +141,7 @@
                 <div id="content" class="content">
                     <main>
                         <blockquote>
-<p>This guide is for the classic era games. For the information on using the Memory class in the definitive editions <a href="./using-memory-64.html">click here</a>.</p>
+<p>This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) <a href="./using-memory-64.html">click here</a>.</p>
 </blockquote>
 <h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
@@ -176,8 +176,11 @@
 
     CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
     CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallFunctionReturnFloat(address: int, numParams: int, pop: int, ...funcParams: int[]): float;
     CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
     CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
+
     Fn: {
         Cdecl(address: int): (...funcParams: int[]) =&gt; int;
         CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
@@ -245,18 +248,34 @@
 <h3 id="calling-foreign-functions"><a class="header" href="#calling-foreign-functions">Calling Foreign Functions</a></h3>
 <p><code>Memory</code> object allows to invoke a foreign (native) function by its address using one of the following methods:</p>
 <ul>
-<li><code>Memory.CallFunction</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA5">0AA5 CALL_FUNCTION</a></li>
-<li><code>Memory.CallFunctionReturn</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA7">0AA7 CALL_FUNCTION_RETURN</a></li>
-<li><code>Memory.CallMethod</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA6">CALL_METHOD</a></li>
-<li><code>Memory.CallMethodReturn</code> - binds to <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA8">CALL_METHOD_RETURN</a></li>
+<li>
+<p><code>Memory.CallFunction</code> - calls a function at the address and discards the returned value</p>
+</li>
+<li>
+<p><code>Memory.CallFunctionReturn</code> - calls a function and at the address and returns an integer value</p>
+</li>
+<li>
+<p><code>Memory.CallFunctionReturnFloat</code> - calls a function and at the address and returns a floating-point value</p>
+</li>
+<li>
+<p><code>Memory.CallMethod</code> - calls a class instance method and discards the returned value</p>
+</li>
+<li>
+<p><code>Memory.CallMethodReturn</code> - calls a class instance method and returns an integer value</p>
+</li>
+<li>
+<p><code>Memory.CallMethodReturnFloat</code> - calls a class instance method and returns a floating-point value</p>
+</li>
 </ul>
 <pre><code class="language-js">    Memory.CallFunction(0x1234567, 2, 0, 1000, 2000)
 </code></pre>
 <p>where <code>0x1234567</code> is the address of the function, <code>2</code> is the number of arguments, <code>0</code> is the <code>pop</code> parameter (see below),  <code>1000</code> and <code>2000</code> are the two arguments passed into the function.</p>
-<p>Note that legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:</p>
+<blockquote>
+<p>Legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:</p>
 <pre><code>0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
 </code></pre>
-<p>where <code>2000</code> is the second argument passed to the function located at 0x1234567 and <code>1000</code> is the first one.</p>
+<p>where <code>2000</code> is the second argument passed to the function located at 0x1234567 and <code>1000</code> is the first one. In JS code all input arguments go in the direct order.</p>
+</blockquote>
 <p>The third parameter (<code>pop</code>) in <code>Memory.CallFunction</code> defines the calling convention. When it is set to <code>0</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall">stdcall</a> convention. When it is set to the same value as <code>numParam</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl">cdecl</a> convention. Any other value breaks the code.</p>
 <p><code>Memory.CallFunctionReturn</code> has the same interface but additionally it writes the result of the function to a variable.</p>
 <p><code>Memory.CallMethod</code> invokes a method of an object:</p>

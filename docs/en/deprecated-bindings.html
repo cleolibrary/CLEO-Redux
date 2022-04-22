@@ -142,21 +142,8 @@
                     <main>
                         <h1 id="deprecated"><a class="header" href="#deprecated">Deprecated</a></h1>
 <p>Usage of the following commands is not recommended.</p>
-<h1 id="op"><a class="header" href="#op">op</a></h1>
-<p><code>op(opcode_id, ...input_args)</code> - a low-level function to execute any in-game command with opcode <code>{opcode_id}</code>.</p>
-<p>For the commands that return a single value, the result is this value.</p>
-<p>For the commands that return multiple values, the result is an object where each key corresponds to a returned value. The key names match the output names given in the command definition</p>
-<p>For the conditional commands the result is the boolean value <code>true</code> or <code>false</code></p>
-<pre><code class="language-js">op(0x00c0, 12, 30); // sets the time of day to 12:30
-</code></pre>
-<pre><code class="language-js">var pos = op(0x0054, 0); // returns player 0 coordinates vector {x, y, z}
-showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;, pos.y, &quot; z = &quot;, pos.z);
-</code></pre>
-<pre><code class="language-js">if (op(0x0248, 101)) {
-  // checks the condition
-  showTextBox(&quot;Model with id 101 has been loaded&quot;);
-}
-</code></pre>
+<h2 id="game"><a class="header" href="#game">GAME</a></h2>
+<p><code>GAME</code> variable has been renamed to <a href="./js-bindings.html#host">HOST</a>.</p>
 
                     </main>
 
