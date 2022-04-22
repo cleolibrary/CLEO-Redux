@@ -358,6 +358,25 @@
   // все равно бессмысленно, но не зависает в игре
 }
 </code></pre>
+<h2 id="Организация-сценариев"><a class="header" href="#Организация-сценариев">Организация сценариев</a></h2>
+<p>Один самодостаточный файл скрипта можно поместить прямо в <a href="https://re.cleo.li/docs/en/cleo-directory.html">директорию CLEO</a>.</p>
+<p>Начиная с версии 0.9.3 сложные скрипты, имеющие множество зависимостей (импортированные файлы, словари <a href="https://re.cleo.li/docs/ru/using-fxt.html">FXT</a>), могут быть организованы в папки. CLEO Redux сканирует подкаталоги <a href="https://re.cleo.li/docs/en/cleo-directory.html">каталога CLEO</a> и проверяет, есть ли файл с именем <code>index.js</code>. Если <code>index.js</code> найден, CLEO Redux запускает его. Он также загружает все файлы FXT из того же каталога.</p>
+<p>Давайте посмотрим на структуру примера:</p>
+<pre><code>CLEO/
+├─ CLEO_TEXT/
+│  ├─ main.fxt
+├─ папка A/
+│  ├─ text.fxt
+│  ├─ index.js
+├─ папка B/
+│  ├─ test.fxt
+│  ├─ test.js
+├─ script1.js
+├─ script2.cs
+</code></pre>
+<p>По умолчанию CLEO Redux загружает все файлы CS и JS из корня каталога CLEO и файлы FXT из папки <code>CLEO_TEX</code>. Таким образом, он загружает <code>script1.js</code>, <code>script2.cs</code> и <code>main.fxt</code>.</p>
+<p>После сканирования подкаталогов CLEO загружает <code>index.js</code> и <code>text.fxt</code>, находящиеся в <code>папке A</code>, и пропускает <code>папку B</code>, так как файла <code>index.js</code> нет.</p>
+<p>CLEO_TEXT, CLEO_PLUGINS и .config не считаются каталогами скриптов.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Сравнение-scriptobject-и-object"><a class="header" href="#Сравнение-scriptobject-и-object">Сравнение ScriptObject и Object</a></h1>
 <p>Библиотека Sanny Builder определяет статический класс <code>Object</code> для группировки команд, позволяющих создавать и управлять трехмерными объектами в игре. В то же время в JavaScript есть <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">собственный класс Object</a> со своими методами.</p>
 <p>Чтобы не смешивать их, CLEO Redux использует класс <code>ScriptObject</code> вместо класса <code>Object</code> из библиотеки с <a href="https://library.sannybuilder.com/#/gta3/classes/Object">тем же интерфейсом</a>.</p>
