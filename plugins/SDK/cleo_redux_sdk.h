@@ -24,7 +24,8 @@ enum class HostId
 	SA = 5,
 	GTA3_UNREAL = 6,
 	VC_UNREAL = 7,
-	SA_UNREAL = 8
+	SA_UNREAL = 8,
+	UNKNOWN = 255
 };
 
 typedef void* Context;
@@ -74,4 +75,16 @@ extern "C" {
 	// since v1
 	// Sets the status of the current condition
 	void UpdateCompareFlag(Context ctx, bool result);
+    // since v2
+    // Copies atmost {maxlen} bytes of a UTF-8 encoded host name to {dest}
+	void GetHostName(char* dest, unsigned char maxlen);
+    // since v2
+    // Sets the new host name (available in scripts as the HOST constant)
+    void SetHostName(const char* src);
+    // since v2
+    // Initializes or reloads CLEO runtime
+    void RuntimeInit();
+    // since v2
+    // Iterates the main loop
+    void RuntimeNextTick(unsigned int current_time, int time_step);
 }

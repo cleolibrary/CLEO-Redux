@@ -5,25 +5,27 @@ The following variables and functions are only available in JavaScript code.
 
 ## Variables
 
-### GAME
+### HOST
 
-current game id. Possible values: `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`
+the host name (previously available as `GAME` variable). Possible values include `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `unknown`. 
+
+CLEO plugins can use SDK to customize the name for their needs.
 
 ```js
-if (GAME === "gta3") {
+if (HOST === "gta3") {
   showTextBox("This is GTA III");
 }
-if (GAME === "sa") {
+if (HOST === "sa") {
   showTextBox("This is San Andreas");
 }
-if (GAME === "sa_unreal") {
-  showTextBox("This is San Andreas: The Definitive Edition");
+if (HOST === "unknown") {
+  showTextBox("This host is not natively supported");
 }
 ```
 
 ### ONMISSION 
 
-global flag controlling whether the player is on a mission now.
+the global flag controlling whether the player is on a mission now. Not available on an `unknown` host.
 
 ```js
 if (!ONMISSION) {
@@ -75,7 +77,7 @@ while (true) {
 
 ### showTextBox
 
-`showTextBox(text)` displays `{text}` in the black rectangular box
+`showTextBox(text)` displays `{text}` in the black rectangular box. Not available on an `unknown` host.
 
 ```js
 showTextBox("Hello, world!");
@@ -91,10 +93,32 @@ exit("Script ended");
 
 ### native
 
-`native(command_name, ...input_args)` is a low-level function to execute any in-game command using its name `{command_name}`
+`native(command_name, ...input_args)` is a low-level function to execute a command using its name `{command_name}`. The command name matches `name` property in a JSON file provided by Sanny Builder Library.
 
 ```js
 native("SET_TIME_OF_DAY", 12, 30); // sets the time of day to 12:30
+```
+
+For the commands that return a single value, the result is this value.
+
+```js
+const progress = native("GET_PROGRESS_PERCENTAGE");
+showTextBox(`Progress is ${progress}`);
+```
+
+For the commands that return multiple values, the result is an object where each key corresponds to a returned value. The key names match the output names given in the command definition
+
+```js
+var pos = native("GET_CHAR_COORDINATES", char); // returns char's coordinates vector {x, y, z}
+showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
+```
+
+For the conditional commands the result is the boolean value `true` or `false`
+```js
+if (native("HAS_MODEL_LOADED", 101)) {
+  // checks the condition
+  showTextBox("Model with id 101 has been loaded");
+}
 ```
 
 ## Static Objects 

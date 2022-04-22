@@ -8,7 +8,7 @@ CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not [supported
 
 ## Loading into custom process
 
-There are multiple ways of loading ASI file into the target process. [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) is one of them. The host can load CLEO ASI file as a dynamic library when needed.
+There are multiple ways of loading ASI file into the target process. [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) is one of them. Or use any [DLL injector](https://github.com/search?q=dll+injector) available on GitHub. The host can load CLEO ASI file as a dynamic library when needed.
 
 ## Launching the CLEO runtime
 

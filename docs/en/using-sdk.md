@@ -20,19 +20,19 @@ Commands that use low-level WinAPI and can potentially damage user environment m
 
 ### Command interface
 
-CLEO Redux uses [Sanny Builder Library](https://library.sannybuilder.com) to know an interface of any command. For a new command to become available in the scripts, the JSON file (`gta3.json`, `vc.json`, `sa.json`) must have the command definition, including the name that matches with the value that the plugin uses `RegisterCommand` with. E.g. if the plugin registers `SHOW_MESSAGE` command, the JSON file must have a command with the name property set to `SHOW_MESSAGE`. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. `GetXXXParam` for each input argument and `SetXXXParam` for each output argument).
+CLEO Redux uses [Sanny Builder Library](https://library.sannybuilder.com) to know an interface of any command. For a new command to become available in the scripts, the JSON file (`gta3.json`, `vc.json`, `sa.json`) must have the command definition, including the name that matches with the value that the plugin uses `RegisterCommand` with. E.g. if the plugin registers `SHOW_MESSAGE` command, the JSON file must have a command with the `name` property set to `SHOW_MESSAGE`. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. `GetXXXParam` for each input argument and `SetXXXParam` for each output argument).
 
 #### Claiming Opcodes
 
-Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers on GitHub https://github.com/sannybuilder/library/issues
+Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers [on GitHub](https://github.com/sannybuilder/library/issues).
 
 #### Why use command names and not an id for the command lookup?
 
-One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions will ensure each command claims only available id. Also it helps to track and document plugins in one single place.
+One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions ensure each command claims only an available id. Also it helps to track and document plugins in a single place.
 
 ### SDK Version
 
-The current version is `1`. Changes to SDK will advance this number by one.
+The current version is `2`. Changes to SDK advance this number by one.
 
 ### Path Resolution Convention
 

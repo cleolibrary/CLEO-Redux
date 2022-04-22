@@ -1,7 +1,7 @@
 use cleo_redux_sdk::*;
 use libloading;
 
-/// https://library.sannybuilder.com/#/sa/CLEO/0AA2?p=1&v=1
+/// https://library.sannybuilder.com/#/unknown_x86/dylib/LOAD_DYNAMIC_LIBRARY
 pub extern "C" fn load_dynamic_library(ctx: Context) -> HandlerResult {
     let libname = get_string_param(ctx);
 
@@ -30,7 +30,7 @@ pub extern "C" fn load_dynamic_library(ctx: Context) -> HandlerResult {
     HandlerResult::CONTINUE
 }
 
-/// https://library.sannybuilder.com/#/sa/CLEO/0AA3?p=1&v=1
+/// https://library.sannybuilder.com/#/unknown_x86/dylib/FREE_DYNAMIC_LIBRARY
 pub extern "C" fn free_dynamic_library(ctx: Context) -> HandlerResult {
     log(format!("disposing dynamic library"));
 
@@ -41,7 +41,7 @@ pub extern "C" fn free_dynamic_library(ctx: Context) -> HandlerResult {
     HandlerResult::CONTINUE
 }
 
-/// https://library.sannybuilder.com/#/sa/CLEO/0AA4?p=1&v=1
+/// https://library.sannybuilder.com/#/unknown_x86/dylib/GET_DYNAMIC_LIBRARY_PROCEDURE
 pub extern "C" fn find_procedure(ctx: Context) -> HandlerResult {
     let symbol = get_string_param(ctx);
     let lib = get_int_param(ctx) as *mut libloading::Library;

@@ -1,3 +1,32 @@
+### 0.9.3 - Apr 22, 2022
+
+- CLEO can be [embedded](https://re.cleo.li/docs/en/embedding.html) and run on unknown hosts via the self-hosted mode  [See demo](https://www.youtube.com/watch?v=rk2LvDt7UkI)
+- new installer that automatically downloads extra dependencies such as Ultimate ASI Loader and plugins (dylib, IniFiles, or ImGuiRedux)
+- support for organizing scripts and its dependencies in sub-directories inside the CLEO folder. See https://re.cleo.li/docs/en/script-lifecycle.html#organizing-scripts
+- automatically download the latest `enums.js` file from Sanny Builder Library along with the command definitions. You can import enums in JS with `import * as enums from './.config/enums';` 
+- memory access operations can run on an unknown host (previously they had a dependency on the `op` command which itself can only run in GTA games)
+- `Memory.CallFunctionReturnFloat` and `Memory.CallMethodReturnFloat` are now available for 32-bit hosts. `CallFunctionReturnFloat` has been previously added for 64-bit hosts.
+
+**SDK AND PLUGINS**
+- SDK's method `ResolvePath` now resolves paths starting with `./` or `.\` relative to the script directory. You can use them in commands like `READ_INT_FROM_INI_FILE` or `LOAD_DYNAMIC_LIBRARY`
+- new SDK methods `GetHostName`, `SetHostName`, `RuntimeInit`, `RuntimeNextTick`. SDK version is now 2.
+- IniFiles plugin updated to 1.2: increased max length of the INI file path
+- Dylib plugin updated to 1.1: increased max length of the DLL file path
+
+**BREAKING CHANGES**
+- delete previously deprecated command `op`. Use `native` instead.
+- rename `GAME` variable to `HOST` (`GAME` is still available for use but it's recommended to update older scripts)
+
+| Game                                | File                                                                                                 | Minimum Required Version |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
+| GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.218`                  |
+| GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.220`                  |
+| GTA San Andreas (Classic) 1.0       | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json)                            | `0.236`                  |
+| GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.213`                  |
+| Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.215`                  |
+| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.220`                  |
+
+
 ### 0.9.2 - Mar 04, 2022
 
 - add support for The Definitive Edition Title Update 1.04 (GTA III DE 1.0.0.15284, VC DE 1.0.0.15399, SA DE 1.0.0.15483)

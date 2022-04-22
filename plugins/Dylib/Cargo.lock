@@ -10,9 +10,9 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "cleo_redux_sdk"
-version = "0.0.4"
+version = "0.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "179143c87d86077f516adc227c01321376273e797b234c0e5f553bfd136270a2"
+checksum = "48c1e23e39a04a8a72bc3878d743c9dc32ababf2fe4ea87d3b0f3c930c14e5b0"
 
 [[package]]
 name = "ctor"
@@ -26,7 +26,7 @@ dependencies = [
 
 [[package]]
 name = "dylib"
-version = "1.0.2"
+version = "1.1.0"
 dependencies = [
  "cleo_redux_sdk",
  "ctor",

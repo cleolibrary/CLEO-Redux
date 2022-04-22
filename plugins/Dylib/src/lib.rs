@@ -11,7 +11,7 @@ fn init() {
     use cleo_redux_sdk::{log, register_command};
     use r#impl::{find_procedure, free_dynamic_library, load_dynamic_library};
 
-    log("Dylib plugin 1.0.2");
+    log("Dylib plugin 1.1");
 
     register_command("LOAD_DYNAMIC_LIBRARY", load_dynamic_library, Some("dll"));
     register_command("FREE_DYNAMIC_LIBRARY", free_dynamic_library, Some("dll"));

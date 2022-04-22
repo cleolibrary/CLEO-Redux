@@ -9,7 +9,7 @@
 class IniFilesPlugin {
 public:
 	IniFilesPlugin() {
-		Log("IniFiles plugin 1.1");
+		Log("IniFiles plugin 1.2");
 		RegisterCommand("READ_INT_FROM_INI_FILE", IniFileReadInt, "fs");
 		RegisterCommand("WRITE_INT_TO_INI_FILE", IniFileWriteInt, "fs");
 		RegisterCommand("READ_FLOAT_FROM_INI_FILE", IniFileReadFloat, "fs");
@@ -24,7 +24,7 @@ public:
 		0AF0=4,%4d% = get_int_from_ini_file %1s% section %2s% key %3s%
 		****************************************************************/
 	{
-		wchar_t iniPath[STR_MAX_LEN];
+		wchar_t iniPath[MAX_PATH];
 		wchar_t sectionName[STR_MAX_LEN];
 		wchar_t key[STR_MAX_LEN];
 
@@ -45,7 +45,7 @@ public:
 		0AF1=4,write_int %1d% to_ini_file %2s% section %3s% key %4s%
 		****************************************************************/
 	{
-		wchar_t iniPath[STR_MAX_LEN];
+		wchar_t iniPath[MAX_PATH];
 		wchar_t sectionName[STR_MAX_LEN];
 		wchar_t key[STR_MAX_LEN];
 		wchar_t strValue[STR_MAX_LEN];
@@ -67,7 +67,7 @@ public:
 		0AF2=4,%4d% = get_float_from_ini_file %1s% section %2s% key %3s%
 		****************************************************************/
 	{
-		wchar_t iniPath[STR_MAX_LEN];
+		wchar_t iniPath[MAX_PATH];
 		wchar_t sectionName[STR_MAX_LEN];
 		wchar_t key[STR_MAX_LEN];
 		wchar_t strValue[STR_MAX_LEN];
@@ -98,7 +98,7 @@ public:
 		0AF3=4,write_float %1d% to_ini_file %2s% section %3s% key %4s%
 		****************************************************************/
 	{
-		wchar_t iniPath[STR_MAX_LEN];
+		wchar_t iniPath[MAX_PATH];
 		wchar_t sectionName[STR_MAX_LEN];
 		wchar_t key[STR_MAX_LEN];
 		wchar_t strValue[STR_MAX_LEN];
@@ -120,7 +120,7 @@ public:
 		0AF4=4,%4d% = read_string_from_ini_file %1s% section %2s% key %3s%
 		****************************************************************/
 	{
-		wchar_t iniPath[STR_MAX_LEN];
+		wchar_t iniPath[MAX_PATH];
 		wchar_t sectionName[STR_MAX_LEN];
 		wchar_t key[STR_MAX_LEN];
 		wchar_t strValue[STR_MAX_LEN];
@@ -145,7 +145,7 @@ public:
 		0AF5=4,write_string %1s% to_ini_file %2s% section %3s% key %4s%
 		****************************************************************/
 	{
-		wchar_t iniPath[STR_MAX_LEN];
+		wchar_t iniPath[MAX_PATH];
 		wchar_t sectionName[STR_MAX_LEN];
 		wchar_t key[STR_MAX_LEN];
 		wchar_t strValue[STR_MAX_LEN];
@@ -179,10 +179,10 @@ public:
 
 	static void GetPath(Context ctx, wchar_t* res) {
 		char buf[STR_MAX_LEN];
-		char path[STR_MAX_LEN];
+		char path[MAX_PATH];
 		GetStringParam(ctx, buf, sizeof(buf));
 		ResolvePath(buf, path);
-		MultiByteToWideChar(CP_UTF8, 0, path, -1, res, STR_MAX_LEN);
+		MultiByteToWideChar(CP_UTF8, 0, path, -1, res, MAX_PATH);
 	}
 
 	static BOOL ReadStringFromIni(wchar_t* iniPath, wchar_t* sectionName, wchar_t* key, wchar_t* strValue) {

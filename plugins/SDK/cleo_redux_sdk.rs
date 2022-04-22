@@ -24,6 +24,7 @@ pub enum HostId {
     GTA3_UNREAL = 6,
     VC_UNREAL = 7,
     SA_UNREAL = 8,
+    UNKNOWN = 255,
 }
 
 #[allow(non_camel_case_types)]
@@ -78,7 +79,7 @@ extern "C" {
     /// since v1
     ///
     /// Copies atmost {maxlen} bytes of a UTF-8 encoded character sequence in the script input to {dest}
-	fn GetStringParam(ctx: Context, dest: *mut c_char, maxlen: u8);
+    fn GetStringParam(ctx: Context, dest: *mut c_char, maxlen: u8);
     /// since v1
     ///
     /// Writes the integer {value} (either 32 or 64 bit depending on the target platform) to the script output
@@ -95,6 +96,23 @@ extern "C" {
     ///
     /// Sets the status of the current condition
     fn UpdateCompareFlag(ctx: Context, result: bool);
+    /// since v2
+    ///
+    /// Copies atmost {maxlen} bytes of a UTF-8 encoded host name to {dest}
+    fn GetHostName(dest: *mut c_char, maxlen: u8);
+    /// since v2
+    ///
+    /// Sets the new host name (available in scripts as the HOST constant)
+    fn SetHostName(src: *const c_char);
+    /// since v2
+    ///
+    /// Initializes or reloads CLEO runtime
+    fn RuntimeInit();
+    /// since v2
+    ///
+    /// Iterates the main loop
+    fn RuntimeNextTick(current_time: u32, time_step: i32);
+
 }
 
 macro_rules! sz {
@@ -218,6 +236,36 @@ pub fn set_float_param(ctx: Context, value: f32) {
 /// Sets the status of the current condition
 pub fn update_compare_flag(ctx: Context, value: bool) {
     unsafe { UpdateCompareFlag(ctx, value) }
+}
+
+/// since v2
+///
+/// Copies atmost {maxlen} bytes of a UTF-8 encoded host name to {dest}
+pub fn get_host_name() -> String {
+    let mut buf = [0i8; SDK_STRING_MAX_LEN];
+    unsafe { GetHostName(buf.as_mut_ptr(), SDK_STRING_MAX_LEN as _) };
+    to_rust_string(buf.as_ptr())
+}
+
+/// since v2
+///
+/// Sets the new host name (available in scripts as the HOST constant)
+pub fn set_host_name(value: String) {
+    unsafe { SetHostName(sz!(value)) };
+}
+
+/// since v2
+///
+/// Initializes or reloads CLEO runtime
+pub fn runtime_init() {
+    unsafe { RuntimeInit() }
+}
+
+/// since v2
+///
+/// Iterates the main loop
+pub fn runtime_next_tick(current_time: u32, time_step: i32) {
+    unsafe { RuntimeNextTick(current_time, time_step) }
 }
 
 fn to_rust_string(addr: *const i8) -> String {

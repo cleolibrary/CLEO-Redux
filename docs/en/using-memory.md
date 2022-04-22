@@ -1,4 +1,4 @@
-> This guide is for the classic era games. For the information on using the Memory class in the definitive editions [click here](./using-memory-64.md).
+> This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) [click here](./using-memory-64.md).
 
 # Memory Object
 
@@ -36,8 +36,11 @@ interface Memory {
 
     CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
     CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallFunctionReturnFloat(address: int, numParams: int, pop: int, ...funcParams: int[]): float;
     CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
     CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
+    CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
+
     Fn: {
         Cdecl(address: int): (...funcParams: int[]) => int;
         CdeclFloat(address: int): (...funcParams: int[]) => float;
@@ -130,10 +133,13 @@ Alternatively, use appropriate methods to read/write the value as a float (`Read
 
 `Memory` object allows to invoke a foreign (native) function by its address using one of the following methods:
 
-- `Memory.CallFunction` - binds to [0AA5 CALL_FUNCTION](https://library.sannybuilder.com/#/gta3/CLEO/0AA5)
-- `Memory.CallFunctionReturn` - binds to [0AA7 CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA7)
-- `Memory.CallMethod` - binds to [CALL_METHOD](https://library.sannybuilder.com/#/gta3/CLEO/0AA6)
-- `Memory.CallMethodReturn` - binds to [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8)
+- `Memory.CallFunction` - calls a function at the address and discards the returned value
+- `Memory.CallFunctionReturn` - calls a function and at the address and returns an integer value
+- `Memory.CallFunctionReturnFloat` - calls a function and at the address and returns a floating-point value
+
+- `Memory.CallMethod` - calls a class instance method and discards the returned value
+- `Memory.CallMethodReturn` - calls a class instance method and returns an integer value
+- `Memory.CallMethodReturnFloat` - calls a class instance method and returns a floating-point value
 
 
 ```js
@@ -141,13 +147,12 @@ Alternatively, use appropriate methods to read/write the value as a float (`Read
 ```
 where `0x1234567` is the address of the function, `2` is the number of arguments, `0` is the `pop` parameter (see below),  `1000` and `2000` are the two arguments passed into the function.
 
-Note that legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:
-
-```
-0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
-```
-where `2000` is the second argument passed to the function located at 0x1234567 and `1000` is the first one.
-
+> Legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:
+>
+>```
+>0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
+>```
+>where `2000` is the second argument passed to the function located at 0x1234567 and `1000` is the first one. In JS code all input arguments go in the direct order.
 
 The third parameter (`pop`) in `Memory.CallFunction` defines the calling convention. When it is set to `0`, the function is called using the [stdcall](https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall) convention. When it is set to the same value as `numParam`, the function is called using the [cdecl](https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl) convention. Any other value breaks the code.
 
