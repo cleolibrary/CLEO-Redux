@@ -1,7 +1,7 @@
 // Script by Vital (Vitaly Pavlovich Ulyanov)
 /// <reference path=".config/vc.d.ts"/>
 
-if (GAME === "vc" || GAME === "reVC") {
+if (HOST === "vc" || HOST === "reVC") {
   var gangs = [0, 1, 2, 3, 4, 5, 6],
     primary_weapons = [19, 21, 22, 23, 24, 25, 26, 27],
     secondary_weapons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 17, 18];
