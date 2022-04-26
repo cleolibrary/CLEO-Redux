@@ -39,7 +39,7 @@ function addVec(v1, v2) {
 }
 
 function getInfernusMI() {
-  switch (GAME) {
+  switch (HOST) {
     case "re3":
     case "gta3":
       return 101;
