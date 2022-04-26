@@ -1,28 +1,29 @@
 // this path below assumes the script file is located in CLEO directory. Adjust accordingly to your setup.
 /// <reference path=".config/gta3.d.ts" />
+import { KeyCode } from "./.config/enums";
 
 /**
  * this script spawns an Infernus in front of the player
  * when the F5 button is pressed
  */
-var VK_F5 = 116;
-var MI_INFERNUS = getInfernusMI();
-var player = new Player(0);
+const MI_INFERNUS = getInfernusMI();
+const player = new Player(0);
 
 while (true) {
   wait(250);
-  if (Pad.IsKeyPressed(VK_F5) && player.isPlaying()) {
+  if (Pad.IsKeyPressed(KeyCode.F5) && player.isPlaying()) {
     loadModel(MI_INFERNUS);
 
-    var pos = addVec(player.getChar().getCoordinates(), { x: 2.0, y: -2.0, z: 0 });
-    var infernus = Car.Create(MI_INFERNUS, pos.x, pos.y, pos.z);
-    var blip = Blip.AddForCar(infernus);
+    const pos = addVec(player.getChar().getCoordinates(), { x: 2.0, y: -2.0, z: 0 });
+    const infernus = Car.Create(MI_INFERNUS, pos.x, pos.y, pos.z);
+    const blip = Blip.AddForCar(infernus);
 
     showTextBox("Here is your Infernus");
     infernus.markAsNoLongerNeeded();
     Streaming.MarkModelAsNoLongerNeeded(MI_INFERNUS);
 
     wait(2000);
+    blip.remove();
   }
 }
 

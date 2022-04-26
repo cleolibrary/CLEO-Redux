@@ -3,11 +3,12 @@
 // /// <reference path=".config/vc.d.ts" />
 // /// <reference path=".config/sa.d.ts" />
 
-var VK_F4 = 115;
+import { KeyCode } from './.config/enums';
+
 while (true) {
   wait(250);
 
-  if (Pad.IsKeyPressed(VK_F4)) {
+  if (Pad.IsKeyPressed(KeyCode.F4)) {
     Game.ActivateSaveMenu();
     wait(1000);
   }

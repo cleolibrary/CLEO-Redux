@@ -3,31 +3,33 @@
 // original script by DK22Pac https://sannybuilder.com/forums/viewtopic.php?id=1177
 // version for re3 by Seemann https://github.com/x87
 
+import { KeyCode } from './.config/enums';
+
 if (GAME !== "re3") {
   exit("This script is only for re3");
 }
 
-var setModelIndex = Memory.Translate("CPed::SetModelIndex");
+const setModelIndex = Memory.Translate("CPed::SetModelIndex");
 if (!setModelIndex) {
   exit("Can't find address for CPed::SetModelIndex");
 }
 
-var getPed = Memory.Translate("CPools::GetPed");
+const getPed = Memory.Translate("CPools::GetPed");
 if (!getPed) {
   exit("Can't find address for CPools::GetPed");
 }
 
-var index = 0;
-var player = new Player(0);
-var skins = setupSkinIds();
+let index = 0;
+const player = new Player(0);
+const skins = setupSkinIds();
 
 // main loop
 while (true) {
   wait(250);
   if (player.isPlaying()) {
-    if (checkKeyReleased(219)) { // [
+    if (checkKeyReleased(KeyCode.Oem4)) { // [ key
       changeSkin(prevSkin());
-    } else if (checkKeyReleased(221)) { // ]
+    } else if (checkKeyReleased(KeyCode.Oem6)) { // ] key
       changeSkin(nextSkin());
     }
   }
@@ -35,8 +37,8 @@ while (true) {
 
 // initialize allowed ped models (skip models 26, 27, 28, 29)
 function setupSkinIds() {
-  var ids = [];
-  for (var i = 0; i < 83; i++) {
+  const ids = [];
+  for (let i = 0; i < 83; i++) {
     if (i >= 26 && i <= 29) {
       continue;
     }
@@ -88,7 +90,7 @@ function changeSkin(mi) {
     }
   }
 
-  var struct = Memory.Fn.Cdecl(getPed)(player.getChar()); // analogous to 0A96 GET_PED_POINTER
+  const struct = Memory.Fn.Cdecl(getPed)(player.getChar()); // analogous to 0A96 GET_PED_POINTER
 
   Memory.Fn.Thiscall(setModelIndex, struct)(mi); // analogous to 0AA6: call_method address setModelIndex struct struct num_params 1 pop 0 func_params mi
 
