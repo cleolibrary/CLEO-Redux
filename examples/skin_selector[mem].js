@@ -3,7 +3,7 @@
 // original script by DK22Pac https://sannybuilder.com/forums/viewtopic.php?id=1177
 // version for re3 by Seemann https://github.com/x87
 
-if (GAME !== "re3") {
+if (HOST !== "re3") {
   exit("This script is only for re3");
 }
 
