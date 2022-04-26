@@ -1,6 +1,6 @@
 /// <reference path=".config/gta3.d.ts" />
 
-if (GAME !== "re3" && GAME !== "reVC") {
+if (HOST !== "re3" && HOST !== "reVC") {
   exit("Only for re3 or reVC");
 }
 
