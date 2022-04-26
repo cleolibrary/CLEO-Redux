@@ -36,7 +36,7 @@ const CText__Get = Memory.Fn.Thiscall(0x6A0050, 0xC1B340)
 
 while (true) 
 {   
-    if (GAME != "gta3" && GAME != "vc" && GAME != "sa")
+    if (HOST != "gta3" && HOST != "vc" && HOST != "sa")
     {
         exit("Game Overlay: Unsupported game/ version. Only GTA3, VC and SA v1.0 (Not Definitive Edition) are supported.")
     }
@@ -78,7 +78,7 @@ while (true)
 
     if (gShowLoc)
     {
-        if (GAME == "sa")
+        if (HOST == "sa")
         {
             let intID = Streaming.GetAreaVisible()
             let cityID = gPlayer.getCityIsIn()
@@ -135,7 +135,7 @@ while (true)
                 ImGui.Text("Interior: " + intID + ", " + townName)
             }
         }
-        else if (GAME == "vc")
+        else if (HOST == "vc")
         {
             ImGui.Text("Vice City")
         }
