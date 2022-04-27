@@ -7,7 +7,7 @@
   "gta3_unreal",
   "vc_unreal",
   "sa_unreal",
-].includes(GAME) || exit("Unsupported game");
+].includes(HOST) || exit("Unsupported game");
 
 const mainScm = Memory.Translate("CTheScripts::ScriptSpace");
 
