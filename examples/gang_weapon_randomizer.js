@@ -1,7 +1,7 @@
 // Script by Vital (Vitaly Pavlovich Ulyanov)
 /// <reference path=".config/vc.d.ts"/>
 
-if (GAME !== "vc" && GAME !== "reVC") {
+if (HOST !== "vc" && HOST !== "reVC") {
   exit("Sorry, this script is for GTA VC only");
 }
 
