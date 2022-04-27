@@ -3,7 +3,7 @@
 // Mine Drop script. Press M while in car to drop a mine. Don't forget to drive away
 // as the mine will be activated in 1.5 seconds!
 
-!["gta3", "vc", "gta3_unreal", "vc_unreal"].includes(GAME) &&
+!["gta3", "vc", "gta3_unreal", "vc_unreal"].includes(HOST) &&
   exit("only for GTA III or Vice City");
 
 export const PickupType = {

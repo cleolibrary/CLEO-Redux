@@ -5,7 +5,7 @@
 
 import { KeyCode } from './.config/enums';
 
-if (GAME !== "re3") {
+if (HOST !== "re3") {
   exit("This script is only for re3");
 }
 
