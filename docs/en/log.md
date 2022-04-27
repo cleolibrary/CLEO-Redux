@@ -13,3 +13,5 @@ tail -f cleo_redux.log
 ```
 
 `tail` is a unix command so a compatible environment is needed (for example Git Bash).
+
+The log file also lists all executed opcodes with [`LogOpcodes=1`](./config.md#general) and JavaScript commands with [`CLEO.debug.trace(true)`](./js-bindings.md#cleo). 

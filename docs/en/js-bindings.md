@@ -53,6 +53,10 @@ while (true) {
 
 an absolute path to the directory with the current file
 
+### __filename 
+
+(since 0.9.4) an absolute path to the current file
+
 ## Functions
 
 ### log
@@ -137,3 +141,27 @@ if (native("HAS_MODEL_LOADED", 101)) {
 ### FxtStore
 
 - `FxtStore` allows to update the content of in-game texts. See the [Custom Text](./using-fxt.md) guide for details.
+
+
+### CLEO
+
+- (since 0.9.4) `CLEO` object provides access to the runtime information and utilities:
+
+  - `CLEO.debug.trace(flag)` toggles on and off command tracing in the current script. When {flag} is true all executed commands get added to `cleo_redux.log`:
+  ```js
+    CLEO.debug.trace(true)
+    wait(50);
+    const p = new Player(0);
+    CLEO.debug.trace(false)
+  ```
+
+  - `CLEO.version` - a complex property providing information about current library version
+
+  ```js
+    log(CLEO.version)       // "0.9.4-dev.20220427"
+    log(CLEO.version.major) // "0"
+    log(CLEO.version.minor) // "9"
+    log(CLEO.version.patch) // "4"
+    log(CLEO.version.pre)   // "dev"
+    log(CLEO.version.build) // "20220427"
+  ```

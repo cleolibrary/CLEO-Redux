@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "0.9.4-dev.20220426"
+#define AppVersion "0.9.4-dev.20220427"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\..\cleo_redux_plugins_release"
@@ -306,6 +306,11 @@ begin
         begin
           WizardForm.ComponentsList.Checked[5] := False;
           WizardForm.ComponentsList.ItemEnabled[5] := False;
+        end;
+        if not NeedsSilentPatch then
+        begin
+          WizardForm.ComponentsList.Checked[6] := False;
+          WizardForm.ComponentsList.ItemEnabled[6] := False;
         end;
     end;
 end;
