@@ -143,23 +143,29 @@
                         <h1 id="permissions"><a class="header" href="#permissions">Permissions</a></h1>
 <p>CLEO Redux acknowledges some <a href="./custom-commands.html">custom commands</a> (opcodes) as unsafe and requires the user to decide whether to run them or not. Raw access to the process memory, loading external libraries or making network requests can be harmful and produce undesired side-effects. Hence CLEO introduces permission levels for running the unsafe code.</p>
 <p>There are four available levels:</p>
-<h2 id="all"><a class="header" href="#all">All</a></h2>
+<h3 id="all"><a class="header" href="#all">All</a></h3>
 <p>Any unsafe operation is allowed. Use this only when you trust the scripts you run.</p>
-<h2 id="lax"><a class="header" href="#lax">Lax</a></h2>
+<h3 id="lax"><a class="header" href="#lax">Lax</a></h3>
 <p>This is the default permission level.</p>
 <p>No unsafe operation is allowed unless the script explicitly requests it. Currently to request a permission, the name of the script file must include the permissions tokens wrapped in square brackets.</p>
 <p>For example, if the script wants to access the memory via <code>0A8D READ_MEMORY</code> the file name must contain <code>[mem]</code>, e.g. <code>cool-spawner[mem].cs</code>. If the file is named differently CLEO rejects <code>0A8D</code> and the script crashes.</p>
-<h2 id="strict"><a class="header" href="#strict">Strict</a></h2>
+<h3 id="strict"><a class="header" href="#strict">Strict</a></h3>
 <p>No unsafe operation is allowed unless the script explicitly requests it (see <code>&quot;Lax&quot;</code>) and the CLEO config file permits this type of operation under the <code>Permissions</code> section.</p>
-<p>Permissions section in <code>cleo.ini</code> allows to enable or disable groups of unsafe operations by using the permission tokens. For example,</p>
+<p>Permissions section in <code>cleo.ini</code> allows to enable or disable groups of unsafe operations by using the <a href="#known-permission-tokens">permission tokens</a>. For example,</p>
 <pre><code class="language-ini">mem=0
 </code></pre>
 <p>disables all memory-related opcodes even if the script has the <code>[mem]</code> token in the file name.</p>
 <blockquote>
 <p><code>Permissions</code> section in the <code>cleo.ini</code> only takes effect when <code>PermissionLevel</code> is <code>Strict</code>.</p>
 </blockquote>
-<h2 id="none"><a class="header" href="#none">None</a></h2>
+<h3 id="none"><a class="header" href="#none">None</a></h3>
 <p>No unsafe operation is allowed.</p>
+<h2 id="known-permission-tokens"><a class="header" href="#known-permission-tokens">Known Permission Tokens</a></h2>
+<ul>
+<li><code>mem</code> - reading from and writing to the process memory, calling foreign functions </li>
+<li><code>dll</code> - loading dynamic libraries and finding exported functions</li>
+<li><code>fs</code> - creating, reading and deleting files from the local file system</li>
+</ul>
 
                     </main>
 

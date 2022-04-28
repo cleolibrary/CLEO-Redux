@@ -141,19 +141,100 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="c-sdk"><a class="header" href="#c-sdk">C++ SDK</a></h1>
-<p>Custom plugins may call methods exposed by CLEO Redux using a provided <code>.lib</code> file. Include <code>cleo_redux_sdk.h</code> in your DLL project and link the binary with <code>cleo_redux.lib</code> (or <code>cleo_redux64.lib</code> if the target platform is x86_64) and you can start writing new commands.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>See the <code>IniFiles</code> plugin that includes a project for Visual Studio 2019. It adds a static class <code>IniFile</code> with the following methods:</p>
-<pre><code class="language-ts">interface IniFile {
-    ReadFloat(path: string, section: string, key: string): float | undefined;
-    ReadInt(path: string, section: string, key: string): int | undefined;
-    ReadString(path: string, section: string, key: string): string | undefined;
-    WriteFloat(value: float, path: string, section: string, key: string): boolean;
-    WriteInt(value: int, path: string, section: string, key: string): boolean;
-    WriteString(value: string, path: string, section: string, key: string): boolean;
-}
+<p>This page describes basic steps needed to create a new custom command with C++ SDK that reads two integer arguments and returns their sum. 
+This guide has been validated on Visual Studio 2019 (Community Edition) and may differ for other IDEs and compilers.</p>
+<h2 id="developing-a-plugin"><a class="header" href="#developing-a-plugin">Developing a Plugin</a></h2>
+<ul>
+<li>
+<p>Create a new Dynamic-link Library (DLL) project. In <code>Project Settings-&gt;Advanced</code> set <code>Target File Extension</code> to <code>.cleo</code>.</p>
+</li>
+<li>
+<p>Download <a href="https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/plugins/SDK/cleo_redux_sdk.h"><code>cleo_redux_sdk.h</code></a> and add it in your project</p>
+</li>
+</ul>
+<pre><code class="language-cpp">#include &quot;cleo_redux_sdk.h
 </code></pre>
-<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile">See more information</a> in Sanny Builder Library. The usage of the <code>IniFile</code> class requires an <code>fs</code> <a href="./permissions.html">permission</a>.</p>
+<p>If this header file is located outside of your project directory you need to add a folder with this file in <code>Project Settings-&gt;VC++ Directories-&gt;Include Directories</code> to let Visual Studio discover this file.</p>
+<ul>
+<li>
+<p>In <code>Project Settings-&gt;Linker-&gt;Input</code> add the full path to <a href="https://github.com/cleolibrary/CLEO-Redux/raw/master/plugins/SDK/cleo_redux.lib"><code>cleo_redux.lib</code></a> (if you develop a 32-bit plugin) or to <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/plugins/SDK/cleo_redux64.lib"><code>cleo_redux64.lib</code></a> for 64-bit plugins.</p>
+</li>
+<li>
+<p>in <code>dllmain.cpp</code> create a new static class with the constructor function. This constructor will be called as soon as CLEO loads your plugin</p>
+</li>
+</ul>
+<pre><code class="language-cpp">class TestPlugin {
+public:
+	TestPlugin() {
+		Log(&quot;My Test Plugin&quot;);
+	}
+};
+</code></pre>
+<ul>
+<li>in the plugin class constructor call <code>RegisterCommand</code> function for each new command</li>
+</ul>
+<pre><code class="language-cpp">class TestPlugin {
+public:
+	TestPlugin() {
+		Log(&quot;My Test Plugin&quot;);
+        RegisterCommand(&quot;INT_ADD&quot;, IntAdd);
+	}
+
+    static HandlerResult IntAdd(Context ctx) {
+        return HandlerResult::CONTINUE;
+    }
+};
+</code></pre>
+<ul>
+<li>implement handlers for new commands. Each command handler gets one input argument which is <code>Context ctx</code>. This argument is used to call other SDK methods</li>
+</ul>
+<pre><code class="language-cpp">class TestPlugin {
+public:
+	TestPlugin() {
+		Log(&quot;My Test Plugin&quot;);
+        RegisterCommand(&quot;INT_ADD&quot;, IntAdd);
+	}
+
+    static HandlerResult IntAdd(Context ctx) {
+        auto arg1 = GetIntParam(ctx);
+        auto arg2 = GetIntParam(ctx);
+        SetIntParam(ctx, arg1 + arg2);
+
+        return HandlerResult::CONTINUE;
+    }
+};
+</code></pre>
+<ul>
+<li>
+<p>compile the project and place <code>.cleo</code> file to the <a href="./installation-plugins.html"><code>CLEO_PLUGINS</code></a> folder.</p>
+</li>
+<li>
+<p>add command definition in the JSON file for the target game (e.g. <code>gta3.json</code> for GTA III or <code>unknown_x86.json</code> for an Unknown (x86) host). Each <code>GetXXXParam</code>/<code>SetXXXParam</code> should be paired with an input or output in the command definition</p>
+</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;input&quot;: [
+        { &quot;name&quot;: &quot;arg1&quot;, &quot;type&quot;: &quot;int&quot; },
+        { &quot;name&quot;: &quot;arg2&quot;, &quot;type&quot;: &quot;int&quot; }
+    ],
+    &quot;output&quot;: [
+        { &quot;name&quot;: &quot;result&quot;, &quot;type&quot;: &quot;int&quot;, &quot;source&quot;: &quot;var_any&quot; }
+    ],
+    &quot;id&quot;: &quot;0DDD&quot;,
+    &quot;name&quot;: &quot;INT_ADD&quot;,
+    &quot;num_params&quot;: 3,
+    &quot;short_desc&quot;: &quot;Adds together two integer values and writes the result into the variable&quot;,
+},
+</code></pre>
+<p><code>id</code> is optional for unknown hosts. For known and supported games an id must be a unique opcode not used elsewhere.</p>
+<p>The best way to generate correct command definition is to use <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>. If you plan to share the plugin and make it available over the Internet consider contacting the library maintainers to get your command published there.</p>
+<ul>
+<li>you can now use the new command in the code using the <a href="./js-bindings.html#native"><code>native</code></a> command</li>
+</ul>
+<pre><code class="language-js">var result = native(&quot;INT_ADD&quot;, 10, 20); // 30
+</code></pre>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>See the <a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile"><code>IniFiles</code></a> plugin that includes a complete project for Visual Studio 2019.</p>
 
                     </main>
 
