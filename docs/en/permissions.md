@@ -5,11 +5,11 @@ CLEO Redux acknowledges some [custom commands](./custom-commands.md) (opcodes) a
 
 There are four available levels:
 
-## All
+### All
 
 Any unsafe operation is allowed. Use this only when you trust the scripts you run.
 
-## Lax
+### Lax
 
 This is the default permission level.
 
@@ -17,11 +17,11 @@ No unsafe operation is allowed unless the script explicitly requests it. Current
 
 For example, if the script wants to access the memory via `0A8D READ_MEMORY` the file name must contain `[mem]`, e.g. `cool-spawner[mem].cs`. If the file is named differently CLEO rejects `0A8D` and the script crashes.
 
-## Strict
+### Strict
 
 No unsafe operation is allowed unless the script explicitly requests it (see `"Lax"`) and the CLEO config file permits this type of operation under the `Permissions` section.
 
-Permissions section in `cleo.ini` allows to enable or disable groups of unsafe operations by using the permission tokens. For example,
+Permissions section in `cleo.ini` allows to enable or disable groups of unsafe operations by using the [permission tokens](#known-permission-tokens). For example,
 
 ```ini
 mem=0
@@ -31,6 +31,12 @@ disables all memory-related opcodes even if the script has the `[mem]` token in 
 
 > `Permissions` section in the `cleo.ini` only takes effect when `PermissionLevel` is `Strict`.
 
-## None
+### None
 
 No unsafe operation is allowed.
+
+## Known Permission Tokens
+
+- `mem` - reading from and writing to the process memory, calling foreign functions 
+- `dll` - loading dynamic libraries and finding exported functions
+- `fs` - creating, reading and deleting files from the local file system
