@@ -141,9 +141,9 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="rust-sdk"><a class="header" href="#rust-sdk">Rust SDK</a></h1>
-<p>Rust SDK uses similar to C++ interface with some extra wrapping methods to allow easily convert between C and Rust types. The header file is available as a <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> on crates.io. See the documentation <a href="https://docs.rs/cleo_redux_sdk/latest/">here</a>.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>See the <code>Dylib</code> plugin. It adds a class <code>DynamicLibrary</code> with the following methods:</p>
+<p>Rust SDK использует интерфейс, аналогичный интерфейсу C++, с некоторыми дополнительными методами переноса, позволяющими легко конвертировать типы C и Rust. Заголовочный файл доступен в виде <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> на crates.io.  См. документацию <a href="https://docs.rs/cleo_redux_sdk/latest/">здесь</a>.</p>
+<h2 id="Пример"><a class="header" href="#Пример">Пример</a></h2>
+<p>Рассмотрим плагин <code>Dylib</code>.  Он добавляет класс DynamicLibrary со следующими методами:</p>
 <pre><code class="language-ts">declare class DynamicLibrary {
     constructor(handle: number);
     static Load(libraryFileName: string): DynamicLibrary | undefined;
@@ -151,7 +151,7 @@
     getProcedure(procName: string): int | undefined;
 }
 </code></pre>
-<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary">See more information</a> in Sanny Builder Library. The usage of the <code>DynamicLibrary</code> class requires a <code>dll</code> <a href="./permissions.html">permission</a>.</p>
+<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary">Дополнительная информация</a> в библиотеке Sanny Builder.  Для использования класса <code>DynamicLibrary</code> требуется <code>dll</code> <a href="./permissions.html">разрешение</a>.</p>
 
                     </main>
 
