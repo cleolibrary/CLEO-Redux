@@ -1196,22 +1196,103 @@ Text.PrintHelp('MY_KEY') // Это отображает &quot;Текст из ф
 </code></pre>
 <p>Дополнительную информацию см. в Sanny Builder Library: https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary. Для использования класса <code>DynamicLibrary</code> требуется <code>dll</code> <a href="readme.html#%D1%80%D0%B0%D0%B7%D1%80%D0%B5%D1%88%D0%B5%D0%BD%D0%B8%D1%8F">разрешение</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="c-sdk-1"><a class="header" href="#c-sdk-1">C++ SDK</a></h1>
-<p>Custom plugins may call methods exposed by CLEO Redux using a provided <code>.lib</code> file. Include <code>cleo_redux_sdk.h</code> in your DLL project and link the binary with <code>cleo_redux.lib</code> (or <code>cleo_redux64.lib</code> if the target platform is x86_64) and you can start writing new commands.</p>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
-<p>See the <code>IniFiles</code> plugin that includes a project for Visual Studio 2019. It adds a static class <code>IniFile</code> with the following methods:</p>
-<pre><code class="language-ts">interface IniFile {
-    ReadFloat(path: string, section: string, key: string): float | undefined;
-    ReadInt(path: string, section: string, key: string): int | undefined;
-    ReadString(path: string, section: string, key: string): string | undefined;
-    WriteFloat(value: float, path: string, section: string, key: string): boolean;
-    WriteInt(value: int, path: string, section: string, key: string): boolean;
-    WriteString(value: string, path: string, section: string, key: string): boolean;
-}
+<p>На этой странице описаны основные шаги, необходимые для создания новой пользовательской команды с помощью C++ SDK, которая считывает два целочисленных аргумента и возвращает их сумму.</p>
+<p>Это руководство было проверено для Visual Studio 2019 (Community Edition) и может отличаться для других IDE и компиляторов.</p>
+<h2 id="Разработка-плагина"><a class="header" href="#Разработка-плагина">Разработка плагина</a></h2>
+<ul>
+<li>
+<p>Создайте новый проект библиотеки динамической компоновки (DLL).  В <code>Настройки проекта-&gt;Дополнительно</code> установите для <code>Расширение целевого файла</code> значение <code>.cleo</code>.</p>
+</li>
+<li>
+<p>Загрузите <a href="https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/plugins/SDK/cleo_redux_sdk.h"><code>cleo_redux_sdk.h</code></a> и добавьте его в свой проект.</p>
+</li>
+</ul>
+<pre><code class="language-cpp">#include &quot;cleo_redux_sdk.h
 </code></pre>
-<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile">See more information</a> in Sanny Builder Library. The usage of the <code>IniFile</code> class requires an <code>fs</code> <a href="./permissions.html">permission</a>.</p>
+<p>Если этот заголовочный файл находится за пределами каталога вашего проекта, вам необходимо добавить папку с этим файлом в «Настройки проекта-&gt;Каталоги VC++-&gt;Включить каталоги», чтобы позволить Visual Studio обнаружить этот файл.</p>
+<ul>
+<li>
+<p>В <code>Настройки проекта-&gt;Линкер-&gt;Вход</code> добавьте полный путь к <a href="https://github.com/cleolibrary/CLEO-Redux/raw/master/plugins/SDK/cleo_redux.lib"><code>cleo_redux.lib</code></a> (если вы разрабатываете 32-битный плагин) или в <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/plugins/SDK/cleo_redux64.lib"><code>cleo_redux64.lib</code></a> для 64-битного плагина.</p>
+</li>
+<li>
+<p>в <code>dllmain.cpp</code> создайте новый статический класс с функцией-конструктором.  Этот конструктор будет вызван, как только CLEO загрузит ваш плагин</p>
+</li>
+</ul>
+<pre><code class="language-cpp">class TestPlugin {
+public:
+	TestPlugin() {
+		Log(&quot;My Test Plugin&quot;);
+	}
+};
+</code></pre>
+<ul>
+<li>в конструкторе класса плагина вызовите функцию <code>RegisterCommand</code> для каждой новой команды</li>
+</ul>
+<pre><code class="language-cpp">class TestPlugin {
+public:
+	TestPlugin() {
+		Log(&quot;My Test Plugin&quot;);
+        RegisterCommand(&quot;INT_ADD&quot;, IntAdd);
+	}
+
+    static HandlerResult IntAdd(Context ctx) {
+        return HandlerResult::CONTINUE;
+    }
+};
+</code></pre>
+<ul>
+<li>реализуйте обработчики для новых команд.  Каждый обработчик команд получает один входной аргумент — <code>Context ctx</code>. Этот аргумент используется для вызова других методов SDK.</li>
+</ul>
+<pre><code class="language-cpp">class TestPlugin {
+public:
+	TestPlugin() {
+		Log(&quot;My Test Plugin&quot;);
+        RegisterCommand(&quot;INT_ADD&quot;, IntAdd);
+	}
+
+    static HandlerResult IntAdd(Context ctx) {
+        auto arg1 = GetIntParam(ctx);
+        auto arg2 = GetIntParam(ctx);
+        SetIntParam(ctx, arg1 + arg2);
+
+        return HandlerResult::CONTINUE;
+    }
+};
+</code></pre>
+<ul>
+<li>
+<p>скомпилируйте проект и поместите файл <code>.cleo</code> в папку <a href="./installation-plugins.html"><code>CLEO_PLUGINS</code></a>.</p>
+</li>
+<li>
+<p>добавить определение команды в файл JSON для целевой игры (например, <code>gta3.json</code> для GTA III или <code>unknown_x86.json</code> для хоста Unknown (x86)).  Каждый <code>GetXXXParam</code>/<code>SetXXXParam</code> должен быть связан с вводом или выводом в определении команды.</p>
+</li>
+</ul>
+<pre><code class="language-json">{
+    &quot;input&quot;: [
+        { &quot;name&quot;: &quot;arg1&quot;, &quot;type&quot;: &quot;int&quot; },
+        { &quot;name&quot;: &quot;arg2&quot;, &quot;type&quot;: &quot;int&quot; }
+    ],
+    &quot;output&quot;: [
+        { &quot;name&quot;: &quot;result&quot;, &quot;type&quot;: &quot;int&quot;, &quot;source&quot;: &quot;var_any&quot; }
+    ],
+    &quot;id&quot;: &quot;0DDD&quot;,
+    &quot;name&quot;: &quot;INT_ADD&quot;,
+    &quot;num_params&quot;: 3,
+    &quot;short_desc&quot;: &quot;Adds together two integer values and writes the result into the variable&quot;,
+},
+</code></pre>
+<p><code>id</code> необязателен для неизвестных хостов.  Для известных и поддерживаемых игр идентификатор должен быть уникальным кодом операции, который больше нигде не используется.</p>
+<p>Лучший способ создать правильное определение команды — использовать <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>. Если вы планируете поделиться подключаемым модулем и сделать его доступным через Интернет, подумайте о том, чтобы связаться с сопровождающими библиотеки, чтобы ваша команда была опубликована там.</p>
+<ul>
+<li>теперь вы можете использовать новую команду в коде с помощью команды <a href="./js-bindings.html#native"><code>native</code></a></li>
+</ul>
+<pre><code class="language-js">var result = native(&quot;INT_ADD&quot;, 10, 20); // 30
+</code></pre>
+<h2 id="Пример-2"><a class="header" href="#Пример-2">Пример</a></h2>
+<p>См. подключаемый модуль <a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile"><code>IniFiles</code></a>, который включает полный проект для Visual Studio 2019.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-sdk-1"><a class="header" href="#rust-sdk-1">Rust SDK</a></h1>
 <p>Rust SDK использует интерфейс, аналогичный интерфейсу C++, с некоторыми дополнительными методами переноса, позволяющими легко конвертировать типы C и Rust. Заголовочный файл доступен в виде <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> на crates.io.  См. документацию <a href="https://docs.rs/cleo_redux_sdk/latest/">здесь</a>.</p>
-<h2 id="Пример-2"><a class="header" href="#Пример-2">Пример</a></h2>
+<h2 id="Пример-3"><a class="header" href="#Пример-3">Пример</a></h2>
 <p>Рассмотрим плагин <code>Dylib</code>.  Он добавляет класс DynamicLibrary со следующими методами:</p>
 <pre><code class="language-ts">declare class DynamicLibrary {
     constructor(handle: number);
