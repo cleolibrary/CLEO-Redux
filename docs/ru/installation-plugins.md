@@ -1,5 +1,5 @@
-# Plugins
+# Плагины
 
-Plugins are optional programs adding extra scripting commands with the help of [CLEO Redux SDK](./using-sdk.md). They have a `.cleo` extension.
+Плагины — это необязательные программы, добавляющие дополнительные команды сценариев с помощью [CLEO Redux SDK](./using-sdk.md). Их расширение - `.cleo`.
 
-Plugins should be copied to the `CLEO\CLEO_PLUGINS` directory.
+Плагины следует копировать в директорию `CLEO\CLEO_PLUGINS`.
