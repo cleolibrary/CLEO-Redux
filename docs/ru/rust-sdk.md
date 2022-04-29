@@ -1,10 +1,10 @@
 # Rust SDK
 
-Rust SDK uses similar to C++ interface with some extra wrapping methods to allow easily convert between C and Rust types. The header file is available as a [crate](https://crates.io/crates/cleo_redux_sdk) on crates.io. See the documentation [here](https://docs.rs/cleo_redux_sdk/latest/).
+Rust SDK использует интерфейс, аналогичный интерфейсу C++, с некоторыми дополнительными методами переноса, позволяющими легко конвертировать типы C и Rust. Заголовочный файл доступен в виде [crate](https://crates.io/crates/cleo_redux_sdk) на crates.io.  См. документацию [здесь](https://docs.rs/cleo_redux_sdk/latest/).
 
-## Example
+## Пример
 
-See the `Dylib` plugin. It adds a class `DynamicLibrary` with the following methods:
+Рассмотрим плагин `Dylib`.  Он добавляет класс DynamicLibrary со следующими методами:
 
 ```ts
 declare class DynamicLibrary {
@@ -15,5 +15,4 @@ declare class DynamicLibrary {
 }
 ```
 
-[See more information](https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary) in Sanny Builder Library. The usage of the `DynamicLibrary` class requires a `dll` [permission](./permissions.md).
-
+[Дополнительная информация](https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary) в библиотеке Sanny Builder.  Для использования класса `DynamicLibrary` требуется `dll` [разрешение](./permissions.md).
