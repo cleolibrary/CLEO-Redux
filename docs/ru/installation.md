@@ -6,7 +6,7 @@
 - [re3 и reVC](./installation-re3-revc.md)
 - [The Trilogy: The Definitive Edition](./installation-definitive-edition.md)
 
-> Note that CLEO Redux recognizes the target game purely by the executable name it is running from. 
+> Обратите внимание, что CLEO Redux распознает целевую игру исключительно по имени исполняемого файла, из которого она запускается. 
 >
 > * GTA III - `gta3.exe`
 > * GTA VC - `gta-vc.exe`
@@ -17,7 +17,7 @@
 > * GTA VC: DE - `vicecity.exe`
 > * GTA SA: DE - `sanandreas.exe`
 >
-> Names matching is case-insensitive. For classic games CLEO Redux always assumes version 1.0. 
+> Сопоставление имен не зависит от регистра. Для классических игр CLEO Redux всегда предполагает версию 1.0. 
 
 ## Удаление
 
