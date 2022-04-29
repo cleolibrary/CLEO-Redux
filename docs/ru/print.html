@@ -254,8 +254,8 @@
 <p>Обычно файл скрипта нужно просто скопировать в каталог <code>CLEO</code>. Для установки некоторых скриптов могут потребоваться дополнительные действия. В случае каких-либо проблем проверьте документацию скрипта или обратитесь к его автору. </p>
 <h3 id="Удаление-скрипта"><a class="header" href="#Удаление-скрипта">Удаление скрипта</a></h3>
 <p>Удалите файл скрипта из каталога <code>CLEO</code>. Некоторые сценарии могут потребовать дополнительных действий для отмены установки. В случае каких-либо проблем проверьте документацию скрипта или обратитесь к его автору. </p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
-<p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Конфигурация"><a class="header" href="#Конфигурация">Конфигурация</a></h1>
+<p>CLEO Redux предоставляет некоторые настраиваемые параметры в файле <code>CLEO\.config\cleo.ini</code>.</p>
 <ul>
 <li><code>AllowCs</code> - при значении <code>1</code> CLEO загружает и выполняет файлы <code>*.cs</code>, расположенные в каталоге CLEO. Включено по умолчанию.</li>
 <li><code>AllowJs</code> - при значении <code>1</code> CLEO загружает и выполняет файлы <code>*.js</code>, расположенные в каталоге CLEO. Включено по умолчанию.</li>
@@ -307,26 +307,26 @@
 </li>
 </ol>
 <p>CLEO Redux does not support saving the script status (a feature of CLEO Library) and there are no plans on adding this feature.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-commands"><a class="header" href="#custom-commands">Custom Commands</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Пользовательские-команды"><a class="header" href="#Пользовательские-команды">Пользовательские команды</a></h1>
 <blockquote>
-<p>The following commands are for classic games only. For The Definitive Edition <a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">check this information</a>.</p>
+<p>Примечание: Следующие команды предназначены только для классических игр. Для The Definitive Edition <a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">проверьте эту информацию</a>.</p>
 </blockquote>
-<p>CLEO Redux supports all original opcodes available in the given game. On top of those it adds a few new commands listed below. Note that they strictly match the opcodes of CLEO Library.</p>
+<p>CLEO Redux поддерживает все оригинальные опкоды, доступные в данной игре.  Помимо них, он добавляет несколько новых команд, перечисленных ниже.  Обратите внимание, что они строго соответствуют опкодам библиотеки CLEO.</p>
 <ul>
-<li>0A8C <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">WRITE_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-<li>0A8D <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">READ_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0A8C <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">WRITE_MEMORY</a> (<strong>НЕБЕЗОПАСНО</strong> - требует <code>mem</code> разрешение)</li>
+<li>0A8D <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">READ_MEMORY</a> (<strong>НЕБЕЗОПАСНО</strong> - требует <code>mem</code> разрешение)</li>
 <li>0A8E <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8E">INT_ADD</a></li>
 <li>0A8F <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8F">INT_SUB</a></li>
 <li>0A90 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A90">INT_MUL</a></li>
 <li>0A91 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A91">INT_DIV</a></li>
 <li>0A93 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A93">TERMINATE_THIS_CUSTOM_SCRIPT</a></li>
-<li>0AA5 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA5">CALL_FUNCTION</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-<li>0AA6 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA6">CALL_FUNCTION_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-<li>0AA7 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA7">CALL_METHOD</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-<li>0AA8 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA8">CALL_METHOD_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
+<li>0AA5 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA5">CALL_FUNCTION</a> (<strong>НЕБЕЗОПАСНО</strong> - требует <code>mem</code> разрешение)</li>
+<li>0AA6 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA6">CALL_FUNCTION_RETURN</a> (<strong>НЕБЕЗОПАСНО</strong> - требует <code>mem</code> разрешение)</li>
+<li>0AA7 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA7">CALL_METHOD</a> (<strong>НЕБЕЗОПАСНО</strong> - требует <code>mem</code> разрешение)</li>
+<li>0AA8 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AA8">CALL_METHOD_RETURN</a> (<strong>НЕБЕЗОПАСНО</strong> - требует <code>mem</code> разрешение)</li>
 <li>0AB0 <a href="https://library.sannybuilder.com/#/gta3/CLEO/0AB0">IS_KEY_PRESSED</a></li>
 </ul>
-<p>This list might not be complete as there are custom plugins with extra commands (see <a href="./using-sdk.html">Using SDK</a>). Refer to <a href="https://library.sannybuilder.com">Sanny Builder Library</a> for the complete list of available commands for each game.</p>
+<p>Этот список может быть неполным, поскольку существуют специальные плагины с дополнительными командами (см. <a href="./using-sdk.html">Использование SDK</a>).  Обратитесь к <a href="https://library.sannybuilder.com">библиотеке Sanny Builder</a> для получения полного списка доступных команд для каждой игры.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript"><a class="header" href="#javascript">JavaScript</a></h1>
 <p>CLEO Redux ориентируется на JavaScript как на основной язык для пользовательских скриптов. JavaScript — популярный язык программирования с богатой экосистемой и большим количеством доступной информации. Он свободен от ограничений и ловушек языка SCM, таких как отсутствие поддержки функций, массивов или малое количество переменных.</p>
 <p>Используйте VS Code (рекомендуется) или любой редактор по вашему выбору. Создайте новый файл с расширением <code>.js</code> и поместите его в папку CLEO. Дополнительную информацию см. в разделе <a href="javascript.html#%D0%BF%D0%BE%D0%B4%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0-javascript">Поддержка JavaScript</a>.</p>
