@@ -1,5 +1,5 @@
-# Scripts
+# Скрипты
 
-CLEO Redux provides a runtime capable of executing [compiled binary scripts](./compiled-scripts.md) (`*.cs`) in the native SCM format and plain text scripts (`*.js`) written in [JavaScript](./javascript.md).
+CLEO Redux предоставляет среду выполнения, способную выполнять [скомпилированные бинарные скрипты](./compiled-scripts.md) (`*.cs`) в родном формате SCM и простые текстовые скрипты (`*.js`), написанные на [JavaScript](./javascript.md).
 
-To find the information on how to install scripts [see this page](./installation-scripts.md).
+Чтобы найти информацию о том, как установить скрипты [см. эту страницу](./installation-scripts.md).
