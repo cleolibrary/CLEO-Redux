@@ -1,18 +1,18 @@
-# Imports
+# Импорт
 
-You can import other script files in your code to make the code modular and share the common logic. The runtime supports the `import` statement as described in [this article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
+Вы можете импортировать другие файлы сценариев в свой код, чтобы сделать код модульным и использовать общую логику. Среда выполнения поддерживает оператор импорта, как описано в [этой статье](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import).
 
-To avoid running the included `.js` files as standalone scripts, either put them into a separate folder (e.g. `CLEO/includes/`) or use the extension `.mjs`.
+Чтобы избежать запуска включенных файлов `.js` как отдельных скриптов, либо поместите их в отдельную папку (например, `CLEO/includes/`), либо используйте расширение `.mjs`.
 
 ```js
-// imports default export from other.js or other.mjs located in the same directory
+// импортирует экспорт по умолчанию из other.js или other.mjs, расположенных в том же каталоге
 import func from "./other"; 
 
-// imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
+// импортирует именованный экспорт PedType из types.js или types.mjs, расположенных в каталоге CLEO/includes
 import { PedType } from "./includes/types"; 
 
-// imports vehicles.json as a JavaScript value (an array, object).
+// импортирует cars.json как значение JavaScript (массив, объект).
 import data from "./vehicles.json";
 ```
 
-Currently only import of `.js` (`.mjs`) and `.json` files is supported.
+В настоящее время поддерживается только импорт файлов `.js` (`.mjs`) и `.json`.
