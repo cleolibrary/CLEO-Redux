@@ -1,45 +1,45 @@
-# Other Features
+# Другие особенности
 
-CLEO Redux puts focus on improving dev experience and make scripting process easier. 
+CLEO Redux фокусируется на улучшении опыта разработки и упрощении процесса написания сценариев. 
 
-## Integration with Visual Studio Code
+## Интеграция с Visual Studio Code
 
-[See demo on YouTube](https://youtu.be/jqz8_lGnG4g)
+[Демонстрация на YouTube](https://youtu.be/jqz8_lGnG4g)
 
-VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your `*.js` script to get the full autocomplete support:
+VS Code имеет широкие возможности настройки.  CLEO Redux генерирует типизации для всех поддерживаемых команд, которые вы можете использовать при написании JavaScript в VS Code.  Добавьте следующую строку в свой скрипт `*.js`, чтобы получить полную поддержку автозаполнения:
 
-For `GTA III` or `re3`:
+Для `GTA III` или `re3`:
 
 ```
 /// <reference path=".config/gta3.d.ts" />
 ```
 
-For `Vice City` or `reVC`
+Для `Vice City` или `reVC`
 
 ```
 /// <reference path=".config/vc.d.ts" />
 ```
 
-For `San Andreas`
+Для `San Andreas`
 
 ```
 /// <reference path=".config/sa.d.ts" />
 ```
 
-This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
+Эта строка указывает VS Code, где искать определения команд для функции автозаполнения. Путь может быть относительным относительно файла сценария или быть абсолютным. [Дополнительную информацию](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) на официальном портале TypeScript.
 
-## SCM Log
+## SCM Лог
 
-CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up `cleo.ini` and change `LogOpcodes` to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.
+CLEO Redux имеет встроенную поддержку отслеживания инструкций SCM. Чтобы включить трассировку для выполняемых команд, откройте `cleo.ini` и измените `LogOpcodes` на 1. Обратите внимание, что это может сильно повлиять на производительность игры из-за частых микрозадержек во время записи в файл журнала. Используйте этот параметр только в целях отладки.
 
-## Hot Reload
+## Горячая перезагрузка
 
-CLEO monitors active scripts and reloads them in game as they change
+CLEO отслеживает активные скрипты и перезагружает их в игре по мере их изменения
 
-[See demo on YouTube](https://www.youtube.com/watch?v=WanLojClqFw)
+[Демонстрация на YouTube](https://www.youtube.com/watch?v=WanLojClqFw)
 
-Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically
+Добавление нового файла скрипта в директорию CLEO или удаление во время игры запускает или останавливает скрипт автоматически
 
-[See demo on YouTube](https://www.youtube.com/watch?v=LAi2syrsxJg)
+[Демонстрация на YouTube](https://www.youtube.com/watch?v=LAi2syrsxJg)
 
-Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).
+Горячая перезагрузка для CS-скриптов не работает, когда CLEO Redux работает вместе с CLEO Library (например, в классическом San Andreas).
