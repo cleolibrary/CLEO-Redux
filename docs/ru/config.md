@@ -1,6 +1,6 @@
-# Configuration
+# Конфигурация
 
-CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\cleo.ini`.
+CLEO Redux предоставляет некоторые настраиваемые параметры в файле `CLEO\.config\cleo.ini`.
 
 - `AllowCs` - при значении `1` CLEO загружает и выполняет файлы `*.cs`, расположенные в каталоге CLEO. Включено по умолчанию.
 - `AllowJs` - при значении `1` CLEO загружает и выполняет файлы `*.js`, расположенные в каталоге CLEO. Включено по умолчанию.
