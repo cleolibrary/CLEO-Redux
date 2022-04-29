@@ -254,8 +254,8 @@
 <p>Обычно файл скрипта нужно просто скопировать в каталог <code>CLEO</code>. Для установки некоторых скриптов могут потребоваться дополнительные действия. В случае каких-либо проблем проверьте документацию скрипта или обратитесь к его автору. </p>
 <h3 id="Удаление-скрипта"><a class="header" href="#Удаление-скрипта">Удаление скрипта</a></h3>
 <p>Удалите файл скрипта из каталога <code>CLEO</code>. Некоторые сценарии могут потребовать дополнительных действий для отмены установки. В случае каких-либо проблем проверьте документацию скрипта или обратитесь к его автору. </p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
-<p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Конфигурация"><a class="header" href="#Конфигурация">Конфигурация</a></h1>
+<p>CLEO Redux предоставляет некоторые настраиваемые параметры в файле <code>CLEO\.config\cleo.ini</code>.</p>
 <ul>
 <li><code>AllowCs</code> - при значении <code>1</code> CLEO загружает и выполняет файлы <code>*.cs</code>, расположенные в каталоге CLEO. Включено по умолчанию.</li>
 <li><code>AllowJs</code> - при значении <code>1</code> CLEO загружает и выполняет файлы <code>*.js</code>, расположенные в каталоге CLEO. Включено по умолчанию.</li>
@@ -282,31 +282,31 @@
 <p>Примечание. Раздел <code>Permissions</code> в <code>cleo.ini</code> вступает в силу только в том случае, если <code>PermissionLevel</code> имеет значение <code>Strict</code>.</p>
 <h2 id="none"><a class="header" href="#none">None</a></h2>
 <p>Небезопасная работа не допускается.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
-<p>CLEO Redux provides a runtime capable of executing <a href="./compiled-scripts.html">compiled binary scripts</a> (<code>*.cs</code>) in the native SCM format and plain text scripts (<code>*.js</code>) written in <a href="./javascript.html">JavaScript</a>.</p>
-<p>To find the information on how to install scripts <a href="./installation-scripts.html">see this page</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="compiled-scripts"><a class="header" href="#compiled-scripts">Compiled Scripts</a></h1>
-<p>CLEO Redux can execute scripts compiled in the game's native <a href="https://gtamods.com/wiki/SCM_Instruction">binary SCM format</a>. Such scripts have a <code>.cs</code> extension. They are subject to the <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">limitations</a> of SCM code.</p>
-<p><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">Check the FAQ</a> for the information on CS support in the remastered games.</p>
-<h2 id="writing-a-compiled-script"><a class="header" href="#writing-a-compiled-script">Writing a Compiled Script</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Скрипты-1"><a class="header" href="#Скрипты-1">Скрипты</a></h1>
+<p>CLEO Redux предоставляет среду выполнения, способную выполнять <a href="./compiled-scripts.html">скомпилированные бинарные скрипты</a> (<code>*.cs</code>) в родном формате SCM и простые текстовые скрипты (<code>*.js</code>), написанные на <a href="./javascript.html">JavaScript</a>.</p>
+<p>Чтобы найти информацию о том, как установить скрипты <a href="./installation-scripts.html">см. эту страницу</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Скомпилированные-скрипты"><a class="header" href="#Скомпилированные-скрипты">Скомпилированные скрипты</a></h1>
+<p>CLEO Redux может выполнять скрипты, скомпилированные в родном для игры <a href="https://gtamods.com/wiki/SCM_Instruction">бинарном формате SCM</a>.  Такие скрипты имеют расширение <code>.cs</code>.  На них распространяются <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">ограничения</a> кода SCM.</p>
+<p><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">Проверьте FAQ</a> для получения информации о поддержке CS в обновленных играх.</p>
+<h2 id="Написание-скомпилированного-скрипта"><a class="header" href="#Написание-скомпилированного-скрипта">Написание скомпилированного скрипта</a></h2>
 <blockquote>
-<p>For a detailed step-by-step tutorial <a href="https://gtamods.com/wiki/CLEO/Tutorial">visit this page</a>. It's applicable to CLEO Redux.</p>
+<p>Подробное пошаговое руководство <a href="https://gtamods.com/wiki/CLEO/Tutorial">посетите эту страницу</a>.  Это применимо к CLEO Redux.</p>
 </blockquote>
-<p>To create a new script use <a href="https://sannybuilder.com">Sanny Builder 3</a> in GTA III, GTA VC or GTA SA edit modes respectively. Add a directive <code>{$CLEO .cs}</code> at the top of your script, write the code and run &quot;Compile and Copy&quot;. Sanny Builder will create a new CS file in the CLEO directory. </p>
-<p>At the moment CLEO Redux only provides a few custom commands. Most of the commands implemented in CLEO Library or its plugins are not available yet.</p>
-<p>There are a few basic rules to follow when writing compiled scripts:</p>
+<p>Для создания нового скрипта используйте <a href="https://sannybuilder.com">Sanny Builder 3</a> в режимах редактирования GTA III, GTA VC или GTA SA соответственно.  Добавьте директиву <code>{$CLEO .cs}</code> вверху вашего скрипта, напишите код и запустите «Скомпилировать и скопировать».  Sanny Builder создаст новый файл CS в каталоге CLEO.</p>
+<p>На данный момент CLEO Redux предоставляет только несколько пользовательских команд.  Большинство команд, реализованных в CLEO Library или ее плагинах, пока недоступны.</p>
+<p>Есть несколько основных правил, которым нужно следовать при написании скомпилированных скриптов:</p>
 <ol>
 <li>
-<p>One file - one script. CLEO only supports one script per file.</p>
+<p>Один файл - один скрипт.  CLEO поддерживает только один скрипт на файл.</p>
 </li>
 <li>
-<p>Never use opcode <code>004E</code> to terminate a script. This opcode is only supported in the <code>main.scm</code>. Use <a href="https://library.sannybuilder.com/#/sa/CLEO/0A93?p=1&amp;v=1">0A93</a> instead.</p>
+<p>Никогда не используйте код операции <code>004E</code> для завершения сценария.  Этот код операции поддерживается только в <code>main.scm</code>.  Вместо этого используйте <a href="https://library.sannybuilder.com/#/sa/CLEO/0A93?p=1&amp;v=1">0A93</a>.</p>
 </li>
 <li>
-<p>Minimize the usage of global variables as they might conflict with other scripts. Some well-known variables such <code>$PLAYER_CHAR</code>, <code>$PLAYER_ACTOR</code> and <code>$ONMISSION</code> can be used.</p>
+<p>Минимизируйте использование глобальных переменных, поскольку они могут конфликтовать с другими скриптами. Можно использовать некоторые известные переменные, такие как <code>$PLAYER_CHAR</code>, <code>$PLAYER_ACTOR</code> и <code>$ONMISSION</code>.</p>
 </li>
 </ol>
-<p>CLEO Redux does not support saving the script status (a feature of CLEO Library) and there are no plans on adding this feature.</p>
+<p>CLEO Redux не поддерживает сохранение статуса скрипта (функция CLEO Library) и добавлять эту функцию не планируется.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Пользовательские-команды"><a class="header" href="#Пользовательские-команды">Пользовательские команды</a></h1>
 <blockquote>
 <p>Примечание: Следующие команды предназначены только для классических игр. Для The Definitive Edition <a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">проверьте эту информацию</a>.</p>
@@ -334,7 +334,7 @@
 <blockquote>
 <p>CLEO Redux — это не Node.js. Не ожидайте, что здесь будут доступны сокеты, операции с файловой системой или другие функции Node.js.</p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Предварительные-условия"><a class="header" href="#Предварительные-условия">Предварительные условия</a></h1>
 <p>Когда JavaScript включен, CLEO Redux требует определения команд с https://library.sannybuilder.com/. При первом запуске CLEO пытается загрузить их и поместить в вашу локальную директорию <code>CLEO/.config</code>. Если этого не произошло или вы не хотите, чтобы CLEO совершал сетевые вызовы, вручную скачайте необходимый файл (см. таблицу ниже) и поместите его в каталог <code>CLEO/.config</code>. </p>
 <table><thead><tr><th>Игра</th><th>Файл</th><th>Минимальная требуемая версия</th></tr></thead><tbody>
 <tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.208</code></td></tr>
@@ -790,30 +790,31 @@ import { PedType } from &quot;./includes/types&quot;;
 import data from &quot;./vehicles.json&quot;;
 </code></pre>
 <p>В настоящее время поддерживается только импорт файлов <code>.js</code> (<code>.mjs</code>) и <code>.json</code>.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="bindings"><a class="header" href="#bindings">Bindings</a></h1>
-<p>The following variables and functions are only available in JavaScript code.</p>
-<h2 id="variables"><a class="header" href="#variables">Variables</a></h2>
-<h3 id="game"><a class="header" href="#game">GAME</a></h3>
-<p>current game id. Possible values: <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code></p>
-<pre><code class="language-js">if (GAME === &quot;gta3&quot;) {
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Привязки"><a class="header" href="#Привязки">Привязки</a></h1>
+<p>Следующие переменные и функции доступны только в коде JavaScript.</p>
+<h2 id="Переменные"><a class="header" href="#Переменные">Переменные</a></h2>
+<h3 id="host"><a class="header" href="#host">HOST</a></h3>
+<p>имя хоста (ранее доступное как переменная <code>GAME</code>).  Возможные значения включают <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>unknown</code>. </p>
+<p>Плагины CLEO могут использовать SDK для настройки имени под свои нужды.</p>
+<pre><code class="language-js">if (HOST === &quot;gta3&quot;) {
   showTextBox(&quot;This is GTA III&quot;);
 }
-if (GAME === &quot;sa&quot;) {
+if (HOST === &quot;sa&quot;) {
   showTextBox(&quot;This is San Andreas&quot;);
 }
-if (GAME === &quot;sa_unreal&quot;) {
-  showTextBox(&quot;This is San Andreas: The Definitive Edition&quot;);
+if (HOST === &quot;unknown&quot;) {
+  showTextBox(&quot;This host is not natively supported&quot;);
 }
 </code></pre>
 <h3 id="onmission"><a class="header" href="#onmission">ONMISSION</a></h3>
-<p>global flag controlling whether the player is on a mission now.</p>
+<p>глобальный флаг, определяющий, находится ли игрок в данный момент на задании.  Недоступно на «неизвестном» хосте.</p>
 <pre><code class="language-js">if (!ONMISSION) {
   showTextBox(&quot;Not on a mission. Setting ONMISSION to true&quot;);
   ONMISSION = true;
 }
 </code></pre>
 <h3 id="timera-timerb"><a class="header" href="#timera-timerb">TIMERA, TIMERB</a></h3>
-<p>two auto-incrementing timers useful for measuring time intervals.</p>
+<p>два автоматически увеличивающихся таймера, полезных для измерения временных интервалов.</p>
 <pre><code class="language-js">while (true) {
   TIMERA = 0;
   // wait 1000 ms
@@ -824,40 +825,84 @@ if (GAME === &quot;sa_unreal&quot;) {
 }
 </code></pre>
 <h3 id="__dirname"><a class="header" href="#__dirname">__dirname</a></h3>
-<p>an absolute path to the directory with the current file</p>
-<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<p>абсолютный путь к каталогу с текущим файлом</p>
+<h3 id="__filename"><a class="header" href="#__filename">__filename</a></h3>
+<p>(начиная с 0.9.4) абсолютный путь к текущему файлу</p>
+<h2 id="Функции"><a class="header" href="#Функции">Функции</a></h2>
 <h3 id="log"><a class="header" href="#log">log</a></h3>
-<p><code>log(...values)</code> prints comma-separated <code>{values}</code> to the <code>cleo_redux.log</code></p>
+<p><code>log(...значения)</code> печатает разделенные запятыми <code>{значения}</code> в <code>cleo_redux.log</code></p>
 <pre><code class="language-js">var x = 1;
 log(&quot;value of x is &quot;, x);
 </code></pre>
 <h3 id="wait"><a class="header" href="#wait">wait</a></h3>
-<p><code>wait(timeInMs)</code> pauses the script execution for at least <code>{timeInMs}</code> milliseconds</p>
+<p><code>wait(время в миллисекундах)</code> приостанавливает выполнение скрипта как минимум на <code>{время в миллисекундах}</code> миллисекунд</p>
 <pre><code class="language-js">while (true) {
   wait(1000);
   log(&quot;1 second passed&quot;);
 }
 </code></pre>
 <h3 id="showtextbox"><a class="header" href="#showtextbox">showTextBox</a></h3>
-<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box</p>
+<p><code>showTextBox(текст)</code> отображает <code>{текст}</code> в черном прямоугольном поле.  Недоступно на <code>неизвестном</code> хосте.</p>
 <pre><code class="language-js">showTextBox(&quot;Hello, world!&quot;);
 </code></pre>
 <h3 id="exit"><a class="header" href="#exit">exit</a></h3>
-<p><code>exit(reason?)</code> terminates the script immediately. <code>exit</code> function accepts an optional string argument that will be added to the <code>cleo_redux.log</code>.</p>
+<p><code>exit(причина?)</code> немедленно завершает скрипт.  Функция <code>exit</code> принимает необязательный строковый аргумент, который будет добавлен в <code>cleo_redux.log</code>.</p>
 <pre><code class="language-js">exit(&quot;Script ended&quot;);
 </code></pre>
 <h3 id="native"><a class="header" href="#native">native</a></h3>
-<p><code>native(command_name, ...input_args)</code> is a low-level function to execute any in-game command using its name <code>{command_name}</code></p>
-<pre><code class="language-js">native(&quot;SET_TIME_OF_DAY&quot;, 12, 30); // sets the time of day to 12:30
+<p><code>native(имя команды, ...входные аргументы)</code> это низкоуровневая функция для выполнения команды с использованием ее имени <code>{имя команды}</code>. Имя команды соответствует свойству <code>name</code> в файле JSON, предоставленном библиотекой Sanny Builder.</p>
+<pre><code class="language-js">native(&quot;SET_TIME_OF_DAY&quot;, 12, 30); // устанавливает время суток на 12:30
 </code></pre>
-<h2 id="static-objects"><a class="header" href="#static-objects">Static Objects</a></h2>
+<p>Для команд, возвращающих одно значение, результатом является это значение.</p>
+<pre><code class="language-js">const progress = native(&quot;GET_PROGRESS_PERCENTAGE&quot;);
+showTextBox(`Progress is ${progress}`);
+</code></pre>
+<p>Для команд, возвращающих несколько значений, результатом является объект, в котором каждый ключ соответствует возвращаемому значению. Имена ключей соответствуют именам выходов, указанным в определении команды.</p>
+<pre><code class="language-js">var pos = native(&quot;GET_CHAR_COORDINATES&quot;, char); // возвращает вектор координат символа {x, y, z}
+showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
+</code></pre>
+<p>Для условных команд результатом является логическое значение <code>true</code> или <code>false</code>.</p>
+<pre><code class="language-js">if (native(&quot;HAS_MODEL_LOADED&quot;, 101)) {
+  // проверяет условие
+  showTextBox(&quot;Model with id 101 has been loaded&quot;);
+}
+</code></pre>
+<h2 id="Статические-объекты"><a class="header" href="#Статические-объекты">Статические объекты</a></h2>
 <h3 id="memory"><a class="header" href="#memory">Memory</a></h3>
 <ul>
-<li><code>Memory</code> object allows to manipulate the process memory. See the <a href="using-memory.html">Memory guide</a> for more information.</li>
+<li>Объект <code>Memory</code> позволяет манипулировать памятью процесса. См. <a href="using-memory.html">Руководство по памяти</a> для получения дополнительной информации.</li>
 </ul>
 <h3 id="math"><a class="header" href="#math">Math</a></h3>
 <ul>
-<li><code>Math</code> object is a standard object available in the JS runtime that provides common mathematical operations. CLEO Redux extends it with some extra commands. See the <a href="using-math.html">Math object</a> for more information.</li>
+<li>Объект <code>Math</code> — это стандартный объект, доступный в среде выполнения JS, который обеспечивает общие математические операции. CLEO Redux расширяет его некоторыми дополнительными командами.  См. <a href="using-math.html">Объект Math</a> для получения дополнительной информации.</li>
+</ul>
+<h3 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h3>
+<ul>
+<li><code>FxtStore</code> позволяет обновлять содержимое внутриигровых текстов.  Подробнее см. в руководстве <a href="./using-fxt.html">Пользовательский текст</a>.</li>
+</ul>
+<h3 id="cleo"><a class="header" href="#cleo">CLEO</a></h3>
+<ul>
+<li>
+<p>(начиная с 0.9.4) Объект <code>CLEO</code> предоставляет доступ к информации и утилитам во время выполнения:</p>
+<ul>
+<li><code>CLEO.debug.trace(флаг)</code> включает и выключает трассировку команд в текущем скрипте. Когда {флаг} имеет значение true, все выполненные команды добавляются в <code>cleo_redux.log</code>:</li>
+</ul>
+<pre><code class="language-js">  CLEO.debug.trace(true)
+  wait(50);
+  const p = new Player(0);
+  CLEO.debug.trace(false)
+</code></pre>
+<ul>
+<li><code>CLEO.version</code> - сложное свойство, предоставляющее информацию о текущей версии библиотеки</li>
+</ul>
+<pre><code class="language-js">  log(CLEO.version)       // &quot;0.9.4-dev.20220427&quot;
+  log(CLEO.version.major) // &quot;0&quot;
+  log(CLEO.version.minor) // &quot;9&quot;
+  log(CLEO.version.patch) // &quot;4&quot;
+  log(CLEO.version.pre)   // &quot;dev&quot;
+  log(CLEO.version.build) // &quot;20220427&quot;
+</code></pre>
+</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="Устаревшие"><a class="header" href="#Устаревшие">Устаревшие</a></h1>
 <p>Использование следующих команд не рекомендуется.</p>
@@ -989,29 +1034,29 @@ showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;
 <li>Проверьте <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">страницу поддержки функций</a>.</li>
 <li>Задать вопрос в <a href="https://discord.gg/d5dZSfgBZr">нашем Discord</a>.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="other-features"><a class="header" href="#other-features">Other Features</a></h1>
-<p>CLEO Redux puts focus on improving dev experience and make scripting process easier. </p>
-<h2 id="integration-with-visual-studio-code"><a class="header" href="#integration-with-visual-studio-code">Integration with Visual Studio Code</a></h2>
-<p><a href="https://youtu.be/jqz8_lGnG4g">See demo on YouTube</a></p>
-<p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
-<p>For <code>GTA III</code> or <code>re3</code>:</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="Другие-особенности"><a class="header" href="#Другие-особенности">Другие особенности</a></h1>
+<p>CLEO Redux фокусируется на улучшении опыта разработки и упрощении процесса написания сценариев. </p>
+<h2 id="Интеграция-с-visual-studio-code"><a class="header" href="#Интеграция-с-visual-studio-code">Интеграция с Visual Studio Code</a></h2>
+<p><a href="https://youtu.be/jqz8_lGnG4g">Демонстрация на YouTube</a></p>
+<p>VS Code имеет широкие возможности настройки.  CLEO Redux генерирует типизации для всех поддерживаемых команд, которые вы можете использовать при написании JavaScript в VS Code.  Добавьте следующую строку в свой скрипт <code>*.js</code>, чтобы получить полную поддержку автозаполнения:</p>
+<p>Для <code>GTA III</code> или <code>re3</code>:</p>
 <pre><code>/// &lt;reference path=&quot;.config/gta3.d.ts&quot; /&gt;
 </code></pre>
-<p>For <code>Vice City</code> or <code>reVC</code></p>
+<p>Для <code>Vice City</code> или <code>reVC</code></p>
 <pre><code>/// &lt;reference path=&quot;.config/vc.d.ts&quot; /&gt;
 </code></pre>
-<p>For <code>San Andreas</code></p>
+<p>Для <code>San Andreas</code></p>
 <pre><code>/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
 </code></pre>
-<p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
-<h2 id="scm-log"><a class="header" href="#scm-log">SCM Log</a></h2>
-<p>CLEO Redux has built-in support for tracking SCM instructions. To enable trace for executed commands open up <code>cleo.ini</code> and change <code>LogOpcodes</code> to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.</p>
-<h2 id="hot-reload"><a class="header" href="#hot-reload">Hot Reload</a></h2>
-<p>CLEO monitors active scripts and reloads them in game as they change</p>
-<p><a href="https://www.youtube.com/watch?v=WanLojClqFw">See demo on YouTube</a></p>
-<p>Adding a new script file in CLEO directory or deleting one while the game is running starts or stops the script automatically</p>
-<p><a href="https://www.youtube.com/watch?v=LAi2syrsxJg">See demo on YouTube</a></p>
-<p>Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).</p>
+<p>Эта строка указывает VS Code, где искать определения команд для функции автозаполнения. Путь может быть относительным относительно файла сценария или быть абсолютным. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Дополнительную информацию</a> на официальном портале TypeScript.</p>
+<h2 id="scm-Лог"><a class="header" href="#scm-Лог">SCM Лог</a></h2>
+<p>CLEO Redux имеет встроенную поддержку отслеживания инструкций SCM. Чтобы включить трассировку для выполняемых команд, откройте <code>cleo.ini</code> и измените <code>LogOpcodes</code> на 1. Обратите внимание, что это может сильно повлиять на производительность игры из-за частых микрозадержек во время записи в файл журнала. Используйте этот параметр только в целях отладки.</p>
+<h2 id="Горячая-перезагрузка"><a class="header" href="#Горячая-перезагрузка">Горячая перезагрузка</a></h2>
+<p>CLEO отслеживает активные скрипты и перезагружает их в игре по мере их изменения</p>
+<p><a href="https://www.youtube.com/watch?v=WanLojClqFw">Демонстрация на YouTube</a></p>
+<p>Добавление нового файла скрипта в директорию CLEO или удаление во время игры запускает или останавливает скрипт автоматически</p>
+<p><a href="https://www.youtube.com/watch?v=LAi2syrsxJg">Демонстрация на YouTube</a></p>
+<p>Горячая перезагрузка для CS-скриптов не работает, когда CLEO Redux работает вместе с CLEO Library (например, в классическом San Andreas).</p>
 <div style="break-before: page; page-break-before: always;"></div><h2 id="Использование-fxt"><a class="header" href="#Использование-fxt">Использование FXT</a></h2>
 <h3 id="Статические-файлы-fxt"><a class="header" href="#Статические-файлы-fxt">Статические файлы FXT</a></h3>
 <p>Демонстрация: https://youtu.be/ctsKy7WnY9o</p>
@@ -1029,7 +1074,7 @@ showTextBox(&quot;Player pos:&quot;, &quot; x = &quot;, pos.x, &quot; y = &quot;
 <pre><code>Text.PrintHelp('KEY1') // будет отображаться &lt;TEXT1&gt;
 </code></pre>
 <p>Вы можете найти команды, доступные в каждой игре, в библиотеке Sanny Builder, например. для Сан-Андреас: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text</p>
-<h3 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h3>
+<h3 id="fxtstore-1"><a class="header" href="#fxtstore-1">FxtStore</a></h3>
 <p>Демонстрация: https://youtu.be/FLyYyrGz1Xg</p>
 <p>CLEO Redux предоставляет интерфейс для управления произвольным текстом непосредственно в коде JavaScript. Существует статическая переменная с именем <code>FxtStore</code> со следующим интерфейсом:</p>
 <pre><code class="language-ts">declare interface FxtStore {

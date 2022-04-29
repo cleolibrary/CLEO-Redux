@@ -140,28 +140,28 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="compiled-scripts"><a class="header" href="#compiled-scripts">Compiled Scripts</a></h1>
-<p>CLEO Redux can execute scripts compiled in the game's native <a href="https://gtamods.com/wiki/SCM_Instruction">binary SCM format</a>. Such scripts have a <code>.cs</code> extension. They are subject to the <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">limitations</a> of SCM code.</p>
-<p><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">Check the FAQ</a> for the information on CS support in the remastered games.</p>
-<h2 id="writing-a-compiled-script"><a class="header" href="#writing-a-compiled-script">Writing a Compiled Script</a></h2>
+                        <h1 id="Скомпилированные-скрипты"><a class="header" href="#Скомпилированные-скрипты">Скомпилированные скрипты</a></h1>
+<p>CLEO Redux может выполнять скрипты, скомпилированные в родном для игры <a href="https://gtamods.com/wiki/SCM_Instruction">бинарном формате SCM</a>.  Такие скрипты имеют расширение <code>.cs</code>.  На них распространяются <a href="https://docs.sannybuilder.com/scm-documentation/gta-limits">ограничения</a> кода SCM.</p>
+<p><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-with-sanny-builder">Проверьте FAQ</a> для получения информации о поддержке CS в обновленных играх.</p>
+<h2 id="Написание-скомпилированного-скрипта"><a class="header" href="#Написание-скомпилированного-скрипта">Написание скомпилированного скрипта</a></h2>
 <blockquote>
-<p>For a detailed step-by-step tutorial <a href="https://gtamods.com/wiki/CLEO/Tutorial">visit this page</a>. It's applicable to CLEO Redux.</p>
+<p>Подробное пошаговое руководство <a href="https://gtamods.com/wiki/CLEO/Tutorial">посетите эту страницу</a>.  Это применимо к CLEO Redux.</p>
 </blockquote>
-<p>To create a new script use <a href="https://sannybuilder.com">Sanny Builder 3</a> in GTA III, GTA VC or GTA SA edit modes respectively. Add a directive <code>{$CLEO .cs}</code> at the top of your script, write the code and run &quot;Compile and Copy&quot;. Sanny Builder will create a new CS file in the CLEO directory. </p>
-<p>At the moment CLEO Redux only provides a few custom commands. Most of the commands implemented in CLEO Library or its plugins are not available yet.</p>
-<p>There are a few basic rules to follow when writing compiled scripts:</p>
+<p>Для создания нового скрипта используйте <a href="https://sannybuilder.com">Sanny Builder 3</a> в режимах редактирования GTA III, GTA VC или GTA SA соответственно.  Добавьте директиву <code>{$CLEO .cs}</code> вверху вашего скрипта, напишите код и запустите «Скомпилировать и скопировать».  Sanny Builder создаст новый файл CS в каталоге CLEO.</p>
+<p>На данный момент CLEO Redux предоставляет только несколько пользовательских команд.  Большинство команд, реализованных в CLEO Library или ее плагинах, пока недоступны.</p>
+<p>Есть несколько основных правил, которым нужно следовать при написании скомпилированных скриптов:</p>
 <ol>
 <li>
-<p>One file - one script. CLEO only supports one script per file.</p>
+<p>Один файл - один скрипт.  CLEO поддерживает только один скрипт на файл.</p>
 </li>
 <li>
-<p>Never use opcode <code>004E</code> to terminate a script. This opcode is only supported in the <code>main.scm</code>. Use <a href="https://library.sannybuilder.com/#/sa/CLEO/0A93?p=1&amp;v=1">0A93</a> instead.</p>
+<p>Никогда не используйте код операции <code>004E</code> для завершения сценария.  Этот код операции поддерживается только в <code>main.scm</code>.  Вместо этого используйте <a href="https://library.sannybuilder.com/#/sa/CLEO/0A93?p=1&amp;v=1">0A93</a>.</p>
 </li>
 <li>
-<p>Minimize the usage of global variables as they might conflict with other scripts. Some well-known variables such <code>$PLAYER_CHAR</code>, <code>$PLAYER_ACTOR</code> and <code>$ONMISSION</code> can be used.</p>
+<p>Минимизируйте использование глобальных переменных, поскольку они могут конфликтовать с другими скриптами. Можно использовать некоторые известные переменные, такие как <code>$PLAYER_CHAR</code>, <code>$PLAYER_ACTOR</code> и <code>$ONMISSION</code>.</p>
 </li>
 </ol>
-<p>CLEO Redux does not support saving the script status (a feature of CLEO Library) and there are no plans on adding this feature.</p>
+<p>CLEO Redux не поддерживает сохранение статуса скрипта (функция CLEO Library) и добавлять эту функцию не планируется.</p>
 
                     </main>
 
