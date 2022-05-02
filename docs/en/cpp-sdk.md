@@ -1,7 +1,7 @@
 # C++ SDK
 
 This page describes basic steps needed to create a new custom command with C++ SDK that reads two integer arguments and returns their sum. 
-This guide has been validated on Visual Studio 2019 (Community Edition) and may differ for other IDEs and compilers.
+This guide has been tested on Visual Studio 2019 and Visual Studio 2022 (Community Edition) and may differ for other IDEs and compilers.
 
 ## Developing a Plugin
 
