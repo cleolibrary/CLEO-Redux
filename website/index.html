@@ -118,23 +118,23 @@
             <span class="text-nowrap">CLEO Redux</span>
           </h1>
           <hr class="divider" />
-          <div class="mb-5 text-white-75">
-            <p>
+          <div class="mb-4 text-white-75">
+            <p data-translate="lead1">
               CLEO Redux is an experimental JavaScript runtime for GTA 3D era
               games and, with limited functionality,
               <a href="https://re.cleo.li/docs/en/embedding.html"
                 >other games or applications</a
-              >.
+              >.,
             </p>
-            <p>
+            <p data-translate="lead2">
               Its flexible, extensible and secure environment provides rich
-              scripting capabilities and allows easily add and remove countless
+              capabilities and allows easily add and remove countless
               mini-scripts.
             </p>
           </div>
 
           <div class="d-flex flex-row justify-content-center">
-            <div class="d-inline-block">
+            <div class="d-inline-block" data-translate="get-started">
               <a
                 class="btn btn-outline-primary mr-4 font-weight-light"
                 href="/docs"
@@ -146,6 +146,7 @@
               <a
                 class="btn btn-outline-primary font-weight-light"
                 href="https://github.com/cleolibrary/CLEO-Redux/releases/latest"
+                data-translate="download"
                 >Download</a
               >
               <small class="pt-1 text-muted">v0.9.3 | Apr 22, 2022</small>
@@ -160,18 +161,60 @@
         <p class="m-0">
           CLEO Redux ©
           <a href="https://github.com/x87" target="_blank">Seemann</a>.
-          Available under the
-          <a href="LICENSE.txt">end-user license agreement</a>.
+          <span data-translate="license"
+            >Available under the
+            <a href="LICENSE.txt">end-user license agreement</a></span
+          >.
         </p>
         <p class="m-0">
           Grand Theft Auto III, Grand Theft Auto: Vice City, Grand Theft Auto:
-          San Andreas © Rockstar Games, Inc. Photo by
+          San Andreas © Rockstar Games, Inc.
+          <span data-translate="photo">Photo by</span>
           <a href="https://www.pexels.com/@kubiceknov" target="_blank"
             >Jakub Novacek</a
           >
         </p>
       </small>
     </footer>
+
+    <script>
+      function parseCookie() {
+        return document.cookie
+          .split(";")
+          .map((v) => v.split("="))
+          .reduce((acc, v) => {
+            if (v.length < 2) {
+              return acc;
+            }
+            acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(
+              v[1].trim()
+            );
+            return acc;
+          }, {});
+      }
+      var translate = {
+        lead1:
+          "CLEO Redux &ndash; это экспериментальная среда исполнения JavaScript в играх серии Grand Theft Auto и, с некоторыми ограничениями, <a href='https://re.cleo.li/docs/en/embedding.html'>других играх и приложениях</a>.",
+        lead2:
+          "Она открывает широкие возможности для скриптинга, благодаря сочетанию гибкости, расширяемости и безопасности.",
+        "get-started":
+          "<a class='btn btn-outline-primary mr-4 font-weight-light' href='/docs/ru'>Узнать больше</a>",
+        download: "Скачать",
+        license: "<a href='LICENSE-RU.txt'>Пользовательское соглашение</a>",
+        photo: "Фото",
+      };
+
+      var cookie = parseCookie(document.cookie);
+      if (cookie.lang === "ru") {
+        document.querySelectorAll("[data-translate]").forEach(function (el) {
+          var attr = el.getAttribute("data-translate");
+          console.log(attr);
+          if (translate[attr]) {
+            el.innerHTML = translate[attr];
+          }
+        });
+      }
+    </script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/tsparticles-preset-stars@1.20.0/tsparticles.preset.stars.bundle.min.js"
