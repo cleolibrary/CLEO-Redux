@@ -205,7 +205,7 @@
       };
 
       var cookie = parseCookie(document.cookie);
-      if (cookie.lang !== "ru") {
+      if (cookie.lang === "ru") {
         document.querySelectorAll("[data-translate]").forEach(function (el) {
           var attr = el.getAttribute("data-translate");
           console.log(attr);
