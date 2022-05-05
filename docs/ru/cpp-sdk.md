@@ -26,7 +26,7 @@ public:
 	TestPlugin() {
 		Log("My Test Plugin");
 	}
-};
+} TestPlugin;
 ```
 
 - в конструкторе класса плагина вызовите функцию `RegisterCommand` для каждой новой команды
@@ -42,7 +42,7 @@ public:
     static HandlerResult IntAdd(Context ctx) {
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 ```
 
 - реализуйте обработчики для новых команд.  Каждый обработчик команд получает один входной аргумент — `Context ctx`. Этот аргумент используется для вызова других методов SDK.
@@ -62,7 +62,7 @@ public:
 
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 ```
 
 - скомпилируйте проект и поместите файл `.cleo` в папку [`CLEO_PLUGINS`](./installation-plugins.md).

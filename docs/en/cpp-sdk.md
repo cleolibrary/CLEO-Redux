@@ -26,7 +26,7 @@ public:
 	TestPlugin() {
 		Log("My Test Plugin");
 	}
-};
+} TestPlugin;
 ```
 
 - in the plugin class constructor call `RegisterCommand` function for each new command
@@ -42,7 +42,7 @@ public:
     static HandlerResult IntAdd(Context ctx) {
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 ```
 
 - implement handlers for new commands. Each command handler gets one input argument which is `Context ctx`. This argument is used to call other SDK methods
@@ -62,7 +62,7 @@ public:
 
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 ```
 
 - compile the project and place `.cleo` file to the [`CLEO_PLUGINS`](./installation-plugins.md) folder.
