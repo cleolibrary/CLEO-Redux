@@ -168,7 +168,7 @@ public:
 	TestPlugin() {
 		Log(&quot;My Test Plugin&quot;);
 	}
-};
+} TestPlugin;
 </code></pre>
 <ul>
 <li>в конструкторе класса плагина вызовите функцию <code>RegisterCommand</code> для каждой новой команды</li>
@@ -183,7 +183,7 @@ public:
     static HandlerResult IntAdd(Context ctx) {
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 </code></pre>
 <ul>
 <li>реализуйте обработчики для новых команд.  Каждый обработчик команд получает один входной аргумент — <code>Context ctx</code>. Этот аргумент используется для вызова других методов SDK.</li>
@@ -202,7 +202,7 @@ public:
 
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 </code></pre>
 <ul>
 <li>

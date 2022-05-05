@@ -1317,7 +1317,7 @@ public:
 	TestPlugin() {
 		Log(&quot;My Test Plugin&quot;);
 	}
-};
+} TestPlugin;
 </code></pre>
 <ul>
 <li>in the plugin class constructor call <code>RegisterCommand</code> function for each new command</li>
@@ -1332,7 +1332,7 @@ public:
     static HandlerResult IntAdd(Context ctx) {
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 </code></pre>
 <ul>
 <li>implement handlers for new commands. Each command handler gets one input argument which is <code>Context ctx</code>. This argument is used to call other SDK methods</li>
@@ -1351,7 +1351,7 @@ public:
 
         return HandlerResult::CONTINUE;
     }
-};
+} TestPlugin;
 </code></pre>
 <ul>
 <li>
