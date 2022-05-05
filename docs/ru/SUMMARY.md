@@ -20,7 +20,7 @@
 - [Скрипты](./scripts.md)
 
   - [Compiled Scripts (.cs)](./compiled-scripts.md)
-    - [Пользовательские комманды](./custom-commands.md)
+    - [Пользовательские команды](./custom-commands.md)
   - [JavaScript](./javascript.md)
     - [Предварительные условия](./prerequisites.md)
     - [Жизненный цикл скрипта](./script-lifecycle.md)
