@@ -11,7 +11,7 @@ This guide has been tested on Visual Studio 2019 and Visual Studio 2022 (Communi
 - Download [`cleo_redux_sdk.h`](https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/plugins/SDK/cleo_redux_sdk.h) and add it in your project
 
 ```cpp
-#include "cleo_redux_sdk.h
+#include "cleo_redux_sdk.h"
 ```
 
 If this header file is located outside of your project directory you need to add a folder with this file in `Project Settings->VC++ Directories->Include Directories` to let Visual Studio discover this file.
