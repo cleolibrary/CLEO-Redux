@@ -140,25 +140,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h2>
-<p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/SDK">SDK for the C++ and Rust languages</a>.</p>
-<h3 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h3>
+                        <h1 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h1>
+<p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/SDK">SDK for the C++ and Rust languages</a>.</p>
+<h2 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h2>
+<p>The current version is <code>3</code>. Changes to SDK advance this number by one.</p>
+<h2 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h2>
 <p>CLEO Redux provides SDK for both 32-bit and 64-bit games. There is one notable change between the two: on the 32-bit platform the SDK functions <code>GetIntParam</code> and <code>SetIntParam</code> operate on signed 32-bit numbers, whereas on the 64-bit platform they operate on signed 64-bit numbers (declared as the type <code>isize</code>).</p>
-<h3 id="plugin-structure"><a class="header" href="#plugin-structure">Plugin structure</a></h3>
-<p>Each plugin is a dynamic library with the <code>.cleo</code> extension that must be placed in <code>CLEO\CLEO_PLUGINS</code>. CLEO Redux scans this directory on startup and loads all <code>.cleo</code> files using WinAPI's function <code>LoadLibrary</code>. To register a handler for the new command the plugin must call <code>RegisterCommand</code> in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with the one argument which is a pointer to the current context. This pointer must be used for calling other SDK methods.</p>
-<h3 id="naming-convention"><a class="header" href="#naming-convention">Naming convention</a></h3>
 <p>It's recommended for 64-bit plugins to have <code>64</code> in their names (e.g. <code>myplugin64.cleo</code>).</p>
-<h3 id="unsafe-commands"><a class="header" href="#unsafe-commands">Unsafe commands</a></h3>
-<p>Commands that use low-level WinAPI and can potentially damage user environment must be explicitly registered with a permission token (third argument to the <code>RegisterCommand</code>). User can disallow usage of unsafe commands in the scripts using <a href="https://github.com/cleolibrary/CLEO-Redux#permissions">permission config</a>. At the moment three permission tokens are used: <code>mem</code>, <code>fs</code>, and <code>dll</code>. They mark commands operating with the host process, user files and external libraries.</p>
-<h3 id="command-interface"><a class="header" href="#command-interface">Command interface</a></h3>
-<p>CLEO Redux uses <a href="https://library.sannybuilder.com">Sanny Builder Library</a> to know an interface of any command. For a new command to become available in the scripts, the JSON file (<code>gta3.json</code>, <code>vc.json</code>, <code>sa.json</code>) must have the command definition, including the name that matches with the value that the plugin uses <code>RegisterCommand</code> with. E.g. if the plugin registers <code>SHOW_MESSAGE</code> command, the JSON file must have a command with the <code>name</code> property set to <code>SHOW_MESSAGE</code>. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. <code>GetXXXParam</code> for each input argument and <code>SetXXXParam</code> for each output argument).</p>
-<h4 id="claiming-opcodes"><a class="header" href="#claiming-opcodes">Claiming Opcodes</a></h4>
-<p>Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers <a href="https://github.com/sannybuilder/library/issues">on GitHub</a>.</p>
-<h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
-<p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions ensure each command claims only an available id. Also it helps to track and document plugins in a single place.</p>
-<h3 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h3>
-<p>The current version is <code>2</code>. Changes to SDK advance this number by one.</p>
-<h3 id="path-resolution-convention"><a class="header" href="#path-resolution-convention">Path Resolution Convention</a></h3>
+<h2 id="plugin-lifetime"><a class="header" href="#plugin-lifetime">Plugin Lifetime</a></h2>
+<p>Each plugin is a dynamic-link library (DLL) with the <code>.cleo</code> extension that must be placed in <code>CLEO\CLEO_PLUGINS</code>. CLEO Redux scans this directory on startup and loads all <code>.cleo</code> files using WinAPI's function <code>LoadLibrary</code>.</p>
+<h2 id="path-resolution-convention"><a class="header" href="#path-resolution-convention">Path Resolution Convention</a></h2>
 <p>String arguments representing a path to the directory or file must be normalized using SDK's function <code>ResolvePath</code>. This function takes a path and returns the absolute path resolved by the following rules:</p>
 <ul>
 <li>an absolute path gets resolved as is</li>
@@ -170,7 +161,7 @@
 </li>
 <li>all other paths get resolved relative to the current working directory (the game directory)</li>
 </ul>
-<h3 id="string-arguments"><a class="header" href="#string-arguments">String Arguments</a></h3>
+<h2 id="string-arguments"><a class="header" href="#string-arguments">String Arguments</a></h2>
 <p>Strings passed in and out of the SDK methods are UTF-8 encoded. </p>
 <p>If the script uses an integer value where a string is expected SDK treats this number as a pointer to a null-terminated UTF-8 character sequence to read, or to a large enough buffer to store the result to:</p>
 <pre><code class="language-js">IniFile.WriteString(0xDEADBEEF, &quot;my.ini&quot;, &quot;section&quot;, &quot;key&quot;)
@@ -179,6 +170,25 @@
 <pre><code>0AF4: read_string_from_ini_file 'my.ini' section 'section' key 'key' store_to 0xDEADBEEF
 </code></pre>
 <p>SDK will read a string from the ini file and write it at the address <code>0xDEADBEEF</code>.</p>
+<h2 id="developing-new-commands"><a class="header" href="#developing-new-commands">Developing New Commands</a></h2>
+<p>To register custom command handlers the plugin must call <code>RegisterCommand</code> in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with the one argument which is a pointer to the current context. This pointer must be used for calling other SDK methods. See <a href="./cpp-sdk.html">C++ SDK</a> guide or <a href="./rust-sdk.html">Rust SDK</a> guide for examples.</p>
+<h3 id="unsafe-commands"><a class="header" href="#unsafe-commands">Unsafe commands</a></h3>
+<p>New commands that use low-level WinAPI and can potentially damage user environment must be explicitly registered with a permission token (third argument to the <code>RegisterCommand</code>). User can disallow usage of unsafe commands in the scripts using <a href="./permissions.html">permission config</a>. At the moment three permission tokens are used: <code>mem</code>, <code>fs</code>, and <code>dll</code>. They mark commands operating with the host process, user files and external libraries.</p>
+<h3 id="command-interface"><a class="header" href="#command-interface">Command interface</a></h3>
+<p>CLEO Redux uses <a href="https://library.sannybuilder.com">Sanny Builder Library</a> to know an interface of any command. For a new command to become available in the scripts, the JSON file (<code>gta3.json</code>, <code>vc.json</code>, <code>sa.json</code>) must have the command definition, including the name that matches with the value that the plugin uses <code>RegisterCommand</code> with. E.g. if the plugin registers <code>SHOW_MESSAGE</code> command, the JSON file must have a command with the <code>name</code> property set to <code>SHOW_MESSAGE</code>. The number and order of the input and output parameters in the definition must match the order of methods used by the plugin (i.e. <code>GetXXXParam</code> for each input argument and <code>SetXXXParam</code> for each output argument).</p>
+<h4 id="claiming-opcodes"><a class="header" href="#claiming-opcodes">Claiming Opcodes</a></h4>
+<p>Opcodes get assigned to new commands in Sanny Builder Library based on the availability, similarity with existing commands in other games, and other factors. To claim an opcode reach out to Sanny Builder Library maintainers <a href="https://github.com/sannybuilder/library/issues">on GitHub</a>.</p>
+<h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
+<p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions ensure each command claims only an available id. Also it helps to track and document plugins in a single place.</p>
+<h2 id="developing-file-loaders"><a class="header" href="#developing-file-loaders">Developing File Loaders</a></h2>
+<p>A plugin can associate itself with a particular <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> (or in other word a file name with wildcard characters in it, e.g. <code>*.txt</code>) and provide a handler to be called when a script <a href="./imports.html">imports</a> a file matching the pattern. </p>
+<p>The glob pattern can be used to match an arbitrary file name using wildcards to represent any characters (<code>*.pak*</code> would match <code>1.pak1</code>, <code>2.pak1</code>, <code>3.pak3</code>, etc) or a specific file name (<code>gta.dat</code> would match only a <code>gta.dat</code> file). Be mindful about using wildcards to avoid matching unnecessary files. The plugin can associate itself with many globs (for example TextLoader uses <code>*.txt</code> and <code>*.text</code>), but it's recommended to support only related formats in one plugin.</p>
+<p>The handler gets a full path to the file as an input and returns a pointer to the buffer with the content of the file that has been serialized into JSON. The serialized JSON content should be a valid null-terminated UTF-8 string. </p>
+<blockquote>
+<p>To allocate a memory buffer for the serialized string the plugin MUST call SDK's method <code>AllocMem</code>. This memory will be released by CLEO Redux once it reads the data from it. Allocating the memory inside the plugin will lead to an error.</p>
+</blockquote>
+<p>If the serialization has failed or the file does not have the expected format (for example due to a glob matching too many files), the handler should return a null pointer. In this case CLEO proceeds to another loader that could handle this file.</p>
+<p><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/loaders">See examples</a> of the file loaders implemented for Text files (in C++) and IDE files (in Rust).</p>
 
                     </main>
 
