@@ -11,7 +11,7 @@
 - Загрузите [`cleo_redux_sdk.h`](https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/plugins/SDK/cleo_redux_sdk.h) и добавьте его в свой проект.
 
 ```cpp
-#include "cleo_redux_sdk.h
+#include "cleo_redux_sdk.h"
 ```
 
 Если этот заголовочный файл находится за пределами каталога вашего проекта, вам необходимо добавить папку с этим файлом в «Настройки проекта->Каталоги VC++->Включить каталоги», чтобы позволить Visual Studio обнаружить этот файл.
