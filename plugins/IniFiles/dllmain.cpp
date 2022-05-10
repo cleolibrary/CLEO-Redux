@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "../SDK/cleo_redux_sdk.h"
+#include "../../SDK/cleo_redux_sdk.h"
 
 class IniFilesPlugin {
 public:

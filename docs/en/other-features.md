@@ -52,3 +52,7 @@ Adding a new script file in the [CLEO directory](./cleo-directory.md) or deletin
 [See demo on YouTube](https://www.youtube.com/watch?v=LAi2syrsxJg)
 
 Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).
+
+## Main Menu Information
+
+CLEO Redux displays the information such as the version and the amount of active scripts in the main menu of GTA III / Vice City and San Andreas. To disable this information set [`DisplayMenuInfo`](./config.md#general) to `0`.

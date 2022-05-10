@@ -1,1 +1,10 @@
 book
+.vs
+target
+*.cleo
+*.vcxproj.user
+*.asi
+*.pdb
+Release
+x64
+*.exe

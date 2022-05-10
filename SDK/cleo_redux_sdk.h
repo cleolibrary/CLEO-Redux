@@ -30,6 +30,7 @@ enum class HostId
 
 typedef void* Context;
 typedef HandlerResult (*CommandHandler)(Context);
+typedef void* (*CustomLoader)(const char*);
 typedef intptr_t isize;
 
 extern "C" {
@@ -87,4 +88,14 @@ extern "C" {
     // since v2
     // Iterates the main loop
     void RuntimeNextTick(unsigned int current_time, int time_step);
+	// since v3
+	// Registers a new loader for files matching a glob pattern
+	void RegisterLoader(const char* glob, CustomLoader loader);
+	// since v3
+	// Allocates a memory chunk with size in bytes. Memory is guaranteed to be zero initialized
+	void* AllocMem(size_t size);
+	// since v3
+	// Frees up the memory chunk allocated with AllocMem
+	void FreeMem(void *ptr);
+
 }

@@ -1,12 +1,15 @@
 #define AppName "CLEO Redux"
-#define AppVersion "0.9.4-dev.20220427"
+#define AppVersion "0.9.4-dev.20220510"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
-#define SourceDir "..\..\cleo_redux_plugins_release"
-#define UAL64Repo = "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest"
-#define UAL32Repo = "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest"
+#define SourceDir "..\"
 
-#define ImGuiReduxRepo = "https://github.com/user-grinch/ImGuiRedux/releases/download/x86-latest"
+#define UAL64 = "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest"
+#define UAL32 = "https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/Win32-latest"
+
+#define ImGuiRedux32 = "https://github.com/user-grinch/ImGuiRedux/releases/download/Win32-latest"
+#define ImGuiRedux64 = "https://github.com/user-grinch/ImGuiRedux/releases/download/Win64-latest"
+
 #define SilentPatchIII = "https://silent.rockstarvision.com/uploads/SilentPatchIII.zip"
 #define SilentPatchVC = "https://silent.rockstarvision.com/uploads/SilentPatchVC.zip"
 #define SilentPatchSA = "https://silent.rockstarvision.com/uploads/SilentPatchSA.zip"
@@ -20,7 +23,7 @@ AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
 AppCopyright=Copyright (c) 2021-2022, {#AppPublisher}
 DefaultDirName=New folder
-LicenseFile={#SourceDir}\Release\LICENSE.txt
+LicenseFile={#SourceDir}\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 ;PrivilegesRequiredOverridesAllowed=dialog
@@ -38,19 +41,23 @@ Uninstallable=false
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"; LicenseFile: "LICENSE-RU.txt"
+Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"; LicenseFile: "..\LICENSE-RU.txt"
 
 [Types]
 Name: "full"; Description: "Full"; Flags: iscustom
 
 [Components]
 Name: "program"; Description: "CLEO Redux"; Types: full; Flags: fixed
-Name: "plugins"; Description: "Plugins"; Types: full
+Name: "plugins"; Description: "New Commands"; Types: full
 Name: "plugins/ini"; Description: "IniFiles 1.2"; Types: full
 Name: "plugins/dylib"; Description: "Dylib 1.1"; Types: full
-Name: "plugins/imgui"; Description: "ImGuiRedux (by Grinch_) - x86 only"; Types: full
-Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for GTA III and GTA Vice City"; Types: full
-Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly"; Types: full
+Name: "plugins/imgui"; Description: "ImGuiRedux (by Grinch_)"; Types: full
+Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for games using DirectX 8"; Types: full
+Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly in classic GTA"; Types: full
+Name: "loaders"; Description: "File Loaders"; Types: full
+Name: "loaders/text"; Description: "*.txt files"; Types: full
+Name: "loaders/ide"; Description: "*.ide files (for GTA3, VC, SA)"; Types: full
+
 Name: "asiloader"; Description: "Ultimate ASI Loader (by ThirteenAG)"; Types: full
 
 [Dirs]
@@ -68,13 +75,21 @@ Source: "{tmp}\version.zip"; DestDir: "{app}"; Flags: deleteafterinstall externa
 Source: "{tmp}\vorbisFile.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: NeedsAL and IsX86; AfterInstall: Extract('{app}\vorbisFile.zip', 'vorbisFile.dll', '{app}');  Components: asiloader;
 
 ; Plugins
-Source: "{#SourceDir}\Release\CLEO\CLEO_PLUGINS\dylib.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/dylib
-Source: "{#SourceDir}\Release\CLEO\CLEO_PLUGINS\dylib64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/dylib
-Source: "{#SourceDir}\Release\CLEO\CLEO_PLUGINS\IniFiles.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/ini
-Source: "{#SourceDir}\Release\CLEO\CLEO_PLUGINS\IniFiles64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/ini
-Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiRedux.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/imgui;
-Source: "{tmp}\d3d8.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: IsX86 and NeedsD3Wrapper; AfterInstall: Extract('{app}\d3d8.zip', 'd3d8.dll', '{app}'); Components: plugins/imgui/d3d8to9;
-Source: "{tmp}\SilentPatch.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: IsX86 and NeedsSilentPatch; AfterInstall: ExtractAll('{app}\SilentPatch.zip', '{app}'); Components: plugins/imgui/SilentPatch;
+Source: "{#SourceDir}\plugins\Dylib\build\dylib.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/dylib
+Source: "{#SourceDir}\plugins\Dylib\build\dylib64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/dylib
+Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/ini
+Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/ini
+
+Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: InstallImGuiRedux32; Components: plugins/imgui;
+Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiReduxWin64.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/imgui;
+
+Source: "{tmp}\d3d8.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; AfterInstall: Extract('{app}\d3d8.zip', 'd3d8.dll', '{app}'); Components: plugins/imgui/d3d8to9;
+Source: "{tmp}\SilentPatch.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; AfterInstall: ExtractAll('{app}\SilentPatch.zip', '{app}'); Components: plugins/imgui/SilentPatch;
+
+; Custom File Loaders
+Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/text
+Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/text
+Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/ide
 
 
 [CustomMessages]
@@ -101,8 +116,6 @@ var
   FGameId: Integer;
   DownloadPage: TDownloadWizardPage;
   ArchPage: TInputOptionWizardPage;
-  AssociateCheckBox: TCheckBox;
-  AssociateLabel: TLabel;
   DefaultDirOnce: Boolean;
 
 function IsX64(): Boolean;
@@ -140,7 +153,6 @@ var
   Shell: variant;
   Item: variant;
   SrcFldr, DestFldr: variant;
-  shellfldritems: variant;
 begin
   if FileExists(Src) then 
   begin
@@ -161,9 +173,7 @@ end;
 procedure unzipFolder(Src, TargetFldr: PAnsiChar);
 var
   Shell: variant;
-  Item: variant;
   SrcFldr, DestFldr: variant;
-  shellfldritems: variant;
 begin
   if FileExists(Src) then 
   begin
@@ -197,6 +207,12 @@ begin
     Result := 'SilentPatchVC.asi'
   else if FGameId = 5 then 
     Result := 'SilentPatchSA.asi';
+end;
+
+procedure InstallImGuiRedux32();
+begin
+  Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiReduxWin32.cleo', '{app}\CLEO\CLEO_PLUGINS');
+  DeleteFile(ExpandConstant('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.cleo'));
 end;
 
 function IdentifyGame(Dir: String): Integer;
@@ -283,6 +299,8 @@ begin
 end;
    
 procedure CurPageChanged(CurPageID: Integer);
+var
+  I: Integer;
 begin
   if CurPageID = wpSelectDir then 
   begin
@@ -293,15 +311,29 @@ begin
   end;
 
    if CurPageID = wpSelectComponents then
+   begin
+     // reset all checkboxes to their initial state first
+    for I := 1 to 9 do
+    begin
+      WizardForm.ComponentsList.ItemEnabled[I] := True;
+      WizardForm.ComponentsList.Checked[I] := True;
+    end;
+
     if (IsX64()) then
     begin
-      WizardForm.ComponentsList.Checked[4] := False;
-      WizardForm.ComponentsList.ItemEnabled[4] := False;
+      // D3 Wrapper
       WizardForm.ComponentsList.Checked[5] := False;
-      WizardForm.ComponentsList.ItemEnabled[5] := False;
+
+      // SilentPatch
       WizardForm.ComponentsList.Checked[6] := False;
       WizardForm.ComponentsList.ItemEnabled[6] := False;
-    end else begin
+
+      // ide loader
+      WizardForm.ComponentsList.Checked[9] := False;
+      WizardForm.ComponentsList.ItemEnabled[9] := False;
+    end 
+    // 32-bit
+    else begin
         if not NeedsD3Wrapper then
         begin
           WizardForm.ComponentsList.Checked[5] := False;
@@ -313,6 +345,14 @@ begin
           WizardForm.ComponentsList.ItemEnabled[6] := False;
         end;
     end;
+
+    // disable IDE Loader for unknown host
+    if (FGameId = 0) then
+    begin
+      // ide loader
+      WizardForm.ComponentsList.Checked[9] := False;
+    end;
+   end;
 end;
 
 function ShouldSkipPage(PageID: Integer): Boolean;
@@ -332,7 +372,7 @@ begin
  
   if (CurPageID = wpSelectDir) and (WizardDirValue <> '') then
   begin
-    FGameId := IdentifyGame(WizardDirValue);   
+    FGameId := IdentifyGame(WizardDirValue);
   end;
 
   if CurPageID = wpReady then 
@@ -349,15 +389,17 @@ begin
 
       if FDlAsiLoader then
       begin
-        if IsX64() then DownloadPage.Add('{#UAL64Repo}/version.zip', 'version.zip', '');
-        if IsX86() then DownloadPage.Add('{#UAL32Repo}/vorbisFile.zip', 'vorbisFile.zip', '');
+        if IsX64() then DownloadPage.Add('{#UAL64}/version.zip', 'version.zip', '');
+        if IsX86() then DownloadPage.Add('{#UAL32}/vorbisFile.zip', 'vorbisFile.zip', '');
       end;
 
       if FDlImGuiPlugin then
       begin
-        DownloadPage.Add('{#ImGuiReduxRepo}/ImGuiRedux.zip', 'ImGuiRedux.zip', '');
+        if IsX86() then DownloadPage.Add('{#ImGuiRedux32}/ImGuiReduxWin32.zip', 'ImGuiRedux.zip', '');
+        if IsX64() then DownloadPage.Add('{#ImGuiRedux64}/ImGuiReduxWin64.zip', 'ImGuiRedux.zip', '');
+        
         if WizardIsComponentSelected('plugins/imgui/d3d8to9') then
-          DownloadPage.Add('{#ImGuiReduxRepo}/d3d8.zip', 'd3d8.zip', '');
+          DownloadPage.Add('{#ImGuiRedux32}/d3d8.zip', 'd3d8.zip', '');
         if WizardIsComponentSelected('plugins/imgui/SilentPatch') then
         begin
           if FGameId = 3 then

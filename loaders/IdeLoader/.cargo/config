@@ -5,13 +5,13 @@ target = "i686-pc-windows-msvc"
 [target.i686-pc-windows-msvc]
 rustflags = [
     "-C", "target-feature=+crt-static",
-    "-C", "link-arg=/OUT:build/dylib.cleo",
+    "-C", "link-arg=/OUT:build/IdeLoader.cleo",
     "-L", "../../SDK"
 ]
 
 [target.x86_64-pc-windows-msvc]
 rustflags = [
     "-C", "target-feature=+crt-static",
-    "-C", "link-arg=/OUT:build/dylib64.cleo",
+    "-C", "link-arg=/OUT:build/IdeLoader64.cleo",
     "-L", "../../SDK"
 ]
