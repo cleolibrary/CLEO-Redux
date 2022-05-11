@@ -1,29 +1,31 @@
 # Embedding to custom host
 
-> This documentation is being worked on.
-
-CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not [supported officially](./introduction.md#supported-releases)) host. A *host* is an application in which process `cleo_redux.asi` or `cleo_redux64.asi` gets loaded or injected and where the CLEO runtime runs. This feature is highly experimental and subject to change at any moment.
+CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not [supported officially](./introduction.md#supported-releases)) host. A *host* is an application in which process `cleo_redux.asi` or `cleo_redux64.asi` [gets loaded or injected](#loading-into-custom-process) and where the CLEO runtime [runs](#launching-the-cleo-runtime). This feature is highly experimental and subject to change at any moment.
 
 [See demo on YouTube](https://www.youtube.com/watch?v=rk2LvDt7UkI).
 
 ## Loading into custom process
 
-There are multiple ways of loading ASI file into the target process. [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) is one of them. Or use any [DLL injector](https://github.com/search?q=dll+injector) available on GitHub. The host can load CLEO ASI file as a dynamic library when needed.
+There are multiple ways of loading ASI file into the target process. They include but not limited to [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases) or any [DLL injector](https://github.com/search?q=dll+injector) available on GitHub. The host can load CLEO ASI file as a dynamic library when needed using WinAPI's `LoadLibrary` function.
 
 ## Launching the CLEO runtime
 
-To launch the runtime on an unknown host immediately after loading, open the [config file](./config.md) and set `EnableSelfHost` to `1`. When loaded as a self host CLEO Redux scans the [CLEO directory](./cleo-directory.md) for plugins and scripts and runs them.
+After injecting CLEO into the target process you should launch the runtime to execute scripts. There are two ways of doing it: automatic and manual.
+
+### Automatic launch
+
+To launch the runtime on an unknown host immediately after loading, open the [config file](./config.md) and set `EnableSelfHost` to `1`. When loaded as a self host CLEO Redux scans the [CLEO directory](./cleo-directory.md) for plugins and scripts and runs them. This option is suitable if you don't have control over the host's source code and inject the library using an injector.
 
 ### Manually Controlling the Runtime
 
-The host can start the runtime and advance its main loop using SDK methods `RuntimeInit` and `RuntimeNextTick`.
+The host can start the runtime and advance its main loop using SDK methods `RuntimeInit` and `RuntimeNextTick`. This option is suitable if you have control over the host's source code and can execute arbitrary instructions.
 
 This is how it can be implemented in Rust:
 
 ```toml
 [dependencies]
 ctor = "0.1.21"
-cleo_redux_sdk = "0.0.6"
+cleo_redux_sdk = "^0.0.6"
 ```
 
 ```rust
