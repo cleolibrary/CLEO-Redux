@@ -143,8 +143,8 @@
                         <h1 id="custom-text-fxt"><a class="header" href="#custom-text-fxt">Custom Text (FXT)</a></h1>
 <p>CLEO Redux supports custom text content without the need to edit game files.</p>
 <h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
-<p><a href="https://youtu.be/ctsKy7WnY9o">See demo on YouTube</a></p>
-<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> <a href="./cleo-directory.html">folder</a>. The file name can be any valid name. </p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ctsKy7WnY9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> <a href="./cleo-directory.html">folder</a>. The file name can be any valid name.</p>
 <p>Each FXT file contains a list of the key-value entries in the following format:</p>
 <pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
 &lt;KEY2&gt; &lt;TEXT2&gt;
@@ -159,7 +159,7 @@
 </code></pre>
 <p>You can find the commands available in each game in the Sanny Builder Library, e.g. <a href="https://library.sannybuilder.com/#/sa_unreal/classes/Text">for San Andreas: DE</a>.</p>
 <h2 id="fxtstore"><a class="header" href="#fxtstore">FxtStore</a></h2>
-<p><a href="https://youtu.be/FLyYyrGz1Xg">See demo on YouTube</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FLyYyrGz1Xg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
 <pre><code class="language-ts">declare interface FxtStore {
   /**
@@ -180,18 +180,18 @@
 <pre><code>MY_KEY Text from FXT file
 </code></pre>
 <p>custom.js:</p>
-<pre><code class="language-js">Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot;
-FxtStore.insert('MY_KEY', 'Text from script');
-Text.PrintHelp('MY_KEY') // this displays &quot;Text from script&quot;
-FxtStore.delete('MY_KEY')
-Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
+<pre><code class="language-js">Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&quot;
+FxtStore.insert(&quot;MY_KEY&quot;, &quot;Text from script&quot;);
+Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from script&quot;
+FxtStore.delete(&quot;MY_KEY&quot;);
+Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&quot; again
 </code></pre>
 <p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
 <p>Custom text can be constructed dynamically, e.g.:</p>
-<pre><code class="language-js">while(true) {
-    wait(0);
-    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
-    Text.PrintHelp('TIME') // this displays &quot;Timestamp: &quot; and the updated timestamp value
+<pre><code class="language-js">while (true) {
+  wait(0);
+  FxtStore.insert(&quot;TIME&quot;, &quot;Timestamp: &quot; + Date.now());
+  Text.PrintHelp(&quot;TIME&quot;); // this displays &quot;Timestamp: &quot; and the updated timestamp value
 }
 </code></pre>
 

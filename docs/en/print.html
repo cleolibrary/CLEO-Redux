@@ -413,6 +413,7 @@
 <p>CLEO_TEXT, CLEO_PLUGINS, and .config are not considered as script directories.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fluent-interface"><a class="header" href="#fluent-interface">Fluent Interface</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LLgJ0fWbklg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Methods on constructible entities (such as <code>Player</code>, <code>Car</code>, <code>Char</code> -- any entities created via a constructor method) support chaining (also known as Fluent Interface). It allows to write code like this:</p>
 <pre><code class="language-js">var p = new Player(0);
 
@@ -423,7 +424,6 @@ p.giveWeapon(2, 100)
   .setCoordinates(1144, -600, 14)
   .setBleeding(true);
 </code></pre>
-<p><a href="https://www.youtube.com/watch?v=LLgJ0fWbklg">See demo on YouTube</a>.</p>
 <p>Destructor methods interrupt the chain. E.g. given the code:</p>
 <p><code>Char.Create(0, 0, 0, 0, 0).setCoordinates(0, 0, 0).delete()</code></p>
 <p>the chain can not continue after delete method as the character gets removed and its handle is not longer valid.</p>
@@ -1172,9 +1172,9 @@ var x = Object.create(null);
 <li>Ask a question in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="other-features"><a class="header" href="#other-features">Other Features</a></h1>
-<p>CLEO Redux puts focus on improving dev experience and make scripting process easier. </p>
+<p>CLEO Redux puts focus on improving dev experience and make scripting process easier.</p>
 <h2 id="integration-with-visual-studio-code"><a class="header" href="#integration-with-visual-studio-code">Integration with Visual Studio Code</a></h2>
-<p><a href="https://youtu.be/jqz8_lGnG4g">See demo on YouTube</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jqz8_lGnG4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
 <p>For <code>GTA III</code> or <code>re3</code>:</p>
 <pre><code>/// &lt;reference path=&quot;.config/gta3.d.ts&quot; /&gt;
@@ -1194,17 +1194,17 @@ var x = Object.create(null);
 <p>In JavaScript code use <code>CLEO.debug.trace(true)</code> to trace all commands. Use <code>CLEO.debug.trace(false)</code> to turn it off.</p>
 <h2 id="hot-reload"><a class="header" href="#hot-reload">Hot Reload</a></h2>
 <p>CLEO monitors active scripts and reloads them in game as they change</p>
-<p><a href="https://www.youtube.com/watch?v=WanLojClqFw">See demo on YouTube</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WanLojClqFw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Adding a new script file in the <a href="./cleo-directory.html">CLEO directory</a> or deleting one while the game is running starts or stops the script automatically</p>
-<p><a href="https://www.youtube.com/watch?v=LAi2syrsxJg">See demo on YouTube</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LAi2syrsxJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).</p>
 <h2 id="main-menu-information"><a class="header" href="#main-menu-information">Main Menu Information</a></h2>
 <p>CLEO Redux displays the information such as the version and the amount of active scripts in the main menu of GTA III / Vice City and San Andreas. To disable this information set <a href="./config.html#general"><code>DisplayMenuInfo</code></a> to <code>0</code>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="custom-text-fxt"><a class="header" href="#custom-text-fxt">Custom Text (FXT)</a></h1>
 <p>CLEO Redux supports custom text content without the need to edit game files.</p>
 <h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
-<p><a href="https://youtu.be/ctsKy7WnY9o">See demo on YouTube</a></p>
-<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> <a href="./cleo-directory.html">folder</a>. The file name can be any valid name. </p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ctsKy7WnY9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> <a href="./cleo-directory.html">folder</a>. The file name can be any valid name.</p>
 <p>Each FXT file contains a list of the key-value entries in the following format:</p>
 <pre><code>&lt;KEY1&gt; &lt;TEXT1&gt;
 &lt;KEY2&gt; &lt;TEXT2&gt;
@@ -1219,7 +1219,7 @@ var x = Object.create(null);
 </code></pre>
 <p>You can find the commands available in each game in the Sanny Builder Library, e.g. <a href="https://library.sannybuilder.com/#/sa_unreal/classes/Text">for San Andreas: DE</a>.</p>
 <h2 id="fxtstore-1"><a class="header" href="#fxtstore-1">FxtStore</a></h2>
-<p><a href="https://youtu.be/FLyYyrGz1Xg">See demo on YouTube</a></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FLyYyrGz1Xg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named <code>FxtStore</code> with the following interface:</p>
 <pre><code class="language-ts">declare interface FxtStore {
   /**
@@ -1240,18 +1240,18 @@ var x = Object.create(null);
 <pre><code>MY_KEY Text from FXT file
 </code></pre>
 <p>custom.js:</p>
-<pre><code class="language-js">Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot;
-FxtStore.insert('MY_KEY', 'Text from script');
-Text.PrintHelp('MY_KEY') // this displays &quot;Text from script&quot;
-FxtStore.delete('MY_KEY')
-Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
+<pre><code class="language-js">Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&quot;
+FxtStore.insert(&quot;MY_KEY&quot;, &quot;Text from script&quot;);
+Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from script&quot;
+FxtStore.delete(&quot;MY_KEY&quot;);
+Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&quot; again
 </code></pre>
 <p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
 <p>Custom text can be constructed dynamically, e.g.:</p>
-<pre><code class="language-js">while(true) {
-    wait(0);
-    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
-    Text.PrintHelp('TIME') // this displays &quot;Timestamp: &quot; and the updated timestamp value
+<pre><code class="language-js">while (true) {
+  wait(0);
+  FxtStore.insert(&quot;TIME&quot;, &quot;Timestamp: &quot; + Date.now());
+  Text.PrintHelp(&quot;TIME&quot;); // this displays &quot;Timestamp: &quot; and the updated timestamp value
 }
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="unsupported-or-limited-support-scenarios"><a class="header" href="#unsupported-or-limited-support-scenarios">Unsupported or limited support scenarios</a></h1>
@@ -1276,7 +1276,7 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="embedding-to-custom-host"><a class="header" href="#embedding-to-custom-host">Embedding to custom host</a></h1>
 <p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> <a href="embedding.html#loading-into-custom-process">gets loaded or injected</a> and where the CLEO runtime <a href="embedding.html#launching-the-cleo-runtime">runs</a>. This feature is highly experimental and subject to change at any moment.</p>
-<p><a href="https://www.youtube.com/watch?v=rk2LvDt7UkI">See demo on YouTube</a>.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rk2LvDt7UkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2 id="loading-into-custom-process"><a class="header" href="#loading-into-custom-process">Loading into custom process</a></h2>
 <p>There are multiple ways of loading ASI file into the target process. They include but not limited to <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> or any <a href="https://github.com/search?q=dll+injector">DLL injector</a> available on GitHub. The host can load CLEO ASI file as a dynamic library when needed using WinAPI's <code>LoadLibrary</code> function.</p>
 <h2 id="launching-the-cleo-runtime"><a class="header" href="#launching-the-cleo-runtime">Launching the CLEO runtime</a></h2>
