@@ -1,4 +1,5 @@
-# CLEO Redux
+# <img src="cleo_redux.png" width="32" height="32"> CLEO Redux
+
 
 [![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)](https://discord.gg/d5dZSfgBZr)
 [![YouTube Channel](https://img.shields.io/badge/YouTube-Channel-FF0000?style=for-the-badge)](https://www.youtube.com/playlist?list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb)
