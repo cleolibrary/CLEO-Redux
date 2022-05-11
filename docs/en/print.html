@@ -1275,21 +1275,20 @@ Text.PrintHelp('MY_KEY') // this displays &quot;Text from FXT file&quot; again
 </li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="embedding-to-custom-host"><a class="header" href="#embedding-to-custom-host">Embedding to custom host</a></h1>
-<blockquote>
-<p>This documentation is being worked on.</p>
-</blockquote>
-<p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> gets loaded or injected and where the CLEO runtime runs. This feature is highly experimental and subject to change at any moment.</p>
+<p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> <a href="embedding.html#loading-into-custom-process">gets loaded or injected</a> and where the CLEO runtime <a href="embedding.html#launching-the-cleo-runtime">runs</a>. This feature is highly experimental and subject to change at any moment.</p>
 <p><a href="https://www.youtube.com/watch?v=rk2LvDt7UkI">See demo on YouTube</a>.</p>
 <h2 id="loading-into-custom-process"><a class="header" href="#loading-into-custom-process">Loading into custom process</a></h2>
-<p>There are multiple ways of loading ASI file into the target process. <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> is one of them. Or use any <a href="https://github.com/search?q=dll+injector">DLL injector</a> available on GitHub. The host can load CLEO ASI file as a dynamic library when needed.</p>
+<p>There are multiple ways of loading ASI file into the target process. They include but not limited to <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> or any <a href="https://github.com/search?q=dll+injector">DLL injector</a> available on GitHub. The host can load CLEO ASI file as a dynamic library when needed using WinAPI's <code>LoadLibrary</code> function.</p>
 <h2 id="launching-the-cleo-runtime"><a class="header" href="#launching-the-cleo-runtime">Launching the CLEO runtime</a></h2>
-<p>To launch the runtime on an unknown host immediately after loading, open the <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them.</p>
+<p>After injecting CLEO into the target process you should launch the runtime to execute scripts. There are two ways of doing it: automatic and manual.</p>
+<h3 id="automatic-launch"><a class="header" href="#automatic-launch">Automatic launch</a></h3>
+<p>To launch the runtime on an unknown host immediately after loading, open the <a href="./config.html">config file</a> and set <code>EnableSelfHost</code> to <code>1</code>. When loaded as a self host CLEO Redux scans the <a href="./cleo-directory.html">CLEO directory</a> for plugins and scripts and runs them. This option is suitable if you don't have control over the host's source code and inject the library using an injector.</p>
 <h3 id="manually-controlling-the-runtime"><a class="header" href="#manually-controlling-the-runtime">Manually Controlling the Runtime</a></h3>
-<p>The host can start the runtime and advance its main loop using SDK methods <code>RuntimeInit</code> and <code>RuntimeNextTick</code>.</p>
+<p>The host can start the runtime and advance its main loop using SDK methods <code>RuntimeInit</code> and <code>RuntimeNextTick</code>. This option is suitable if you have control over the host's source code and can execute arbitrary instructions.</p>
 <p>This is how it can be implemented in Rust:</p>
 <pre><code class="language-toml">[dependencies]
 ctor = &quot;0.1.21&quot;
-cleo_redux_sdk = &quot;0.0.6&quot;
+cleo_redux_sdk = &quot;^0.0.6&quot;
 </code></pre>
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
