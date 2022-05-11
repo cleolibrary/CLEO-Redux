@@ -4,9 +4,9 @@ CLEO Redux supports custom text content without the need to edit game files.
 
 ## Static FXT files
 
-[See demo on YouTube](https://youtu.be/ctsKy7WnY9o)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ctsKy7WnY9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `CLEO\CLEO_TEXT` [folder](./cleo-directory.md). The file name can be any valid name. 
+CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `CLEO\CLEO_TEXT` [folder](./cleo-directory.md). The file name can be any valid name.
 
 Each FXT file contains a list of the key-value entries in the following format:
 
@@ -31,10 +31,9 @@ Text.PrintHelp('KEY1') // displays <TEXT1>
 
 You can find the commands available in each game in the Sanny Builder Library, e.g. [for San Andreas: DE](https://library.sannybuilder.com/#/sa_unreal/classes/Text).
 
-
 ## FxtStore
 
-[See demo on YouTube](https://youtu.be/FLyYyrGz1Xg)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FLyYyrGz1Xg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 CLEO Redux provides an interface for manipulating custom text directly in JavaScript code. There is a static variable, named `FxtStore` with the following interface:
 
@@ -57,6 +56,7 @@ declare interface FxtStore {
 Using `FxtStore` you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:
 
 custom.fxt:
+
 ```
 MY_KEY Text from FXT file
 ```
@@ -64,11 +64,11 @@ MY_KEY Text from FXT file
 custom.js:
 
 ```js
-Text.PrintHelp('MY_KEY') // this displays "Text from FXT file"
-FxtStore.insert('MY_KEY', 'Text from script');
-Text.PrintHelp('MY_KEY') // this displays "Text from script"
-FxtStore.delete('MY_KEY')
-Text.PrintHelp('MY_KEY') // this displays "Text from FXT file" again
+Text.PrintHelp("MY_KEY"); // this displays "Text from FXT file"
+FxtStore.insert("MY_KEY", "Text from script");
+Text.PrintHelp("MY_KEY"); // this displays "Text from script"
+FxtStore.delete("MY_KEY");
+Text.PrintHelp("MY_KEY"); // this displays "Text from FXT file" again
 ```
 
 A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.
@@ -76,10 +76,9 @@ A private FXT storage is not supported in San Andreas: The Definitive Edition. E
 Custom text can be constructed dynamically, e.g.:
 
 ```js
-while(true) {
-    wait(0);
-    FxtStore.insert('TIME', 'Timestamp: ' + Date.now());
-    Text.PrintHelp('TIME') // this displays "Timestamp: " and the updated timestamp value
+while (true) {
+  wait(0);
+  FxtStore.insert("TIME", "Timestamp: " + Date.now());
+  Text.PrintHelp("TIME"); // this displays "Timestamp: " and the updated timestamp value
 }
 ```
-

@@ -1,5 +1,7 @@
 # Fluent Interface
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LLgJ0fWbklg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Methods on constructible entities (such as `Player`, `Car`, `Char` -- any entities created via a constructor method) support chaining (also known as Fluent Interface). It allows to write code like this:
 
 ```js
@@ -12,8 +14,6 @@ p.giveWeapon(2, 100)
   .setCoordinates(1144, -600, 14)
   .setBleeding(true);
 ```
-
-[See demo on YouTube](https://www.youtube.com/watch?v=LLgJ0fWbklg).
 
 Destructor methods interrupt the chain. E.g. given the code:
 
