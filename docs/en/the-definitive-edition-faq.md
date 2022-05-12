@@ -17,8 +17,7 @@ Here you can find answers to the frequently asked questions about support for Th
 
 ### Is there any difference from support of the classic games?
 
-There is. CLEO does not display the version in the game menu. Also CLEO can run only JS scripts in GTA III and GTA VC. In San Andreas both CS and JS scripts are supported.
-
+In short, yes. [See this page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix) for detail on what's supported and what's not.
 ### Can I use original opcodes?
 
 Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in [our Discord](https://discord.gg/d5dZSfgBZr).
