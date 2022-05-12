@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "0.9.4-dev.20220510"
+#define AppVersion "0.9.4"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -56,7 +56,7 @@ Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for games using D
 Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly in classic GTA"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt files"; Types: full
-Name: "loaders/ide"; Description: "*.ide files (for GTA3, VC, SA)"; Types: full
+Name: "loaders/ide"; Description: "*.ide files (for 32-bit GTA3, VC, SA)"; Types: full
 
 Name: "asiloader"; Description: "Ultimate ASI Loader (by ThirteenAG)"; Types: full
 
@@ -99,11 +99,11 @@ m4 =No supported game or application was found in the selected directory. To con
 m5 =32-bit (x86)
 m6 =64-bit (x64)
 
-russian.m2 =Выберите версию CLEO Redux
-russian.m3 =Какую версию CLEO Redux (32-битную или 64-битную) нужно установить?
-russian.m4 =В выбранной директории не нашлось поддерживаемых игр или приложений. Для продолжения установки, выберите одну из двух возможных версий CLEO Redux. Подсказка: она должна совпадать с версией (архитектурой) игры или приложения, в которой будет запускаться CLEO Redux.
-russian.m5 =32-битная (x86)
-russian.m6 =64-битная (x64)
+russian.m2 =пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CLEO Redux
+russian.m3 =пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CLEO Redux (32-пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ 64-пїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ?
+russian.m4 =пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CLEO Redux. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CLEO Redux.
+russian.m5 =32-пїЅпїЅпїЅпїЅпїЅпїЅ (x86)
+russian.m6 =64-пїЅпїЅпїЅпїЅпїЅпїЅ (x64)
            
 [Code]
 const

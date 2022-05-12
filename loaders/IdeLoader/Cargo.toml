@@ -1,6 +1,6 @@
 [package]
 name = "ide-loader"
-version = "0.1.0"
+version = "1.1.0"
 edition = "2021"
 authors = ["Seemann <mail@sannybuilder.com>"]
 
@@ -10,9 +10,8 @@ crate-type = ["cdylib"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-gta-ide-parser = "0.0.2"
+gta-ide-parser = "0.0.3"
 ctor = "0.1.21"
 serde_json = { version = "1.0", features = ["preserve_order"] }
 serde = { version = "1.0", features = ["derive"] }
-nom = "7.1.1"
 cleo_redux_sdk = "0.0.9"

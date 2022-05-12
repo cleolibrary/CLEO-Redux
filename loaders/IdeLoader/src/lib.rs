@@ -6,7 +6,7 @@ use std::{fs::read_to_string, path::Path};
 
 #[ctor]
 fn init() {
-    cleo_redux_sdk::log("IDE Loader 1.0");
+    cleo_redux_sdk::log("IDE Loader 1.1");
     cleo_redux_sdk::register_loader("*.ide", loader);
 }
 
