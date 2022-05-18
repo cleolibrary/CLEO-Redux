@@ -1,5 +1,7 @@
 # Цепочки методов
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LLgJ0fWbklg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Методы конструируемых сущностей (таких как `Player`, `Car`, `Char` – любые сущности, созданные с помощью метода конструктора) поддерживают цепочку (также известную как Fluent Interface). Это позволяет писать такой код:
 
 ```js
