@@ -1,10 +1,8 @@
 # Встраивание на пользовательских хостах
 
-> Над этой документацией ведется работа.
-
 CLEO Redux может встраивать и запускать JS-скрипты на неизвестном (т.е. не [поддерживаемом официально](./introduction.md#supported-releases)) хосте.  *Хост* — это приложение, в котором загружается или внедряется процесс cleo_redux.asi или cleo_redux64.asi и в котором работает среда выполнения CLEO. Эта функция является экспериментальной и может быть изменена в любой момент.
 
-[Демонстрация на YouTube](https://www.youtube.com/watch?v=rk2LvDt7UkI).
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rk2LvDt7UkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Загрузка в пользовательский процесс
 
