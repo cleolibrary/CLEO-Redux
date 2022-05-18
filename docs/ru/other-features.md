@@ -4,7 +4,7 @@ CLEO Redux фокусируется на улучшении опыта разр�
 
 ## Интеграция с Visual Studio Code
 
-[Демонстрация на YouTube](https://youtu.be/jqz8_lGnG4g)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jqz8_lGnG4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 VS Code имеет широкие возможности настройки.  CLEO Redux генерирует типизации для всех поддерживаемых команд, которые вы можете использовать при написании JavaScript в VS Code.  Добавьте следующую строку в свой скрипт `*.js`, чтобы получить полную поддержку автозаполнения:
 
@@ -36,10 +36,10 @@ CLEO Redux имеет встроенную поддержку отслежива
 
 CLEO отслеживает активные скрипты и перезагружает их в игре по мере их изменения
 
-[Демонстрация на YouTube](https://www.youtube.com/watch?v=WanLojClqFw)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/WanLojClqFw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Добавление нового файла скрипта в директорию CLEO или удаление во время игры запускает или останавливает скрипт автоматически
 
-[Демонстрация на YouTube](https://www.youtube.com/watch?v=LAi2syrsxJg)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/LAi2syrsxJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Горячая перезагрузка для CS-скриптов не работает, когда CLEO Redux работает вместе с CLEO Library (например, в классическом San Andreas).
