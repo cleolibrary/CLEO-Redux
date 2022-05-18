@@ -2,7 +2,7 @@
 
 ### Статические файлы FXT
 
-Демонстрация: https://youtu.be/ctsKy7WnY9o
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ctsKy7WnY9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 CLEO Redux может загружать и обслуживать статический текстовый контент. Создайте новый файл с расширением `.fxt` и поместите его в папку `CLEO\CLEO_TEXT`. Имя файла может быть любым допустимым именем.
 
@@ -29,10 +29,9 @@ Text.PrintHelp('KEY1') // будет отображаться <TEXT1>
 
 Вы можете найти команды, доступные в каждой игре, в библиотеке Sanny Builder, например. для Сан-Андреас: DE https://library.sannybuilder.com/#/sa_unreal/classes/Text
 
-
 ### FxtStore
 
-Демонстрация: https://youtu.be/FLyYyrGz1Xg
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FLyYyrGz1Xg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 CLEO Redux предоставляет интерфейс для управления произвольным текстом непосредственно в коде JavaScript. Существует статическая переменная с именем `FxtStore` со следующим интерфейсом:
 
