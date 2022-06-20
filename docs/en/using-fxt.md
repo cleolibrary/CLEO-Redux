@@ -31,6 +31,9 @@ Text.PrintHelp('KEY1') // displays <TEXT1>
 
 You can find the commands available in each game in the Sanny Builder Library, e.g. [for San Andreas: DE](https://library.sannybuilder.com/#/sa_unreal/classes/Text).
 
+
+> CLEO Redux only supports texts encoded in UTF-8. It means that any non-standard encoding (e.g. for Russian localization by 1C) most likely will not work.
+
 ## FxtStore
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/FLyYyrGz1Xg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -53,7 +56,7 @@ declare interface FxtStore {
 }
 ```
 
-Using `FxtStore` you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore will shadow the same keys defined in static FXT files. Consider the example:
+Using `FxtStore` you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore shadow the same keys defined in static FXT files. Consider the example:
 
 custom.fxt:
 

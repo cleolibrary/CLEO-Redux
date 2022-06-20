@@ -63,7 +63,7 @@ log(lines.join("")); // prints the entire file
 - Extensions: `.ide`
 - Plugin name: `IdeLoader.cleo`
 
-The IDE loader transforms an item definition file (`*.ide`) that is widely used in GTA 3D series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:
+The IDE loader transforms an item definition file (`*.ide`) that is widely used in GTA series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:
 
 ```ts
 interface Ide {

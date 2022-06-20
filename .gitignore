@@ -6,5 +6,6 @@ target
 *.asi
 *.pdb
 Release
+Debug
 x64
 *.exe

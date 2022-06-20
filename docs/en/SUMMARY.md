@@ -6,12 +6,8 @@
 
 - [Installation](./installation.md)
 
-  - [Classic GTA III, GTA VC, GTA SA](./installation-classic-games.md)
-  - [re3 or reVC](./installation-re3-revc.md)
-  - [The Definitive Edition](./installation-definitive-edition.md)
-  - [CLEO Directory](./cleo-directory.md)
-    - [Plugins](./installation-plugins.md)
-    - [Scripts](./installation-scripts.md)
+  - [Plugins](./installation-plugins.md)
+  - [Scripts](./installation-scripts.md)
 
 - [Configuration](./config.md)
 

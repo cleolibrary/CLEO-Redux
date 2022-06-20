@@ -35,6 +35,8 @@ pub type c_void = std::ffi::c_void;
 pub type Context = *const c_void;
 pub type CustomCommand = extern "C" fn(Context) -> HandlerResult;
 pub type CustomLoader = extern "C" fn(*const c_char) -> *mut c_void;
+pub type OnTickCallback = extern "C" fn(current_time: u32, time_step: i32);
+pub type OnRuntimeInitCallback = extern "C" fn();
 
 #[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
 #[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
@@ -128,6 +130,18 @@ extern "C" {
     ///
     /// since v3
     fn FreeMem(ptr: *mut c_void);
+    /// Registers a new callback invoked on each main loop iteration (before scripts are executed)
+    ///
+    /// since v4
+    fn OnBeforeScripts(cb: OnTickCallback);
+    /// Registers a new callback invoked on each main loop iteration (after scripts are executed)
+    ///
+    /// since v4
+    fn OnAfterScripts(cb: OnTickCallback);
+    /// Registers a new callback invoked on each runtime init event (new game, saved game load, or SDK's RuntimeInit)
+    ///
+    /// since v4
+    fn OnRuntimeInit(cb: OnRuntimeInitCallback);
 }
 
 macro_rules! sz {
@@ -316,4 +330,34 @@ pub fn alloc_mem(size: usize) -> *mut c_void {
 #[allow(dead_code)]
 pub fn free_mem(ptr: *mut c_void) {
     unsafe { FreeMem(ptr) }
+}
+
+/// Registers a new callback invoked on each main loop iteration (before scripts are executed)
+///
+/// since v4
+#[allow(dead_code)]
+pub fn on_before_scripts(cb: OnTickCallback) {
+    unsafe {
+        OnBeforeScripts(cb);
+    }
+}
+
+/// Registers a new callback invoked on each main loop iteration (after scripts are executed)
+///
+/// since v4
+#[allow(dead_code)]
+pub fn on_after_scripts(cb: OnTickCallback) {
+    unsafe {
+        OnAfterScripts(cb);
+    }
+}
+
+/// Registers a new callback invoked on each runtime init event (new game, saved game load, or SDK's RuntimeInit)
+///
+/// since v4
+#[allow(dead_code)]
+pub fn on_runtime_init(cb: OnRuntimeInitCallback) {
+    unsafe {
+        OnRuntimeInit(cb);
+    }
 }

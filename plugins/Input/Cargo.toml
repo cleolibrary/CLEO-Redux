@@ -1,0 +1,16 @@
+[package]
+name = "input"
+version = "0.0.1"
+edition = "2021"
+authors = ["Seemann <mail@sannybuilder.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ctor = "0.1.21"
+[target.'cfg(windows)'.dependencies]
+winapi = { version = "0.3", features = ["winuser"] }
+cleo_redux_sdk = "^0.0.10"

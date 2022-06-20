@@ -29,9 +29,12 @@ enum class HostId
 };
 
 typedef void* Context;
+typedef intptr_t isize;
+
 typedef HandlerResult (*CommandHandler)(Context);
 typedef void* (*CustomLoader)(const char*);
-typedef intptr_t isize;
+typedef void (*OnTickCallback)(unsigned int current_time, int time_step);
+typedef void (*OnRuntimeInitCallback)();
 
 extern "C" {
 	// since v1
@@ -97,5 +100,14 @@ extern "C" {
 	// since v3
 	// Frees up the memory chunk allocated with AllocMem
 	void FreeMem(void *ptr);
-
+	// since v4
+	// Registers a new callback invoked on each main loop iteration (before scripts are executed)
+	void OnBeforeScripts(OnTickCallback callback);
+	// since v4
+	// Registers a new callback invoked on each main loop iteration (after scripts are executed)
+	void OnAfterScripts(OnTickCallback callback);
+	// since v4
+	// Registers a new callback invoked on each runtime init event (new game, saved game load, or SDK's RuntimeInit)
+    void OnRuntimeInit(OnRuntimeInitCallback callback);
 }
+

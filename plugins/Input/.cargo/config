@@ -1,0 +1,17 @@
+[build]
+target = "i686-pc-windows-msvc"
+#target = "x86_64-pc-windows-msvc"
+
+[target.i686-pc-windows-msvc]
+rustflags = [
+    "-C", "target-feature=+crt-static",
+    "-C", "link-arg=/OUT:build/Input.cleo",
+    "-L", "../../SDK"
+]
+
+[target.x86_64-pc-windows-msvc]
+rustflags = [
+    "-C", "target-feature=+crt-static",
+    "-C", "link-arg=/OUT:build/Input64.cleo",
+    "-L", "../../SDK"
+]

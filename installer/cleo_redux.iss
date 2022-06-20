@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "0.9.4"
+#define AppVersion "1.0.0-dev.20220619"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -13,6 +13,9 @@
 #define SilentPatchIII = "https://silent.rockstarvision.com/uploads/SilentPatchIII.zip"
 #define SilentPatchVC = "https://silent.rockstarvision.com/uploads/SilentPatchVC.zip"
 #define SilentPatchSA = "https://silent.rockstarvision.com/uploads/SilentPatchSA.zip"
+
+#define MemOps32 = "https://github.com/cleolibrary/CLEO-REDUX-PLUGINS/releases/download/latest/MemoryOperations.zip"
+#define MemOps64 = "https://github.com/cleolibrary/CLEO-REDUX-PLUGINS/releases/download/latest/MemoryOperations64.zip"
 
 [Setup]
 AppId={{511AFCDA-FD5E-491C-A1B7-22BAC8F93711}
@@ -48,15 +51,17 @@ Name: "full"; Description: "Full"; Flags: iscustom
 
 [Components]
 Name: "program"; Description: "CLEO Redux"; Types: full; Flags: fixed
-Name: "plugins"; Description: "New Commands"; Types: full
+Name: "plugins"; Description: "Extensions"; Types: full
 Name: "plugins/ini"; Description: "IniFiles 1.2"; Types: full
 Name: "plugins/dylib"; Description: "Dylib 1.1"; Types: full
 Name: "plugins/imgui"; Description: "ImGuiRedux (by Grinch_)"; Types: full
 Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for games using DirectX 8"; Types: full
 Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly in classic GTA"; Types: full
+Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: full
+Name: "plugins/input"; Description: "Input 1.0"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt files"; Types: full
-Name: "loaders/ide"; Description: "*.ide files (for 32-bit GTA3, VC, SA)"; Types: full
+Name: "loaders/ide"; Description: "*.ide files (for 32-bit GTA3, VC, SA, IV)"; Types: full
 
 Name: "asiloader"; Description: "Ultimate ASI Loader (by ThirteenAG)"; Types: full
 
@@ -79,12 +84,18 @@ Source: "{#SourceDir}\plugins\Dylib\build\dylib.cleo"; DestDir: "{app}\CLEO\CLEO
 Source: "{#SourceDir}\plugins\Dylib\build\dylib64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/dylib
 Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/ini
 Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/ini
+Source: "{#SourceDir}\plugins\Input\build\Input.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/input
+Source: "{#SourceDir}\plugins\Input\build\Input64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/input
 
 Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: InstallImGuiRedux32; Components: plugins/imgui;
 Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiReduxWin64.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/imgui;
 
 Source: "{tmp}\d3d8.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; AfterInstall: Extract('{app}\d3d8.zip', 'd3d8.dll', '{app}'); Components: plugins/imgui/d3d8to9;
 Source: "{tmp}\SilentPatch.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; AfterInstall: ExtractAll('{app}\SilentPatch.zip', '{app}'); Components: plugins/imgui/SilentPatch;
+
+Source: "{tmp}\MemoryOperations.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\MemoryOperations.zip', 'MemoryOperations.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/memops;
+Source: "{tmp}\MemoryOperations.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\MemoryOperations.zip', 'MemoryOperations64.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/memops;
+
 
 ; Custom File Loaders
 Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/text
@@ -273,6 +284,13 @@ begin
     FNeedsAL := True;
     Exit;
   end;
+  if FileExists(Dir + '\GTAIV.exe') then
+  begin
+    Result := 9;
+    FIsX64 := False;
+    FNeedsAL := True;
+    Exit;
+  end;
   FNeedsAL := True; // unknown
   Result := 0; // unknown
 end;
@@ -313,7 +331,7 @@ begin
    if CurPageID = wpSelectComponents then
    begin
      // reset all checkboxes to their initial state first
-    for I := 1 to 9 do
+    for I := 1 to 12 do
     begin
       WizardForm.ComponentsList.ItemEnabled[I] := True;
       WizardForm.ComponentsList.Checked[I] := True;
@@ -329,8 +347,8 @@ begin
       WizardForm.ComponentsList.ItemEnabled[6] := False;
 
       // ide loader
-      WizardForm.ComponentsList.Checked[9] := False;
-      WizardForm.ComponentsList.ItemEnabled[9] := False;
+      WizardForm.ComponentsList.Checked[11] := False;
+      WizardForm.ComponentsList.ItemEnabled[11] := False;
     end 
     // 32-bit
     else begin
@@ -350,7 +368,7 @@ begin
     if (FGameId = 0) then
     begin
       // ide loader
-      WizardForm.ComponentsList.Checked[9] := False;
+      WizardForm.ComponentsList.Checked[11] := False;
     end;
    end;
 end;
@@ -367,6 +385,7 @@ function NextButtonClick(CurPageID: Integer): Boolean;
 var
   FDlAsiLoader: Boolean;
   FDlImGuiPlugin: Boolean;
+  FDlMemOpsPlugin: Boolean;
 begin
   Result := True;
  
@@ -382,8 +401,9 @@ begin
 
     FDlAsiLoader := (WizardIsComponentSelected('asiloader') and (FGameId in [0, 5, 6, 7, 8]));
     FDlImGuiPlugin := WizardIsComponentSelected('plugins/imgui');
+    FDlMemOpsPlugin := WizardIsComponentSelected('plugins/memops');
 
-    if FDlAsiLoader or FDlImGuiPlugin then
+    if FDlAsiLoader or FDlImGuiPlugin or FDlMemOpsPlugin then
     begin
       DownloadPage.Clear;
 
@@ -391,6 +411,12 @@ begin
       begin
         if IsX64() then DownloadPage.Add('{#UAL64}/version.zip', 'version.zip', '');
         if IsX86() then DownloadPage.Add('{#UAL32}/vorbisFile.zip', 'vorbisFile.zip', '');
+      end;
+
+      if FDlMemOpsPlugin then
+      begin
+        if IsX64() then DownloadPage.Add('{#MemOps64}', 'MemoryOperations.zip', '');
+        if IsX86() then DownloadPage.Add('{#MemOps32}', 'MemoryOperations.zip', '');
       end;
 
       if FDlImGuiPlugin then
