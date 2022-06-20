@@ -22,7 +22,7 @@
     - [Script Lifecycle](./script-lifecycle.md)
     - [Fluent Interface](./fluent-interface.md)
     - [Imports](./imports.md)
-    - [Bindings](./js-bindings.md)
+    - [API](./api.md)
       - [ScriptObject vs Object](./script-object-vs-object.md)
       - [Math Object](./using-math.md)
       - [Memory Object](./using-memory.md)

@@ -65,6 +65,6 @@ fn init() {
 
 ## Available Commands
 
-In the self-hosted mode CLEO Redux supports native [bindings](./js-bindings.md) and commands made with [SDK](./using-sdk.md). It uses command definitions for the Unknown host from Sanny Builder Library (available for [32-bit](https://library.sannybuilder.com/#/unknown_x86) and [64-bit](https://library.sannybuilder.com/#/unknown_x64)). CLEO Redux automatically downloads necessary files during [the first run](./prerequisites.md).
+In the self-hosted mode CLEO Redux supports native [bindings](./api.md) and commands made with [SDK](./using-sdk.md). It uses command definitions for the Unknown host from Sanny Builder Library (available for [32-bit](https://library.sannybuilder.com/#/unknown_x86) and [64-bit](https://library.sannybuilder.com/#/unknown_x64)). CLEO Redux automatically downloads necessary files during [the first run](./prerequisites.md).
 
 You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file `.config/unknown.d.ts`.

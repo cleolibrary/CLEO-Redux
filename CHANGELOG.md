@@ -1,7 +1,7 @@
 ### 0.9.4 - May 12, 2022
 
 - add support for custom file loaders allowing [import of various file formats](https://re.cleo.li/docs/en/imports.html)
-- add [new bindings](https://re.cleo.li/docs/en/js-bindings.html) available in JS code: a static object `CLEO` and a constant `__filename`
+- add [new bindings](https://re.cleo.li/docs/en/api.html) available in JS code: a static object `CLEO` and a constant `__filename`
 - add new config option `DisplayMenuInfo` to control whether CLEO Redux should display the version information in the main menu (supported in GTA III/VC/SA)
 - fix a conversion error in some commands when an integer number is given instead of a boolean
 

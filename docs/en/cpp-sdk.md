@@ -89,7 +89,7 @@ public:
 
 The best way to generate correct command definition is to use [Sanny Builder Library](https://library.sannybuilder.com/). If you plan to share the plugin and make it available over the Internet consider contacting the library maintainers to get your command published there.
 
-- you can now use the new command in the code using the [`native`](./js-bindings.md#native) command
+- you can now use the new command in the code using the [`native`](./api.md#native) command
 
 ```js
 var result = native("INT_ADD", 10, 20); // 30

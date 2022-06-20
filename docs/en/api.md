@@ -1,4 +1,4 @@
-# Bindings
+# JavaScript API
 
 The following variables and functions are only available in JavaScript code.
 
