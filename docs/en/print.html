@@ -139,7 +139,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
-<p>CLEO Redux is an <a href="https://re.cleo.li/docs/en/embedding.html">embeddable</a> and <a href="https://re.cleo.li/docs/en/using-sdk.html">extensible</a> JavaScript runtime capable of running user-made scripts in games and desktop applications. It is inspired by <a href="https://cleo.li/">CLEO Library</a> and is <a href="https://re.cleo.li/docs/en/relation-to-cleo-library.html">partially compatible</a> with its scripts and plugins. CLEO Redux, however, aims to provide a better developer and user experience and support games beyond just GTA 3D series.</p>
+<p>CLEO Redux is an <a href="https://re.cleo.li/docs/en/embedding.html">embeddable</a> and <a href="https://re.cleo.li/docs/en/using-sdk.html">extensible</a> JavaScript runtime capable of running user-made scripts in games and desktop applications. It is inspired by <a href="https://cleo.li/">CLEO Library</a> and is <a href="https://re.cleo.li/docs/en/relation-to-cleo-library.html">partially compatible</a> with its scripts and plugins. CLEO Redux, however, aims to provide a better experience for developers and users and support games beyond just GTA 3D series.</p>
 <h2 id="supported-releases"><a class="header" href="#supported-releases">Supported Releases</a></h2>
 <p>Classic:</p>
 <ul>
@@ -349,7 +349,7 @@
 </code></pre>
 <h2 id="organizing-scripts"><a class="header" href="#organizing-scripts">Organizing Scripts</a></h2>
 <p>A single self-contained script file can be placed directly in the <a href="./cleo-directory.html">CLEO directory</a>. </p>
-<p>Since 0.9.3 complex scripts having a lot of dependencies (imported files, <a href="./using-fxt.html">FXT</a> dictionaries) can be organized in folders. CLEO Redux scans the subdirectories of the <a href="./cleo-directory.html">CLEO directory</a> and checks if there is a file named <code>index.js</code>. If <code>index.js</code> is found, CLEO Redux runs it. It also loads all FXT files from the same directory. </p>
+<p>Complex JS scripts having a lot of dependencies (imported files, <a href="./using-fxt.html">FXT</a> dictionaries) can be organized in folders. CLEO Redux scans the subdirectories of the <a href="./cleo-directory.html">CLEO directory</a> and checks if there is a file named <code>index.js</code>. If <code>index.js</code> is found, CLEO Redux runs it. It also loads all FXT files from the same directory. </p>
 <p>Let's have a look at the example structure: </p>
 <pre><code>CLEO/
 ├─ CLEO_TEXT/
@@ -408,7 +408,7 @@ import { PedType } from &quot;./includes/types&quot;;
 import data from &quot;./vehicles.json&quot;;
 </code></pre>
 <h2 id="importing-other-formats"><a class="header" href="#importing-other-formats">Importing other formats</a></h2>
-<p>Since 0.9.4 CLEO Redux supports custom file loaders. The purpose of a loader is to load a provided file, parse it and serialize into a JSON string suitable for the use in JavaScript. Those loaders are implemented as <a href="./installation-plugins.html">CLEO plugins</a> and use <a href="./using-sdk.html#developing-file-loaders">CLEO SDK</a> to associate itself with particular file extensions.</p>
+<p>CLEO Redux supports custom file loaders. The purpose of a loader is to load a provided file, parse it and serialize into a JSON string suitable for the use in JavaScript. Those loaders are implemented as <a href="./installation-plugins.html">CLEO plugins</a> and use <a href="./using-sdk.html#developing-file-loaders">CLEO SDK</a> to associate itself with particular file extensions.</p>
 <p>Default CLEO installation includes loaders for <code>.txt</code> and <code>.ide</code> files.</p>
 <h3 id="txt"><a class="header" href="#txt">TXT</a></h3>
 <ul>
@@ -514,7 +514,7 @@ if (HOST === &quot;unknown&quot;) {
 <h3 id="__dirname"><a class="header" href="#__dirname">__dirname</a></h3>
 <p>an absolute path to the directory with the current file</p>
 <h3 id="__filename"><a class="header" href="#__filename">__filename</a></h3>
-<p>(since 0.9.4) an absolute path to the current file</p>
+<p>an absolute path to the current file</p>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="log"><a class="header" href="#log">log</a></h3>
 <p><code>log(...values)</code> prints comma-separated <code>{values}</code> to the <code>cleo_redux.log</code></p>
@@ -570,7 +570,7 @@ showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
 <h3 id="cleo"><a class="header" href="#cleo">CLEO</a></h3>
 <ul>
 <li>
-<p>(since 0.9.4) <code>CLEO</code> object provides access to the runtime information and utilities:</p>
+<p><code>CLEO</code> object provides access to the runtime information and utilities:</p>
 <ul>
 <li><code>CLEO.debug.trace(flag)</code> toggles on and off command tracing in the current script. When {flag} is true all executed commands get added to <code>cleo_redux.log</code>:</li>
 </ul>
@@ -1308,6 +1308,7 @@ fn init() {
 <li>{user}\AppData\Roaming\CLEO Redux\CLEO</li>
 </ul>
 </li>
+<li>path starting with &quot;./&quot; gets resolved relative to the <a href="./script-lifecycle.html#organizing-scripts">script's directory</a>. For <code>.cs</code> scripts the directory is always {game}\CLEO.</li>
 <li>all other paths get resolved relative to the current working directory (the game directory)</li>
 </ul>
 <h2 id="string-arguments"><a class="header" href="#string-arguments">String Arguments</a></h2>
