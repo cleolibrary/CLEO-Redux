@@ -55,7 +55,7 @@ an absolute path to the directory with the current file
 
 ### __filename 
 
-(since 0.9.4) an absolute path to the current file
+an absolute path to the current file
 
 ## Functions
 
@@ -145,7 +145,7 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
 ### CLEO
 
-- (since 0.9.4) `CLEO` object provides access to the runtime information and utilities:
+- `CLEO` object provides access to the runtime information and utilities:
 
   - `CLEO.debug.trace(flag)` toggles on and off command tracing in the current script. When {flag} is true all executed commands get added to `cleo_redux.log`:
   ```js

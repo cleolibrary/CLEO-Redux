@@ -28,7 +28,7 @@ while (true) {
 
 A single self-contained script file can be placed directly in the [CLEO directory](./cleo-directory.md). 
 
-Since 0.9.3 complex scripts having a lot of dependencies (imported files, [FXT](./using-fxt.md) dictionaries) can be organized in folders. CLEO Redux scans the subdirectories of the [CLEO directory](./cleo-directory.md) and checks if there is a file named `index.js`. If `index.js` is found, CLEO Redux runs it. It also loads all FXT files from the same directory. 
+Complex JS scripts having a lot of dependencies (imported files, [FXT](./using-fxt.md) dictionaries) can be organized in folders. CLEO Redux scans the subdirectories of the [CLEO directory](./cleo-directory.md) and checks if there is a file named `index.js`. If `index.js` is found, CLEO Redux runs it. It also loads all FXT files from the same directory. 
 
 Let's have a look at the example structure: 
 

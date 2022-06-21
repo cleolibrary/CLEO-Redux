@@ -31,7 +31,7 @@ import data from "./vehicles.json";
 
 ## Importing other formats
 
-Since 0.9.4 CLEO Redux supports custom file loaders. The purpose of a loader is to load a provided file, parse it and serialize into a JSON string suitable for the use in JavaScript. Those loaders are implemented as [CLEO plugins](./installation-plugins.md) and use [CLEO SDK](./using-sdk.md#developing-file-loaders) to associate itself with particular file extensions.
+CLEO Redux supports custom file loaders. The purpose of a loader is to load a provided file, parse it and serialize into a JSON string suitable for the use in JavaScript. Those loaders are implemented as [CLEO plugins](./installation-plugins.md) and use [CLEO SDK](./using-sdk.md#developing-file-loaders) to associate itself with particular file extensions.
 
 Default CLEO installation includes loaders for `.txt` and `.ide` files.
 

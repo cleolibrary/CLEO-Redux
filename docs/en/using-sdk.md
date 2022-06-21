@@ -26,6 +26,7 @@ String arguments representing a path to the directory or file must be normalized
 - path starting with "CLEO/" or "CLEO\\" gets resolved relative to the [CLEO directory](./cleo-directory.md) which is either
   - {game}\CLEO or
   - {user}\AppData\Roaming\CLEO Redux\CLEO
+- path starting with "./" gets resolved relative to the [script's directory](./script-lifecycle.md#organizing-scripts). For `.cs` scripts the directory is always {game}\CLEO.
 - all other paths get resolved relative to the current working directory (the game directory)
 
 
