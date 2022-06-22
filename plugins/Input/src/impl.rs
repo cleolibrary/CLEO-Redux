@@ -1,5 +1,6 @@
 use cleo_redux_sdk::*;
-use winapi::um::winuser::GetKeyState;
+use std::mem::size_of;
+use winapi::um::winuser::{GetKeyState, SendInput, INPUT, INPUT_KEYBOARD, KEYEVENTF_KEYUP};
 
 #[derive(Copy, Clone)]
 struct KeyState {
@@ -51,6 +52,18 @@ pub extern "C" fn test_cheat(ctx: Context) -> HandlerResult {
     HandlerResult::CONTINUE
 }
 
+pub extern "C" fn hold_key(ctx: Context) -> HandlerResult {
+    let key = get_int_param(ctx) as u16;
+    send_key_event(key, 0);
+    HandlerResult::CONTINUE
+}
+
+pub extern "C" fn release_key(ctx: Context) -> HandlerResult {
+    let key = get_int_param(ctx) as u16;
+    send_key_event(key, KEYEVENTF_KEYUP);
+    HandlerResult::CONTINUE
+}
+
 pub extern "C" fn on_before_scripts_callback(_current_time: u32, _time_step: i32) {
     // state change
     // 0 -> 0 // pressed=false, keydown=false, keyup=false
@@ -92,5 +105,19 @@ pub extern "C" fn on_runtime_init_callback() {
     // reset cheat string
     unsafe {
         CHEAT_STRING = ['\0'; CHEAT_STRING_LEN];
+    }
+}
+
+pub fn send_key_event(key: u16, flags: u32) {
+    unsafe {
+        let mut input = INPUT {
+            type_: INPUT_KEYBOARD,
+            u: std::mem::zeroed(),
+        };
+
+        let ki = input.u.ki_mut();
+        ki.wVk = key;
+        ki.dwFlags = flags;
+        SendInput(1, &mut input, size_of::<INPUT>() as _);
     }
 }
