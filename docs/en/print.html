@@ -580,7 +580,7 @@ showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
   CLEO.debug.trace(false)
 </code></pre>
 <ul>
-<li><code>CLEO.version</code> - a complex property providing information about current library version</li>
+<li><code>CLEO.version</code> - a complex property providing information about current CLEO version</li>
 </ul>
 <pre><code class="language-js">  log(CLEO.version)       // &quot;0.9.4-dev.20220427&quot;
   log(CLEO.version.major) // &quot;0&quot;
@@ -588,6 +588,16 @@ showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
   log(CLEO.version.patch) // &quot;4&quot;
   log(CLEO.version.pre)   // &quot;dev&quot;
   log(CLEO.version.build) // &quot;20220427&quot;
+</code></pre>
+<ul>
+<li>(since 1.0.0) <code>CLEO.apiVersion</code> - a complex property providing information about current API (a JSON file from <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>)</li>
+</ul>
+<pre><code class="language-js">  log(CLEO.apiVersion)        // &quot;0.219&quot;
+  log(CLEO.apiVersion.major)  // &quot;0&quot;
+  log(CLEO.apiVersion.minor)  // &quot;219&quot;
+  log(CLEO.apiVersion.patch)  // undefined
+  log(CLEO.apiVersion.pre)    // undefined
+  log(CLEO.apiVersion.build)  // undefined
 </code></pre>
 </li>
 </ul>
