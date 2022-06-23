@@ -1,11 +1,21 @@
 use cleo_redux_sdk::*;
 use std::mem::size_of;
-use winapi::um::winuser::{GetKeyState, SendInput, INPUT, INPUT_KEYBOARD, KEYEVENTF_KEYUP};
+use winapi::um::winuser::{
+    GetKeyState, SendInput, INPUT, INPUT_KEYBOARD, INPUT_MOUSE, KEYEVENTF_KEYUP,
+    MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP,
+    MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP, MOUSEEVENTF_XDOWN, MOUSEEVENTF_XUP, VK_LBUTTON,
+    VK_MBUTTON, VK_RBUTTON, VK_XBUTTON1, VK_XBUTTON2, XBUTTON1, XBUTTON2,
+};
 
 #[derive(Copy, Clone)]
 struct KeyState {
     is_pressed: bool,
     is_toggled: bool,
+}
+
+enum State {
+    Up,
+    Down,
 }
 
 static mut KEYS: [KeyState; 256] = [KeyState {
@@ -53,14 +63,14 @@ pub extern "C" fn test_cheat(ctx: Context) -> HandlerResult {
 }
 
 pub extern "C" fn hold_key(ctx: Context) -> HandlerResult {
-    let key = get_int_param(ctx) as u16;
-    send_key_event(key, 0);
+    let key = get_int_param(ctx) as _;
+    send_key_event(key, State::Down);
     HandlerResult::CONTINUE
 }
 
 pub extern "C" fn release_key(ctx: Context) -> HandlerResult {
-    let key = get_int_param(ctx) as u16;
-    send_key_event(key, KEYEVENTF_KEYUP);
+    let key = get_int_param(ctx) as _;
+    send_key_event(key, State::Up);
     HandlerResult::CONTINUE
 }
 
@@ -108,16 +118,55 @@ pub extern "C" fn on_runtime_init_callback() {
     }
 }
 
-pub fn send_key_event(key: u16, flags: u32) {
+fn send_key_event(key: i32, state: State) {
     unsafe {
+        let type_ = match key {
+            VK_LBUTTON | VK_RBUTTON | VK_MBUTTON | VK_XBUTTON1 | VK_XBUTTON2 => INPUT_MOUSE,
+            _ => INPUT_KEYBOARD,
+        };
+
         let mut input = INPUT {
-            type_: INPUT_KEYBOARD,
+            type_,
             u: std::mem::zeroed(),
         };
 
-        let ki = input.u.ki_mut();
-        ki.wVk = key;
-        ki.dwFlags = flags;
+        match key {
+            VK_LBUTTON | VK_RBUTTON | VK_MBUTTON | VK_XBUTTON1 | VK_XBUTTON2 => {
+                let mi = input.u.mi_mut();
+                mi.dx = 0;
+                mi.dy = 0;
+                mi.dwFlags = get_flag(key as _, &state);
+                if key == VK_XBUTTON1 {
+                    mi.mouseData = XBUTTON1 as _;
+                }
+                if key == VK_XBUTTON2 {
+                    mi.mouseData = XBUTTON2 as _;
+                }
+            }
+            _ => {
+                let ki = input.u.ki_mut();
+                ki.wVk = key as _;
+                ki.dwFlags = get_flag(key as _, &state);
+            }
+        };
+
         SendInput(1, &mut input, size_of::<INPUT>() as _);
+    }
+}
+
+fn get_flag(key: i32, state: &State) -> u32 {
+    match (key, state) {
+        (VK_LBUTTON, State::Down) => MOUSEEVENTF_LEFTDOWN,
+        (VK_RBUTTON, State::Down) => MOUSEEVENTF_RIGHTDOWN,
+        (VK_MBUTTON, State::Down) => MOUSEEVENTF_MIDDLEDOWN,
+        (VK_XBUTTON1, State::Down) => MOUSEEVENTF_XDOWN,
+        (VK_XBUTTON2, State::Down) => MOUSEEVENTF_XDOWN,
+        (VK_LBUTTON, State::Up) => MOUSEEVENTF_LEFTUP,
+        (VK_RBUTTON, State::Up) => MOUSEEVENTF_RIGHTUP,
+        (VK_MBUTTON, State::Up) => MOUSEEVENTF_MIDDLEUP,
+        (VK_XBUTTON1, State::Up) => MOUSEEVENTF_XUP,
+        (VK_XBUTTON2, State::Up) => MOUSEEVENTF_XUP,
+        (_, State::Down) => 0,
+        (_, State::Up) => KEYEVENTF_KEYUP,
     }
 }

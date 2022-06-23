@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.0-dev.20220619"
+#define AppVersion "1.0.0-dev.20220623"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -58,7 +58,7 @@ Name: "plugins/imgui"; Description: "ImGuiRedux (by Grinch_)"; Types: full
 Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for games using DirectX 8"; Types: full
 Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly in classic GTA"; Types: full
 Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: full
-Name: "plugins/input"; Description: "Input 1.0"; Types: full
+Name: "plugins/input"; Description: "Input 1.1"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt files"; Types: full
 Name: "loaders/ide"; Description: "*.ide files (for 32-bit GTA3, VC, SA, IV)"; Types: full
