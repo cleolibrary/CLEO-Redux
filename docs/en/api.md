@@ -155,7 +155,7 @@ if (native("HAS_MODEL_LOADED", 101)) {
     CLEO.debug.trace(false)
   ```
 
-  - `CLEO.version` - a complex property providing information about current library version
+  - `CLEO.version` - a complex property providing information about current CLEO version
 
   ```js
     log(CLEO.version)       // "0.9.4-dev.20220427"
@@ -164,4 +164,16 @@ if (native("HAS_MODEL_LOADED", 101)) {
     log(CLEO.version.patch) // "4"
     log(CLEO.version.pre)   // "dev"
     log(CLEO.version.build) // "20220427"
+  ```
+
+  
+  - (since 1.0.0) `CLEO.apiVersion` - a complex property providing information about current API (a JSON file from [Sanny Builder Library](https://library.sannybuilder.com/))
+
+  ```js
+    log(CLEO.apiVersion)        // "0.219"
+    log(CLEO.apiVersion.major)  // "0"
+    log(CLEO.apiVersion.minor)  // "219"
+    log(CLEO.apiVersion.patch)  // undefined
+    log(CLEO.apiVersion.pre)    // undefined
+    log(CLEO.apiVersion.build)  // undefined
   ```
