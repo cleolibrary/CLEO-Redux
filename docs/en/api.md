@@ -1,13 +1,24 @@
 # JavaScript API
 
-The following variables and functions are only available in JavaScript code.
+## Native functions
 
+CLEO Redux supports all commands native to the current game. In the classic GTA 3D series they are also known as _opcodes_. In GTA IV they are known as _native functions_. You can find them in [Sanny Builder Library](https://library.sannybuilder.com/).
 
-## Variables
+Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function [`native`](./api#native). For example, to change the player's health run `native("SET_PLAYER_HEALTH", 0, 100)`, where `0` is the player's id and `100` is the desired health.
 
-### HOST
+For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called _classes_. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes `Player`, `Car`, or `Text` respectively. You can browse available classes and methods they provide in Sanny Builder Library.
 
-the host name (previously available as `GAME` variable). Possible values include `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `unknown`. 
+For example, to change the player's health using classes run `p.setHealth(100)`, where `p` is an instance of the `Player` class created with `new Player()` or `Player.Create` functions.
+
+## CLEO Redux Bindings
+
+In addition to native commands CLEO Redux adds extra variables and functions.
+
+### Variables
+
+#### HOST
+
+the host name (previously available as `GAME` variable). Possible values include `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `unknown`.
 
 CLEO plugins can use SDK to customize the name for their needs.
 
@@ -23,7 +34,7 @@ if (HOST === "unknown") {
 }
 ```
 
-### ONMISSION 
+#### ONMISSION
 
 the global flag controlling whether the player is on a mission now. Not available on an `unknown` host.
 
@@ -34,7 +45,7 @@ if (!ONMISSION) {
 }
 ```
 
-### TIMERA, TIMERB
+#### TIMERA, TIMERB
 
 two auto-incrementing timers useful for measuring time intervals.
 
@@ -49,17 +60,17 @@ while (true) {
 }
 ```
 
-### __dirname 
+#### \_\_dirname
 
 an absolute path to the directory with the current file
 
-### __filename 
+#### \_\_filename
 
 an absolute path to the current file
 
-## Functions
+### Functions
 
-### log
+#### log
 
 `log(...values)` prints comma-separated `{values}` to the `cleo_redux.log`
 
@@ -68,7 +79,7 @@ var x = 1;
 log("value of x is ", x);
 ```
 
-### wait 
+#### wait
 
 `wait(timeInMs)` pauses the script execution for at least `{timeInMs}` milliseconds
 
@@ -79,7 +90,7 @@ while (true) {
 }
 ```
 
-### showTextBox
+#### showTextBox
 
 `showTextBox(text)` displays `{text}` in the black rectangular box. Not available on an `unknown` host.
 
@@ -87,7 +98,7 @@ while (true) {
 showTextBox("Hello, world!");
 ```
 
-### exit
+#### exit
 
 `exit(reason?)` terminates the script immediately. `exit` function accepts an optional string argument that will be added to the `cleo_redux.log`.
 
@@ -95,7 +106,7 @@ showTextBox("Hello, world!");
 exit("Script ended");
 ```
 
-### native
+#### native
 
 `native(command_name, ...input_args)` is a low-level function to execute a command using its name `{command_name}`. The command name matches `name` property in a JSON file provided by Sanny Builder Library.
 
@@ -118,6 +129,7 @@ showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
 ```
 
 For the conditional commands the result is the boolean value `true` or `false`
+
 ```js
 if (native("HAS_MODEL_LOADED", 101)) {
   // checks the condition
@@ -125,55 +137,51 @@ if (native("HAS_MODEL_LOADED", 101)) {
 }
 ```
 
-## Static Objects 
+### Static Objects
 
-
-### Memory
+#### Memory
 
 - `Memory` object allows to manipulate the process memory. See the [Memory guide](using-memory.md) for more information.
 
-
-### Math
-
+#### Math
 
 - `Math` object is a standard object available in the JS runtime that provides common mathematical operations. CLEO Redux extends it with some extra commands. See the [Math object](using-math.md) for more information.
 
-### FxtStore
+#### FxtStore
 
 - `FxtStore` allows to update the content of in-game texts. See the [Custom Text](./using-fxt.md) guide for details.
 
-
-### CLEO
+#### CLEO
 
 - `CLEO` object provides access to the runtime information and utilities:
 
   - `CLEO.debug.trace(flag)` toggles on and off command tracing in the current script. When {flag} is true all executed commands get added to `cleo_redux.log`:
+
   ```js
-    CLEO.debug.trace(true)
-    wait(50);
-    const p = new Player(0);
-    CLEO.debug.trace(false)
+  CLEO.debug.trace(true);
+  wait(50);
+  const p = new Player(0);
+  CLEO.debug.trace(false);
   ```
 
   - `CLEO.version` - a complex property providing information about current CLEO version
 
   ```js
-    log(CLEO.version)       // "0.9.4-dev.20220427"
-    log(CLEO.version.major) // "0"
-    log(CLEO.version.minor) // "9"
-    log(CLEO.version.patch) // "4"
-    log(CLEO.version.pre)   // "dev"
-    log(CLEO.version.build) // "20220427"
+  log(CLEO.version); // "0.9.4-dev.20220427"
+  log(CLEO.version.major); // "0"
+  log(CLEO.version.minor); // "9"
+  log(CLEO.version.patch); // "4"
+  log(CLEO.version.pre); // "dev"
+  log(CLEO.version.build); // "20220427"
   ```
 
-  
   - (since 1.0.0) `CLEO.apiVersion` - a complex property providing information about current API (a JSON file from [Sanny Builder Library](https://library.sannybuilder.com/))
 
   ```js
-    log(CLEO.apiVersion)        // "0.219"
-    log(CLEO.apiVersion.major)  // "0"
-    log(CLEO.apiVersion.minor)  // "219"
-    log(CLEO.apiVersion.patch)  // undefined
-    log(CLEO.apiVersion.pre)    // undefined
-    log(CLEO.apiVersion.build)  // undefined
+  log(CLEO.apiVersion); // "0.219"
+  log(CLEO.apiVersion.major); // "0"
+  log(CLEO.apiVersion.minor); // "219"
+  log(CLEO.apiVersion.patch); // undefined
+  log(CLEO.apiVersion.pre); // undefined
+  log(CLEO.apiVersion.build); // undefined
   ```
