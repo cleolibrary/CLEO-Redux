@@ -23,6 +23,7 @@
     - [Imports](./imports.md)
     - [API](./api.md)
       - [Fluent Interface](./fluent-interface.md)
+      - [Enums](./enums.md)
       - [ScriptObject vs Object](./script-object-vs-object.md)
       - [Math Object](./using-math.md)
       - [Memory Object](./using-memory.md)
