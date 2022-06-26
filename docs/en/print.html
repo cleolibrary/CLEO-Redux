@@ -188,9 +188,9 @@
 </ul>
 <p>Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0. </p>
 </blockquote>
-<p>Once the installation is complete, run the game once. During the first run CLEO Redux downloads and generates extra files necessary for <a href="./prerequisites.html">JavaScript support</a>.</p>
+<p>Once the installation is complete, CLEO Redux is ready to use. You can now <a href="./installation-scripts.html">install scripts</a> and <a href="./installation-plugins.html">extra plugins</a> not included in the installer. To configure CLEO Redux check <a href="./config.html">this article</a>.</p>
 <h2 id="cleo-directory"><a class="header" href="#cleo-directory">CLEO Directory</a></h2>
-<p>CLEO directory is the primary location where you install <a href="./installation-scripts.html">CLEO scripts</a>, <a href="./installation-plugins.html">CLEO plugins</a> and <a href="./using-fxt.html">custom texts</a>. CLEO Redux automatically creates this folder when the game starts. </p>
+<p>CLEO directory is the primary location where you install <a href="./installation-scripts.html">CLEO scripts</a>, <a href="./installation-plugins.html">CLEO plugins</a> and <a href="./using-fxt.html">custom texts</a>. CLEO Redux automatically creates this folder during installation and any time the game starts. </p>
 <p>In most cases this directory can be found in the game folder. If, however, CLEO lacks write permissions there and fails to create new files, it uses an alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
 <h2 id="dependency-on-asi-loader"><a class="header" href="#dependency-on-asi-loader">Dependency on ASI Loader</a></h2>
 <p>CLEO Redux is distributed as a dynamic-load library with an <code>.asi</code> extension. Historically ASI files have been used in GTA 3 and Vice City as addons to the Miles Sound System library (Mss32) which loads them into the game process. More recent titles didn't use MSS, so the modding community developed custom loaders commonly named &quot;ASI Loader&quot; to continue using ASI for any custom code to be injected into the game. </p>
@@ -218,6 +218,7 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
 <h2 id="adding-a-new-script"><a class="header" href="#adding-a-new-script">Adding a new script</a></h2>
 <p>Generally a script file (<code>.cs</code>, <code>.js</code>) should just be copied to the <code>CLEO</code> directory. Some scripts may require extra steps for installation. In case of any issues check the script documentation or ask its author.</p>
+<p><a href="./script-lifecycle.html#organizing-scripts">Complex JS scripts</a> with dependencies may be distributed as folders with <code>index.js</code> and other files in it. Copy such folders to the <code>CLEO</code> directory.</p>
 <h2 id="removing-the-script"><a class="header" href="#removing-the-script">Removing the script</a></h2>
 <p>Delete the script file from <code>CLEO</code> directory. Some scripts may require extra steps for undoing the installation. In case of any issues check the script documentation or ask its author.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
