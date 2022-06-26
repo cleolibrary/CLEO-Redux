@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.0-dev.20220623"
+#define AppVersion "1.0.0-dev.20220626"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -73,6 +73,25 @@ Name: "{app}\CLEO"; Permissions: users-modify
 ; CLEO
 Source: "{#SourceDir}\cleo_redux.asi"; DestDir: "{app}"; Flags: ignoreversion; Check: IsX86;  Components: program;
 Source: "{#SourceDir}\cleo_redux64.asi"; DestDir: "{app}"; Flags: ignoreversion; Check: IsX64;  Components: program;
+Source: "build\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86;  Components: program;
+Source: "build\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86; Components: program;
+Source: "build\unknown_x64.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64;  Components: program;
+Source: "build\unknown_x64.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64; Components: program;
+Source: "build\gta3.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program;
+Source: "build\gta3.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program;
+Source: "build\vc.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program;
+Source: "build\vc.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program;
+Source: "build\sa.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program;
+Source: "build\sa.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program;
+Source: "build\gta_iv.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program;
+Source: "build\gta_iv.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program;
+Source: "build\gta3_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program;
+Source: "build\gta3_unreal.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program;
+Source: "build\vc_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program;
+Source: "build\vc_unreal.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program;
+Source: "build\sa_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program;
+Source: "build\sa_unreal.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program;
+
 ; Source: "{#SourceDir}\Release\LICENSE.txt"; DestDir: "{app}"; DestName: "CLEO_REDUX_LICENSE.txt"; Flags: ignoreversion;  Components: program
 
 ; UAL
@@ -102,6 +121,24 @@ Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader.cleo"; DestDir: "{app}
 Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/text
 Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/ide
 
+[INI]
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowCs"; String: 1
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowJs"; String: 1
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowFxt"; String: 1
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "CheckUpdates"; String: 1
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "LogOpcodes"; String: 0
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "DisplayMenuInfo"; String: 1
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "PermissionLevel"; String: Lax
+
+; will be set in wpFinished
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Host"; Key: "EnableSelfHost"; String: 0 
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Host"; Key: "SelfHostFps"; String: 30
+
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "mem"; String: 1
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "dll"; String: 1
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "fs"; String: 0
+Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "net"; String: 0
+
 
 [CustomMessages]
 m2 =Select CLEO Redux version
@@ -109,12 +146,14 @@ m3 =Which version of CLEO Redux (32-bit or 64-bit) should be installed?
 m4 =No supported game or application was found in the selected directory. To continue installation select either one of the two available versions of CLEO Redux. Hint: it should match the version (architecture) of the target game or application that will run CLEO Redux.
 m5 =32-bit (x86)
 m6 =64-bit (x64)
+m7 =Automatically run as self-host
 
 russian.m2 =Выберите версию CLEO Redux
 russian.m3 =Какую версию CLEO Redux (32-битную или 64-битную) нужно установить?
 russian.m4 =В выбранной директории не нашлось поддерживаемых игр или приложений. Для продолжения установки, выберите одну из двух возможных версий CLEO Redux. Подсказка: она должна совпадать с версией (архитектурой) игры или приложения, в которой будет запускаться CLEO Redux.
 russian.m5 =32-битная (x86)
 russian.m6 =64-битная (x64)
+russian.m7 =Автоматически запускать в автономном режиме
            
 [Code]
 const
@@ -128,6 +167,7 @@ var
   DownloadPage: TDownloadWizardPage;
   ArchPage: TInputOptionWizardPage;
   DefaultDirOnce: Boolean;
+  EnableSelfHostCb: TNewCheckBox;
 
 function IsX64(): Boolean;
 begin
@@ -152,11 +192,6 @@ end;
 function NeedsSilentPatch(): Boolean;
 begin
   Result := (FGameId in [3, 4, 5]);
-end;
-
-function IsSA(): Boolean;
-begin
-  Result := FGameId = 5;
 end;
 
 procedure unzipFile(Src, FileName, TargetFldr: PAnsiChar);
@@ -295,6 +330,54 @@ begin
   Result := 0; // unknown
 end;
 
+function IsUnknown: Boolean;
+begin
+  Result := (FGameId = 0);
+end;
+
+function IsGta3: Boolean;
+begin
+  Result := (FGameId = 1) or (FGameId = 3);
+end;
+
+function IsVc: Boolean;
+begin
+  Result := (FGameId = 2) or (FGameId = 4);
+end;
+
+function IsSA(): Boolean;
+begin
+  Result := FGameId = 5;
+end;
+
+function IsIV(): Boolean;
+begin
+  Result := FGameId = 9;
+end;
+
+function Is3Master(): Boolean;
+begin
+  Result := FGameId = 6;
+end;
+
+function IsVCMaster(): Boolean;
+begin
+  Result := FGameId = 7;
+end;
+
+function IsSAMaster(): Boolean;
+begin
+  Result := FGameId = 8;
+end;
+
+function GetSelfHost: String;
+begin
+  if EnableSelfHostCb.Checked then
+    Result := '1'
+  else
+    Result := '0';
+end;
+
 function OnDownloadProgress(const Url, FileName: String; const Progress, ProgressMax: Int64): Boolean;
 begin
   if Progress = ProgressMax then
@@ -304,6 +387,8 @@ end;
             
 
 procedure InitializeWizard;
+var
+  CheckBox: TNewCheckBox;
 begin
   DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
 
@@ -313,6 +398,14 @@ begin
   ArchPage.Add(ExpandConstant('{cm:m6}'));
 
   ArchPage.Values[0] := True;
+
+  EnableSelfHostCb := TNewCheckBox.Create(ArchPage);
+  EnableSelfHostCb.Top := 260;
+  EnableSelfHostCb.Width := ArchPage.SurfaceWidth;
+  EnableSelfHostCb.Height := ScaleY(17);
+  EnableSelfHostCb.Caption := ExpandConstant('{cm:m7}');
+  EnableSelfHostCb.Checked := True;
+  EnableSelfHostCb.Parent := ArchPage.Surface;
   
 end;
    
@@ -365,7 +458,7 @@ begin
     end;
 
     // disable IDE Loader for unknown host
-    if (FGameId = 0) then
+    if IsUnknown then
     begin
       // ide loader
       WizardForm.ComponentsList.Checked[11] := False;
@@ -375,7 +468,7 @@ end;
 
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
-  if (PageID = ArchPage.ID) and (FGameId > 0) then
+  if (PageID = ArchPage.ID) and not IsUnknown then
     Result := True
   else
     Result := False;
@@ -392,6 +485,11 @@ begin
   if (CurPageID = wpSelectDir) and (WizardDirValue <> '') then
   begin
     FGameId := IdentifyGame(WizardDirValue);
+  end;
+
+  if (CurPageID = wpFinished) then
+  begin
+    SetIniString('Host', 'EnableSelfHost', GetSelfHost, ExpandConstant('{app}\CLEO\.config\cleo.ini'));
   end;
 
   if CurPageID = wpReady then 

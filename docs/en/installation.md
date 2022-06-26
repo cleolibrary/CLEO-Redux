@@ -17,11 +17,11 @@ CLEO Redux comes with a hassle-free installer that identifies the selected game 
 > Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0. 
 
 
-Once the installation is complete, run the game once. During the first run CLEO Redux downloads and generates extra files necessary for [JavaScript support](./prerequisites.md).
+Once the installation is complete, CLEO Redux is ready to use. You can now [install scripts](./installation-scripts.md) and [extra plugins](./installation-plugins.md) not included in the installer. To configure CLEO Redux check [this article](./config.md).
 
 ## CLEO Directory
 
-CLEO directory is the primary location where you install [CLEO scripts](./installation-scripts.md), [CLEO plugins](./installation-plugins.md) and [custom texts](./using-fxt.md). CLEO Redux automatically creates this folder when the game starts. 
+CLEO directory is the primary location where you install [CLEO scripts](./installation-scripts.md), [CLEO plugins](./installation-plugins.md) and [custom texts](./using-fxt.md). CLEO Redux automatically creates this folder during installation and any time the game starts. 
 
 In most cases this directory can be found in the game folder. If, however, CLEO lacks write permissions there and fails to create new files, it uses an alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there.
 
