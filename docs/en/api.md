@@ -175,7 +175,7 @@ if (native("HAS_MODEL_LOADED", 101)) {
   log(CLEO.version.build); // "20220427"
   ```
 
-  - (since 1.0.0) `CLEO.apiVersion` - a complex property providing information about current API (a JSON file from [Sanny Builder Library](https://library.sannybuilder.com/))
+  - (since 1.0.0) `CLEO.apiVersion` - a complex property providing information about current API (using `meta.version` field in the [primary definition](./definitions.md) file). Scripts can use it to check if the user has a particular API version installed.
 
   ```js
   log(CLEO.apiVersion); // "0.219"

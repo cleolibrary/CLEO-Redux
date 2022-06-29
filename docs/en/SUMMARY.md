@@ -18,7 +18,7 @@
   - [Compiled Scripts (.cs)](./compiled-scripts.md)
     - [Custom Commands](./custom-commands.md)
   - [JavaScript](./javascript.md)
-    - [Prerequisites](./prerequisites.md)
+    - [Definitions](./definitions.md)
     - [Script Lifecycle](./script-lifecycle.md)
     - [Imports](./imports.md)
     - [API](./api.md)

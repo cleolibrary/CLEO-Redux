@@ -2,7 +2,7 @@
 
 CLEO Redux comes with a hassle-free installer that identifies the selected game and downloads all the dependencies. Just run `cleo_redux_setup.exe` and follow its steps.
 
-> CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory. 
+> Both CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory. 
 >
 > * GTA III - `gta3.exe`
 > * GTA VC - `gta-vc.exe`
@@ -16,8 +16,7 @@ CLEO Redux comes with a hassle-free installer that identifies the selected game 
 >
 > Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0. 
 
-
-Once the installation is complete, CLEO Redux is ready to use. You can now [install scripts](./installation-scripts.md) and [extra plugins](./installation-plugins.md) not included in the installer. To configure CLEO Redux check [this article](./config.md).
+Once the installation is complete, CLEO Redux is ready to use. You can now [install scripts](./installation-scripts.md) and [extra plugins](./installation-plugins.md) not included in the installer, and change the [default configuration](./config.md) if needed.
 
 ## CLEO Directory
 

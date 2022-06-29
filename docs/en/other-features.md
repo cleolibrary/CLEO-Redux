@@ -36,7 +36,7 @@ This line instructs VS Code where to look for the commands definitions for the a
 
 ## SCM Log
 
-CLEO Redux has built-in support for tracking SCM instructions. To trace opcodes in all running CS scripts open up `cleo.ini` and change `LogOpcodes` to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.
+CLEO Redux has built-in support for basic tracing of SCM instructions. To trace opcodes in all running CS scripts open up [`cleo.ini`](./config.md) and change `LogOpcodes` to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.
 
 In JavaScript code use `CLEO.debug.trace(true)` to trace all commands. Use `CLEO.debug.trace(false)` to turn it off.
 
