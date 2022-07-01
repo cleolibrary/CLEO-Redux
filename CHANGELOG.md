@@ -1,3 +1,24 @@
+### 1.0.0 - July 01, 2022
+
+- add initial support for GTA IV (The Complete Edition)
+- all GTA games now use [compound definitions](https://re.cleo.li/docs/en/definitions.html) (a combination of the primary JSON file and a JSON file for the Unknown host from Sanny Builder library)
+- fix an issue when CLEO stopped loading FXT files after encountering non-UTF8 characters
+- add [CLEO.apiVersion](https://re.cleo.li/docs/en/api.html#cleo) property
+
+**SDK AND PLUGINS**
+
+- two new plugins: [MemoryOperations](https://library.sannybuilder.com/#/unknown_x86/memops) and [Input](https://library.sannybuilder.com/#/unknown_x86/input)
+- new SDK methods `OnBeforeScripts`, `OnAfterScripts`, `OnRuntimeInit` to register and run callbacks on each game tick or after game reload. [See example](https://github.com/cleolibrary/CLEO-Redux/blob/master/plugins/Input/src/lib.rs#L23) of usage in the Input plugin.
+
+**INSTALLER**
+
+ - installer now includes all files needed to setup and run CLEO Redux in offline mode
+ 
+ 
+**BREAKING CHANGES**
+
+ - bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 0.9.4 - May 12, 2022
 
 - add support for custom file loaders allowing [import of various file formats](https://re.cleo.li/docs/en/imports.html)
