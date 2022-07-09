@@ -12,7 +12,7 @@ fn init() {
     };
     use r#impl::*;
 
-    log("Input plugin 1.1");
+    log("Input plugin 1.2");
     register_command("IS_KEY_PRESSED", is_key_pressed, None);
     register_command("IS_KEY_DOWN", is_key_down, None);
     register_command("IS_KEY_UP", is_key_up, None);

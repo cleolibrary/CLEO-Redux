@@ -1,7 +1,7 @@
 use cleo_redux_sdk::*;
 use std::mem::size_of;
 use winapi::um::winuser::{
-    GetKeyState, SendInput, INPUT, INPUT_KEYBOARD, INPUT_MOUSE, KEYEVENTF_KEYUP,
+    GetAsyncKeyState, SendInput, INPUT, INPUT_KEYBOARD, INPUT_MOUSE, KEYEVENTF_KEYUP,
     MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP,
     MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP, MOUSEEVENTF_XDOWN, MOUSEEVENTF_XUP, VK_LBUTTON,
     VK_MBUTTON, VK_RBUTTON, VK_XBUTTON1, VK_XBUTTON2, XBUTTON1, XBUTTON2,
@@ -18,10 +18,10 @@ enum State {
     Down,
 }
 
-static mut KEYS: [KeyState; 256] = [KeyState {
+static mut KEYS: [KeyState; 255] = [KeyState {
     is_pressed: false,
     is_toggled: false,
-}; 256];
+}; 255];
 
 static mut LAST_KEY: u8 = 0;
 const CHEAT_STRING_LEN: usize = 30;
@@ -81,8 +81,8 @@ pub extern "C" fn on_before_scripts_callback(_current_time: u32, _time_step: i32
     // 1 -> 0 // pressed=false, keydown=false, keyup=true
     // 1 -> 1 // pressed=true, keydown=false, keyup=false
 
-    for i in 0..=255u8 {
-        let key_state = unsafe { GetKeyState(i as i32) };
+    for i in 0..255u8 {
+        let key_state = unsafe { GetAsyncKeyState(i as i32) };
         let is_pressed = key_state as u16 & 0x8000 != 0;
         unsafe {
             let key = &mut KEYS[i as usize];

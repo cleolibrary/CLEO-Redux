@@ -1,6 +1,8 @@
 # Compiled Scripts
 
-CLEO Redux can execute scripts compiled in the game's native [binary SCM format](https://gtamods.com/wiki/SCM_Instruction). Such scripts have a `.cs` extension. They are subject to the [limitations](https://docs.sannybuilder.com/scm-documentation/gta-limits) of SCM code.
+Older games in Grand Theft Auto 3D series (GTA III, Vice City, San Andreas) use a custom binary format to store compiled scripts. This format is known as [SCM](https://gtamods.com/wiki/SCM_Instruction). CLEO Library and CLEO Redux uses the same format for custom scripts. They usually have a `.cs` extension.
+
+CS scripts run alongside the original SCM scripts and are subject to the [same limitations](https://docs.sannybuilder.com/scm-documentation/gta-limits).
 
 [Check the FAQ](the-definitive-edition-faq.md#how-do-i-compile-cleo-scripts-with-sanny-builder) for the information on CS support in the remastered games.
 
