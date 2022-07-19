@@ -24,6 +24,8 @@ pub enum HostId {
     GTA3_UNREAL = 6,
     VC_UNREAL = 7,
     SA_UNREAL = 8,
+    IV = 9,
+    BULLY = 10,
     UNKNOWN = 255,
 }
 
@@ -267,7 +269,9 @@ pub fn update_compare_flag(ctx: Context, value: bool) {
     unsafe { UpdateCompareFlag(ctx, value) }
 }
 
-/// Copies atmost {maxlen} bytes of a UTF-8 encoded host name to {dest}
+/// Returns a host name
+/// The default value matches https://re.cleo.li/docs/en/api.html#host
+/// Can be changed with SetHostName
 ///
 /// since v2
 pub fn get_host_name() -> String {
@@ -276,7 +280,7 @@ pub fn get_host_name() -> String {
     to_rust_string(buf.as_ptr())
 }
 
-/// Sets the new host name (available in scripts as the HOST constant)
+/// Sets the new host name (accessible in scripts via the HOST constant)
 ///
 /// since v2
 pub fn set_host_name(value: String) {

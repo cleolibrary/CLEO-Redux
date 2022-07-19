@@ -25,6 +25,8 @@ enum class HostId
 	GTA3_UNREAL = 6,
 	VC_UNREAL = 7,
 	SA_UNREAL = 8,
+	IV = 9,
+	BULLY = 10,
 	UNKNOWN = 255
 };
 
