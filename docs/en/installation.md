@@ -13,6 +13,7 @@ CLEO Redux comes with a hassle-free installer that identifies the selected game 
 > * GTA III: DE - `libertycity.exe`
 > * GTA VC: DE - `vicecity.exe`
 > * GTA SA: DE - `sanandreas.exe`
+> * Bully: SE - `bully.exe`
 >
 > Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0. 
 

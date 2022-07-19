@@ -72,3 +72,10 @@ cd build/unknown_x64
 ./unknown.exe
 cd ../..
 
+# bully
+mkdir build/bully -p
+cp "fake-host.exe" "build/bully/bully.exe"
+cp "../cleo_redux.asi" "build/bully/cleo_redux.asi"
+cd build/bully
+./bully.exe
+cd ../..
