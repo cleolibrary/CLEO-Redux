@@ -1,4 +1,4 @@
-/// <reference path="../.config/sa.d.ts" />
+/// <reference path="../.config/bully.d.ts" />
 /*
     Basic game overlay
 
@@ -10,10 +10,9 @@
 
     Author: Grinch_
 */
-
-if (HOST != "gta3" && HOST != "vc" && HOST != "sa") {
+if (HOST != "gta3" && HOST != "vc" && HOST != "sa" && HOST != "bully") {
   exit(
-    "Game Overlay: Unsupported game/ version. Only GTA3, VC and SA v1.0 (Not Definitive Edition) are supported."
+    "Game Overlay: Unsupported game/ version. GTA3, VC, SA v1.0 (Not Definitive Edition) & Bully v1.2 are supported."
   );
 }
 
@@ -25,7 +24,8 @@ const DISPLAY_BOTTOM_RIGHT = 3;
 
 const gOffset = 10.0;
 const gPlayer = new Player(0);
-const gPlayerChar = gPlayer.getChar();
+
+var gPlayerChar = (HOST == "bully") ? 0 : gPlayer.getChar();
 
 // overlay window size
 let gWindowSize = [0, 0];
@@ -51,11 +51,11 @@ while (true) {
   ImGui.SetNextWindowPos(pos[0], pos[1], 1);
   ImGui.SetNextWindowTransparency(0.5);
 
-  ImGui.Begin("Overlay", true, true, true, false, true);
-  gWindowSize = [ImGui.GetWindowSize()];
+  ImGui.Begin("Overlay", 1, 1, 1, false, true);
+  gWindowSize = [ImGui.GetWindowSize("OverLaySizeID")];
 
   if (gShowCoord) {
-    let coord = gPlayerChar.getCoordinates();
+    let coord = (HOST == "bully") ? Player.GetCoordinates() : gPlayerChar.getCoordinates();
     ImGui.Text(
       `Coord: ${coord.x.toFixed(0)}, ${coord.y.toFixed(0)}, ${coord.z.toFixed(
         0
@@ -74,6 +74,7 @@ while (true) {
 
       if (intID == 0) {
         // exterior
+        
         let coord = gPlayerChar.getCoordinates();
 
         let mem = Memory.Allocate(0xc);
@@ -99,13 +100,19 @@ while (true) {
         ImGui.Text(`Interior: ${intID}, ${townName}`);
       }
     } else if (HOST == "vc") {
-      ImGui.Text("Vice City");
-    } else {
-      ImGui.Text("Liberty City");
+      ImGui.Text("Location: Vice City");
+    } else if (HOST == "vc"){
+      ImGui.Text("Location: Liberty City");
+    }
+    else if (HOST == "bully"){
+      ImGui.Text("Location: Bullworth Academy");
+    }
+    else {
+      ImGui.Text("Location: Unknown")
     }
   }
-
-  if (gPlayerChar.isInAnyCar() && gShowVehInfo) {
+  
+  if (HOST != "bully" && gPlayerChar.isInAnyCar() && gShowVehInfo) {
     let hVeh = gPlayerChar.getCarIsUsing();
     ImGui.Text("Veh Health: " + hVeh.getHealth());
     ImGui.Text("Veh Speed: " + hVeh.getSpeed().toFixed(0));
