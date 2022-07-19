@@ -185,6 +185,7 @@
 <li>GTA III: DE - <code>libertycity.exe</code></li>
 <li>GTA VC: DE - <code>vicecity.exe</code></li>
 <li>GTA SA: DE - <code>sanandreas.exe</code></li>
+<li>Bully: SE - <code>bully.exe</code></li>
 </ul>
 <p>Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0. </p>
 </blockquote>
@@ -323,15 +324,15 @@
 <p>When JavaScript is enabled CLEO Redux needs commands definitions from <a href="https://library.sannybuilder.com">Sanny Builder Library</a>. They bring in the type information and convenient classes wrapping all available scripting commands.</p>
 <p>On the first run CLEO tries to download a definition file (see the table below) and put it into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.224</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.225</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.253</code></td></tr>
-<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.38</code></td></tr>
-<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.213</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.215</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.227</code></td></tr>
-<tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.211</code></td></tr>
-<tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.215</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.226</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.227</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.256</code></td></tr>
+<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.39</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.214</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.216</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.229</code></td></tr>
+<tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.212</code></td></tr>
+<tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.216</code></td></tr>
 </tbody></table>
 <p>Starting from v1.0.0 CLEO Redux uses compound definitions (a combination of the primary JSON file for the current game and a JSON file for the Unknown host). It lets SDK commands to work in JS scripts regardless of them being defined or not in the primary JSON file. You should notice that during updates CLEO downloads both <code>&lt;game&gt;.json</code> and <code>unknown.json</code> as well as the accompanying <code>enums.js</code> files. It should not affect any existing scripts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
