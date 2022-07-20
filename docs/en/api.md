@@ -18,7 +18,7 @@ In addition to native commands CLEO Redux adds extra variables and functions.
 
 #### HOST
 
-the host name (previously available as `GAME` variable). Possible values include `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `unknown`.
+the host name (previously available as `GAME` variable). Possible values are `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `gta_iv`, `bully`, `unknown`.
 
 CLEO plugins can use SDK to customize the name for their needs.
 
