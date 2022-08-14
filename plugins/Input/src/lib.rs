@@ -12,7 +12,7 @@ fn init() {
     };
     use r#impl::*;
 
-    log("Input plugin 1.2");
+    log("Input plugin 1.3");
     register_command("IS_KEY_PRESSED", is_key_pressed, None);
     register_command("IS_KEY_DOWN", is_key_down, None);
     register_command("IS_KEY_UP", is_key_up, None);
@@ -20,6 +20,8 @@ fn init() {
     register_command("TEST_CHEAT", test_cheat, None);
     register_command("HOLD_KEY", hold_key, None);
     register_command("RELEASE_KEY", release_key, None);
+    register_command("SET_CURSOR_POS", set_cursor_pos, None);
+    register_command("GET_CURSOR_POS", get_cursor_pos, None);
 
     // update state on host events
     on_before_scripts(on_before_scripts_callback);

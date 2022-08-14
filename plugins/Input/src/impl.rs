@@ -1,10 +1,11 @@
 use cleo_redux_sdk::*;
 use std::mem::size_of;
 use winapi::um::winuser::{
-    GetAsyncKeyState, SendInput, INPUT, INPUT_KEYBOARD, INPUT_MOUSE, KEYEVENTF_KEYUP,
-    MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP, MOUSEEVENTF_MIDDLEDOWN, MOUSEEVENTF_MIDDLEUP,
-    MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP, MOUSEEVENTF_XDOWN, MOUSEEVENTF_XUP, VK_LBUTTON,
-    VK_MBUTTON, VK_RBUTTON, VK_XBUTTON1, VK_XBUTTON2, XBUTTON1, XBUTTON2,
+    GetAsyncKeyState, GetCursorPos, SendInput, SetCursorPos, INPUT, INPUT_KEYBOARD, INPUT_MOUSE,
+    KEYEVENTF_KEYUP, MOUSEEVENTF_LEFTDOWN, MOUSEEVENTF_LEFTUP, MOUSEEVENTF_MIDDLEDOWN,
+    MOUSEEVENTF_MIDDLEUP, MOUSEEVENTF_RIGHTDOWN, MOUSEEVENTF_RIGHTUP, MOUSEEVENTF_XDOWN,
+    MOUSEEVENTF_XUP, VK_LBUTTON, VK_MBUTTON, VK_RBUTTON, VK_XBUTTON1, VK_XBUTTON2, XBUTTON1,
+    XBUTTON2,
 };
 
 #[derive(Copy, Clone)]
@@ -71,6 +72,21 @@ pub extern "C" fn hold_key(ctx: Context) -> HandlerResult {
 pub extern "C" fn release_key(ctx: Context) -> HandlerResult {
     let key = get_int_param(ctx) as _;
     send_key_event(key, State::Up);
+    HandlerResult::CONTINUE
+}
+
+pub extern "C" fn get_cursor_pos(ctx: Context) -> HandlerResult {
+    let point = &mut winapi::shared::windef::POINT { x: 0, y: 0 };
+    update_compare_flag(ctx, unsafe { GetCursorPos(point) } != 0);
+    set_int_param(ctx, point.x as _);
+    set_int_param(ctx, point.y as _);
+    HandlerResult::CONTINUE
+}
+
+pub extern "C" fn set_cursor_pos(ctx: Context) -> HandlerResult {
+    let x = get_int_param(ctx) as _;
+    let y = get_int_param(ctx) as _;
+    update_compare_flag(ctx, unsafe { SetCursorPos(x, y) } != 0);
     HandlerResult::CONTINUE
 }
 
