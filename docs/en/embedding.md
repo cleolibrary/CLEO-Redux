@@ -68,3 +68,35 @@ fn init() {
 In the self-hosted mode CLEO Redux supports [own bindings](./api.md#cleo-redux-bindings) and commands made with [SDK](./using-sdk.md). It uses command definitions for the Unknown host from Sanny Builder Library (available for [32-bit](https://library.sannybuilder.com/#/unknown_x86) and [64-bit](https://library.sannybuilder.com/#/unknown_x64)).
 
 You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file `.config/unknown.d.ts`.
+
+## Manifest
+
+Manifest is a file with static configuration for the given host. Only unknown hosts make use of it. The configuration should be stored in `.config\manifest.json` with the following structure:
+
+```json
+{
+    "host": string,
+    "host_name": string,
+    "compound": boolean
+}
+```
+
+- `host` should match the host's executable name. E.g. if the host runs via `application.exe`, the value is `application`.
+- `host_name` defines the host's custom name. Available as the value of the [HOST variable](./api.md#host) in scripts.
+- `compound` defines whether the host uses [compound definitions](./definitions.md). By default the host uses definitions from the file matching `<host>.json`, e.g. `application.json`. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the `.config` folder. 
+
+  When `compound` is set to `true` the host also uses command definitions for the Unknown host (e.g. `unknown_x86.json`). If this file is missing CLEO downloads it from Sanny Builder Library.
+
+## Example
+
+Host: [Sanny Builder 3](https://sannybuilder.com) (`sanny.exe`)
+
+```json
+{
+    "host": "sanny",
+    "host_name": "Sanny Builder 3",
+    "compound": true
+}
+```
+
+`Sanny Builder 3\CLEO\.config` folder contains `sanny.json` and `manifest.json` before the first run. The other files are downloaded or generated automatically. 
