@@ -1,6 +1,6 @@
 # Custom Commands
 
-> The following commands are for classic games only. For The Definitive Edition [check this information](the-definitive-edition-faq.md#can-i-use-cleo-opcodes).
+> The following commands are for classic GTA games only. For GTA The Trilogy [check this information](the-definitive-edition-faq.md#can-i-use-cleo-opcodes).
 
 
 CLEO Redux supports all original opcodes available in the given game. On top of those it adds a few new commands listed below. Note that they strictly match the opcodes of CLEO Library.

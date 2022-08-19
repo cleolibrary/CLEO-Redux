@@ -26,6 +26,7 @@ pub enum HostId {
     SA_UNREAL = 8,
     IV = 9,
     BULLY = 10,
+    MANIFEST = 254,
     UNKNOWN = 255,
 }
 
@@ -39,6 +40,7 @@ pub type CustomCommand = extern "C" fn(Context) -> HandlerResult;
 pub type CustomLoader = extern "C" fn(*const c_char) -> *mut c_void;
 pub type OnTickCallback = extern "C" fn(current_time: u32, time_step: i32);
 pub type OnRuntimeInitCallback = extern "C" fn();
+pub type OnShowTextBoxCallback = extern "C" fn(*const c_char);
 
 #[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
 #[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
@@ -144,6 +146,10 @@ extern "C" {
     ///
     /// since v4
     fn OnRuntimeInit(cb: OnRuntimeInitCallback);
+    /// Registers a new callback invoked on a ShowTextBox function call. Providing a callback shadows built-in ShowTextBox implementation.
+    ///
+    /// since v5
+    fn OnShowTextBox(cb: OnShowTextBoxCallback);
 }
 
 macro_rules! sz {
@@ -363,5 +369,15 @@ pub fn on_after_scripts(cb: OnTickCallback) {
 pub fn on_runtime_init(cb: OnRuntimeInitCallback) {
     unsafe {
         OnRuntimeInit(cb);
+    }
+}
+
+/// Registers a new callback invoked on a ShowTextBox function call. Providing a callback shadows built-in ShowTextBox implementation.
+///
+/// since v5
+#[allow(dead_code)]
+pub fn on_show_text_box(cb: OnShowTextBoxCallback) {
+    unsafe {
+        OnShowTextBox(cb);
     }
 }

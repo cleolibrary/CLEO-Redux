@@ -14,6 +14,10 @@
 
 If CLEO can't create files in `Gameface\Binaries\Win64` it uses another path at `C:\Users\<your_usename>\AppData\Roaming\CLEO Redux`. There should be `cleo_redux.log` and the CLEO folder where all your scripts go.
 
+## Scripts stopped working after CLEO Redux update
+
+In rare cases there might be an error in command definitions in Sanny Builder Library. Delete the [definition file](./definitions.md) from the `.config` folder and restart the game. CLEO will redownload the latest version of the file. If the problem persists, report the issue using links below.
+
 ## My problem is not listed there
 
 - Check the [GitHub tickets](https://github.com/cleolibrary/CLEO-Redux/issues)

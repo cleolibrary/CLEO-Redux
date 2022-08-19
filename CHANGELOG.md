@@ -1,3 +1,29 @@
+### 1.0.1
+
+- initial support for Bully: Scholarship Edition (v1.2 PC)
+- fix a potential crash in gxt hook
+- fix a potential issue with scripts not working after reload under some circumstances
+
+**SDK AND PLUGINS**
+
+- add `GTA IV`, `Bully`, and `Manifest` to `HostId` enum
+- update Input plugin to v1.3:
+  - use `GetAsyncKeyState` instead of `GetKeyState`
+  - new commands [GET_CURSOR_POS](https://library.sannybuilder.com/#/unknown_x86/input/GET_CURSOR_POS) and [SET_CURSOR_POS](https://library.sannybuilder.com/#/unknown_x86/input/SET_CURSOR_POS)
+- new SDK method `OnShowTextBox` to register and run callbacks on a `ShowTextBox` function call. Implementing a custom callback shadows the default implementation for the given host (e.g. a message in the black rectangular text box).
+- unknown hosts can now have a manifest file to define a custom name and API files for the host
+- SDK version is now 5
+
+**INSTALLER**
+
+- you can opt out of installing provided API files and download latest versions from Sanny Builder Library during the first game run
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
+  `Pad` enum was renamed to `PadId` to avoid conflicts with a static `Pad` class.
+
 ### 1.0.0 - July 01, 2022
 
 - add initial support for GTA IV (The Complete Edition)
@@ -12,12 +38,11 @@
 
 **INSTALLER**
 
- - installer now includes all files needed to setup and run CLEO Redux in offline mode
- 
- 
+- installer now includes all files needed to setup and run CLEO Redux in offline mode
+
 **BREAKING CHANGES**
 
- - bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
 
 ### 0.9.4 - May 12, 2022
 

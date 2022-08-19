@@ -27,6 +27,7 @@ enum class HostId
 	SA_UNREAL = 8,
 	IV = 9,
 	BULLY = 10,
+	MANIFEST = 254,
 	UNKNOWN = 255
 };
 
@@ -37,6 +38,7 @@ typedef HandlerResult (*CommandHandler)(Context);
 typedef void* (*CustomLoader)(const char*);
 typedef void (*OnTickCallback)(unsigned int current_time, int time_step);
 typedef void (*OnRuntimeInitCallback)();
+typedef void (*OnShowTextBoxCallback)(const char*);
 
 extern "C" {
 	// since v1
@@ -111,5 +113,8 @@ extern "C" {
 	// since v4
 	// Registers a new callback invoked on each runtime init event (new game, saved game load, or SDK's RuntimeInit)
     void OnRuntimeInit(OnRuntimeInitCallback callback);
+	// since v5
+	// Registers a new callback invoked on a ShowTextBox function call. Providing a callback shadows built-in ShowTextBox implementation.
+    void OnShowTextBox(OnShowTextBoxCallback callback);
 }
 
