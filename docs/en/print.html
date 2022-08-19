@@ -1356,6 +1356,35 @@ fn init() {
 <h2 id="available-commands"><a class="header" href="#available-commands">Available Commands</a></h2>
 <p>In the self-hosted mode CLEO Redux supports <a href="./api.html#cleo-redux-bindings">own bindings</a> and commands made with <a href="./using-sdk.html">SDK</a>. It uses command definitions for the Unknown host from Sanny Builder Library (available for <a href="https://library.sannybuilder.com/#/unknown_x86">32-bit</a> and <a href="https://library.sannybuilder.com/#/unknown_x64">64-bit</a>).</p>
 <p>You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file <code>.config/unknown.d.ts</code>.</p>
+<h2 id="manifest"><a class="header" href="#manifest">Manifest</a></h2>
+<p>Manifest is a file with static configuration for the given host. Only unknown hosts make use of it. The configuration should be stored in <code>.config\manifest.json</code> with the following structure:</p>
+<pre><code class="language-json">{
+    &quot;host&quot;: string,
+    &quot;host_name&quot;: string,
+    &quot;compound&quot;: boolean
+}
+</code></pre>
+<ul>
+<li>
+<p><code>host</code> should match the host's executable name. E.g. if the host runs via <code>application.exe</code>, the value is <code>application</code>.</p>
+</li>
+<li>
+<p><code>host_name</code> defines the host's custom name. Available as the value of the <a href="./api.html#host">HOST variable</a> in scripts.</p>
+</li>
+<li>
+<p><code>compound</code> defines whether the host uses <a href="./definitions.html">compound definitions</a>. By default the host uses definitions from the file matching <code>&lt;host&gt;.json</code>, e.g. <code>application.json</code>. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the <code>.config</code> folder. </p>
+<p>When <code>compound</code> is set to <code>true</code> the host also uses command definitions for the Unknown host (e.g. <code>unknown_x86.json</code>). If this file is missing CLEO downloads it from Sanny Builder Library.</p>
+</li>
+</ul>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<p>Host: <a href="https://sannybuilder.com">Sanny Builder 3</a> (<code>sanny.exe</code>)</p>
+<pre><code class="language-json">{
+    &quot;host&quot;: &quot;sanny&quot;,
+    &quot;host_name&quot;: &quot;Sanny Builder 3&quot;,
+    &quot;compound&quot;: true
+}
+</code></pre>
+<p><code>Sanny Builder 3\CLEO\.config</code> folder contains <code>sanny.json</code> and <code>manifest.json</code> before the first run. The other files are downloaded or generated automatically. </p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h1>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/SDK">SDK for the C++ and Rust languages</a>.</p>
 <h2 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h2>
@@ -1499,11 +1528,11 @@ public:
 </ul>
 <pre><code class="language-js">var result = native(&quot;INT_ADD&quot;, 10, 20); // 30
 </code></pre>
-<h2 id="example"><a class="header" href="#example">Example</a></h2>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <p>See the <a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile"><code>IniFiles</code></a> plugin that includes a complete project for Visual Studio 2019.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-sdk"><a class="header" href="#rust-sdk">Rust SDK</a></h1>
 <p>Rust SDK uses similar to C++ interface with some extra wrapping methods to allow easily convert between C and Rust types. The header file is available as a <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> on crates.io. See the documentation <a href="https://docs.rs/cleo_redux_sdk/latest/">here</a>.</p>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
 <p>See the <code>Dylib</code> plugin. It adds a class <code>DynamicLibrary</code> with the following methods:</p>
 <pre><code class="language-ts">declare class DynamicLibrary {
     constructor(handle: number);
