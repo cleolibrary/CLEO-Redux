@@ -156,6 +156,7 @@
 <ul>
 <li>re3 (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
 <li>reVC (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
+<li>Bully: Scholarship Edition</li>
 <li>unknown host (see <a href="./embedding.html">details</a>)</li>
 </ul>
 <p>For the complete reference on supported features <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">refer to this page</a>. Also there are known limitations <a href="unsupported.html">listed here</a>.</p>
@@ -207,15 +208,16 @@
 <li>Delete the <code>cleo_redux.log</code> (optional)</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
-<p>Plugins are optional programs adding extra scripting commands with the help of <a href="./using-sdk.html">CLEO Redux SDK</a>. They have a <code>.cleo</code> extension.</p>
-<p>Plugins should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
+<p>Plugins are optional programs adding extra scripting commands with the help of <a href="./using-sdk.html">CLEO Redux SDK</a>. A plugin file has a <code>.cleo</code> extension and should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
 <h2 id="list-of-plugins"><a class="header" href="#list-of-plugins">List of plugins</a></h2>
 <table><thead><tr><th>Name</th><th>Description</th><th>Link</th></tr></thead><tbody>
-<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/ini">IniFiles</a></td><td>Reading from and writing to INI files</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/IniFiles">src</a> - <a href="https://github.com/cleolibrary/CLEO-Redux/releases/download/0.9.2/CLEO_Redux-0.9.2+IniFiles+Dylib.zip">download</a></td></tr>
-<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/dylib">Dylib</a></td><td>Loading DLL files and importing functions</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Dylib">src</a> - <a href="https://github.com/cleolibrary/CLEO-Redux/releases/download/0.9.2/CLEO_Redux-0.9.2+IniFiles+Dylib.zip">download</a></td></tr>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/ini">IniFiles</a></td><td>Reading from and writing to INI files</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/IniFiles">src</a></td></tr>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/dylib">Dylib</a></td><td>Loading DLL files and importing functions</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Dylib">src</a></td></tr>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/input">Input</a></td><td>Checking for keyboard and mouse input, emulating key presses</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input">src</a></td></tr>
 <tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/imgui">ImGuiRedux</a></td><td>Dear ImGui bindings</td><td><a href="https://github.com/user-grinch/ImGuiRedux">GitHub repo</a></td></tr>
 <tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/memops">MemoryOperations</a></td><td>Low-level memory operations</td><td><a href="https://github.com/cleolibrary/CLEO-REDUX-PLUGINS">GitHub repo</a></td></tr>
 </tbody></table>
+<p>Plugins are included in the CLEO Redux installer. You can opt out of some of them by unchecking the corresponding checkbox in the installer.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
 <h2 id="adding-a-new-script"><a class="header" href="#adding-a-new-script">Adding a new script</a></h2>
 <p>Generally a script file (<code>.cs</code>, <code>.js</code>) should just be copied to the <code>CLEO</code> directory. Some scripts may require extra steps for installation. In case of any issues check the script documentation or ask its author.</p>
@@ -295,7 +297,7 @@
 <p>CLEO Redux does not support saving the script status (a feature of CLEO Library) and there are no plans on adding this feature.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="custom-commands"><a class="header" href="#custom-commands">Custom Commands</a></h1>
 <blockquote>
-<p>The following commands are for classic games only. For The Definitive Edition <a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">check this information</a>.</p>
+<p>The following commands are for classic GTA games only. For GTA The Trilogy <a href="the-definitive-edition-faq.html#can-i-use-cleo-opcodes">check this information</a>.</p>
 </blockquote>
 <p>CLEO Redux supports all original opcodes available in the given game. On top of those it adds a few new commands listed below. Note that they strictly match the opcodes of CLEO Library.</p>
 <ul>
@@ -324,15 +326,17 @@
 <p>When JavaScript is enabled CLEO Redux needs commands definitions from <a href="https://library.sannybuilder.com">Sanny Builder Library</a>. They bring in the type information and convenient classes wrapping all available scripting commands.</p>
 <p>On the first run CLEO tries to download a definition file (see the table below) and put it into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.226</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.227</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.256</code></td></tr>
-<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.39</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.231</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.236</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.262</code></td></tr>
+<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.40</code></td></tr>
 <tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.214</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.216</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.229</code></td></tr>
-<tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.212</code></td></tr>
-<tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.216</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.220</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.232</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.232</code></td></tr>
+<tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.23</code></td></tr>
+<tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.216</code></td></tr>
+<tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.220</code></td></tr>
 </tbody></table>
 <p>Starting from v1.0.0 CLEO Redux uses compound definitions (a combination of the primary JSON file for the current game and a JSON file for the Unknown host). It lets SDK commands to work in JS scripts regardless of them being defined or not in the primary JSON file. You should notice that during updates CLEO downloads both <code>&lt;game&gt;.json</code> and <code>unknown.json</code> as well as the accompanying <code>enums.js</code> files. It should not affect any existing scripts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
@@ -1106,6 +1110,8 @@ var x = Object.create(null);
 <li>run the game (or Rockstar Games Launcher) as administrator</li>
 </ul>
 <p>If CLEO can't create files in <code>Gameface\Binaries\Win64</code> it uses another path at <code>C:\Users\&lt;your_usename&gt;\AppData\Roaming\CLEO Redux</code>. There should be <code>cleo_redux.log</code> and the CLEO folder where all your scripts go.</p>
+<h2 id="scripts-stopped-working-after-cleo-redux-update"><a class="header" href="#scripts-stopped-working-after-cleo-redux-update">Scripts stopped working after CLEO Redux update</a></h2>
+<p>In rare cases there might be an error in command definitions in Sanny Builder Library. Delete the <a href="./definitions.html">definition file</a> from the <code>.config</code> folder and restart the game. CLEO will redownload the latest version of the file. If the problem persists, report the issue using links below.</p>
 <h2 id="my-problem-is-not-listed-there"><a class="header" href="#my-problem-is-not-listed-there">My problem is not listed there</a></h2>
 <ul>
 <li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/issues">GitHub tickets</a></li>
@@ -1353,7 +1359,7 @@ fn init() {
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h1>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/SDK">SDK for the C++ and Rust languages</a>.</p>
 <h2 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h2>
-<p>The current version is <code>4</code>. Changes to SDK advance this number by one.</p>
+<p>The current version is <code>5</code>. Changes to SDK advance this number by one.</p>
 <h2 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h2>
 <p>CLEO Redux provides SDK for both 32-bit and 64-bit games. There is one notable change between the two: on the 32-bit platform the SDK functions <code>GetIntParam</code> and <code>SetIntParam</code> operate on signed 32-bit numbers, whereas on the 64-bit platform they operate on signed 64-bit numbers (declared as the type <code>isize</code>).</p>
 <p>It's recommended for 64-bit plugins to have <code>64</code> in their names (e.g. <code>myplugin64.cleo</code>).</p>
