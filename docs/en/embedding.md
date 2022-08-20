@@ -87,7 +87,7 @@ Manifest is a file with static configuration for the given host. Only unknown ho
 
   When `compound` is set to `true` the host also uses command definitions for the Unknown host (e.g. `unknown_x86.json`). If this file is missing CLEO downloads it from Sanny Builder Library.
 
-## Example
+### Example
 
 Host: [Sanny Builder 3](https://sannybuilder.com) (`sanny.exe`)
 

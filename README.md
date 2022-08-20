@@ -27,7 +27,8 @@ while (true) {
 ## Documentation
 
 * English: https://re.cleo.li/docs
-* Russian: https://re.cleo.li/docs/ru (by [TheFantomKiller420](https://github.com/TheFantomKiller420))
+
+* (Outdated) Russian: https://re.cleo.li/docs/ru (by [TheFantomKiller420](https://github.com/TheFantomKiller420))
 
 ## Installation
 
