@@ -206,10 +206,10 @@ fn init() {
 </code></pre>
 <ul>
 <li>
-<p><code>host</code> should match the host's executable name. E.g. if the host runs via <code>application.exe</code>, the value is <code>application</code>.</p>
+<p><code>host</code> should match the host's executable name. E.g. if the host runs via <code>application.exe</code>, the value is <code>application</code>. Available in scripts as the <a href="./api.html#host">HOST variable</a>.</p>
 </li>
 <li>
-<p><code>host_name</code> defines the host's custom name. Available as the value of the <a href="./api.html#host">HOST variable</a> in scripts.</p>
+<p><code>host_name</code> defines the host's custom name used in the <a href="./log.html">log</a></p>
 </li>
 <li>
 <p><code>compound</code> defines whether the host uses <a href="./definitions.html">compound definitions</a>. By default the host uses definitions from the file matching <code>&lt;host&gt;.json</code>, e.g. <code>application.json</code>. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the <code>.config</code> folder. </p>
