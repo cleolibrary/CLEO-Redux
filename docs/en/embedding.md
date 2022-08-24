@@ -81,8 +81,8 @@ Manifest is a file with static configuration for the given host. Only unknown ho
 }
 ```
 
-- `host` should match the host's executable name. E.g. if the host runs via `application.exe`, the value is `application`.
-- `host_name` defines the host's custom name. Available as the value of the [HOST variable](./api.md#host) in scripts.
+- `host` should match the host's executable name. E.g. if the host runs via `application.exe`, the value is `application`. Available in scripts as the [HOST variable](./api.md#host).
+- `host_name` defines the host's custom name used in the [log](./log.md)
 - `compound` defines whether the host uses [compound definitions](./definitions.md). By default the host uses definitions from the file matching `<host>.json`, e.g. `application.json`. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the `.config` folder. 
 
   When `compound` is set to `true` the host also uses command definitions for the Unknown host (e.g. `unknown_x86.json`). If this file is missing CLEO downloads it from Sanny Builder Library.
