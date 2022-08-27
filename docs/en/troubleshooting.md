@@ -18,6 +18,10 @@ If CLEO can't create files in `Gameface\Binaries\Win64` it uses another path at 
 
 In rare cases there might be an error in command definitions in Sanny Builder Library. Delete the [definition file](./definitions.md) from the `.config` folder and restart the game. CLEO will redownload the latest version of the file. If the problem persists, report the issue using links below.
 
+## Game is stuck loading
+
+If the last entry in [cleo_redux.log](./log.md) is "Checking for updates..." CLEO can't access GitHub API. It might a temporary issue or your IP address is blocked from GitHub. Open [cleo.ini](./config.md), change `CheckUpdates` to `0` and restart the game.
+
 ## My problem is not listed there
 
 - Check the [GitHub tickets](https://github.com/cleolibrary/CLEO-Redux/issues)
