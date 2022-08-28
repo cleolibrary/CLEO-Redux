@@ -143,7 +143,7 @@
                         <h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
 <p>CLEO Redux comes with a hassle-free installer that identifies the selected game and downloads all the dependencies. Just run <code>cleo_redux_setup.exe</code> and follow its steps.</p>
 <blockquote>
-<p>Both CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory. </p>
+<p>Both CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory.</p>
 <ul>
 <li>GTA III - <code>gta3.exe</code></li>
 <li>GTA VC - <code>gta-vc.exe</code></li>
@@ -156,17 +156,24 @@
 <li>GTA SA: DE - <code>sanandreas.exe</code></li>
 <li>Bully: SE - <code>bully.exe</code></li>
 </ul>
-<p>Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0. </p>
+<p>Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0.</p>
 </blockquote>
 <p>Once the installation is complete, CLEO Redux is ready to use. You can now <a href="./installation-scripts.html">install scripts</a> and <a href="./installation-plugins.html">extra plugins</a> not included in the installer, and change the <a href="./config.html">default configuration</a> if needed.</p>
 <h2 id="cleo-directory"><a class="header" href="#cleo-directory">CLEO Directory</a></h2>
-<p>CLEO directory is the primary location where you install <a href="./installation-scripts.html">CLEO scripts</a>, <a href="./installation-plugins.html">CLEO plugins</a> and <a href="./using-fxt.html">custom texts</a>. CLEO Redux automatically creates this folder during installation and any time the game starts. </p>
+<p>CLEO directory is the primary location where you install <a href="./installation-scripts.html">CLEO scripts</a>, <a href="./installation-plugins.html">CLEO plugins</a> and <a href="./using-fxt.html">custom texts</a>. CLEO Redux automatically creates this folder during installation and any time the game starts.</p>
 <p>In most cases this directory can be found in the game folder. If, however, CLEO lacks write permissions there and fails to create new files, it uses an alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
 <h2 id="dependency-on-asi-loader"><a class="header" href="#dependency-on-asi-loader">Dependency on ASI Loader</a></h2>
-<p>CLEO Redux is distributed as a dynamic-load library with an <code>.asi</code> extension. Historically ASI files have been used in GTA 3 and Vice City as addons to the Miles Sound System library (Mss32) which loads them into the game process. More recent titles didn't use MSS, so the modding community developed custom loaders commonly named &quot;ASI Loader&quot; to continue using ASI for any custom code to be injected into the game. </p>
-<p><a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> by ThirteenAG can be used to load CLEO Redux in all games except GTA3/VC/re3/reVC. It gets downloaded during CLEO Redux setup. You may opt out of installing Ultimate ASI Loader if you have other means of injecting ASI files into the game (i.e. an alternative loader).</p>
+<p>CLEO Redux is distributed as a dynamic-load library with an <code>.asi</code> extension. Historically ASI files have been used in GTA III and Vice City as addons to the Miles Sound System library (Mss32) which loads them into the game process. More recent titles didn't use MSS, so the modding community developed custom loaders commonly named &quot;ASI Loader&quot; to continue using ASI for any custom code to be injected into the game.</p>
+<p><a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> by ThirteenAG can be used to load CLEO Redux in any game. It gets downloaded during CLEO Redux setup. You may opt out of installing Ultimate ASI Loader if you have other means of injecting ASI files into the game (i.e. an alternative loader) or the game already supports ASI, e.g. by using MSS lib.</p>
+<p>Note that the Ultimate ASI Loader dll file can be renamed, e.g. to <code>dinput8.dll</code> or <code>d3d9.dll</code> depending on the game. By default CLEO Redux installs it as <code>vorbisFile.dll</code> in 32-bit games and <code>version.dll</code> in 64-bit games. There are some exceptions:</p>
+<ul>
+<li>it is <code>d3d9.dll</code> in re3 and reVC (x64)</li>
+<li>it is <code>dinput8.dll</code> in GTA IV</li>
+</ul>
+<p>If the default name does not work with the given game, try renaming the dll file into another compatible name. Visit <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader">Ultimate ASI loader repo</a> for more information.</p>
 <h2 id="note-on-re3-or-revc"><a class="header" href="#note-on-re3-or-revc">Note on re3 or reVC</a></h2>
-<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>CLEO Redux supports &quot;Windows D3D9&quot; version of <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
+<p>During installation you must select the correct version of <code>re3</code> or <code>reVC</code>: either 32-bit or 64-bit.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
 <h2 id="uninstallation"><a class="header" href="#uninstallation">Uninstallation</a></h2>
 <p>To uninstall CLEO Redux perform the following steps:</p>

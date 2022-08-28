@@ -175,7 +175,7 @@
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
 <p>CLEO Redux comes with a hassle-free installer that identifies the selected game and downloads all the dependencies. Just run <code>cleo_redux_setup.exe</code> and follow its steps.</p>
 <blockquote>
-<p>Both CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory. </p>
+<p>Both CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory.</p>
 <ul>
 <li>GTA III - <code>gta3.exe</code></li>
 <li>GTA VC - <code>gta-vc.exe</code></li>
@@ -188,17 +188,24 @@
 <li>GTA SA: DE - <code>sanandreas.exe</code></li>
 <li>Bully: SE - <code>bully.exe</code></li>
 </ul>
-<p>Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0. </p>
+<p>Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0.</p>
 </blockquote>
 <p>Once the installation is complete, CLEO Redux is ready to use. You can now <a href="./installation-scripts.html">install scripts</a> and <a href="./installation-plugins.html">extra plugins</a> not included in the installer, and change the <a href="./config.html">default configuration</a> if needed.</p>
 <h2 id="cleo-directory"><a class="header" href="#cleo-directory">CLEO Directory</a></h2>
-<p>CLEO directory is the primary location where you install <a href="./installation-scripts.html">CLEO scripts</a>, <a href="./installation-plugins.html">CLEO plugins</a> and <a href="./using-fxt.html">custom texts</a>. CLEO Redux automatically creates this folder during installation and any time the game starts. </p>
+<p>CLEO directory is the primary location where you install <a href="./installation-scripts.html">CLEO scripts</a>, <a href="./installation-plugins.html">CLEO plugins</a> and <a href="./using-fxt.html">custom texts</a>. CLEO Redux automatically creates this folder during installation and any time the game starts.</p>
 <p>In most cases this directory can be found in the game folder. If, however, CLEO lacks write permissions there and fails to create new files, it uses an alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
 <h2 id="dependency-on-asi-loader"><a class="header" href="#dependency-on-asi-loader">Dependency on ASI Loader</a></h2>
-<p>CLEO Redux is distributed as a dynamic-load library with an <code>.asi</code> extension. Historically ASI files have been used in GTA 3 and Vice City as addons to the Miles Sound System library (Mss32) which loads them into the game process. More recent titles didn't use MSS, so the modding community developed custom loaders commonly named &quot;ASI Loader&quot; to continue using ASI for any custom code to be injected into the game. </p>
-<p><a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> by ThirteenAG can be used to load CLEO Redux in all games except GTA3/VC/re3/reVC. It gets downloaded during CLEO Redux setup. You may opt out of installing Ultimate ASI Loader if you have other means of injecting ASI files into the game (i.e. an alternative loader).</p>
+<p>CLEO Redux is distributed as a dynamic-load library with an <code>.asi</code> extension. Historically ASI files have been used in GTA III and Vice City as addons to the Miles Sound System library (Mss32) which loads them into the game process. More recent titles didn't use MSS, so the modding community developed custom loaders commonly named &quot;ASI Loader&quot; to continue using ASI for any custom code to be injected into the game.</p>
+<p><a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> by ThirteenAG can be used to load CLEO Redux in any game. It gets downloaded during CLEO Redux setup. You may opt out of installing Ultimate ASI Loader if you have other means of injecting ASI files into the game (i.e. an alternative loader) or the game already supports ASI, e.g. by using MSS lib.</p>
+<p>Note that the Ultimate ASI Loader dll file can be renamed, e.g. to <code>dinput8.dll</code> or <code>d3d9.dll</code> depending on the game. By default CLEO Redux installs it as <code>vorbisFile.dll</code> in 32-bit games and <code>version.dll</code> in 64-bit games. There are some exceptions:</p>
+<ul>
+<li>it is <code>d3d9.dll</code> in re3 and reVC (x64)</li>
+<li>it is <code>dinput8.dll</code> in GTA IV</li>
+</ul>
+<p>If the default name does not work with the given game, try renaming the dll file into another compatible name. Visit <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader">Ultimate ASI loader repo</a> for more information.</p>
 <h2 id="note-on-re3-or-revc"><a class="header" href="#note-on-re3-or-revc">Note on re3 or reVC</a></h2>
-<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>CLEO Redux supports &quot;Windows D3D9&quot; version of <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
+<p>During installation you must select the correct version of <code>re3</code> or <code>reVC</code>: either 32-bit or 64-bit.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
 <h2 id="uninstallation"><a class="header" href="#uninstallation">Uninstallation</a></h2>
 <p>To uninstall CLEO Redux perform the following steps:</p>
@@ -231,7 +238,7 @@
 <li><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
 <li><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
 <li><code>AllowFxt</code> - when set to <code>1</code> CLEO loads and <a href="./using-fxt.html">uses</a> <code>*.fxt</code> files located in the CLEO\CLEO_TEXT directory. Enabled by default.</li>
-<li><code>CheckUpdates</code> - when set to <code>1</code> CLEO check if there is a new update available for download during the game startup. Enabled by default.</li>
+<li><code>CheckUpdates</code> - when set to <code>1</code> CLEO check if there is a new update available for download during the game startup. Disabled by default.</li>
 <li><code>LogOpcodes</code> - when set to <code>1</code> CLEO <a href="./log.html">logs</a> all executed opcodes in custom scripts.</li>
 <li><code>DisplayMenuInfo</code> - when set to <code>1</code> CLEO displays some information in the main menu. Enabled by default.</li>
 <li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
@@ -1096,7 +1103,8 @@ var x = Object.create(null);
 <p><code>GAME</code> variable has been renamed to <a href="./api.html#host">HOST</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
 <h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
-<p>CLEO Redux only supports &quot;Windows D3D9 MSS 32bit&quot; version of <code>re3</code> or <code>reVC</code>.</p>
+<p>CLEO Redux supports &quot;Windows D3D9&quot; version of <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
+<p>During installation you must select the correct version of <code>re3</code> or <code>reVC</code>: either 32-bit or 64-bit.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
 <h2 id="game-crashes-with-cleo-on-san-andreas-the-definitive-edition"><a class="header" href="#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></h2>
 <ul>
@@ -1114,6 +1122,8 @@ var x = Object.create(null);
 <p>In rare cases there might be an error in command definitions in Sanny Builder Library. Delete the <a href="./definitions.html">definition file</a> from the <code>.config</code> folder and restart the game. CLEO will redownload the latest version of the file. If the problem persists, report the issue using links below.</p>
 <h2 id="game-is-stuck-loading"><a class="header" href="#game-is-stuck-loading">Game is stuck loading</a></h2>
 <p>If the last entry in <a href="./log.html">cleo_redux.log</a> is &quot;Checking for updates...&quot; CLEO can't access GitHub API. It might a temporary issue or your IP address is blocked from GitHub. Open <a href="./config.html">cleo.ini</a>, change <code>CheckUpdates</code> to <code>0</code> and restart the game.</p>
+<h2 id="nothing-happens-when-i-run-the-game-not-even-a-log-file-is-there"><a class="header" href="#nothing-happens-when-i-run-the-game-not-even-a-log-file-is-there">Nothing happens when I run the game, not even a log file is there</a></h2>
+<p>Check that you have installed Ultimate ASI Loader correctly. Sometimes you might need to give its dll file another name for the game to load it. Refer to <a href="./installation.html#dependency-on-asi-loader">this documentation</a>.</p>
 <h2 id="my-problem-is-not-listed-there"><a class="header" href="#my-problem-is-not-listed-there">My problem is not listed there</a></h2>
 <ul>
 <li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/issues">GitHub tickets</a></li>
