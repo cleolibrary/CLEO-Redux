@@ -58,18 +58,18 @@ cd ../..
 
 # unknown_x86
 mkdir build/unknown_x86 -p
-cp "fake-host.exe" "build/unknown_x86/unknown.exe"
+cp "fake-host.exe" "build/unknown_x86/unknown_x86.exe"
 cp "../cleo_redux.asi" "build/unknown_x86/cleo_redux.asi"
 cd build/unknown_x86
-./unknown.exe
+./unknown_x86.exe
 cd ../..
 
 # unknown_x64
 mkdir build/unknown_x64 -p
-cp "fake-host64.exe" "build/unknown_x64/unknown.exe"
+cp "fake-host64.exe" "build/unknown_x64/unknown_x64.exe"
 cp "../cleo_redux64.asi" "build/unknown_x64/cleo_redux64.asi"
 cd build/unknown_x64
-./unknown.exe
+./unknown_x64.exe
 cd ../..
 
 # bully

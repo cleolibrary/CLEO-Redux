@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.1"
+#define AppVersion "1.0.2-dev.20220828"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -62,8 +62,8 @@ Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mo
 Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: full
 Name: "plugins/input"; Description: "Input 1.3"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
-Name: "loaders/text"; Description: "*.txt files"; Types: full
-Name: "loaders/ide"; Description: "*.ide files (for 32-bit GTA3, VC, SA, IV)"; Types: full
+Name: "loaders/text"; Description: "*.txt, *.text (Text files)"; Types: full
+Name: "loaders/ide"; Description: "*.ide (Item Definition files)"; Types: full
 
 Name: "asiloader"; Description: "Ultimate ASI Loader (by ThirteenAG)"; Types: full
 
@@ -76,78 +76,68 @@ Name: "{app}\CLEO"; Permissions: users-modify
 Source: "{#SourceDir}\cleo_redux.asi"; DestDir: "{app}"; Flags: ignoreversion; Check: IsX86;  Components: program;
 Source: "{#SourceDir}\cleo_redux64.asi"; DestDir: "{app}"; Flags: ignoreversion; Check: IsX64;  Components: program;
 
+; SDK
+Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX86;  Components: program/commands;
+Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX86; Components: program/commands;
+Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX86; Components: program/commands;
+Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX64;  Components: program/commands;
+Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX64; Components: program/commands;
+Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX64; Components: program/commands;
+
 ; unknown x86
 Source: "{#OutputDir}\unknown_x86\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86; Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86; Components: program/commands;
 ; unknown x64
 Source: "{#OutputDir}\unknown_x64\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64; Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64; Components: program/commands;
 ; GTA III and re3
 Source: "{#OutputDir}\gta3\CLEO\.config\gta3.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
 Source: "{#OutputDir}\gta3\CLEO\.config\gta3.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
 Source: "{#OutputDir}\gta3\CLEO\.config\gta3.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
 Source: "{#OutputDir}\gta3\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3; Components: program/commands;
 ; GTA VC and reVC
 Source: "{#OutputDir}\vc\CLEO\.config\vc.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
 Source: "{#OutputDir}\vc\CLEO\.config\vc.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
 Source: "{#OutputDir}\vc\CLEO\.config\vc.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
 Source: "{#OutputDir}\vc\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC; Components: program/commands;
 ; GTA SA
 Source: "{#OutputDir}\sa\CLEO\.config\sa.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
 Source: "{#OutputDir}\sa\CLEO\.config\sa.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
 Source: "{#OutputDir}\sa\CLEO\.config\sa.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
 Source: "{#OutputDir}\sa\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA; Components: program/commands;
 ; GTA IV
 Source: "{#OutputDir}\gta_iv\CLEO\.config\gta_iv.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
 Source: "{#OutputDir}\gta_iv\CLEO\.config\gta_iv.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
 Source: "{#OutputDir}\gta_iv\CLEO\.config\gta_iv.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
 Source: "{#OutputDir}\gta_iv\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV; Components: program/commands;
 ; GTA III Unreal
 Source: "{#OutputDir}\gta3_unreal\CLEO\.config\gta3_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
 Source: "{#OutputDir}\gta3_unreal\CLEO\.config\gta3_unreal.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
 Source: "{#OutputDir}\gta3_unreal\CLEO\.config\gta3.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
 Source: "{#OutputDir}\gta3_unreal\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master; Components: program/commands;
 ; GTA VC Unreal
 Source: "{#OutputDir}\vc_unreal\CLEO\.config\vc_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
 Source: "{#OutputDir}\vc_unreal\CLEO\.config\vc_unreal.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
 Source: "{#OutputDir}\vc_unreal\CLEO\.config\vc.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
 Source: "{#OutputDir}\vc_unreal\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster; Components: program/commands;
 ; GTA SA Unreal
 Source: "{#OutputDir}\sa_unreal\CLEO\.config\sa_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
 Source: "{#OutputDir}\sa_unreal\CLEO\.config\sa_unreal.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
 Source: "{#OutputDir}\sa_unreal\CLEO\.config\sa.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
 Source: "{#OutputDir}\sa_unreal\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster; Components: program/commands;
 ; Bully
 Source: "{#OutputDir}\bully\CLEO\.config\bully.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
 Source: "{#OutputDir}\bully\CLEO\.config\bully.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
 Source: "{#OutputDir}\bully\CLEO\.config\bully.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
 Source: "{#OutputDir}\bully\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.js"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully; Components: program/commands;
 
 ; Source: "{#SourceDir}\Release\LICENSE.txt"; DestDir: "{app}"; DestName: "CLEO_REDUX_LICENSE.txt"; Flags: ignoreversion;  Components: program
 
 ; UAL
-Source: "{tmp}\version.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: NeedsAL and IsX64; AfterInstall: Extract('{app}\version.zip', 'version.dll', '{app}');  Components: asiloader;
-Source: "{tmp}\vorbisFile.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: NeedsAL and IsX86; AfterInstall: Extract('{app}\vorbisFile.zip', 'vorbisFile.dll', '{app}');  Components: asiloader;
+; x86
+Source: "{tmp}\dinput8.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: isIV and IsX86; AfterInstall: Extract('{app}\dinput8.zip', 'dinput8.dll', '{app}');  Components: asiloader;
+Source: "{tmp}\vorbisFile.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: not isIV and IsX86; AfterInstall: Extract('{app}\vorbisFile.zip', 'vorbisFile.dll', '{app}');  Components: asiloader;
+; x64
+Source: "{tmp}\d3d9.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: isRe and IsX64; AfterInstall: Extract('{app}\d3d9.zip', 'd3d9.dll', '{app}');  Components: asiloader;
+Source: "{tmp}\version.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: not isRe and IsX64; AfterInstall: Extract('{app}\version.zip', 'version.dll', '{app}');  Components: asiloader;
 
 ; Plugins
 Source: "{#SourceDir}\plugins\Dylib\build\dylib.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/dylib
@@ -171,6 +161,7 @@ Source: "{tmp}\MemoryOperations.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags:
 Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/text
 Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/text
 Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/ide
+Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/ide
 
 [INI]
 Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowCs"; String: 1
@@ -198,13 +189,15 @@ m4 =No supported game or application was found in the selected directory. To con
 m5 =32-bit (x86)
 m6 =64-bit (x64)
 m7 =Automatically run as self-host
+m8 =CLEO Redux supports both 32-bit and 64-bit versions of re3 and reVC. To continue installation select either one of the two available versions of CLEO Redux.
 
 russian.m2 =Выберите версию CLEO Redux
 russian.m3 =Какую версию CLEO Redux (32-битную или 64-битную) нужно установить?
-russian.m4 =В выбранной директории не нашлось поддерживаемых игр или приложений. Для продолжения установки, выберите одну из двух возможных версий CLEO Redux. Подсказка: она должна совпадать с версией (архитектурой) игры или приложения, в которой будет запускаться CLEO Redux.
+russian.m4 =В выбранной директории не нашлось поддерживаемых игр или приложений. Для продолжения установки выберите одну из двух возможных версий CLEO Redux. Подсказка: она должна совпадать с версией (архитектурой) игры или приложения, в которой будет запускаться CLEO Redux.
 russian.m5 =32-битная (x86)
 russian.m6 =64-битная (x64)
 russian.m7 =Автоматически запускать в автономном режиме
+russian.m8 =CLEO Redux поддерживает как 32-битные, так и 64-битные версии re3 и reVC. Для продолжения установки выберите одну из двух возможных версий CLEO Redux.
            
 [Code]
 const
@@ -213,26 +206,20 @@ const
 
 var
   FIsX64: Boolean;
-  FNeedsAL: Boolean;
   FGameId: Integer;
   DownloadPage: TDownloadWizardPage;
-  ArchPage: TInputOptionWizardPage;
+  ArchPage, ReArchPage: TInputOptionWizardPage;
   DefaultDirOnce: Boolean;
   EnableSelfHostCb: TNewCheckBox;
 
 function IsX64(): Boolean;
 begin
-  Result := FIsX64 or ArchPage.Values[1];
+  Result := FIsX64 or ArchPage.Values[1] or ReArchPage.Values[1];
 end;
 
 function IsX86(): Boolean;
 begin
   Result := not IsX64();
-end;
-
-function NeedsAL(): Boolean;
-begin
-  Result := FNeedsAL;
 end;
 
 function NeedsD3Wrapper(): Boolean;
@@ -317,74 +304,61 @@ begin
   if FileExists(Dir + '\re3.exe') then
   begin
     Result := 1;
-    FIsX64 := False;
-    FNeedsAL := False;
     Exit;
   end;
   if FileExists(Dir + '\revc.exe') then
   begin
     Result := 2;
-    FIsX64 := False;
-    FNeedsAL := False;
     Exit;
   end;
   if FileExists(Dir + '\gta3.exe') then
   begin
     Result := 3;
     FIsX64 := False;
-    FNeedsAL := False;
     Exit;
   end;
   if FileExists(Dir + '\gta-vc.exe') then
   begin
     Result := 4;
     FIsX64 := False;
-    FNeedsAL := False;
     Exit;
   end;
   if FileExists(Dir + '\gta_sa.exe') or FileExists(Dir + '\gta-sa.exe') or FileExists(Dir + '\gta_sa_compact.exe') then
   begin
     Result := 5;
     FIsX64 := False;
-    FNeedsAL := True;
     Exit;
   end;
   if FileExists(Dir + '\libertycity.exe') then
   begin
     Result := 6;
     FIsX64 := True;
-    FNeedsAL := True;
     Exit;
   end;
   if FileExists(Dir + '\vicecity.exe') then
   begin
     Result := 7;
     FIsX64 := True;
-    FNeedsAL := True;
     Exit;
   end;
   if FileExists(Dir + '\sanandreas.exe') then
   begin
     Result := 8;
     FIsX64 := True;
-    FNeedsAL := True;
     Exit;
   end;
   if FileExists(Dir + '\GTAIV.exe') then
   begin
     Result := 9;
     FIsX64 := False;
-    FNeedsAL := True;
     Exit;
   end;
   if FileExists(Dir + '\bully.exe') then
   begin
     Result := 10;
     FIsX64 := False;
-    FNeedsAL := True;
     Exit;
   end;
-  FNeedsAL := True; // unknown
   Result := 0; // unknown
 end;
 
@@ -433,6 +407,11 @@ begin
   Result := FGameId = 10;
 end;
 
+function IsRe(): Boolean;
+begin
+  Result := (FGameId = 1) or (FGameId = 2);
+end;
+
 
 function GetSelfHost: String;
 begin
@@ -457,11 +436,16 @@ begin
   DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
 
   ArchPage := CreateInputOptionPage(wpSelectDir, ExpandConstant('{cm:m2}'), ExpandConstant('{cm:m3}'), ExpandConstant('{cm:m4}'), True, False);
+  ReArchPage := CreateInputOptionPage(wpSelectDir, ExpandConstant('{cm:m2}'), ExpandConstant('{cm:m3}'), ExpandConstant('{cm:m8}'), True, False);
 
   ArchPage.Add(ExpandConstant('{cm:m5}'));
   ArchPage.Add(ExpandConstant('{cm:m6}'));
 
   ArchPage.Values[0] := True;
+
+  ReArchPage.Add(ExpandConstant('{cm:m5}'));
+  ReArchPage.Add(ExpandConstant('{cm:m6}'));
+  ReArchPage.Values[0] := True;
 
   EnableSelfHostCb := TNewCheckBox.Create(ArchPage);
   EnableSelfHostCb.Top := 260;
@@ -502,20 +486,18 @@ begin
       // SilentPatch
       WizardForm.ComponentsList.Checked[7] := False;
       WizardForm.ComponentsList.ItemEnabled[7] := False;
-
-      // ide loader
-      WizardForm.ComponentsList.Checked[12] := False;
-      WizardForm.ComponentsList.ItemEnabled[12] := False;
     end 
     // 32-bit
     else begin
         if not NeedsD3Wrapper then
         begin
+          // D3 Wrapper
           WizardForm.ComponentsList.Checked[6] := False;
           WizardForm.ComponentsList.ItemEnabled[6] := False;
         end;
         if not NeedsSilentPatch then
         begin
+          // SilentPatch
           WizardForm.ComponentsList.Checked[7] := False;
           WizardForm.ComponentsList.ItemEnabled[7] := False;
         end;
@@ -527,12 +509,30 @@ begin
       // ide loader
       WizardForm.ComponentsList.Checked[12] := False;
     end;
+
+    // ImGuiRedux is bugged on re3
+    if isRe then
+    begin
+      // ImGuiRedux
+      WizardForm.ComponentsList.Checked[5] := False;
+
+      // D3 Wrapper
+      WizardForm.ComponentsList.Checked[6] := False;
+    end;
+
+    // MSS lib is an ASI loader
+    if FileExists(ExpandConstant('{app}\Mss32.dll')) then
+    begin
+       WizardForm.ComponentsList.Checked[13] := False;
+    end;
    end;
 end;
 
 function ShouldSkipPage(PageID: Integer): Boolean;
 begin
   if (PageID = ArchPage.ID) and not IsUnknown then
+    Result := True
+  else if (PageID = ReArchPage.ID) and not isRe then
     Result := True
   else
     Result := False;
@@ -561,7 +561,7 @@ begin
     if (FGameId = 0) then
       FGameId := IdentifyGame(WizardDirValue);
 
-    FDlAsiLoader := (WizardIsComponentSelected('asiloader') and (FGameId in [0, 5, 6, 7, 8, 10]));
+    FDlAsiLoader := WizardIsComponentSelected('asiloader');
     FDlImGuiPlugin := WizardIsComponentSelected('plugins/imgui');
     FDlMemOpsPlugin := WizardIsComponentSelected('plugins/memops');
 
@@ -571,8 +571,16 @@ begin
 
       if FDlAsiLoader then
       begin
-        if IsX64() then DownloadPage.Add('{#UAL64}/version.zip', 'version.zip', '');
-        if IsX86() then DownloadPage.Add('{#UAL32}/vorbisFile.zip', 'vorbisFile.zip', '');
+        if IsX64() then
+          if isRe then
+            DownloadPage.Add('{#UAL64}/d3d9.zip', 'd3d9.zip', '')
+          else
+            DownloadPage.Add('{#UAL64}/version.zip', 'version.zip', '');
+        if IsX86() then
+          if IsIV then
+            DownloadPage.Add('{#UAL32}/dinput8.zip', 'dinput8.zip', '')
+          else
+            DownloadPage.Add('{#UAL32}/vorbisFile.zip', 'vorbisFile.zip', '');
       end;
 
       if FDlMemOpsPlugin then

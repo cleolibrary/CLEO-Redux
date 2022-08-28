@@ -22,6 +22,10 @@ In rare cases there might be an error in command definitions in Sanny Builder Li
 
 If the last entry in [cleo_redux.log](./log.md) is "Checking for updates..." CLEO can't access GitHub API. It might a temporary issue or your IP address is blocked from GitHub. Open [cleo.ini](./config.md), change `CheckUpdates` to `0` and restart the game.
 
+## Nothing happens when I run the game, not even a log file is there
+
+Check that you have installed Ultimate ASI Loader correctly. Sometimes you might need to give its dll file another name for the game to load it. Refer to [this documentation](./installation.md#dependency-on-asi-loader).
+
 ## My problem is not listed there
 
 - Check the [GitHub tickets](https://github.com/cleolibrary/CLEO-Redux/issues)
