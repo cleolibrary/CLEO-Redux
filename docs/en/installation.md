@@ -15,7 +15,7 @@ CLEO Redux comes with a hassle-free installer that identifies the selected game 
 > - GTA SA: DE - `sanandreas.exe`
 > - Bully: SE - `bully.exe`
 >
-> Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes version 1.0.
+> Names matching is case-insensitive. If the exe file does not contain a version information CLEO Redux always assumes the version is correct (see [supported versions](./introduction.md#supported-releases)).
 
 Once the installation is complete, CLEO Redux is ready to use. You can now [install scripts](./installation-scripts.md) and [extra plugins](./installation-plugins.md) not included in the installer, and change the [default configuration](./config.md) if needed.
 

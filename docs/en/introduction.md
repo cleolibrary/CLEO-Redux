@@ -17,9 +17,9 @@ Remasters (The Trilogy):
 
 Other:
 
+- Bully: Scholarship Edition 1.200
 - re3 (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
 - reVC (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
-- Bully: Scholarship Edition
 - unknown host (see [details](./embedding.md))
 
 For the complete reference on supported features [refer to this page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix). Also there are known limitations [listed here](unsupported.md).
