@@ -1,8 +1,8 @@
 # Definitions
 
-When JavaScript is enabled CLEO Redux needs commands definitions from [Sanny Builder Library](https://library.sannybuilder.com). They bring in the type information and convenient classes wrapping all available scripting commands.
+Due to the dynamic nature of JavaScript CLEO Redux needs to know an interface of each native command, i.e. a number of input arguments and returned values and their types. [Sanny Builder Library](https://library.sannybuilder.com) serves as the source of command definitions for CLEO Redux.
 
-On the first run CLEO tries to download a definition file (see the table below) and put it into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the `CLEO/.config` directory.
+At start CLEO validates that a definition file is present and correct and if not tries to download it from GitHub (see the table below) into your local `CLEO/.config` directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the `CLEO/.config` directory.
 
 | Game                                | File                                                                                                 | Minimum Required Version |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
@@ -12,7 +12,6 @@ On the first run CLEO tries to download a definition file (see the table below) 
 | GTA IV                              | [gta_iv.json](https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json)                | `0.40`                   |
 | GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.214`                  |
 | Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.220`                  |
-| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.232`                  |
 | San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.232`                  |
 | Bully: Scholarship Edition          | [bully.json](https://github.com/sannybuilder/library/blob/master/bully/bully.json)                   | `0.23`                   |
 | Unknown (32-bit)                    | [unknown_x86.json](https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json) | `0.216`                  |
