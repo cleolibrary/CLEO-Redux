@@ -245,7 +245,7 @@ log(&quot;Hello world&quot;);
 <p>If you can't find this line, try to read through other messages, they might point you out the issue.</p>
 <p>If you see the message, open <code>intro.js</code> again and change &quot;Hello world&quot; to another text. Save the file and go back to game. Play, then switch back to <code>cleo_redux.log</code>. Notice how the log now contains the new message. The script was reloaded on the fly as you saved it and the game now runs an updated version of it. This is called <a href="./other-features.html#hot-reload">hot reloading</a>.</p>
 <h2 id="concurrency"><a class="header" href="#concurrency">Concurrency</a></h2>
-<p>There is no fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game iteration. This happens to minimize number of issues caused by accessing shared resources from multiple parallel scripts. The game's main loop is also locked while scripts get processed.</p>
+<p>There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game iteration. This happens to minimize number of issues caused by accessing shared resources from multiple parallel scripts. The game's main loop is also locked while scripts get processed.</p>
 <p>When the script is ready to return control to the main script or another script in the queue, it must call the <code>wait(n)</code> command where <code>n</code> is a number greater than or equal to zero. This command pauses the current script for at least <code>n</code> milliseconds:</p>
 <pre><code class="language-js">wait(250); // pause current script and wake up after 250 milliseconds
 </code></pre>
@@ -259,15 +259,17 @@ log(&quot;This is the second script&quot;);
 10:12:20 [INFO] [&quot;second&quot;] &quot;This is the second script&quot;
 </code></pre>
 <p>Notice that there is a difference in one second between two messages. Try different combinations of <code>log</code> and <code>wait</code> commands in both scripts and see the results. Do they match your expectations?</p>
+<h2 id="variables"><a class="header" href="#variables">Variables</a></h2>
+<p>TBD</p>
 <h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
 <h3 id="conditions"><a class="header" href="#conditions">Conditions</a></h3>
-<p>So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what we want to execute a command only when some condition is met, lets say a button is pressed. We can use if conditions.</p>
+<p>So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what if we want to execute a command only when some condition is met, lets say a button is pressed? We can use conditions.</p>
 <p>In JavaScript an <code>if</code> statement allows to conditionally execute a branch of code if the condition is met. For example, when you write:</p>
 <pre><code class="language-js">if (true) {
   log(&quot;this is always printed&quot;);
 }
 </code></pre>
-<p>You will always get the log line printed since the condition in <code>if</code> always evaluates to true. Likewise</p>
+<p>You always get the log line printed since the condition in <code>if</code> always evaluates to true. Likewise</p>
 <pre><code class="language-js">if (false) {
   log(&quot;this will never be printed&quot;);
 }
@@ -313,11 +315,9 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
   log(&quot;F4 button is not pressed&quot;);
 }
 </code></pre>
-<h3 id="variables"><a class="header" href="#variables">Variables</a></h3>
-<p>TBD</p>
 <h3 id="loops"><a class="header" href="#loops">Loops</a></h3>
 <p>TBD</p>
-<h3 id="functions"><a class="header" href="#functions">Functions</a></h3>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <p>TBD</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
 <p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
