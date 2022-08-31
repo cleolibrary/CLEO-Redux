@@ -25,7 +25,7 @@ If you see the message, open `intro.js` again and change "Hello world" to anothe
 
 ## Concurrency
 
-There is no fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game iteration. This happens to minimize number of issues caused by accessing shared resources from multiple parallel scripts. The game's main loop is also locked while scripts get processed.
+There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game iteration. This happens to minimize number of issues caused by accessing shared resources from multiple parallel scripts. The game's main loop is also locked while scripts get processed.
 
 When the script is ready to return control to the main script or another script in the queue, it must call the `wait(n)` command where `n` is a number greater than or equal to zero. This command pauses the current script for at least `n` milliseconds:
 
@@ -51,11 +51,15 @@ Save the file and re-run the game. You should now see two lines in the `cleo_red
 
 Notice that there is a difference in one second between two messages. Try different combinations of `log` and `wait` commands in both scripts and see the results. Do they match your expectations?
 
+## Variables
+
+TBD
+
 ## Control Flow
 
 ### Conditions
 
-So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what we want to execute a command only when some condition is met, lets say a button is pressed. We can use if conditions.
+So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what if we want to execute a command only when some condition is met, lets say a button is pressed? We can use conditions.
 
 In JavaScript an `if` statement allows to conditionally execute a branch of code if the condition is met. For example, when you write:
 
@@ -65,7 +69,7 @@ if (true) {
 }
 ```
 
-You will always get the log line printed since the condition in `if` always evaluates to true. Likewise
+You always get the log line printed since the condition in `if` always evaluates to true. Likewise
 
 ```js
 if (false) {
@@ -136,14 +140,10 @@ if (native("IS_KEY_PRESSED", 115)) {
 }
 ```
 
-### Variables
-
-TBD
-
 ### Loops
 
 TBD
 
-### Functions
+## Functions
 
 TBD
