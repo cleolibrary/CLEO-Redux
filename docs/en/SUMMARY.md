@@ -2,12 +2,14 @@
 
 - [Introduction](./introduction.md)
 
-  - [Relation to CLEO Library](relation-to-cleo-library.md)
+  - [Relation to CLEO Library](./relation-to-cleo-library.md)
 
 - [Installation](./installation.md)
 
   - [Plugins](./installation-plugins.md)
   - [Scripts](./installation-scripts.md)
+
+- [First steps](./first-steps.md)
 
 - [Configuration](./config.md)
 
