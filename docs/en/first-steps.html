@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js rust">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>First steps - CLEO Redux</title>
+        <!-- Custom HTML head -->
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="relation-to-cleo-library.html"><strong aria-hidden="true">1.1.</strong> Relation to CLEO Library</a></li></ol></li><li class="chapter-item expanded "><a href="installation.html"><strong aria-hidden="true">2.</strong> Installation</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="installation-plugins.html"><strong aria-hidden="true">2.1.</strong> Plugins</a></li><li class="chapter-item expanded "><a href="installation-scripts.html"><strong aria-hidden="true">2.2.</strong> Scripts</a></li></ol></li><li class="chapter-item expanded "><a href="first-steps.html" class="active"><strong aria-hidden="true">3.</strong> First steps</a></li><li class="chapter-item expanded "><a href="config.html"><strong aria-hidden="true">4.</strong> Configuration</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="permissions.html"><strong aria-hidden="true">4.1.</strong> Permissions</a></li></ol></li><li class="chapter-item expanded "><a href="scripts.html"><strong aria-hidden="true">5.</strong> Scripts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="compiled-scripts.html"><strong aria-hidden="true">5.1.</strong> Compiled Scripts (.cs)</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="custom-commands.html"><strong aria-hidden="true">5.1.1.</strong> Custom Commands</a></li></ol></li><li class="chapter-item expanded "><a href="javascript.html"><strong aria-hidden="true">5.2.</strong> JavaScript</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="definitions.html"><strong aria-hidden="true">5.2.1.</strong> Definitions</a></li><li class="chapter-item expanded "><a href="script-lifecycle.html"><strong aria-hidden="true">5.2.2.</strong> Script Lifecycle</a></li><li class="chapter-item expanded "><a href="imports.html"><strong aria-hidden="true">5.2.3.</strong> Imports</a></li><li class="chapter-item expanded "><a href="api.html"><strong aria-hidden="true">5.2.4.</strong> API</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="fluent-interface.html"><strong aria-hidden="true">5.2.4.1.</strong> Fluent Interface</a></li><li class="chapter-item expanded "><a href="enums.html"><strong aria-hidden="true">5.2.4.2.</strong> Enums</a></li><li class="chapter-item expanded "><a href="script-object-vs-object.html"><strong aria-hidden="true">5.2.4.3.</strong> ScriptObject vs Object</a></li><li class="chapter-item expanded "><a href="using-math.html"><strong aria-hidden="true">5.2.4.4.</strong> Math Object</a></li><li class="chapter-item expanded "><a href="using-memory.html"><strong aria-hidden="true">5.2.4.5.</strong> Memory Object</a></li><li class="chapter-item expanded "><a href="using-memory-64.html"><strong aria-hidden="true">5.2.4.6.</strong> Memory Object (x64)</a></li><li class="chapter-item expanded "><a href="deprecated-bindings.html"><strong aria-hidden="true">5.2.4.7.</strong> Deprecated</a></li></ol></li></ol></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="log.html"><strong aria-hidden="true">6.1.</strong> Log</a></li><li class="chapter-item expanded "><a href="the-definitive-edition-faq.html"><strong aria-hidden="true">6.2.</strong> Support for The Definitive Edition</a></li></ol></li><li class="chapter-item expanded "><a href="other-features.html"><strong aria-hidden="true">7.</strong> Other Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="using-fxt.html"><strong aria-hidden="true">7.1.</strong> Custom Text (FXT)</a></li><li class="chapter-item expanded "><a href="unsupported.html"><strong aria-hidden="true">7.2.</strong> Unsupported Features</a></li><li class="chapter-item expanded "><a href="embedding.html"><strong aria-hidden="true">7.3.</strong> Embedding to custom host</a></li></ol></li><li class="chapter-item expanded "><a href="using-sdk.html"><strong aria-hidden="true">8.</strong> SDK</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="cpp-sdk.html"><strong aria-hidden="true">8.1.</strong> C++ SDK</a></li><li class="chapter-item expanded "><a href="rust-sdk.html"><strong aria-hidden="true">8.2.</strong> Rust SDK</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">CLEO Redux</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/cleolibrary/CLEO-Redux" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/cleolibrary/CLEO-Redux/edit/master/./first-steps.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="first-steps"><a class="header" href="#first-steps">First steps</a></h1>
+<p>Since <a href="./api.html">available commands</a> vary from game to game for the purpose of this tutorial we will be using CLEO's built-in commands such as <a href="./log.html"><code>log</code></a> command that is available everywhere.</p>
+<p>Once you have CLEO Redux <a href="./installation.html">installed</a> run the game once to make sure CLEO is loading. You can verify it by having <code>cleo_redux.log</code> created in the game root folder. If there are no errors in the log you can start adding new scripts.</p>
+<p>Go to the <a href="./cleo-directory.html">CLEO directory</a> and create a new file named <code>intro.js</code>. This will be a text file and you can edit it in any text editor. We recommend using VS Code as the most advanced choice available today, but other editors, even Notepad, would work too. Open <code>intro.js</code> and add two lines:</p>
+<pre><code class="language-js">// intro script, revision 1
+log(&quot;Hello world&quot;);
+</code></pre>
+<p>Lines starting with <code>//</code> are comments and ignored by the game. The only meaningful line is the second that instructs JavaScript runtime to print a message in the log file.</p>
+<p>Now save the file and run the game. Start a new game or load a save file, play a few seconds and then go to <code>cleo_redux.log</code> (do not exit the game yet). You should now see a new line like:</p>
+<pre><code class="language-log">10:12:19 [INFO] [&quot;intro&quot;] &quot;Hello world&quot;
+</code></pre>
+<p>If you can't find this line, try to read through other messages, they might point you out the issue.</p>
+<p>If you see the message, open <code>intro.js</code> again and change &quot;Hello world&quot; to another text. Save the file and go back to game. Play, then switch back to <code>cleo_redux.log</code>. Notice how the log now contains the new message. The script was reloaded on the fly as you saved it and the game now runs an updated version of it. This is called <a href="./other-features.html#hot-reload">hot reloading</a>.</p>
+<h2 id="concurrency"><a class="header" href="#concurrency">Concurrency</a></h2>
+<p>There is no fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game iteration. This happens to minimize number of issues caused by accessing shared resources from multiple parallel scripts. The game's main loop is also locked while scripts get processed.</p>
+<p>When the script is ready to return control to the main script or another script in the queue, it must call the <code>wait(n)</code> command where <code>n</code> is a number greater than or equal to zero. This command pauses the current script for at least <code>n</code> milliseconds:</p>
+<pre><code class="language-js">wait(250); // pause current script and wake up after 250 milliseconds
+</code></pre>
+<p>Low values (such as <code>0</code> or generally anything lower than <code>16</code>) essentially make the script run on each tick of the game's main loop.</p>
+<p>Let's create another JS file in the CLEO directory and call it <code>second.js</code>. Add the following lines:</p>
+<pre><code class="language-js">wait(1000);
+log(&quot;This is the second script&quot;);
+</code></pre>
+<p>Save the file and re-run the game. You should now see two lines in the <code>cleo_redux.log</code>:</p>
+<pre><code class="language-log">10:12:19 [INFO] [&quot;intro&quot;] &quot;Hello world&quot;
+10:12:20 [INFO] [&quot;second&quot;] &quot;This is the second script&quot;
+</code></pre>
+<p>Notice that there is a difference in one second between two messages. Try different combinations of <code>log</code> and <code>wait</code> commands in both scripts and see the results. Do they match your expectations?</p>
+<h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
+<h3 id="conditions"><a class="header" href="#conditions">Conditions</a></h3>
+<p>So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what we want to execute a command only when some condition is met, lets say a button is pressed. We can use if conditions.</p>
+<p>In JavaScript an <code>if</code> statement allows to conditionally execute a branch of code if the condition is met. For example, when you write:</p>
+<pre><code class="language-js">if (true) {
+  log(&quot;this is always printed&quot;);
+}
+</code></pre>
+<p>You will always get the log line printed since the condition in <code>if</code> always evaluates to true. Likewise</p>
+<pre><code class="language-js">if (false) {
+  log(&quot;this will never be printed&quot;);
+}
+</code></pre>
+<p>when the condition evaluates to <code>false</code> inside the if block does not run so you won't see the log messages.</p>
+<p>You can have any expression in the <code>if</code> statement. JavaScript runtime will try its best to convert it to a boolean (simply saying, convert to <code>true</code> or <code>false</code>). Here are some examples of expressions that get evaluated to <code>true</code> (they are called <code>truthy</code>):</p>
+<pre><code class="language-js">if (1) {...}
+if (&quot;string&quot;) {...}
+if (5 &gt; 4) {...}
+if ([]) {...}
+if ({}) {...}
+</code></pre>
+<p>Note that 0 and an empty string always get evaluated to false (they are &quot;falsy&quot; values):</p>
+<pre><code class="language-js">if (0) {...}
+if (&quot;&quot;) {...}
+</code></pre>
+<p>Of course you can have complex experession like functions or methods calls inside the if condition:</p>
+<pre><code class="language-js">if (&quot;string&quot;.length &gt; 0) {...}
+if ([1,2,3].includes(3)) {...}
+if ( ({ status: 'open'}).status === 'open' ) {...}
+</code></pre>
+<p>CLEO API has many conditional commands for different types of checks. For example, the <code>Input</code> plugin provides commands to check the user input (i.g. a check that the button is pressed). Go to <code>intro.js</code> and change its content to:</p>
+<pre><code class="language-js">// intro script, revision 2
+wait(2000);
+if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
+  log(&quot;F4 button is pressed&quot;);
+}
+</code></pre>
+<p>Run the game. In <code>cleo_redux.log</code> you should not see the line &quot;F4 button is pressed&quot;. Now try running it while holding the <code>F4</code> button. A new log entry should appear.</p>
+<p>You can combine multiple conditions in the same if statement using <code>&amp;&amp;</code> (AND) or <code>||</code> (or) operators :</p>
+<pre><code class="language-js">if (native(&quot;IS_KEY_PRESSED&quot;, 115) || native(&quot;IS_KEY_PRESSED&quot;, 116)) {
+  log(&quot;Either F4 or F5 button is pressed&quot;);
+}
+</code></pre>
+<pre><code class="language-js">if (native(&quot;IS_KEY_PRESSED&quot;, 115) &amp;&amp; native(&quot;IS_KEY_PRESSED&quot;, 116)) {
+  log(&quot;Both F4 and F5 button are pressed&quot;);
+}
+</code></pre>
+<p>You can execute commands in <code>else</code> block if the condition is not met:</p>
+<pre><code class="language-js">if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
+  log(&quot;F4 button is pressed&quot;);
+} else {
+  log(&quot;F4 button is not pressed&quot;);
+}
+</code></pre>
+<h3 id="variables"><a class="header" href="#variables">Variables</a></h3>
+<p>TBD</p>
+<h3 id="loops"><a class="header" href="#loops">Loops</a></h3>
+<p>TBD</p>
+<h3 id="functions"><a class="header" href="#functions">Functions</a></h3>
+<p>TBD</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="installation-scripts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a rel="next" href="config.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="installation-scripts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a rel="next" href="config.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+    </body>
+</html>
