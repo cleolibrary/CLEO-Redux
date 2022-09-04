@@ -260,7 +260,38 @@ log(&quot;This is the second script&quot;);
 </code></pre>
 <p>Notice that there is a difference in one second between two messages. Try different combinations of <code>log</code> and <code>wait</code> commands in both scripts and see the results. Do they match your expectations?</p>
 <h2 id="variables"><a class="header" href="#variables">Variables</a></h2>
-<p>TBD</p>
+<p>Variables keep your script's state and intermediate results. Each variable has a unique name and a type and can be either mutable or immutable. Mutable variables are created with <code>var</code> or <code>let</code> keywords. Immutable variables (or constants) are created with a <code>const</code> keyword.</p>
+<pre><code class="language-js">let x = 5;
+let name = &quot;CJ&quot;;
+const z = -100;
+</code></pre>
+<p>Constants can not be reassigned to another value. The following code will throw an error:</p>
+<pre><code class="language-js">const z = -100;
+z = -200;
+</code></pre>
+<p>On the other side <code>var</code> or <code>let</code> variables can get new values. Those values can be of a different type, e.g. you can reuse same variable for different types of data:</p>
+<pre><code class="language-js">let temp;
+
+temp = 1; // number
+temp = &quot;str&quot;; // string
+temp = {}; // object
+temp = []; // array
+</code></pre>
+<p>Use operator <code>typeof</code> to find the type of the variable at any given moment:</p>
+<pre><code class="language-js">let temp;
+
+temp = 1;
+log(typeof temp); // prints &quot;number&quot; in cleo_redux.log
+temp = &quot;str&quot;;
+log(typeof temp); // prints &quot;string&quot; in cleo_redux.log
+temp = {};
+log(typeof temp); // prints &quot;object&quot; in cleo_redux.log
+temp = [];
+log(typeof temp); // prints &quot;object&quot; in cleo_redux.log*
+</code></pre>
+<blockquote>
+<p>*<code>typeof</code> returns &quot;object&quot; for an array (<code>[]</code>). This is a very well known quirk in the language. You can <a href="https://web.mit.edu/jwalden/www/isArray.html">read more about it here</a> and find other means of differenting between arrays and plain objects.</p>
+</blockquote>
 <h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
 <h3 id="conditions"><a class="header" href="#conditions">Conditions</a></h3>
 <p>So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what if we want to execute a command only when some condition is met, lets say a button is pressed? We can use conditions.</p>
