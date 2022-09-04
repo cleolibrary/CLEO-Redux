@@ -53,7 +53,48 @@ Notice that there is a difference in one second between two messages. Try differ
 
 ## Variables
 
-TBD
+Variables keep your script's state and intermediate results. Each variable has a unique name and a type and can be either mutable or immutable. Mutable variables are created with `var` or `let` keywords. Immutable variables (or constants) are created with a `const` keyword.
+
+```js
+let x = 5;
+let name = "CJ";
+const z = -100;
+```
+
+Constants can not be reassigned to another value. The following code will throw an error:
+
+```js
+const z = -100;
+z = -200;
+```
+
+On the other side `var` or `let` variables can get new values. Those values can be of a different type, e.g. you can reuse same variable for different types of data:
+
+```js
+let temp;
+
+temp = 1; // number
+temp = "str"; // string
+temp = {}; // object
+temp = []; // array
+```
+
+Use operator `typeof` to find the type of the variable at any given moment:
+
+```js
+let temp;
+
+temp = 1;
+log(typeof temp); // prints "number" in cleo_redux.log
+temp = "str";
+log(typeof temp); // prints "string" in cleo_redux.log
+temp = {};
+log(typeof temp); // prints "object" in cleo_redux.log
+temp = [];
+log(typeof temp); // prints "object" in cleo_redux.log*
+```
+
+> *`typeof` returns "object" for an array (`[]`). This is a very well known quirk in the language. You can [read more about it here](https://web.mit.edu/jwalden/www/isArray.html) and find other means of differenting between arrays and plain objects.
 
 ## Control Flow
 
