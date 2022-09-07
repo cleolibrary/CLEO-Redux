@@ -4,18 +4,18 @@ CLEO Redux is an [embeddable](./embedding.md) and [extensible](./using-sdk.md) J
 
 ## Supported Releases
 
-Classic:
+Grand Theft Auto series:
 
 - GTA III 1.0
 - GTA Vice City 1.0
 - GTA San Andreas 1.0 (only with [CLEO 4.4](https://github.com/cleolibrary/CLEO4))
 - GTA IV 1.2.0.43 (The Complete Edition, Steam)
 
-Remasters (The Trilogy):
+Grand Theft Auto: The Trilogy - The Definitive Edition:
 
 - Title Update 1.03 and Title Update 1.04 (see [details](./the-definitive-edition-faq.md))
 
-Other:
+Other games and applications:
 
 - Bully: Scholarship Edition 1.200
 - re3 (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
