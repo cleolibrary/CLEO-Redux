@@ -1450,16 +1450,15 @@ cleo_redux_sdk = &quot;^0.0.6&quot;
 <pre><pre class="playground"><code class="language-rust">
 <span class="boring">#![allow(unused)]
 </span><span class="boring">fn main() {
-</span>use std::time;
-use ctor::*;
-use cleo_redux_sdk;
+</span>use ctor::*;
 
 #[cfg_attr(target_arch = &quot;x86&quot;, link(name = &quot;cleo_redux&quot;))]
 #[cfg_attr(target_arch = &quot;x86_64&quot;, link(name = &quot;cleo_redux64&quot;))]
 
 #[ctor]
 fn init() {
-    use std::thread;
+    use cleo_redux_sdk;
+    use std::{thread, time};
 
     // load CLEO scripts, FXT, enable file watcher
     cleo_redux_sdk::runtime_init();
@@ -1476,7 +1475,6 @@ fn init() {
         // current time is used to determine whether a script should &quot;wake up&quot; after wait command
         // time step is used to increment TIMERA and TIMERB variables
         cleo_redux_sdk::runtime_next_tick(current_time, time_step);
-
 
         // pause for at least time step ms
         thread::sleep(time::Duration::from_millis(time_step as u64));
