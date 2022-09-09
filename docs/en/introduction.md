@@ -2,7 +2,7 @@
 
 CLEO Redux is an [embeddable](./embedding.md) and [extensible](./using-sdk.md) JavaScript runtime capable of running user-made scripts in games and desktop applications. It is inspired by [CLEO Library](https://cleo.li/) and is [partially compatible](./relation-to-cleo-library.md) with its scripts and plugins. CLEO Redux, however, aims to provide a better experience for developers and users and support games beyond just GTA 3D series.
 
-Follow the [first steps tutorial](./first-steps.md) to learn how to write and run your first script. Also check our [YouTube playlist](https://www.youtube.com/watch?v=UnVZ81opVo0&list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb) for video guides.
+Follow the [first steps tutorial](./first-steps.md) to learn how to write and run your first script. Also check our [YouTube playlist](https://www.youtube.com/playlist?list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb) for video guides.
 
 ## Supported Releases
 
