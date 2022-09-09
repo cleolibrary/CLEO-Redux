@@ -1,4 +1,22 @@
-### 1.0.1
+### 1.0.2 - September 9, 2022
+
+- add JavaScript support in 64-bit versions of re3 and reVC (see [Feature Matrix](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix/) for details)
+- make `CheckUpdates` option disabled by default
+
+**SDK AND PLUGINS**
+
+- make 64-bit version of IdeLoader
+
+**INSTALLER**
+
+- fix an error during the installation of ASI Loader in GTA IV
+- add an extra step during the installation for re3 and reVC to select the correct version of the game (32-bit or 64-bit)
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
+### 1.0.1 - August 19, 2022
 
 - initial support for Bully: Scholarship Edition (v1.2 PC)
 - fix a potential crash in gxt hook
