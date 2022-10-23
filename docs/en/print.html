@@ -224,6 +224,7 @@
 <tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/input">Input</a></td><td>Checking for keyboard and mouse input, emulating key presses</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input">src</a></td></tr>
 <tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/imgui">ImGuiRedux</a></td><td>Dear ImGui bindings</td><td><a href="https://github.com/user-grinch/ImGuiRedux">GitHub repo</a></td></tr>
 <tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/memops">MemoryOperations</a></td><td>Low-level memory operations</td><td><a href="https://github.com/cleolibrary/CLEO-REDUX-PLUGINS">GitHub repo</a></td></tr>
+<tr><td>Frontend</td><td>Checks the latest version on GitHub and display information in the main menu</td><td></td></tr>
 </tbody></table>
 <p>Plugins are included in the CLEO Redux installer. You can opt out of some of them by unchecking the corresponding checkbox in the installer.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="scripts"><a class="header" href="#scripts">Scripts</a></h1>
@@ -358,7 +359,7 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <li><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
 <li><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
 <li><code>AllowFxt</code> - when set to <code>1</code> CLEO loads and <a href="./using-fxt.html">uses</a> <code>*.fxt</code> files located in the CLEO\CLEO_TEXT directory. Enabled by default.</li>
-<li><code>CheckUpdates</code> - when set to <code>1</code> CLEO check if there is a new update available for download during the game startup. Disabled by default.</li>
+<li><code>CheckUpdates</code> - (deprecated in favor of <a href="./installation-plugins.html">Frontend</a> plugin)</li>
 <li><code>LogOpcodes</code> - when set to <code>1</code> CLEO <a href="./log.html">logs</a> all executed opcodes in custom scripts.</li>
 <li><code>DisplayMenuInfo</code> - when set to <code>1</code> CLEO displays some information in the main menu. Enabled by default.</li>
 <li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
@@ -453,13 +454,13 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>Due to the dynamic nature of JavaScript CLEO Redux needs to know an interface of each native command, i.e. a number of input arguments and returned values and their types. <a href="https://library.sannybuilder.com">Sanny Builder Library</a> serves as the source of command definitions for CLEO Redux.</p>
 <p>At start CLEO validates that a definition file is present and correct and if not tries to download it from GitHub (see the table below) into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.237</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.242</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.271</code></td></tr>
-<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.41</code></td></tr>
-<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.217</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.223</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.235</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.241</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.248</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.286</code></td></tr>
+<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.43</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.220</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.227</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.248</code></td></tr>
 <tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.29</code></td></tr>
 <tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.216</code></td></tr>
 <tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.220</code></td></tr>
@@ -1273,16 +1274,16 @@ var x = Object.create(null);
 </ul>
 <h3 id="what-versions-are-supported"><a class="header" href="#what-versions-are-supported">What versions are supported?</a></h3>
 <ul>
-<li>GTA III: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15284</strong> (Title Update 1.04)</li>
-<li>GTA Vice City: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15399</strong> (Title Update 1.04)</li>
-<li>San Andreas: The Definitive Edition <strong>1.0.0.14296</strong>, <strong>1.0.0.14388</strong>, <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15483</strong> (Title Update 1.04)</li>
+<li>GTA III: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15284</strong> (Title Update 1.04), <strong>1.0.8.11827</strong> (Title Update 1.04.5)</li>
+<li>GTA Vice City: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15399</strong> (Title Update 1.04), <strong>1.0.8.11827</strong> (Title Update 1.04.5)</li>
+<li>San Andreas: The Definitive Edition <strong>1.0.0.14296</strong>, <strong>1.0.0.14388</strong>, <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15483</strong> (Title Update 1.04), <strong>1.0.8.11827</strong> (Title Update 1.04.5)</li>
 </ul>
 <h3 id="is-there-any-difference-from-support-of-the-classic-games"><a class="header" href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></h3>
 <p>In short, yes. <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">See this page</a> for detail on what's supported and what's not.</p>
 <h3 id="can-i-use-original-opcodes"><a class="header" href="#can-i-use-original-opcodes">Can I use original opcodes?</a></h3>
 <p>Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a>.</p>
 <h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
-<p>After each game run, CLEO generates a d.ts file in the CLEO.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code. </p>
+<p>After each game run, CLEO generates a d.ts file in the CLEO.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.</p>
 <p>To enable autocomplete in VS Code include the following line in your JS script:</p>
 <pre><code class="language-js">/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
 </code></pre>
