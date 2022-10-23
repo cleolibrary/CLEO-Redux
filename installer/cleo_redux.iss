@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.2"
+#define AppVersion "1.0.3-dev.20221023"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -61,6 +61,7 @@ Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for games using D
 Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly in classic GTA"; Types: full
 Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: full
 Name: "plugins/input"; Description: "Input 1.3"; Types: full
+Name: "plugins/frontend"; Description: "Frontend 1.0"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt, *.text (Text files)"; Types: full
 Name: "loaders/ide"; Description: "*.ide (Item Definition files)"; Types: full
@@ -146,6 +147,7 @@ Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles.cleo"; DestDir: "{app}\CLE
 Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/ini
 Source: "{#SourceDir}\plugins\Input\build\Input.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/input
 Source: "{#SourceDir}\plugins\Input\build\Input64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/input
+Source: "{#SourceDir}\plugins\Frontend\Frontend.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: plugins/frontend
 
 Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: InstallImGuiRedux32; Components: plugins/imgui;
 Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiReduxWin64.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/imgui;
@@ -230,6 +232,11 @@ end;
 function NeedsSilentPatch(): Boolean;
 begin
   Result := (FGameId in [3, 4, 5]);
+end;
+
+function SupportsFrontend(): Boolean;
+begin
+  Result := (FGameId in [1, 2, 3, 4, 5]);
 end;
 
 procedure unzipFile(Src, FileName, TargetFldr: PAnsiChar);
@@ -430,8 +437,6 @@ end;
             
 
 procedure InitializeWizard;
-var
-  CheckBox: TNewCheckBox;
 begin
   DownloadPage := CreateDownloadPage(SetupMessage(msgWizardPreparing), SetupMessage(msgPreparingDesc), @OnDownloadProgress);
 
@@ -471,6 +476,7 @@ begin
 
    if CurPageID = wpSelectComponents then
    begin
+    FGameId := IdentifyGame(WizardDirValue);
      // reset all checkboxes to their initial state first
     for I := 1 to 13 do
     begin
@@ -486,6 +492,10 @@ begin
       // SilentPatch
       WizardForm.ComponentsList.Checked[7] := False;
       WizardForm.ComponentsList.ItemEnabled[7] := False;
+
+      // Frontend Plugin
+      WizardForm.ComponentsList.Checked[10] := False;
+      WizardForm.ComponentsList.ItemEnabled[10] := False;
     end 
     // 32-bit
     else begin
@@ -501,13 +511,19 @@ begin
           WizardForm.ComponentsList.Checked[7] := False;
           WizardForm.ComponentsList.ItemEnabled[7] := False;
         end;
+        if not SupportsFrontend then
+        begin
+          // Frontend plugin
+          WizardForm.ComponentsList.Checked[10] := False;
+          WizardForm.ComponentsList.ItemEnabled[10] := False;
+        end;
     end;
 
     // disable IDE Loader for unknown host
     if IsUnknown then
     begin
       // ide loader
-      WizardForm.ComponentsList.Checked[12] := False;
+      WizardForm.ComponentsList.Checked[13] := False;
     end;
 
     // ImGuiRedux is bugged on re3
@@ -523,7 +539,7 @@ begin
     // MSS lib is an ASI loader
     if FileExists(ExpandConstant('{app}\Mss32.dll')) then
     begin
-       WizardForm.ComponentsList.Checked[13] := False;
+       WizardForm.ComponentsList.Checked[14] := False;
     end;
    end;
 end;

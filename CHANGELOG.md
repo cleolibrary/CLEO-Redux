@@ -1,3 +1,16 @@
+### 1.0.3-dev
+
+- add support for the latest Trilogy patch 1.04.5
+
+**SDK AND PLUGINS**
+
+- new SDK methods `GetDirectoryPath`, `GetCLEOVersion`, `GetSymbolAddress`, `GetNumberOfActiveCSScripts`, `GetNumberOfActiveJSScripts`. SDK version is now 6.
+- code that displays a CLEO version in the main menu was extracted into a separate plugin - `frontend.cleo`. Works with GTA III, VC, re3, reVC, and SA.
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 1.0.2 - September 9, 2022
 
 - add JavaScript support in 64-bit versions of re3 and reVC (see [Feature Matrix](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix/) for details)

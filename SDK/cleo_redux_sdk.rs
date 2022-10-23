@@ -2,6 +2,7 @@ pub const SDK_STRING_MAX_LEN: usize = 128;
 
 #[allow(non_camel_case_types)]
 #[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub enum HandlerResult {
     /// Proceed to the next command
     CONTINUE = 0,
@@ -15,6 +16,7 @@ pub enum HandlerResult {
 
 #[allow(non_camel_case_types)]
 #[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub enum HostId {
     RE3 = 1,
     REVC = 2,
@@ -28,6 +30,24 @@ pub enum HostId {
     BULLY = 10,
     MANIFEST = 254,
     UNKNOWN = 255,
+}
+
+#[allow(non_camel_case_types)]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub enum Directory {
+    /// /CLEO directory
+    CLEO = 0,
+    /// /CLEO/.config
+    CONFIG = 1,
+    /// /CLEO/CLEO_TEXT
+    TEXT = 2,
+    /// /CLEO/CLEO_PLUGINS
+    PLUGINS = 3,
+    /// Current working directory
+    CWD = 4,
+    /// Host root directory
+    HOST = 5,
 }
 
 #[allow(non_camel_case_types)]
@@ -65,6 +85,7 @@ extern "C" {
     /// Returns the absolute path to the CLEO directory
     ///
     /// since v1
+    /// deprecated: use GetDirectoryPath
     fn GetCLEOFolder(dest: *mut c_char);
     /// Returns the absolute path to the current working directory (normally the game directory)
     ///
@@ -150,6 +171,26 @@ extern "C" {
     ///
     /// since v5
     fn OnShowTextBox(cb: OnShowTextBoxCallback);
+    /// Returns the absolute path to the CLEO root directory or one of its sub-directories
+    ///
+    /// since v6
+    fn GetDirectoryPath(dir: Directory, dest: *mut c_char);
+    /// Returns CLEO Redux version as a string
+    ///
+    /// since v6
+    fn GetCLEOVersion(dest: *mut c_char);
+    /// Returns a memory address for the given symbol, or 0 if not found
+    ///
+    /// since v6
+    fn GetSymbolAddress(symbol: *const c_char) -> usize;
+    /// Returns number of active CS scripts
+    ///
+    /// since v6
+    fn GetNumberOfActiveCSScripts() -> usize;
+    /// Returns number of active JS scripts
+    /// 
+    /// since v6
+    fn GetNumberOfActiveJSScripts() -> usize;
 }
 
 macro_rules! sz {
@@ -225,10 +266,10 @@ pub fn set_int_param(ctx: Context, value: isize) {
 /// Returns the absolute path to the CLEO directory
 ///
 /// since v1
+///
+/// deprecated: use get_directory_path()
 pub fn get_cleo_folder() -> std::path::PathBuf {
-    let mut buf = [0i8; 256];
-    unsafe { GetCLEOFolder(buf.as_mut_ptr()) };
-    std::path::Path::new(&to_rust_string(buf.as_ptr())).into()
+    get_directory_path(Directory::CLEO)
 }
 
 /// Returns the absolute path to the current working directory (normally the game directory)
@@ -380,4 +421,48 @@ pub fn on_show_text_box(cb: OnShowTextBoxCallback) {
     unsafe {
         OnShowTextBox(cb);
     }
+}
+
+/// Returns the absolute path to the CLEO root directory or one of its sub-directories
+///
+/// since v6
+#[allow(dead_code)]
+pub fn get_directory_path(dir: Directory) -> std::path::PathBuf {
+    let mut buf = [0i8; 256];
+    unsafe { GetDirectoryPath(dir, buf.as_mut_ptr()) };
+    std::path::Path::new(&to_rust_string(buf.as_ptr())).into()
+}
+
+/// Returns CLEO Redux version as a string
+///
+/// since v6
+#[allow(dead_code)]
+pub fn get_cleo_version() -> String {
+    let mut buf = [0i8; 256];
+    unsafe { GetCLEOVersion(buf.as_mut_ptr()) };
+    to_rust_string(buf.as_ptr())
+}
+
+/// Returns a memory address for the given symbol, or 0 if not found
+///
+/// since v6
+#[allow(dead_code)]
+pub fn get_symbol_address(symbol: &str) -> usize {
+    unsafe { GetSymbolAddress(sz!(symbol)) }
+}
+
+/// Get number of active CS scripts
+///
+/// since v6
+#[allow(dead_code)]
+pub fn get_number_of_active_cs_scripts() -> usize {
+    unsafe { GetNumberOfActiveCSScripts() }
+}
+
+/// Get number of active JS scripts
+///
+/// since v6
+#[allow(dead_code)]
+pub fn get_number_of_active_js_scripts() -> usize {
+    unsafe { GetNumberOfActiveJSScripts() }
 }

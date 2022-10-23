@@ -6,13 +6,13 @@ At start CLEO validates that a definition file is present and correct and if not
 
 | Game                                | File                                                                                                 | Minimum Required Version |
 | ----------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------ |
-| GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.237`                  |
-| GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.242`                  |
-| GTA San Andreas (Classic) 1.0       | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json)                            | `0.271`                  |
-| GTA IV                              | [gta_iv.json](https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json)                | `0.41`                   |
-| GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.217`                  |
-| Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.223`                  |
-| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.235`                  |
+| GTA III, re3                        | [gta3.json](https://github.com/sannybuilder/library/blob/master/gta3/gta3.json)                      | `0.241`                  |
+| GTA VC, reVC                        | [vc.json](https://github.com/sannybuilder/library/blob/master/vc/vc.json)                            | `0.248`                  |
+| GTA San Andreas (Classic) 1.0       | [sa.json](https://github.com/sannybuilder/library/blob/master/sa/sa.json)                            | `0.286`                  |
+| GTA IV                              | [gta_iv.json](https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json)                | `0.43`                   |
+| GTA III: The Definitive Edition     | [gta3_unreal.json](https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json) | `0.220`                  |
+| Vice City: The Definitive Edition   | [vc_unreal.json](https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json)       | `0.227`                  |
+| San Andreas: The Definitive Edition | [sa_unreal.json](https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json)       | `0.248`                  |
 | Bully: Scholarship Edition          | [bully.json](https://github.com/sannybuilder/library/blob/master/bully/bully.json)                   | `0.29`                   |
 | Unknown (32-bit)                    | [unknown_x86.json](https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json) | `0.216`                  |
 | Unknown (64-bit)                    | [unknown_x64.json](https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json) | `0.220`                  |

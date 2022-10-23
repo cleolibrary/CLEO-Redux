@@ -11,20 +11,21 @@ Here you can find answers to the frequently asked questions about support for Th
 
 ### What versions are supported?
 
-- GTA III: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15284** (Title Update 1.04)
-- GTA Vice City: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15399** (Title Update 1.04)
-- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** (Title Update 1.03), **1.0.0.15483** (Title Update 1.04)
+- GTA III: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15284** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5)
+- GTA Vice City: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15399** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5)
+- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** (Title Update 1.03), **1.0.0.15483** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5)
 
 ### Is there any difference from support of the classic games?
 
 In short, yes. [See this page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix) for detail on what's supported and what's not.
+
 ### Can I use original opcodes?
 
 Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in [our Discord](https://discord.gg/d5dZSfgBZr).
 
 ### How do I know what commands can I use in JavaScript?
 
-After each game run, CLEO generates a d.ts file in the CLEO\.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code. 
+After each game run, CLEO generates a d.ts file in the CLEO\.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.
 
 To enable autocomplete in VS Code include the following line in your JS script:
 
@@ -38,16 +39,16 @@ Update the file name accordingly depending on which game your script is for.
 
 Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not supported. But CLEO Redux adds its own new opcodes for some operations.
 
-  - 0C00 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00)
-  - 0C01 [INT_ADD](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01)
-  - 0C02 [INT_SUB](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02)
-  - 0C03 [INT_MUL](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03)
-  - 0C04 [INT_DIV](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04)
-  - 0C05 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05)
-  - 0C06 [WRITE_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06) (**UNSAFE** - requires `mem` permission)
-  - 0C07 [READ_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07) (**UNSAFE** - requires `mem` permission)
-  - 0C08 [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08) (**UNSAFE** - requires `mem` permission)
-  - 0C09 [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) (**UNSAFE** - requires `mem` permission)
+- 0C00 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00)
+- 0C01 [INT_ADD](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01)
+- 0C02 [INT_SUB](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02)
+- 0C03 [INT_MUL](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03)
+- 0C04 [INT_DIV](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04)
+- 0C05 [TERMINATE_THIS_CUSTOM_SCRIPT](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05)
+- 0C06 [WRITE_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06) (**UNSAFE** - requires `mem` permission)
+- 0C07 [READ_MEMORY](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07) (**UNSAFE** - requires `mem` permission)
+- 0C08 [CALL_FUNCTION](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08) (**UNSAFE** - requires `mem` permission)
+- 0C09 [CALL_FUNCTION_RETURN](https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09) (**UNSAFE** - requires `mem` permission)
 
 Note that Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:
 

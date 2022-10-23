@@ -31,6 +31,22 @@ enum class HostId
 	UNKNOWN = 255
 };
 
+enum class Directory
+{
+	// /CLEO directory
+	CLEO = 0,
+	// /CLEO/.config
+	CONFIG = 1,
+	// /CLEO/CLEO_TEXT
+	TEXT = 2,
+	// /CLEO/CLEO_PLUGINS
+	PLUGINS = 3,
+	// Current working directory
+	CWD = 4,
+	// Host root directory
+	HOST = 5,
+};
+
 typedef void* Context;
 typedef intptr_t isize;
 
@@ -52,6 +68,7 @@ extern "C" {
 	void ResolvePath(const char* src, char* dest);
 	// since v1
 	// Returns the absolute path to the CLEO directory
+	// deprecated: use GetDirectoryPath
 	void GetCLEOFolder(char* dest);
 	// since v1
 	// Returns the absolute path to the current working directory (normally the game directory)
@@ -116,5 +133,20 @@ extern "C" {
 	// since v5
 	// Registers a new callback invoked on a ShowTextBox function call. Providing a callback shadows built-in ShowTextBox implementation.
     void OnShowTextBox(OnShowTextBoxCallback callback);
+    /// since v6
+	/// Returns the absolute path to the CLEO root directory or one of its sub-directories
+    void GetDirectoryPath(Directory dir, char* dest);
+    /// since v6
+    /// Returns CLEO Redux version as a string
+    void GetCLEOVersion(char* dest);
+    /// since v6
+    /// Returns a memory address for the given symbol, or 0 if not found
+    void* GetSymbolAddress(const char* symbol);
+    /// since v6
+    /// Returns number of active CS scripts
+    size_t GetNumberOfActiveCSScripts();
+    /// since v6
+    /// Returns number of active JS scripts
+    size_t GetNumberOfActiveJSScripts();
 }
 
