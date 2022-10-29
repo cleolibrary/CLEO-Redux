@@ -14,12 +14,16 @@ interface Memory {
     ReadU8(address: int, vp: boolean): int;
     ReadU16(address: int, vp: boolean): int;
     ReadU32(address: int, vp: boolean): int;
+    ReadUtf8(address: int): int;
+    ReadUtf16(address: int): int;
     WriteI8(address: int, value: int, vp: boolean): void;
     WriteI16(address: int, value: int, vp: boolean): void;
     WriteI32(address: int, value: int, vp: boolean): void;
     WriteU8(address: int, value: int, vp: boolean): void;
     WriteU16(address: int, value: int, vp: boolean): void;
     WriteU32(address: int, value: int, vp: boolean): void;
+    WriteUtf8(address: int, value: string, vp: boolean): void;
+    WriteUtf16(address: int, value: string, vp: boolean): void;
     Read(address: int, size: int, vp: boolean): int;
     Write(address: int, size: int, value: int, vp: boolean): void;
 
@@ -108,6 +112,21 @@ In the `Write` method any `size` larger than `0` is allowed. Sizes `3` and `5` o
 
 > The usage of any of the read/write methods requires the `mem` [permission](./permissions.md).
 
+### Reading and Writing Strings
+
+The `ReadUtf8` and `ReadUtf16` methods are used to read strings from the memory and returns it as a JavaScript string. They read the character sequence until the first null terminator is found. `ReadUtf8` expects the string to be encoded in UTF-8, while `ReadUtf16` expects UTF-16. Null terminator is not included in the result.
+
+```js
+    var str = Memory.ReadUtf8(address);
+    var str = Memory.ReadUtf16(address);
+```
+
+The `WriteUtf8` and `WriteUtf16` methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. `WriteUtf8` encodes the string in UTF-8, while `WriteUtf16` encodes it in UTF-16. Last argument is a boolean value indicating whether the command is allowed to overwrite the memory protection.
+
+```js
+    Memory.WriteUtf8(address, "Hello, world!\0", true);
+    Memory.WriteUtf16(address, "Hello, world!\0", true);
+```
 
 ### Casting methods
 

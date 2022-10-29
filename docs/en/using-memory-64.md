@@ -14,12 +14,16 @@ interface Memory {
     ReadU8(address: int, vp: boolean, ib: boolean): int;
     ReadU16(address: int, vp: boolean, ib: boolean): int;
     ReadU32(address: int, vp: boolean, ib: boolean): int;
+    ReadUtf8(address: int, ib: boolean): int;
+    ReadUtf16(address: int, ib: boolean): int;
     WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteUtf8(address: int, value: string, vp: boolean, ib: boolean): void;
+    WriteUtf16(address: int, value: string, vp: boolean, ib: boolean): void;
     Read(address: int, size: int, vp: boolean, ib: boolean): int;
     Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
 
@@ -57,7 +61,7 @@ Group of memory access methods (`ReadXXX`/`WriteXXX`) can be used for reading or
     Memory.WriteFloat(address, 1.0, false, false)
 ```
 
-where `address` is a variable storing the memory location, `1.0` is the value to write, the first `false` means it's not necessary to change the memory protection with `VirtualProtect` (the address is already writable). The second `false` is the value of the `ib` flag that instructs CLEO to treat the `address` either as an absolute address (`ib` = `false`) or a relative offset to the current image base address (`ib` = `true`). As the definitive editions use the ASLR feature their absolute memory addresses change when the game runs because the start address changes. Consider the following example:
+where `address` is a variable storing the memory location, `1.0` is the value to write, the first `false` means it's not necessary to change the memory protection with `VirtualProtect` (the address is already writable). The second `false` is the value of the `ib` flag that instructs CLEO to treat the `address` either as an absolute address (`ib` = `false`) or a relative offset to the current image base address (`ib` = `true`). Due to an ASLR feature memory addresses could change when the game runs because the base address changes. Consider the following example:
 
 ```
 0x1400000000 ImageBase
@@ -74,7 +78,7 @@ You want to change `SomeValue` that is currently located at `0x1400000020`. You 
 0x1500000020 SomeValue
 ```
 
-effectively breaking the script. In this case, calculate a relative offset from the image base ( `0x1500000020` - `0x1500000000` = `0x20` ), that will be permanent for the particular game version. Use Memory.Write as follows: `Memory.Write(0x20, 1, 1, false, true)`. CLEO will sum up the offset (`0x20`) with the current value of the image base (`0x1400000000`, `0x1500000000`, etc) and write to the correct absolute address.
+effectively breaking the script. In this case, calculate a relative offset from the image base ( `0x1500000020` - `0x1500000000` = `0x20` ), that will be permanent for the particular game version. Use `Memory.Write` as follows: `Memory.Write(0x20, 1, 1, false, true)`. CLEO will sum up the offset (`0x20`) with the current value of the image base (`0x1400000000`, `0x1500000000`, etc) and write to the correct absolute address.
 
 For your convenience you can find the current value of the image base in the `cleo_redux.log`, e.g.:
 
@@ -108,6 +112,21 @@ In the `Write` method any `size` larger than `0` is allowed. Sizes `3`, `5`, `6`
 
 > The usage of any of the read/write methods requires the `mem` [permission](./permissions.md).
 
+### Reading and Writing Strings
+
+The `ReadUtf8` and `ReadUtf16` methods are used to read strings from the memory and returns it as a JavaScript string. They read a character sequence until the first null terminator is found. `ReadUtf8` expects the string to be encoded in UTF-8, while `ReadUtf16` expects UTF-16. Null terminator is not included in the result. Last argument `ib` indicates whethers the `address` is an absolute address or a relative offset to the image base.
+
+```js
+    var str = Memory.ReadUtf8(0x100000, false); // read string from address 0x100000
+    var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+IMAGE_BASE
+```
+
+The `WriteUtf8` and `WriteUtf16` methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. `WriteUtf8` encodes the string in UTF-8, while `WriteUtf16` encodes it in UTF-16. Third argument is a boolean value indicating whether the command is allowed to overwrite the memory protection. Last argument `ib` indicates whethers the `address` is an absolute address or a relative offset to the image base.
+
+```js
+    Memory.WriteUtf8(0x100000, "Hello, world!\0\0", true, false); // write string to address 0x100000
+    Memory.WriteUtf8(0x100000, "Hello, world!\0\0", true, true); // write string to address 0x100000+IMAGE_BASE
+```
 
 ### Casting methods
 

@@ -1,6 +1,8 @@
 ### 1.0.3-dev
 
 - add support for the latest Trilogy patch 1.04.5
+- add methods `Memory.ReadUtf8`, `Memory.WriteUtf8`, `Memory.ReadUtf16`, `Memory.WriteUtf16` for reading and writing strings from memory
+- setting `ONMISSION` variables to `true` allows usage of mission-only commands like `00D9 STORE_CAR_CHAR_IS_IN` or `00D8 MISSION_HAS_FINISHED`
 
 **SDK AND PLUGINS**
 
