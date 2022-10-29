@@ -154,12 +154,16 @@
     ReadU8(address: int, vp: boolean, ib: boolean): int;
     ReadU16(address: int, vp: boolean, ib: boolean): int;
     ReadU32(address: int, vp: boolean, ib: boolean): int;
+    ReadUtf8(address: int, ib: boolean): int;
+    ReadUtf16(address: int, ib: boolean): int;
     WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteUtf8(address: int, value: string, vp: boolean, ib: boolean): void;
+    WriteUtf16(address: int, value: string, vp: boolean, ib: boolean): void;
     Read(address: int, size: int, vp: boolean, ib: boolean): int;
     Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
 
@@ -192,7 +196,7 @@
 <p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
 <pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false, false)
 </code></pre>
-<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). As the definitive editions use the ASLR feature their absolute memory addresses change when the game runs because the start address changes. Consider the following example:</p>
+<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). Due to an ASLR feature memory addresses could change when the game runs because the base address changes. Consider the following example:</p>
 <pre><code>0x1400000000 ImageBase
 ...
 ...
@@ -204,7 +208,7 @@
 ...
 0x1500000020 SomeValue
 </code></pre>
-<p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use Memory.Write as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
+<p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use <code>Memory.Write</code> as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
 <p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
 <pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
 </code></pre>
@@ -224,6 +228,15 @@
 <blockquote>
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
+<h3 id="reading-and-writing-strings"><a class="header" href="#reading-and-writing-strings">Reading and Writing Strings</a></h3>
+<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and returns it as a JavaScript string. They read a character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
+<pre><code class="language-js">    var str = Memory.ReadUtf8(0x100000, false); // read string from address 0x100000
+    var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+IMAGE_BASE
+</code></pre>
+<p>The <code>WriteUtf8</code> and <code>WriteUtf16</code> methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. <code>WriteUtf8</code> encodes the string in UTF-8, while <code>WriteUtf16</code> encodes it in UTF-16. Third argument is a boolean value indicating whether the command is allowed to overwrite the memory protection. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
+<pre><code class="language-js">    Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, false); // write string to address 0x100000
+    Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, true); // write string to address 0x100000+IMAGE_BASE
+</code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>

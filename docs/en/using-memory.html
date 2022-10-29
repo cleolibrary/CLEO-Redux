@@ -154,12 +154,16 @@
     ReadU8(address: int, vp: boolean): int;
     ReadU16(address: int, vp: boolean): int;
     ReadU32(address: int, vp: boolean): int;
+    ReadUtf8(address: int): int;
+    ReadUtf16(address: int): int;
     WriteI8(address: int, value: int, vp: boolean): void;
     WriteI16(address: int, value: int, vp: boolean): void;
     WriteI32(address: int, value: int, vp: boolean): void;
     WriteU8(address: int, value: int, vp: boolean): void;
     WriteU16(address: int, value: int, vp: boolean): void;
     WriteU32(address: int, value: int, vp: boolean): void;
+    WriteUtf8(address: int, value: string, vp: boolean): void;
+    WriteUtf16(address: int, value: string, vp: boolean): void;
     Read(address: int, size: int, vp: boolean): int;
     Write(address: int, size: int, value: int, vp: boolean): void;
 
@@ -232,6 +236,15 @@
 <blockquote>
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
+<h3 id="reading-and-writing-strings"><a class="header" href="#reading-and-writing-strings">Reading and Writing Strings</a></h3>
+<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and returns it as a JavaScript string. They read the character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result.</p>
+<pre><code class="language-js">    var str = Memory.ReadUtf8(address);
+    var str = Memory.ReadUtf16(address);
+</code></pre>
+<p>The <code>WriteUtf8</code> and <code>WriteUtf16</code> methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. <code>WriteUtf8</code> encodes the string in UTF-8, while <code>WriteUtf16</code> encodes it in UTF-16. Last argument is a boolean value indicating whether the command is allowed to overwrite the memory protection.</p>
+<pre><code class="language-js">    Memory.WriteUtf8(address, &quot;Hello, world!\0&quot;, true);
+    Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
+</code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>

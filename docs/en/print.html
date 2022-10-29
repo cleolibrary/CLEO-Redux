@@ -454,13 +454,13 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>Due to the dynamic nature of JavaScript CLEO Redux needs to know an interface of each native command, i.e. a number of input arguments and returned values and their types. <a href="https://library.sannybuilder.com">Sanny Builder Library</a> serves as the source of command definitions for CLEO Redux.</p>
 <p>At start CLEO validates that a definition file is present and correct and if not tries to download it from GitHub (see the table below) into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.241</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.248</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.286</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.243</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.249</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.287</code></td></tr>
 <tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.43</code></td></tr>
-<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.220</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.227</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.248</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.222</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.228</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.249</code></td></tr>
 <tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.29</code></td></tr>
 <tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.216</code></td></tr>
 <tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.220</code></td></tr>
@@ -876,12 +876,16 @@ var x = Object.create(null);
     ReadU8(address: int, vp: boolean): int;
     ReadU16(address: int, vp: boolean): int;
     ReadU32(address: int, vp: boolean): int;
+    ReadUtf8(address: int): int;
+    ReadUtf16(address: int): int;
     WriteI8(address: int, value: int, vp: boolean): void;
     WriteI16(address: int, value: int, vp: boolean): void;
     WriteI32(address: int, value: int, vp: boolean): void;
     WriteU8(address: int, value: int, vp: boolean): void;
     WriteU16(address: int, value: int, vp: boolean): void;
     WriteU32(address: int, value: int, vp: boolean): void;
+    WriteUtf8(address: int, value: string, vp: boolean): void;
+    WriteUtf16(address: int, value: string, vp: boolean): void;
     Read(address: int, size: int, vp: boolean): int;
     Write(address: int, size: int, value: int, vp: boolean): void;
 
@@ -954,6 +958,15 @@ var x = Object.create(null);
 <blockquote>
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
+<h3 id="reading-and-writing-strings"><a class="header" href="#reading-and-writing-strings">Reading and Writing Strings</a></h3>
+<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and returns it as a JavaScript string. They read the character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result.</p>
+<pre><code class="language-js">    var str = Memory.ReadUtf8(address);
+    var str = Memory.ReadUtf16(address);
+</code></pre>
+<p>The <code>WriteUtf8</code> and <code>WriteUtf16</code> methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. <code>WriteUtf8</code> encodes the string in UTF-8, while <code>WriteUtf16</code> encodes it in UTF-16. Last argument is a boolean value indicating whether the command is allowed to overwrite the memory protection.</p>
+<pre><code class="language-js">    Memory.WriteUtf8(address, &quot;Hello, world!\0&quot;, true);
+    Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
+</code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
@@ -1083,12 +1096,16 @@ var x = Object.create(null);
     ReadU8(address: int, vp: boolean, ib: boolean): int;
     ReadU16(address: int, vp: boolean, ib: boolean): int;
     ReadU32(address: int, vp: boolean, ib: boolean): int;
+    ReadUtf8(address: int, ib: boolean): int;
+    ReadUtf16(address: int, ib: boolean): int;
     WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
+    WriteUtf8(address: int, value: string, vp: boolean, ib: boolean): void;
+    WriteUtf16(address: int, value: string, vp: boolean, ib: boolean): void;
     Read(address: int, size: int, vp: boolean, ib: boolean): int;
     Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
 
@@ -1121,7 +1138,7 @@ var x = Object.create(null);
 <p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
 <pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false, false)
 </code></pre>
-<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). As the definitive editions use the ASLR feature their absolute memory addresses change when the game runs because the start address changes. Consider the following example:</p>
+<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). Due to an ASLR feature memory addresses could change when the game runs because the base address changes. Consider the following example:</p>
 <pre><code>0x1400000000 ImageBase
 ...
 ...
@@ -1133,7 +1150,7 @@ var x = Object.create(null);
 ...
 0x1500000020 SomeValue
 </code></pre>
-<p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use Memory.Write as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
+<p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use <code>Memory.Write</code> as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
 <p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
 <pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
 </code></pre>
@@ -1153,6 +1170,15 @@ var x = Object.create(null);
 <blockquote>
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
+<h3 id="reading-and-writing-strings-1"><a class="header" href="#reading-and-writing-strings-1">Reading and Writing Strings</a></h3>
+<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and returns it as a JavaScript string. They read a character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
+<pre><code class="language-js">    var str = Memory.ReadUtf8(0x100000, false); // read string from address 0x100000
+    var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+IMAGE_BASE
+</code></pre>
+<p>The <code>WriteUtf8</code> and <code>WriteUtf16</code> methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. <code>WriteUtf8</code> encodes the string in UTF-8, while <code>WriteUtf16</code> encodes it in UTF-16. Third argument is a boolean value indicating whether the command is allowed to overwrite the memory protection. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
+<pre><code class="language-js">    Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, false); // write string to address 0x100000
+    Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, true); // write string to address 0x100000+IMAGE_BASE
+</code></pre>
 <h3 id="casting-methods-1"><a class="header" href="#casting-methods-1">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
