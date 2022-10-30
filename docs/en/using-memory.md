@@ -14,8 +14,8 @@ interface Memory {
     ReadU8(address: int, vp: boolean): int;
     ReadU16(address: int, vp: boolean): int;
     ReadU32(address: int, vp: boolean): int;
-    ReadUtf8(address: int): int;
-    ReadUtf16(address: int): int;
+    ReadUtf8(address: int): string;
+    ReadUtf16(address: int): string;
     WriteI8(address: int, value: int, vp: boolean): void;
     WriteI16(address: int, value: int, vp: boolean): void;
     WriteI32(address: int, value: int, vp: boolean): void;
@@ -114,7 +114,7 @@ In the `Write` method any `size` larger than `0` is allowed. Sizes `3` and `5` o
 
 ### Reading and Writing Strings
 
-The `ReadUtf8` and `ReadUtf16` methods are used to read strings from the memory and returns it as a JavaScript string. They read the character sequence until the first null terminator is found. `ReadUtf8` expects the string to be encoded in UTF-8, while `ReadUtf16` expects UTF-16. Null terminator is not included in the result.
+The `ReadUtf8` and `ReadUtf16` methods are used to read strings from the memory and return it as a JavaScript string. They read the character sequence until the first null terminator is found. `ReadUtf8` expects the string to be encoded in UTF-8, while `ReadUtf16` expects UTF-16. Null terminator is not included in the result.
 
 ```js
     var str = Memory.ReadUtf8(address);

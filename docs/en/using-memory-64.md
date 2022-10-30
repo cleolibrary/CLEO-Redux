@@ -14,8 +14,8 @@ interface Memory {
     ReadU8(address: int, vp: boolean, ib: boolean): int;
     ReadU16(address: int, vp: boolean, ib: boolean): int;
     ReadU32(address: int, vp: boolean, ib: boolean): int;
-    ReadUtf8(address: int, ib: boolean): int;
-    ReadUtf16(address: int, ib: boolean): int;
+    ReadUtf8(address: int, ib: boolean): string;
+    ReadUtf16(address: int, ib: boolean): string;
     WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
@@ -114,7 +114,7 @@ In the `Write` method any `size` larger than `0` is allowed. Sizes `3`, `5`, `6`
 
 ### Reading and Writing Strings
 
-The `ReadUtf8` and `ReadUtf16` methods are used to read strings from the memory and returns it as a JavaScript string. They read a character sequence until the first null terminator is found. `ReadUtf8` expects the string to be encoded in UTF-8, while `ReadUtf16` expects UTF-16. Null terminator is not included in the result. Last argument `ib` indicates whethers the `address` is an absolute address or a relative offset to the image base.
+The `ReadUtf8` and `ReadUtf16` methods are used to read strings from the memory and return it as a JavaScript string. They read a character sequence until the first null terminator is found. `ReadUtf8` expects the string to be encoded in UTF-8, while `ReadUtf16` expects UTF-16. Null terminator is not included in the result. Last argument `ib` indicates whethers the `address` is an absolute address or a relative offset to the image base.
 
 ```js
     var str = Memory.ReadUtf8(0x100000, false); // read string from address 0x100000

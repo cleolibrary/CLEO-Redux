@@ -45,6 +45,8 @@ if (!ONMISSION) {
 }
 ```
 
+Setting `ONMISSION` to `true` has a side effect of turning the current script into a mission script, e.g. you can use mission-only commands, such as `STORE_CAR_CHAR_IS_IN` or `MISSION_HAS_FINISHED`. Setting `ONMISSION` to `false` turns the current script into a normal script.
+
 #### TIMERA, TIMERB
 
 two auto-incrementing timers useful for measuring time intervals.
