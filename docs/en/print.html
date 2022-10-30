@@ -626,6 +626,7 @@ if (HOST === &quot;unknown&quot;) {
   ONMISSION = true;
 }
 </code></pre>
+<p>Setting <code>ONMISSION</code> to <code>true</code> has a side effect of turning the current script into a mission script, e.g. you can use mission-only commands, such as <code>STORE_CAR_CHAR_IS_IN</code> or <code>MISSION_HAS_FINISHED</code>. Setting <code>ONMISSION</code> to <code>false</code> turns the current script into a normal script.</p>
 <h4 id="timera-timerb"><a class="header" href="#timera-timerb">TIMERA, TIMERB</a></h4>
 <p>two auto-incrementing timers useful for measuring time intervals.</p>
 <pre><code class="language-js">while (true) {
@@ -876,8 +877,8 @@ var x = Object.create(null);
     ReadU8(address: int, vp: boolean): int;
     ReadU16(address: int, vp: boolean): int;
     ReadU32(address: int, vp: boolean): int;
-    ReadUtf8(address: int): int;
-    ReadUtf16(address: int): int;
+    ReadUtf8(address: int): string;
+    ReadUtf16(address: int): string;
     WriteI8(address: int, value: int, vp: boolean): void;
     WriteI16(address: int, value: int, vp: boolean): void;
     WriteI32(address: int, value: int, vp: boolean): void;
@@ -959,7 +960,7 @@ var x = Object.create(null);
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
 <h3 id="reading-and-writing-strings"><a class="header" href="#reading-and-writing-strings">Reading and Writing Strings</a></h3>
-<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and returns it as a JavaScript string. They read the character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result.</p>
+<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and return it as a JavaScript string. They read the character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result.</p>
 <pre><code class="language-js">    var str = Memory.ReadUtf8(address);
     var str = Memory.ReadUtf16(address);
 </code></pre>
@@ -1096,8 +1097,8 @@ var x = Object.create(null);
     ReadU8(address: int, vp: boolean, ib: boolean): int;
     ReadU16(address: int, vp: boolean, ib: boolean): int;
     ReadU32(address: int, vp: boolean, ib: boolean): int;
-    ReadUtf8(address: int, ib: boolean): int;
-    ReadUtf16(address: int, ib: boolean): int;
+    ReadUtf8(address: int, ib: boolean): string;
+    ReadUtf16(address: int, ib: boolean): string;
     WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
     WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
@@ -1171,7 +1172,7 @@ var x = Object.create(null);
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
 <h3 id="reading-and-writing-strings-1"><a class="header" href="#reading-and-writing-strings-1">Reading and Writing Strings</a></h3>
-<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and returns it as a JavaScript string. They read a character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
+<p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and return it as a JavaScript string. They read a character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
 <pre><code class="language-js">    var str = Memory.ReadUtf8(0x100000, false); // read string from address 0x100000
     var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+IMAGE_BASE
 </code></pre>

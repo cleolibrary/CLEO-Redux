@@ -169,6 +169,7 @@ if (HOST === &quot;unknown&quot;) {
   ONMISSION = true;
 }
 </code></pre>
+<p>Setting <code>ONMISSION</code> to <code>true</code> has a side effect of turning the current script into a mission script, e.g. you can use mission-only commands, such as <code>STORE_CAR_CHAR_IS_IN</code> or <code>MISSION_HAS_FINISHED</code>. Setting <code>ONMISSION</code> to <code>false</code> turns the current script into a normal script.</p>
 <h4 id="timera-timerb"><a class="header" href="#timera-timerb">TIMERA, TIMERB</a></h4>
 <p>two auto-incrementing timers useful for measuring time intervals.</p>
 <pre><code class="language-js">while (true) {
