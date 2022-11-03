@@ -1,4 +1,4 @@
-### 1.0.3-dev
+### 1.0.3 - November 3, 2022
 
 - add support for the latest Trilogy patch 1.04.5
 - add methods `Memory.ReadUtf8`, `Memory.WriteUtf8`, `Memory.ReadUtf16`, `Memory.WriteUtf16` for reading and writing strings from memory
@@ -6,7 +6,7 @@
 
 **SDK AND PLUGINS**
 
-- new SDK methods `GetDirectoryPath`, `GetCLEOVersion`, `GetSymbolAddress`, `GetNumberOfActiveCSScripts`, `GetNumberOfActiveJSScripts`. SDK version is now 6.
+- new SDK methods `GetDirectoryPath`, `GetCLEOVersion`, `GetSymbolAddress`, `GetNumberOfActiveCSScripts`, `GetNumberOfActiveJSScripts`, `IsEndOfArguments`. SDK version is now 6.
 - code that displays a CLEO version in the main menu was extracted into a separate plugin - `frontend.cleo`. Works with GTA III, VC, re3, reVC, and SA.
 
 **BREAKING CHANGES**

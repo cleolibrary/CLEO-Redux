@@ -148,5 +148,8 @@ extern "C" {
     /// since v6
     /// Returns number of active JS scripts
     size_t GetNumberOfActiveJSScripts();
+	/// since v6
+	/// Is end of arguments reached
+	bool IsEndOfArguments(Context ctx);
 }
 

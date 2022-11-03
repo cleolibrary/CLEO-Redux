@@ -188,9 +188,13 @@ extern "C" {
     /// since v6
     fn GetNumberOfActiveCSScripts() -> usize;
     /// Returns number of active JS scripts
-    /// 
+    ///
     /// since v6
     fn GetNumberOfActiveJSScripts() -> usize;
+    /// Returns true if end of arguments reached
+    ///
+    /// since v6
+    fn IsEndOfArguments(ctx: Context) -> bool;
 }
 
 macro_rules! sz {
@@ -465,4 +469,12 @@ pub fn get_number_of_active_cs_scripts() -> usize {
 #[allow(dead_code)]
 pub fn get_number_of_active_js_scripts() -> usize {
     unsafe { GetNumberOfActiveJSScripts() }
+}
+
+/// Is end of arguments reached
+///
+/// since v6
+#[allow(dead_code)]
+pub fn is_end_of_arguments(ctx: Context) -> bool {
+    unsafe { IsEndOfArguments(ctx) }
 }
