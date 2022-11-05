@@ -157,7 +157,7 @@
 <p>Если этот заголовочный файл находится за пределами каталога вашего проекта, вам необходимо добавить папку с этим файлом в «Настройки проекта-&gt;Каталоги VC++-&gt;Включить каталоги», чтобы позволить Visual Studio обнаружить этот файл.</p>
 <ul>
 <li>
-<p>В <code>Настройки проекта-&gt;Линкер-&gt;Вход</code> добавьте полный путь к <a href="https://github.com/cleolibrary/CLEO-Redux/raw/master/plugins/SDK/cleo_redux.lib"><code>cleo_redux.lib</code></a> (если вы разрабатываете 32-битный плагин) или в <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/plugins/SDK/cleo_redux64.lib"><code>cleo_redux64.lib</code></a> для 64-битного плагина.</p>
+<p>В <code>Настройки проекта-&gt;Линкер-&gt;Вход</code> добавьте полный путь к <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux.lib?raw=true"><code>cleo_redux.lib</code></a> (если вы разрабатываете 32-битный плагин) или в <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux64.lib?raw=true"><code>cleo_redux64.lib</code></a> для 64-битного плагина.</p>
 </li>
 <li>
 <p>в <code>dllmain.cpp</code> создайте новый статический класс с функцией-конструктором.  Этот конструктор будет вызван, как только CLEO загрузит ваш плагин</p>

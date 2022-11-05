@@ -157,7 +157,7 @@ This guide has been tested on Visual Studio 2019 and Visual Studio 2022 (Communi
 <p>If this header file is located outside of your project directory you need to add a folder with this file in <code>Project Settings-&gt;VC++ Directories-&gt;Include Directories</code> to let Visual Studio discover this file.</p>
 <ul>
 <li>
-<p>In <code>Project Settings-&gt;Linker-&gt;Input</code> add the full path to <a href="https://github.com/cleolibrary/CLEO-Redux/raw/master/plugins/SDK/cleo_redux.lib"><code>cleo_redux.lib</code></a> (if you develop a 32-bit plugin) or to <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/plugins/SDK/cleo_redux64.lib"><code>cleo_redux64.lib</code></a> for 64-bit plugins.</p>
+<p>In <code>Project Settings-&gt;Linker-&gt;Input</code> add the full path to <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux.lib?raw=true"><code>cleo_redux.lib</code></a> (if you develop a 32-bit plugin) or to <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux64.lib?raw=true"><code>cleo_redux64.lib</code></a> for 64-bit plugins.</p>
 </li>
 <li>
 <p>in <code>dllmain.cpp</code> create a new static class with the constructor function. This constructor will be called as soon as CLEO loads your plugin</p>
