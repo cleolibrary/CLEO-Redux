@@ -8,7 +8,7 @@ This guide has been tested on Visual Studio 2019 and Visual Studio 2022 (Communi
 
 - Create a new Dynamic-link Library (DLL) project. In `Project Settings->Advanced` set `Target File Extension` to `.cleo`.
 
-- Download [`cleo_redux_sdk.h`](https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/plugins/SDK/cleo_redux_sdk.h) and add it in your project
+- Download [`cleo_redux_sdk.h`](https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/SDK/cleo_redux_sdk.h) and add it in your project
 
 ```cpp
 #include "cleo_redux_sdk.h"
@@ -16,7 +16,7 @@ This guide has been tested on Visual Studio 2019 and Visual Studio 2022 (Communi
 
 If this header file is located outside of your project directory you need to add a folder with this file in `Project Settings->VC++ Directories->Include Directories` to let Visual Studio discover this file.
 
-- In `Project Settings->Linker->Input` add the full path to [`cleo_redux.lib`](https://github.com/cleolibrary/CLEO-Redux/raw/master/plugins/SDK/cleo_redux.lib) (if you develop a 32-bit plugin) or to [`cleo_redux64.lib`](https://github.com/cleolibrary/CLEO-Redux/blob/master/plugins/SDK/cleo_redux64.lib) for 64-bit plugins.
+- In `Project Settings->Linker->Input` add the full path to [`cleo_redux.lib`](https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux.lib?raw=true) (if you develop a 32-bit plugin) or to [`cleo_redux64.lib`](https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux64.lib?raw=true) for 64-bit plugins.
 
 - in `dllmain.cpp` create a new static class with the constructor function. This constructor will be called as soon as CLEO loads your plugin
 

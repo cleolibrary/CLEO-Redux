@@ -8,7 +8,7 @@
 
 - Создайте новый проект библиотеки динамической компоновки (DLL).  В `Настройки проекта->Дополнительно` установите для `Расширение целевого файла` значение `.cleo`.
 
-- Загрузите [`cleo_redux_sdk.h`](https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/plugins/SDK/cleo_redux_sdk.h) и добавьте его в свой проект.
+- Загрузите [`cleo_redux_sdk.h`](https://raw.githubusercontent.com/cleolibrary/CLEO-Redux/master/SDK/cleo_redux_sdk.h) и добавьте его в свой проект.
 
 ```cpp
 #include "cleo_redux_sdk.h"
@@ -16,7 +16,7 @@
 
 Если этот заголовочный файл находится за пределами каталога вашего проекта, вам необходимо добавить папку с этим файлом в «Настройки проекта->Каталоги VC++->Включить каталоги», чтобы позволить Visual Studio обнаружить этот файл.
 
-- В `Настройки проекта->Линкер->Вход` добавьте полный путь к [`cleo_redux.lib`](https://github.com/cleolibrary/CLEO-Redux/raw/master/plugins/SDK/cleo_redux.lib) (если вы разрабатываете 32-битный плагин) или в [`cleo_redux64.lib`](https://github.com/cleolibrary/CLEO-Redux/blob/master/plugins/SDK/cleo_redux64.lib) для 64-битного плагина.
+- В `Настройки проекта->Линкер->Вход` добавьте полный путь к [`cleo_redux.lib`](https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux.lib?raw=true) (если вы разрабатываете 32-битный плагин) или в [`cleo_redux64.lib`](https://github.com/cleolibrary/CLEO-Redux/blob/master/SDK/cleo_redux64.lib?raw=true) для 64-битного плагина.
 
 - в `dllmain.cpp` создайте новый статический класс с функцией-конструктором.  Этот конструктор будет вызван, как только CLEO загрузит ваш плагин
 
