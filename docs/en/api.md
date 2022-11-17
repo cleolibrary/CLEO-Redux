@@ -157,6 +157,8 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
 - `CLEO` object provides access to the runtime information and utilities:
 
+  ##### CLEO.debug
+
   - `CLEO.debug.trace(flag)` toggles on and off command tracing in the current script. When {flag} is true all executed commands get added to `cleo_redux.log`:
 
   ```js
@@ -165,6 +167,8 @@ if (native("HAS_MODEL_LOADED", 101)) {
   const p = new Player(0);
   CLEO.debug.trace(false);
   ```
+
+  ##### CLEO.version
 
   - `CLEO.version` - a complex property providing information about current CLEO version
 
@@ -177,7 +181,9 @@ if (native("HAS_MODEL_LOADED", 101)) {
   log(CLEO.version.build); // "20220427"
   ```
 
-  - (since 1.0.0) `CLEO.apiVersion` - a complex property providing information about current API (using `meta.version` field in the [primary definition](./definitions.md) file). Scripts can use it to check if the user has a particular API version installed.
+  ##### CLEO.apiVersion
+
+  - `CLEO.apiVersion` - a complex property providing information about current API (using `meta.version` field in the [primary definition](./definitions.md) file). Scripts can use it to check if the user has a particular API version installed.
 
   ```js
   log(CLEO.apiVersion); // "0.219"
@@ -187,3 +193,54 @@ if (native("HAS_MODEL_LOADED", 101)) {
   log(CLEO.apiVersion.pre); // undefined
   log(CLEO.apiVersion.build); // undefined
   ```
+
+##### CLEO.runScript
+
+- (since 1.0.4) `CLEO.runScript(fileName, args?)` - method that spawns a new instance of the script. `fileName` is the path to the script to launch. `args` is an optional parameter to pass arguments to the script.
+
+
+  > Don't overuse this feature as spawning a new script is a costly operation. Avoid spawning too many scripts in a loop.
+
+
+  `runScript` has the following limitations:
+
+  - the file name must have an extension `.mjs` or `.cs`
+  - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
+
+
+
+  When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
+
+  ###### Launching a new JS script
+
+  Imagine that you have two files `main.js` and `child.mjs` in the CLEO directory:
+
+  main.js:
+
+  ```js
+  CLEO.runScript("./child.mjs", { a: 1, b: "str", c: 10.5 });
+  ```
+
+  child.mjs:
+
+  ```js
+  showTextBox("child.mjs was launched with: " + a + " " + b + " " + c);
+  ```
+
+  Now if you run the game you should see the following message: `child.mjs was launched with: 1 str 10.5`.
+
+  ###### Launching a new CS script
+
+  main.js:
+
+  ```js
+  CLEO.runScript("./child.cs", { 1: 500 });
+  ```
+
+  child.cs:
+
+  ```
+  0109: player $PLAYER_CHAR money += 1@
+  ```
+
+  The player will get 500 dollars.

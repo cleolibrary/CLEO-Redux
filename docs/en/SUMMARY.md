@@ -23,6 +23,7 @@
     - [Definitions](./definitions.md)
     - [Script Lifecycle](./script-lifecycle.md)
     - [Imports](./imports.md)
+    - [Asynchronous Programming](./async.md)
     - [API](./api.md)
       - [Fluent Interface](./fluent-interface.md)
       - [Enums](./enums.md)
