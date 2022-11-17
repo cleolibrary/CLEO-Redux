@@ -241,6 +241,7 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
   ```
   0109: player $PLAYER_CHAR money += 1@
+  0A93: terminate_this_custom_script
   ```
 
   The player will get 500 dollars.
