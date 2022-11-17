@@ -76,7 +76,10 @@ The log will contain the following message:
 
 One of the advantages of async functions is that they could run concurrently. This means that you can run multiple async functions at the same time. Some languages call these coroutines.
 
-````js
+```js
+import { KeyCode } from "././.config/enums";
+let gVar = 0;
+
 (async () => {
   await asyncWait(0);
 
@@ -114,7 +117,37 @@ async function task3() {
     }
   }
 }
-````
+```
 
 This is very similar to writing traditional `while(true){}` loops with a `wait` command in it, with the difference that the functions must have `async` keyword and use `asyncWait` instead of `wait`
 Each of the three tasks are executed independently from each other. Note that runtime guarantees that all async functions are executed in the same thread. They could share global variables and mutate them. Look at how `gVar` is incremented in `task2` and read in `task3`.
+
+## Dynamic Imports
+
+CLEO Redux supports [dynamic imports](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import). It allows to load script files on-demand when they are needed. This is useful for large scripts that are not needed all the time.
+
+```js
+(async () => {
+  if (somethingIsTrue) {
+    // import module for side effects
+    await import("./my-module.mjs");
+  }
+})();
+```
+
+Imported modules can export functions and variables. They can be used in the same way as in regular scripts.
+
+my-module.mjs:
+
+```js
+export const myVar = 42;
+```
+
+main.js:
+
+```js
+(async () => {
+  const { myVar } = await import("./my-module.mjs");
+  log(myVar); // prints 42
+})();
+```
