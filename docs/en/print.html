@@ -652,7 +652,10 @@ showTextBox(&quot;Hello&quot;);
 </code></pre>
 <h2 id="concurrent-async-functions"><a class="header" href="#concurrent-async-functions">Concurrent Async Functions</a></h2>
 <p>One of the advantages of async functions is that they could run concurrently. This means that you can run multiple async functions at the same time. Some languages call these coroutines.</p>
-<pre><code class="language-js">(async () =&gt; {
+<pre><code class="language-js">import { KeyCode } from &quot;././.config/enums&quot;;
+let gVar = 0;
+
+(async () =&gt; {
   await asyncWait(0);
 
   // running task1, task2, and task3 concurrently
@@ -692,6 +695,25 @@ async function task3() {
 </code></pre>
 <p>This is very similar to writing traditional <code>while(true){}</code> loops with a <code>wait</code> command in it, with the difference that the functions must have <code>async</code> keyword and use <code>asyncWait</code> instead of <code>wait</code>
 Each of the three tasks are executed independently from each other. Note that runtime guarantees that all async functions are executed in the same thread. They could share global variables and mutate them. Look at how <code>gVar</code> is incremented in <code>task2</code> and read in <code>task3</code>.</p>
+<h2 id="dynamic-imports"><a class="header" href="#dynamic-imports">Dynamic Imports</a></h2>
+<p>CLEO Redux supports <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import">dynamic imports</a>. It allows to load script files on-demand when they are needed. This is useful for large scripts that are not needed all the time.</p>
+<pre><code class="language-js">(async () =&gt; {
+  if (somethingIsTrue) {
+    // import module for side effects
+    await import(&quot;./my-module.mjs&quot;);
+  }
+})();
+</code></pre>
+<p>Imported modules can export functions and variables. They can be used in the same way as in regular scripts.</p>
+<p>my-module.mjs:</p>
+<pre><code class="language-js">export const myVar = 42;
+</code></pre>
+<p>main.js:</p>
+<pre><code class="language-js">(async () =&gt; {
+  const { myVar } = await import(&quot;./my-module.mjs&quot;);
+  log(myVar); // prints 42
+})();
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="javascript-api"><a class="header" href="#javascript-api">JavaScript API</a></h1>
 <h2 id="native-functions"><a class="header" href="#native-functions">Native functions</a></h2>
 <p>CLEO Redux supports all commands native to the current game. In the classic GTA 3D series they are also known as <em>opcodes</em>. In GTA IV they are known as <em>native functions</em>. You can find them in <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>.</p>
