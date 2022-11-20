@@ -202,10 +202,12 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
   `runScript` has the following limitations:
 
-  - the file name must have an extension `.mjs` or `.cs`
+  - JS scripts must have an extension `.mjs`, CS scripts must have an extension `.s`. This is necessary to avoid automatic script loading.
   - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
 
   When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
+
+  You can spawn multiple instances of the same script with different arguments.
 
   ###### Launching a new JS script
 
@@ -257,8 +259,6 @@ if (native("HAS_MODEL_LOADED", 101)) {
   child.cs:
 
   ```
-
   00A1: set_char_coordinates $PLAYER_ACTOR x 0@ y 1@ z 2@
   0A93: terminate_this_custom_script
-
   ```
