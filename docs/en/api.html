@@ -305,6 +305,20 @@ log(CLEO.apiVersion.build); // undefined
 0A93: terminate_this_custom_script
 </code></pre>
 <p>The player will get 500 dollars.</p>
+<p>To pass floating-point numbers to a CS script use <code>Memory.FromFloat</code> function:</p>
+<p>main.js:</p>
+<pre><code class="language-js">CLEO.runScript(&quot;./child.cs&quot;, {
+  0: Memory.FromFloat(-921.25),
+  1: Memory.FromFloat(662.125),
+  2: Memory.FromFloat(-100.0),
+});
+</code></pre>
+<p>child.cs:</p>
+<pre><code>
+00A1: set_char_coordinates $PLAYER_ACTOR x 0@ y 1@ z 2@
+0A93: terminate_this_custom_script
+
+</code></pre>
 </li>
 </ul>
 
