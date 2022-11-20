@@ -18,7 +18,7 @@ import { PedType } from "./includes/types";
 
 ```
 
-> See also [Organizing Scripts](./script-lifecycle.md#organizing-scripts).
+> See also [Dynamic Imports](./async.md#dynamic-imports).
 
 ## Importing JSON files
 
