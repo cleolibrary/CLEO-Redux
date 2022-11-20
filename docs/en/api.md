@@ -198,16 +198,12 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
 - (since 1.0.4) `CLEO.runScript(fileName, args?)` - method that spawns a new instance of the script. `fileName` is the path to the script to launch. `args` is an optional parameter to pass arguments to the script.
 
-
   > Don't overuse this feature as spawning a new script is a costly operation. Avoid spawning too many scripts in a loop.
-
 
   `runScript` has the following limitations:
 
   - the file name must have an extension `.mjs` or `.cs`
   - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
-
-
 
   When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
 
@@ -245,3 +241,24 @@ if (native("HAS_MODEL_LOADED", 101)) {
   ```
 
   The player will get 500 dollars.
+
+  To pass floating-point numbers to a CS script use `Memory.FromFloat` function:
+
+  main.js:
+
+  ```js
+  CLEO.runScript("./child.cs", {
+    0: Memory.FromFloat(-921.25),
+    1: Memory.FromFloat(662.125),
+    2: Memory.FromFloat(-100.0),
+  });
+  ```
+
+  child.cs:
+
+  ```
+
+  00A1: set_char_coordinates $PLAYER_ACTOR x 0@ y 1@ z 2@
+  0A93: terminate_this_custom_script
+
+  ```
