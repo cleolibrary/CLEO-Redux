@@ -144,12 +144,13 @@
 <blockquote>
 <p>This feature is highly experimental and might be unstable.</p>
 </blockquote>
-<p>Since 1.0.4 CLEO Redux receives support for promises and <code>async/await</code> syntax. This enables lots of advanced code patterns.</p>
+<p>Since 1.0.4 CLEO Redux receives support for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> and <code>async/await</code> syntax. This enables lots of advanced code patterns.</p>
 <p>Note that asynchoronous programming is a fairly complex topic and if you want to learn more about visit the following resources:</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing">MDN</a></li>
 <li><a href="https://javascript.info/async">JavaScript.info</a></li>
 </ul>
+<p>See an example of an async script for GTA III <a href="https://github.com/x87/luigi3_async">here</a>.</p>
 <h2 id="async-api"><a class="header" href="#async-api">Async API</a></h2>
 <p>CLEO Redux 1.0.4 has one native async command: <code>asyncWait</code>. This command is used to pause a script for a specified amount of time. It returns a <code>Promise</code> that resolves after the specified amount of time. <code>asyncWait</code> can only be used inside a <code>async</code> function.</p>
 <pre><code class="language-js">async function delay(ms) {
