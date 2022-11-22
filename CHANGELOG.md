@@ -1,10 +1,15 @@
 ### 1.0.4
 
 - experimental support for [async functions](https://re.cleo.li/docs/en/async.html)
-- add `CLEO.runScript` method to [spawn new scripts](https://re.cleo.li/docs/en/api.html#cleorunscript)
+- add new method `CLEO.runScript` to [spawn new scripts](https://re.cleo.li/docs/en/api.html#cleorunscript)
 - add FXT support in GTA IV
 - changing JS files in a script directory makes this script to reload
   i.e. if you have `CLEO\myscript\index.js` and `CLEO\myscript\dep.js`, changing either file reloads `index.js`
+- fix a crash on GTA III and GTA VC when a script continuously creates and destroys blips https://github.com/cleolibrary/CLEO-Redux/discussions/75
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html) for GTA IV
 
 ### 1.0.3 - November 3, 2022
 

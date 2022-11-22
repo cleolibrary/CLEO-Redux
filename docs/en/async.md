@@ -2,12 +2,14 @@
 
 > This feature is highly experimental and might be unstable.
 
-Since 1.0.4 CLEO Redux receives support for promises and `async/await` syntax. This enables lots of advanced code patterns.
+Since 1.0.4 CLEO Redux receives support for [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and `async/await` syntax. This enables lots of advanced code patterns.
 
 Note that asynchoronous programming is a fairly complex topic and if you want to learn more about visit the following resources:
 
 - [MDN](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing)
 - [JavaScript.info](https://javascript.info/async)
+
+See an example of an async script for GTA III [here](https://github.com/x87/luigi3_async).
 
 ## Async API
 
