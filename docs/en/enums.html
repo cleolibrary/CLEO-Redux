@@ -148,20 +148,20 @@
 <p>Enum names start with a capital letter similar to class names, e.g. <code>PedType</code>, <code>KeyCode</code>, <code>Button</code>. </p>
 <p><a href="https://library.sannybuilder.com/">Sanny Builder Library</a> lists all known enums for each game. It also provides a <code>enums.js</code> file with all enums exported as JavaScript objects for use in scripts. CLEO Redux automatically downloads this file along with the primary definitions file and places it in the <code>.config</code> directory.</p>
 <p>To use an enum in a script <a href="./imports.html">import</a> it like this:</p>
-<pre><code class="language-js">import { EnumName } from &quot;.config/enums&quot;; // replace EnumName with the actual name
+<pre><code class="language-js">import { EnumName } from &quot;./.config/enums&quot;; // replace EnumName with the actual name
 </code></pre>
 <p>You can also import all enums at once using the following syntax:</p>
-<pre><code class="language-js">import * as enums from &quot;.config/enums&quot;;
+<pre><code class="language-js">import * as enums from &quot;./.config/enums&quot;;
 </code></pre>
 <p>Then you can access values in the enum as regular properties in a JavaScript object:</p>
-<pre><code class="language-js">import { KeyCode } from &quot;.config/enums&quot;;
+<pre><code class="language-js">import { KeyCode } from &quot;./.config/enums&quot;;
 
 if (Pad.IsKeyPressed(KeyCode.A)) {
   log(&quot;A is pressed&quot;);
 }
 </code></pre>
 <p>or</p>
-<pre><code class="language-js">import * as enums from &quot;.config/enums&quot;;
+<pre><code class="language-js">import * as enums from &quot;./.config/enums&quot;;
 
 if (Pad.IsKeyPressed(enums.KeyCode.A)) {
   log(&quot;A is pressed&quot;);

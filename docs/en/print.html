@@ -653,7 +653,7 @@ showTextBox(&quot;Hello&quot;);
 </code></pre>
 <h2 id="concurrent-async-functions"><a class="header" href="#concurrent-async-functions">Concurrent Async Functions</a></h2>
 <p>One of the advantages of async functions is that they could run concurrently. This means that you can run multiple async functions at the same time. Some languages call these coroutines.</p>
-<pre><code class="language-js">import { KeyCode } from &quot;././.config/enums&quot;;
+<pre><code class="language-js">import { KeyCode } from &quot;./.config/enums&quot;;
 let gVar = 0;
 
 (async () =&gt; {
@@ -918,20 +918,20 @@ p.giveWeapon(2, 100)
 <p>Enum names start with a capital letter similar to class names, e.g. <code>PedType</code>, <code>KeyCode</code>, <code>Button</code>. </p>
 <p><a href="https://library.sannybuilder.com/">Sanny Builder Library</a> lists all known enums for each game. It also provides a <code>enums.js</code> file with all enums exported as JavaScript objects for use in scripts. CLEO Redux automatically downloads this file along with the primary definitions file and places it in the <code>.config</code> directory.</p>
 <p>To use an enum in a script <a href="./imports.html">import</a> it like this:</p>
-<pre><code class="language-js">import { EnumName } from &quot;.config/enums&quot;; // replace EnumName with the actual name
+<pre><code class="language-js">import { EnumName } from &quot;./.config/enums&quot;; // replace EnumName with the actual name
 </code></pre>
 <p>You can also import all enums at once using the following syntax:</p>
-<pre><code class="language-js">import * as enums from &quot;.config/enums&quot;;
+<pre><code class="language-js">import * as enums from &quot;./.config/enums&quot;;
 </code></pre>
 <p>Then you can access values in the enum as regular properties in a JavaScript object:</p>
-<pre><code class="language-js">import { KeyCode } from &quot;.config/enums&quot;;
+<pre><code class="language-js">import { KeyCode } from &quot;./.config/enums&quot;;
 
 if (Pad.IsKeyPressed(KeyCode.A)) {
   log(&quot;A is pressed&quot;);
 }
 </code></pre>
 <p>or</p>
-<pre><code class="language-js">import * as enums from &quot;.config/enums&quot;;
+<pre><code class="language-js">import * as enums from &quot;./.config/enums&quot;;
 
 if (Pad.IsKeyPressed(enums.KeyCode.A)) {
   log(&quot;A is pressed&quot;);
@@ -1479,9 +1479,9 @@ var x = Object.create(null);
 <h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
 <p>After each game run, CLEO generates a d.ts file in the CLEO.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.</p>
 <p>To enable autocomplete in VS Code include the following line in your JS script:</p>
-<pre><code class="language-js">/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+<pre><code class="language-js">/// &lt;reference path=&quot;./.config/sa.d.ts&quot; /&gt;
 </code></pre>
-<p>Update the file name accordingly depending on which game your script is for.</p>
+<p>Update the path accordingly depending on which game your script is for and the file location.</p>
 <h3 id="can-i-use-cleo-opcodes"><a class="header" href="#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></h3>
 <p>Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not supported. But CLEO Redux adds its own new opcodes for some operations.</p>
 <ul>
@@ -1526,18 +1526,18 @@ var x = Object.create(null);
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jqz8_lGnG4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
 <p>For <code>GTA III</code> or <code>re3</code>:</p>
-<pre><code>/// &lt;reference path=&quot;.config/gta3.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/gta3.d.ts&quot; /&gt;
 </code></pre>
 <p>For <code>Vice City</code> or <code>reVC</code></p>
-<pre><code>/// &lt;reference path=&quot;.config/vc.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/vc.d.ts&quot; /&gt;
 </code></pre>
 <p>For <code>San Andreas</code></p>
-<pre><code>/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/sa.d.ts&quot; /&gt;
 </code></pre>
 <p>For <code>Unknown</code> host</p>
-<pre><code>/// &lt;reference path=&quot;.config/unknown.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/unknown.d.ts&quot; /&gt;
 </code></pre>
-<p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
+<p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. Examples above assume JS files are located in the CLEO directory. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
 <h2 id="scm-log"><a class="header" href="#scm-log">SCM Log</a></h2>
 <p>CLEO Redux has built-in support for basic tracing of SCM instructions. To trace opcodes in all running CS scripts open up <a href="./config.html"><code>cleo.ini</code></a> and change <code>LogOpcodes</code> to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.</p>
 <p>In JavaScript code use <code>CLEO.debug.trace(true)</code> to trace all commands. Use <code>CLEO.debug.trace(false)</code> to turn it off.</p>

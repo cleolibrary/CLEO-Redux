@@ -164,9 +164,9 @@
 <h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
 <p>After each game run, CLEO generates a d.ts file in the CLEO.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.</p>
 <p>To enable autocomplete in VS Code include the following line in your JS script:</p>
-<pre><code class="language-js">/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+<pre><code class="language-js">/// &lt;reference path=&quot;./.config/sa.d.ts&quot; /&gt;
 </code></pre>
-<p>Update the file name accordingly depending on which game your script is for.</p>
+<p>Update the path accordingly depending on which game your script is for and the file location.</p>
 <h3 id="can-i-use-cleo-opcodes"><a class="header" href="#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></h3>
 <p>Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not supported. But CLEO Redux adds its own new opcodes for some operations.</p>
 <ul>

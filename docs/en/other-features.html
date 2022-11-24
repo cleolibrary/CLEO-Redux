@@ -146,18 +146,18 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jqz8_lGnG4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
 <p>For <code>GTA III</code> or <code>re3</code>:</p>
-<pre><code>/// &lt;reference path=&quot;.config/gta3.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/gta3.d.ts&quot; /&gt;
 </code></pre>
 <p>For <code>Vice City</code> or <code>reVC</code></p>
-<pre><code>/// &lt;reference path=&quot;.config/vc.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/vc.d.ts&quot; /&gt;
 </code></pre>
 <p>For <code>San Andreas</code></p>
-<pre><code>/// &lt;reference path=&quot;.config/sa.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/sa.d.ts&quot; /&gt;
 </code></pre>
 <p>For <code>Unknown</code> host</p>
-<pre><code>/// &lt;reference path=&quot;.config/unknown.d.ts&quot; /&gt;
+<pre><code>/// &lt;reference path=&quot;./.config/unknown.d.ts&quot; /&gt;
 </code></pre>
-<p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
+<p>This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The <code>path</code> can be relative to the script file or be absolute. Examples above assume JS files are located in the CLEO directory. <a href="https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-">Find out more information</a> on the official TypeScript portal.</p>
 <h2 id="scm-log"><a class="header" href="#scm-log">SCM Log</a></h2>
 <p>CLEO Redux has built-in support for basic tracing of SCM instructions. To trace opcodes in all running CS scripts open up <a href="./config.html"><code>cleo.ini</code></a> and change <code>LogOpcodes</code> to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.</p>
 <p>In JavaScript code use <code>CLEO.debug.trace(true)</code> to trace all commands. Use <code>CLEO.debug.trace(false)</code> to turn it off.</p>
