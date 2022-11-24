@@ -79,7 +79,7 @@ The log will contain the following message:
 One of the advantages of async functions is that they could run concurrently. This means that you can run multiple async functions at the same time. Some languages call these coroutines.
 
 ```js
-import { KeyCode } from "././.config/enums";
+import { KeyCode } from "./.config/enums";
 let gVar = 0;
 
 (async () => {

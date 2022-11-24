@@ -1,6 +1,6 @@
-/// <reference path=".config/sa.d.ts" />
+/// <reference path="./.config/sa.d.ts" />
 
-import { KeyCode } from ".config/enums";
+import { KeyCode } from "./.config/enums";
 
 // press a key from 1 to 5 to emulate a cheat code typing
 // Input plugin 1.1+ is required

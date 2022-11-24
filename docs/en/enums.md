@@ -11,19 +11,19 @@ Enum names start with a capital letter similar to class names, e.g. `PedType`, `
 To use an enum in a script [import](./imports.md) it like this:
 
 ```js
-import { EnumName } from ".config/enums"; // replace EnumName with the actual name
+import { EnumName } from "./.config/enums"; // replace EnumName with the actual name
 ```
 
 You can also import all enums at once using the following syntax:
 
 ```js
-import * as enums from ".config/enums";
+import * as enums from "./.config/enums";
 ```
 
 Then you can access values in the enum as regular properties in a JavaScript object:
 
 ```js
-import { KeyCode } from ".config/enums";
+import { KeyCode } from "./.config/enums";
 
 if (Pad.IsKeyPressed(KeyCode.A)) {
   log("A is pressed");
@@ -33,7 +33,7 @@ if (Pad.IsKeyPressed(KeyCode.A)) {
 or
 
 ```js
-import * as enums from ".config/enums";
+import * as enums from "./.config/enums";
 
 if (Pad.IsKeyPressed(enums.KeyCode.A)) {
   log("A is pressed");

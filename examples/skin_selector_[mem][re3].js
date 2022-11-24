@@ -1,4 +1,4 @@
-/// <reference path=".config/gta3.d.ts" />
+/// <reference path="./.config/gta3.d.ts" />
 // Player Skin Selector, use [ and ] to switch between different models
 // original script by DK22Pac https://sannybuilder.com/forums/viewtopic.php?id=1177
 // version for re3 by Seemann https://github.com/x87

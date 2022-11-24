@@ -1,4 +1,4 @@
-/// <reference path=".config/gta3.d.ts" />
+/// <reference path="./.config/gta3.d.ts" />
 
 // Mine Drop script. Press M while in car to drop a mine. Don't forget to drive away
 // as the mine will be activated in 1.5 seconds!

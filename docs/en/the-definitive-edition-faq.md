@@ -30,10 +30,10 @@ After each game run, CLEO generates a d.ts file in the CLEO\.config directory. I
 To enable autocomplete in VS Code include the following line in your JS script:
 
 ```js
-/// <reference path=".config/sa.d.ts" />
+/// <reference path="./.config/sa.d.ts" />
 ```
 
-Update the file name accordingly depending on which game your script is for.
+Update the path accordingly depending on which game your script is for and the file location.
 
 ### Can I use CLEO opcodes?
 

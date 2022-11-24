@@ -11,28 +11,28 @@ VS Code has excellent JavaScript support out of the box and is highly customizab
 For `GTA III` or `re3`:
 
 ```
-/// <reference path=".config/gta3.d.ts" />
+/// <reference path="./.config/gta3.d.ts" />
 ```
 
 For `Vice City` or `reVC`
 
 ```
-/// <reference path=".config/vc.d.ts" />
+/// <reference path="./.config/vc.d.ts" />
 ```
 
 For `San Andreas`
 
 ```
-/// <reference path=".config/sa.d.ts" />
+/// <reference path="./.config/sa.d.ts" />
 ```
 
 For `Unknown` host
 
 ```
-/// <reference path=".config/unknown.d.ts" />
+/// <reference path="./.config/unknown.d.ts" />
 ```
 
-This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
+This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. Examples above assume JS files are located in the CLEO directory. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
 
 ## SCM Log
 
