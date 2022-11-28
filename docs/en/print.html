@@ -509,7 +509,9 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <ul>
 <li>Extensions: <code>.js</code>, <code>.mjs</code></li>
 </ul>
-<p>The runtime supports the <code>import</code> statement as described in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">this article</a>. <code>./</code> in a path resolves to the current file's directory. E.g. if a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from './bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\extra\bar.js</code>. <code>../</code> resolves to the parent directory. E.g. if a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>.</p>
+<p>The runtime supports the <code>import</code> statement as described in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">this article</a>. </p>
+<p><code>./</code> in a path resolves to the current file's directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from './bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\extra\bar.js</code>. </p>
+<p><code>../</code> resolves to the parent directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>.</p>
 <p>To avoid running imported <code>.js</code> files as standalone scripts, either put them into a separate folder outside of the main <a href="./cleo-directory.html">CLEO directory</a> (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
 <pre><code class="language-js">// imports default export from other.js or other.mjs located in the same directory
 import func from &quot;./other&quot;;
