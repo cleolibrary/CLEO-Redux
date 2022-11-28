@@ -164,13 +164,13 @@
 </li>
 <li>
 <p>a path starting with <code>./</code> or <code>../</code> gets resolved relative to the script directory. </p>
-<p>What is <strong>the script directory</strong>?.</p>
+<p>What is <strong>the script directory</strong>?</p>
 <p>For CS scripts it is always the CLEO directory.</p>
 <p>For JS scripts it could be the CLEO directory (if the JS file is located there). Or if the script is <a href="./script-lifecycle.html#organizing-scripts">located in a subfolder</a> inside the CLEO directory, then the script directory is the one that contains its <code>index.js</code> file. </p>
 <p>It is different from the resolution algorithm <a href="./imports.html#importing-scripts">used by the <code>import</code> statement</a>. The <code>import</code> statement resolves paths relative to the current file's directory (that can be nested many levels deep), whereas the <code>ResolvePath</code> does not go deeper than the <code>index.js</code> directory. You can use the <a href="./api.html#__dirname"><code>__dirname</code></a> variable to get the directory of the current file:</p>
 <pre><code class="language-js">DynamicLibrary.Load(__dirname + &quot;\\mylib.dll&quot;);
 </code></pre>
-<p>See https://github.com/cleolibrary/CLEO-Redux/issues/77</p>
+<p>See <a href="https://github.com/cleolibrary/CLEO-Redux/issues/77">https://github.com/cleolibrary/CLEO-Redux/issues/77</a></p>
 </li>
 <li>
 <p>all other paths get resolved relative to the current working directory (the game directory)</p>

@@ -511,7 +511,7 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 </ul>
 <p>The runtime supports the <code>import</code> statement as described in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">this article</a>. </p>
 <p><code>./</code> in a path resolves to the current file's directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from './bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\extra\bar.js</code>. </p>
-<p><code>../</code> resolves to the parent directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>.</p>
+<p><code>../</code> resolves to the parent directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>. You can combine <code>../</code> to traverse multiple levels up. </p>
 <p>To avoid running imported <code>.js</code> files as standalone scripts, either put them into a separate folder outside of the main <a href="./cleo-directory.html">CLEO directory</a> (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
 <pre><code class="language-js">// imports default export from other.js or other.mjs located in the same directory
 import func from &quot;./other&quot;;
@@ -1736,13 +1736,13 @@ fn init() {
 </li>
 <li>
 <p>a path starting with <code>./</code> or <code>../</code> gets resolved relative to the script directory. </p>
-<p>What is <strong>the script directory</strong>?.</p>
+<p>What is <strong>the script directory</strong>?</p>
 <p>For CS scripts it is always the CLEO directory.</p>
 <p>For JS scripts it could be the CLEO directory (if the JS file is located there). Or if the script is <a href="./script-lifecycle.html#organizing-scripts">located in a subfolder</a> inside the CLEO directory, then the script directory is the one that contains its <code>index.js</code> file. </p>
 <p>It is different from the resolution algorithm <a href="./imports.html#importing-scripts">used by the <code>import</code> statement</a>. The <code>import</code> statement resolves paths relative to the current file's directory (that can be nested many levels deep), whereas the <code>ResolvePath</code> does not go deeper than the <code>index.js</code> directory. You can use the <a href="./api.html#__dirname"><code>__dirname</code></a> variable to get the directory of the current file:</p>
 <pre><code class="language-js">DynamicLibrary.Load(__dirname + &quot;\\mylib.dll&quot;);
 </code></pre>
-<p>See https://github.com/cleolibrary/CLEO-Redux/issues/77</p>
+<p>See <a href="https://github.com/cleolibrary/CLEO-Redux/issues/77">https://github.com/cleolibrary/CLEO-Redux/issues/77</a></p>
 </li>
 <li>
 <p>all other paths get resolved relative to the current working directory (the game directory)</p>
