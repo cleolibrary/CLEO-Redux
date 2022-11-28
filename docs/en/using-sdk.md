@@ -20,15 +20,28 @@ Each plugin is a dynamic-link library (DLL) with the `.cleo` extension that must
 
 ## Path Resolution Convention
 
-String arguments representing a path to the directory or file must be normalized using SDK's function `ResolvePath`. This function takes a path and returns the absolute path resolved by the following rules:
+String arguments representing a path to the directory or file must be normalized using SDK's function `ResolvePath`. This function takes a path and returns the absolute path resolved according to the following rules:
 
 - an absolute path gets resolved as is
-- path starting with "CLEO/" or "CLEO\\" gets resolved relative to the [CLEO directory](./cleo-directory.md) which is either
-  - {game}\CLEO or
-  - {user}\AppData\Roaming\CLEO Redux\CLEO
-- path starting with "./" gets resolved relative to the [script's directory](./script-lifecycle.md#organizing-scripts). For `.cs` scripts the directory is always {game}\CLEO.
-- all other paths get resolved relative to the current working directory (the game directory)
+- a path starting with `CLEO/` or `CLEO\\` gets resolved relative to the [CLEO directory](./cleo-directory.md) which is either
+  - `{game}\CLEO` or
+  - `{user}\AppData\Roaming\CLEO Redux\CLEO`
+- a path starting with `./` or `../` gets resolved relative to the script directory. 
 
+  What is __the script directory__?.
+
+  For CS scripts it is always the CLEO directory.
+
+  For JS scripts it could be the CLEO directory (if the JS file is located there). Or if the script is [located in a subfolder](./script-lifecycle.md#organizing-scripts) inside the CLEO directory, then the script directory is the one that contains its `index.js` file. 
+  
+  It is different from the resolution algorithm [used by the `import` statement](./imports.md#importing-scripts). The `import` statement resolves paths relative to the current file's directory (that can be nested many levels deep), whereas the `ResolvePath` does not go deeper than the `index.js` directory. You can use the [`__dirname`](./api.md#__dirname) variable to get the directory of the current file:
+  
+   ```js
+   DynamicLibrary.Load(__dirname + "\\mylib.dll");
+   ```
+  
+   See https://github.com/cleolibrary/CLEO-Redux/issues/77
+- all other paths get resolved relative to the current working directory (the game directory)
 
 ## String Arguments
 
