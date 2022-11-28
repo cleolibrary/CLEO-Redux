@@ -11,7 +11,7 @@ The runtime supports the `import` statement as described in [this article](https
 
 `./` in a path resolves to the current file's directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from './bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\extra\bar.js`. 
 
-`../` resolves to the parent directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from '../bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\bar.js`.
+`../` resolves to the parent directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from '../bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\bar.js`. You can combine `../` to traverse multiple levels up. 
 
 
 To avoid running imported `.js` files as standalone scripts, either put them into a separate folder outside of the main [CLEO directory](./cleo-directory.md) (e.g. `CLEO/includes/`) or use the extension `.mjs`.

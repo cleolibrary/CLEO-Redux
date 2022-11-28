@@ -28,7 +28,7 @@ String arguments representing a path to the directory or file must be normalized
   - `{user}\AppData\Roaming\CLEO Redux\CLEO`
 - a path starting with `./` or `../` gets resolved relative to the script directory. 
 
-  What is __the script directory__?.
+  What is __the script directory__?
 
   For CS scripts it is always the CLEO directory.
 
@@ -40,7 +40,7 @@ String arguments representing a path to the directory or file must be normalized
    DynamicLibrary.Load(__dirname + "\\mylib.dll");
    ```
   
-   See https://github.com/cleolibrary/CLEO-Redux/issues/77
+   See [https://github.com/cleolibrary/CLEO-Redux/issues/77](https://github.com/cleolibrary/CLEO-Redux/issues/77)
 - all other paths get resolved relative to the current working directory (the game directory)
 
 ## String Arguments
