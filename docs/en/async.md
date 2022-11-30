@@ -153,3 +153,7 @@ main.js:
   log(myVar); // prints 42
 })();
 ```
+
+## setTimeout and setInterval
+
+It is easy to implement `setTimeout` and `setInterval` using `asyncWait` and `async` functions. You can [find an implementation example here](https://github.com/cleolibrary/CLEO-Redux/blob/master/examples/setTimeout%2C%20setInterval.js).

@@ -25,7 +25,7 @@ export const PickupType = {
 };
 
 const ACTIVATE_KEY = 0x4d; // M
-const MI_MINE = GAME.startsWith("gta3") ? 1324 : 338;
+const MI_MINE = HOST.startsWith("gta3") ? 1324 : 338;
 const p = new Player(0);
 let mines = [];
 const COOLDOWN = 1500;
