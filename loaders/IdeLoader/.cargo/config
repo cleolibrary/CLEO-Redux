@@ -15,3 +15,7 @@ rustflags = [
     "-C", "link-arg=/OUT:build/IdeLoader64.cleo",
     "-L", "../../SDK"
 ]
+
+[alias]
+b = "build --target i686-pc-windows-msvc"
+b64 = "build --target x86_64-pc-windows-msvc"

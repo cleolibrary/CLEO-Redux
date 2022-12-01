@@ -26,9 +26,9 @@ dependencies = [
 
 [[package]]
 name = "gta-ide-parser"
-version = "0.0.3"
+version = "0.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8bab2ffa29c751bfab49df963917d667b5d146ffd6af50ba4429d64373f5ff6e"
+checksum = "c9858affd82e625592bed1089da5a8acaab4240a11fff78efc1cd2c89d99dc58"
 dependencies = [
  "nom",
 ]
@@ -41,7 +41,7 @@ checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
 
 [[package]]
 name = "ide-loader"
-version = "1.1.0"
+version = "1.2.0"
 dependencies = [
  "cleo_redux_sdk",
  "ctor",
