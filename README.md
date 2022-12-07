@@ -22,6 +22,8 @@ while (true) {
 }
 ```
 
+To run this script, save it as a `.js` file in the `{game}/CLEO` directory and start the game.
+
 [See more examples](https://github.com/cleolibrary/CLEO-Redux/tree/master/examples)
 
 ## Documentation
