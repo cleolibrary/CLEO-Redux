@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.4"
+#define AppVersion "1.0.5-dev.20221208"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -61,7 +61,7 @@ Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for games using D
 Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly in classic GTA"; Types: full
 Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: full
 Name: "plugins/input"; Description: "Input 1.3"; Types: full
-Name: "plugins/frontend"; Description: "Frontend 1.0"; Types: full
+Name: "plugins/frontend"; Description: "Frontend 1.1"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt, *.text (Text files)"; Types: full
 Name: "loaders/ide"; Description: "*.ide (Item Definition files)"; Types: full
@@ -169,9 +169,7 @@ Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader64.cleo"; DestDir: "{app}
 Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowCs"; String: 1
 Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowJs"; String: 1
 Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowFxt"; String: 1
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "CheckUpdates"; String: 1
 Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "LogOpcodes"; String: 0
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "DisplayMenuInfo"; String: 1
 Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "PermissionLevel"; String: Lax
 
 ; will be set in wpFinished

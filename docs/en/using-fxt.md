@@ -31,7 +31,6 @@ Text.PrintHelp('KEY1') // displays <TEXT1>
 
 You can find the commands available in each game in the Sanny Builder Library, e.g. [for San Andreas: DE](https://library.sannybuilder.com/#/sa_unreal/classes/Text).
 
-
 > CLEO Redux only supports texts encoded in UTF-8. It means that any non-standard encoding (e.g. for Russian localization by 1C) most likely will not work.
 
 ## FxtStore
@@ -46,13 +45,15 @@ declare interface FxtStore {
    * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
    * @param key GXT key that can be used in text commands (7 characters max)
    * @param value text content
+   * @param [isGlobal] if true, the text affects global FXT storage
    */
-  insert(key: string, value: string): void;
+  insert(key: string, value: string, isGlobal?: boolean): void;
   /**
    * Removes the text content associated with the key in the local fxt storage
    * @param key GXT key
+   * @param [isGlobal] if true, the text affects global FXT storage
    */
-  delete(key: string): void;
+  delete(key: string, isGlobal?: boolean): void;
 }
 ```
 
@@ -74,7 +75,9 @@ FxtStore.delete("MY_KEY");
 Text.PrintHelp("MY_KEY"); // this displays "Text from FXT file" again
 ```
 
-A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.
+> The private FXT storage is not supported in The Trilogy, Bully and GTA IV. Each script there modifies the global FXT storage. This behavior may change in the future.
+
+`insert` and `delete` methods can be forced to change global FXT keys even when the current host supports a private storage. By setting the last argument `isGlobal` to `true` you can mutate (add or delete) keys in the global storage. It might be helpful to deal with those keys that the game uses after procesing all scripts in a given frame (e.g. in delayed messages or HUD elements text) when the script's private storage is not available.
 
 Custom text can be constructed dynamically, e.g.:
 

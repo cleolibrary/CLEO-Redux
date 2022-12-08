@@ -1,4 +1,19 @@
-### 1.0.4
+### 1.0.5
+
+- add support for commands using global SCM variables (e.g. counters or timers).
+- delete previously deprecated variable `GAME`. Use `HOST` instead
+- update script watcher: changing `.mjs` files in a script directory or any nested directories triggers script reload
+- `FxtStore` can be forced to mutate global FXT keys by setting the last argument in `FxtStore.insert` and `FxtStore.delete` to true
+
+**SDK AND PLUGINS**
+- update IdeLoader to 1.2: fixed a parser bug that prevented `.ide` files with a `2dfx` section to be loaded
+- update Frontend to 1.1: reduce timeout during a check for updates to 10 seconds
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
+### 1.0.4 - November 22, 2022
 
 - experimental support for [async functions](https://re.cleo.li/docs/en/async.html)
 - add new method `CLEO.runScript` to [spawn new scripts](https://re.cleo.li/docs/en/api.html#cleorunscript)
