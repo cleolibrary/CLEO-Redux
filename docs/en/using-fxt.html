@@ -169,13 +169,15 @@
    * Inserts new text content in the script's fxt storage overwriting the previous content and shadowing static fxt with the same key
    * @param key GXT key that can be used in text commands (7 characters max)
    * @param value text content
+   * @param [isGlobal] if true, the text affects global FXT storage
    */
-  insert(key: string, value: string): void;
+  insert(key: string, value: string, isGlobal?: boolean): void;
   /**
    * Removes the text content associated with the key in the local fxt storage
    * @param key GXT key
+   * @param [isGlobal] if true, the text affects global FXT storage
    */
-  delete(key: string): void;
+  delete(key: string, isGlobal?: boolean): void;
 }
 </code></pre>
 <p>Using <code>FxtStore</code> you can create unique keys and values in the script and put it in local FXT storage. Each script owns a private storage and keys from one script will not conflict with other scripts. Also keys defined in the FxtStore shadow the same keys defined in static FXT files. Consider the example:</p>
@@ -189,7 +191,8 @@ Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from script&quot
 FxtStore.delete(&quot;MY_KEY&quot;);
 Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&quot; again
 </code></pre>
-<p>A private FXT storage is not supported in San Andreas: The Definitive Edition. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
+<p>The private FXT storage is not supported in The Trilogy, Bully and GTA IV. Each script there modifies the global FXT storage. This behavior may change in the future.</p>
+<p><code>insert</code> and <code>delete</code> methods can be forced to change global FXT keys even when the current host supports a private storage. By setting the last argument <code>isGlobal</code> to <code>true</code> you can mutate (add or delete) keys in the global storage. It might be helpful to deal with those keys that the game uses after procesing all scripts in a given frame (e.g. in delayed messages or HUD elements text) when the script's private storage is not available.</p>
 <p>Custom text can be constructed dynamically, e.g.:</p>
 <pre><code class="language-js">while (true) {
   wait(0);
