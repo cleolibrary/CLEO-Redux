@@ -18,5 +18,5 @@ CLEO Redux supports all original opcodes available in the given game. On top of 
 - 0AA8 [CALL_METHOD_RETURN](https://library.sannybuilder.com/#/gta3/CLEO/0AA8) (**UNSAFE** - requires `mem` permission)
 - 0AB0 [IS_KEY_PRESSED](https://library.sannybuilder.com/#/gta3/CLEO/0AB0)
 
-This list might not be complete as there are custom plugins with extra commands (see [Using SDK](./using-sdk.md)). Refer to [Sanny Builder Library](https://library.sannybuilder.com) for the complete list of available commands for each game.
+This list might not be complete as there are [custom plugins with extra commands](./using-sdk.md). Refer to [Sanny Builder Library](https://library.sannybuilder.com) for the complete list of available commands for each game.
 

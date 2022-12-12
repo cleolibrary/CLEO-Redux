@@ -1,13 +1,16 @@
 ### 1.0.5
 
+- add [TypeScript support](https://re.cleo.li/docs/en/typescript.html)
 - add support for commands using global SCM variables (e.g. counters or timers).
 - delete previously deprecated variable `GAME`. Use `HOST` instead
 - update script watcher: changing `.mjs` files in a script directory or any nested directories triggers script reload
 - `FxtStore` can be forced to mutate global FXT keys by setting the last argument in `FxtStore.insert` and `FxtStore.delete` to true
+- `is_variadic` attribute is no longer used in JIT compilation of commands with the `arguments` type
 
 **SDK AND PLUGINS**
-- update IdeLoader to 1.2: fixed a parser bug that prevented `.ide` files with a `2dfx` section to be loaded
-- update Frontend to 1.1: reduce timeout during a check for updates to 10 seconds
+- IdeLoader 1.2: fixed a parser bug that prevented `.ide` files with a `2dfx` section to be loaded
+- Frontend 1.1: reduce timeout during a check for updates to 10 seconds
+- ImGuiRedux: two new commands `IMGUI_SET_IMAGE_BG_COLOR` and `IMGUI_SET_IMAGE_TINT_COLOR`
 
 **BREAKING CHANGES**
 

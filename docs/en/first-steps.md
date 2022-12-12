@@ -11,7 +11,7 @@ Go to the [CLEO directory](./cleo-directory.md) and create a new file named `int
 log("Hello world");
 ```
 
-Lines starting with `//` are comments and ignored by the game. The only meaningful line is the second that instructs JavaScript runtime to print a message in the log file.
+Lines starting with `//` are comments and ignored by the game. The only meaningful line is the second that instructs the JavaScript runtime to print a message in the log file.
 
 Now save the file and run the game. Start a new game or load a save file, play a few seconds and then go to `cleo_redux.log` (do not exit the game yet). You should now see a new line like:
 
@@ -25,7 +25,7 @@ If you see the message, open `intro.js` again and change "Hello world" to anothe
 
 ## Concurrency
 
-There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game iteration. This happens to minimize number of issues caused by accessing shared resources from multiple parallel scripts. The game's main loop is also locked while scripts get processed.
+There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game loop iteration. It reduces a number of possible issues caused due to the use of shared resources from multiple parallel scripts. The game's main loop is also locked while CLEO scripts get processed.
 
 When the script is ready to return control to the main script or another script in the queue, it must call the `wait(n)` command where `n` is a number greater than or equal to zero. This command pauses the current script for at least `n` milliseconds:
 

@@ -5,7 +5,7 @@ You can import other scripts and some custom file formats in your code to make t
 
 ## Importing scripts
 
-- Extensions: `.js`, `.mjs`
+- Extensions: `.js`, `.mjs`, `.ts`
 
 The runtime supports the `import` statement as described in [this article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). 
 

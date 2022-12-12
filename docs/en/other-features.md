@@ -34,6 +34,8 @@ For `Unknown` host
 
 This line instructs VS Code where to look for the commands definitions for the autocomplete feature. The `path` can be relative to the script file or be absolute. Examples above assume JS files are located in the CLEO directory. [Find out more information](https://www.typescriptlang.org/docs/handbook/triple-slash-directives.html#-reference-path-) on the official TypeScript portal.
 
+> This line is not needed for TS scripts as VS Code automatically imports `*.d.ts` files with the help of [`tsconfig.json`](./typescript.md#ts-config) file in the CLEO directory.
+
 ## SCM Log
 
 CLEO Redux has built-in support for basic tracing of SCM instructions. To trace opcodes in all running CS scripts open up [`cleo.ini`](./config.md) and change `LogOpcodes` to 1. Note that it can greatly impact game performance due to frequent microdelays during writes to the log file. Use this option only for debugging purposes.
