@@ -1,4 +1,4 @@
-### 1.0.5
+### 1.0.5 - December 15, 2022
 
 - add [TypeScript support](https://re.cleo.li/docs/en/typescript.html)
 - add support for commands using global SCM variables (e.g. counters or timers).
@@ -9,8 +9,8 @@
 
 **SDK AND PLUGINS**
 - IdeLoader 1.2: fixed a parser bug that prevented `.ide` files with a `2dfx` section to be loaded
-- Frontend 1.1: reduce timeout during a check for updates to 10 seconds
-- ImGuiRedux: two new commands `IMGUI_SET_IMAGE_BG_COLOR` and `IMGUI_SET_IMAGE_TINT_COLOR`
+- Frontend 1.1: reduced a timeout during a check for updates to 10 seconds
+- ImGuiRedux: [more commands](https://library.sannybuilder.com/#/unknown_x86/classes/ImGui)
 
 **BREAKING CHANGES**
 

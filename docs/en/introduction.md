@@ -1,8 +1,8 @@
 # Introduction
 
-CLEO Redux is an [embeddable](./embedding.md) and [extensible](./using-sdk.md) runtime capable of running user-made scripts in games and desktop applications. It supports [JavaScript](./javascript.md) and TypeScript languages. Inspired by [CLEO Library](https://cleo.li/) and [partially compatible](./relation-to-cleo-library.md) with its scripts and plugins CLEO Redux, however, aims to provide a better experience for developers and users and support games beyond just GTA 3D series.
+CLEO Redux is an [embeddable](./embedding.md) and [extensible](./using-sdk.md) runtime capable of running user-made scripts in games and desktop applications. It supports [JavaScript](./javascript.md) and [TypeScript](./typescript.md) languages. Inspired by [CLEO Library](https://cleo.li/) and [partially compatible](./relation-to-cleo-library.md) with its scripts and plugins, CLEO Redux, however, aims to provide better experience for developers and users and support games beyond just GTA 3D series.
 
-Follow the [first steps tutorial](./first-steps.md) to learn how to write and run your first script. Also check our [YouTube playlist](https://www.youtube.com/playlist?list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb) for video guides.
+Follow the [first steps tutorial](./first-steps.md) to learn how to write and run your first script. Also check our [YouTube playlist](https://www.youtube.com/playlist?list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb) for video guides. Or jump straight away to [example scripts](https://github.com/cleolibrary/CLEO-Redux/tree/master/examples).
 
 ## Supported Releases
 
