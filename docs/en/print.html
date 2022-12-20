@@ -464,7 +464,7 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.225</code></td></tr>
 <tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.35</code></td></tr>
 </tbody></table>
-<p>Starting from v1.0.0 CLEO Redux uses compound definitions (a combination of the primary JSON file for the current game and a JSON file for the Unknown host). It lets SDK commands to work in JS scripts regardless of them being defined or not in the primary JSON file. You should notice that during updates CLEO downloads both <code>&lt;game&gt;.json</code> and <code>unknown.json</code> as well as the accompanying <code>enums.js</code> files. It should not affect any existing scripts.</p>
+<p>CLEO Redux uses compound definitions (a combination of the primary JSON file for the current game and a JSON file for the Unknown host). It lets SDK commands to work in JS scripts regardless of them being defined or not in the primary JSON file. You should notice that during updates CLEO downloads both <code>&lt;game&gt;.json</code> and <code>unknown.json</code> as well as the accompanying <code>enums.js</code> files. It should not affect any existing scripts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
 <p>A file with the JavaScript code should have a <code>.js</code> extension and contain valid instructions. </p>
 <p>Valid instructions include a code conforming to the ECMAScript 2020 standard and custom bindings available in the CLEO Redux runtime. If the runtime encounters an unknown or <a href="./permissions.html">illegal</a> instruction the execution halts and a new error is <a href="./log.html">logged</a> in <code>cleo_redux.log</code>. The script may have no instructions (the empty script). </p>
@@ -603,7 +603,7 @@ if (cop) {
 <blockquote>
 <p>This feature is highly experimental and might be unstable.</p>
 </blockquote>
-<p>Since 1.0.4 CLEO Redux receives support for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> and <code>async/await</code> syntax. This enables lots of advanced code patterns.</p>
+<p>CLEO Redux supports asynchronous code via <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> and <code>async/await</code> syntax. This enables lots of advanced code patterns.</p>
 <p>Note that asynchoronous programming is a fairly complex topic and if you want to learn more about visit the following resources:</p>
 <ul>
 <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing">MDN</a></li>
@@ -856,7 +856,7 @@ log(CLEO.apiVersion.build); // undefined
 <h5 id="cleorunscript"><a class="header" href="#cleorunscript">CLEO.runScript</a></h5>
 <ul>
 <li>
-<p>(since 1.0.4) <code>CLEO.runScript(fileName, args?)</code> - method that spawns a new instance of the script. <code>fileName</code> is the path to the script to launch. <code>args</code> is an optional parameter to pass arguments to the script.</p>
+<p><code>CLEO.runScript(fileName, args?)</code> - method that spawns a new instance of the script. <code>fileName</code> is the path to the script to launch. <code>args</code> is an optional parameter to pass arguments to the script.</p>
 <blockquote>
 <p>Don't overuse this feature as spawning a new script is a costly operation. Avoid spawning too many scripts in a loop.</p>
 </blockquote>
@@ -1420,7 +1420,7 @@ var x = Object.create(null);
 <h2 id="game"><a class="header" href="#game">GAME</a></h2>
 <p><code>GAME</code> variable has been renamed to <a href="./api.html#host">HOST</a>.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="typescript"><a class="header" href="#typescript">TypeScript</a></h1>
-<p>Since v1.0.5 CLEO Redux adds first-class support for TypeScript. TypeScript is a superset of JavaScript with static types and other features. It is compiled to JavaScript and can be efficiently used in large-scale projects. TypeScript has excellent IDE support so you get autocompletion, type checking and other features in your editor for free.</p>
+<p>CLEO Redux has first-class support for TypeScript. TypeScript is a superset of JavaScript with static types and other features. It is compiled to JavaScript and can be efficiently used in large-scale projects. TypeScript has excellent IDE support so you get autocompletion, type checking and other features in your editor for free.</p>
 <p>TypeScript website: <a href="https://www.typescriptlang.org/">https://www.typescriptlang.org/</a>.</p>
 <p>TS scripts have <code>.ts</code> extension and can be used anywhere <a href="./script-lifecycle.html">where JS scripts are supported</a>. They can be imported directly in both JS and TS scripts using <a href="./imports.html"><code>import</code></a> statements.</p>
 <h2 id="ts-config"><a class="header" href="#ts-config">TS Config</a></h2>
