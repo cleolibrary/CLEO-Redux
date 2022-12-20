@@ -1,6 +1,6 @@
 # TypeScript
 
-Since v1.0.5 CLEO Redux adds first-class support for TypeScript. TypeScript is a superset of JavaScript with static types and other features. It is compiled to JavaScript and can be efficiently used in large-scale projects. TypeScript has excellent IDE support so you get autocompletion, type checking and other features in your editor for free.
+CLEO Redux has first-class support for TypeScript. TypeScript is a superset of JavaScript with static types and other features. It is compiled to JavaScript and can be efficiently used in large-scale projects. TypeScript has excellent IDE support so you get autocompletion, type checking and other features in your editor for free.
 
 TypeScript website: [https://www.typescriptlang.org/](https://www.typescriptlang.org/).
 

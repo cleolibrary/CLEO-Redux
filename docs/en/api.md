@@ -196,7 +196,7 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
 ##### CLEO.runScript
 
-- (since 1.0.4) `CLEO.runScript(fileName, args?)` - method that spawns a new instance of the script. `fileName` is the path to the script to launch. `args` is an optional parameter to pass arguments to the script.
+- `CLEO.runScript(fileName, args?)` - method that spawns a new instance of the script. `fileName` is the path to the script to launch. `args` is an optional parameter to pass arguments to the script.
 
   > Don't overuse this feature as spawning a new script is a costly operation. Avoid spawning too many scripts in a loop.
 
