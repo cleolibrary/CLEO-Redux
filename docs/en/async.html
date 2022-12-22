@@ -258,6 +258,13 @@ Each of the three tasks are executed independently from each other. Note that ru
   log(myVar); // prints 42
 })();
 </code></pre>
+<p>When importing JSON files, its content is available via <code>default</code> property.</p>
+<pre><code class="language-js">(async function () {
+  const { default: data } = await import(&quot;./my.json&quot;);
+
+  log(data); // prints the content of my.json
+})();
+</code></pre>
 <h2 id="settimeout-and-setinterval"><a class="header" href="#settimeout-and-setinterval">setTimeout and setInterval</a></h2>
 <p>It is easy to implement <code>setTimeout</code> and <code>setInterval</code> using <code>asyncWait</code> and <code>async</code> functions. You can <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/examples/setTimeout%2C%20setInterval.js">find an implementation example here</a>.</p>
 

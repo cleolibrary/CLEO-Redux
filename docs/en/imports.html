@@ -141,12 +141,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="imports"><a class="header" href="#imports">Imports</a></h1>
-<p>You can import other scripts and some custom file formats in your code to make the code modular and share the common logic.</p>
+<p>You can import other scripts and some custom file formats in your code to make the code modular and share the common logic. This page describes static <code>import</code> statements (unconditional importing). Their format matches the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">ES6 import syntax</a>. CLEO Redux also supports <a href="./async.html#dynamic-imports">dynamic imports</a> (importing on-demand).</p>
 <h2 id="importing-scripts"><a class="header" href="#importing-scripts">Importing scripts</a></h2>
 <ul>
 <li>Extensions: <code>.js</code>, <code>.mjs</code>, <code>.ts</code></li>
 </ul>
-<p>The runtime supports the <code>import</code> statement as described in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">this article</a>. </p>
 <p><code>./</code> in a path resolves to the current file's directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from './bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\extra\bar.js</code>. </p>
 <p><code>../</code> resolves to the parent directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>. You can combine <code>../</code> to traverse multiple levels up. </p>
 <p>To avoid running imported <code>.js</code> files as standalone scripts, either put them into a separate folder outside of the main <a href="./cleo-directory.html">CLEO directory</a> (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
@@ -157,9 +156,6 @@ import func from &quot;./other&quot;;
 import { PedType } from &quot;./includes/types&quot;;
 
 </code></pre>
-<blockquote>
-<p>See also <a href="./async.html#dynamic-imports">Dynamic Imports</a>.</p>
-</blockquote>
 <h2 id="importing-json-files"><a class="header" href="#importing-json-files">Importing JSON files</a></h2>
 <ul>
 <li>Extensions: <code>.json</code></li>
