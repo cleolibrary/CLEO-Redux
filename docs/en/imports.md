@@ -1,13 +1,10 @@
 # Imports
 
-You can import other scripts and some custom file formats in your code to make the code modular and share the common logic.
-
+You can import other scripts and some custom file formats in your code to make the code modular and share the common logic. This page describes static `import` statements (unconditional importing). Their format matches the [ES6 import syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). CLEO Redux also supports [dynamic imports](./async.md#dynamic-imports) (importing on-demand).
 
 ## Importing scripts
 
 - Extensions: `.js`, `.mjs`, `.ts`
-
-The runtime supports the `import` statement as described in [this article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). 
 
 `./` in a path resolves to the current file's directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from './bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\extra\bar.js`. 
 
@@ -24,8 +21,6 @@ import func from "./other";
 import { PedType } from "./includes/types";
 
 ```
-
-> See also [Dynamic Imports](./async.md#dynamic-imports).
 
 ## Importing JSON files
 

@@ -154,6 +154,16 @@ main.js:
 })();
 ```
 
+When importing JSON files, its content is available via `default` property.
+
+```js
+(async function () {
+  const { default: data } = await import("./my.json");
+
+  log(data); // prints the content of my.json
+})();
+```
+
 ## setTimeout and setInterval
 
 It is easy to implement `setTimeout` and `setInterval` using `asyncWait` and `async` functions. You can [find an implementation example here](https://github.com/cleolibrary/CLEO-Redux/blob/master/examples/setTimeout%2C%20setInterval.js).
