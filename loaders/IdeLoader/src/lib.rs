@@ -7,8 +7,13 @@ extern "C" {}
 
 #[ctor]
 fn init() {
-    cleo_redux_sdk::log("IDE Loader 1.2");
+    cleo_redux_sdk::log("IDE Loader 1.3");
     cleo_redux_sdk::register_loader("*.ide", loader);
+    let path = cleo_redux_sdk::get_directory_path(cleo_redux_sdk::Directory::CONFIG)
+        .join("ide_loader.d.ts");
+    if let Err(e) = std::fs::write(path, include_str!("./ide_loader.d.ts")) {
+        cleo_redux_sdk::log(format!("Failed to write ide_loader.d.ts: {}", e));
+    };
 }
 
 pub extern "C" fn loader(file_name: *const cleo_redux_sdk::c_char) -> *mut cleo_redux_sdk::c_void {

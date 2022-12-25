@@ -10,9 +10,9 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
 name = "cleo_redux_sdk"
-version = "0.0.9"
+version = "0.0.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ecb735f3d046b5c0a97bd27ec0bd782ed554b345a1ac6b751f839ee2dd38df2b"
+checksum = "7c581e6079ed52c7efa171e87c0582a41acab4a41da5d74ca6bcdd8a3379632c"
 
 [[package]]
 name = "ctor"
@@ -41,7 +41,7 @@ checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
 
 [[package]]
 name = "ide-loader"
-version = "1.2.0"
+version = "1.3.0"
 dependencies = [
  "cleo_redux_sdk",
  "ctor",
