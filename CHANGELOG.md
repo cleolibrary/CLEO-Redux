@@ -1,3 +1,19 @@
+### 1.0.6
+
+- new built-in function `addEventListener` to react on [game events](https://re.cleo.li/docs/en/events.html)
+- fix a rare deadlock causing scripts to stop on timeout
+
+**SDK AND PLUGINS**
+
+- new SDK method `TriggerEvent` to trigger custom events with some payload. SDK version is now 7.
+- new Events plugin that brings in a few events to react on in JS/TS code: `OnVehicleCreate`, `OnPedCreate`, `OnObjectCreate`, `OnVehicleDelete`, `OnPedDelete`, `OnObjectDelete`
+- IdeLoader 1.3: generate `ide_loader.d.ts` for better intellisense in TS scripts
+- TxtLoader 1.1: generate `txt_loader.d.ts` for better intellisense in TS scripts
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 1.0.5 - December 15, 2022
 
 - add [TypeScript support](https://re.cleo.li/docs/en/typescript.html)
@@ -8,6 +24,7 @@
 - `is_variadic` attribute is no longer used in JIT compilation of commands with the `arguments` type
 
 **SDK AND PLUGINS**
+
 - IdeLoader 1.2: fixed a parser bug that prevented `.ide` files with a `2dfx` section to be loaded
 - Frontend 1.1: reduced a timeout during a check for updates to 10 seconds
 - ImGuiRedux: [more commands](https://library.sannybuilder.com/#/unknown_x86/classes/ImGui)

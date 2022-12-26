@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.5"
+#define AppVersion "1.0.6-dev.20221226"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -62,6 +62,7 @@ Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mo
 Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: full
 Name: "plugins/input"; Description: "Input 1.3"; Types: full
 Name: "plugins/frontend"; Description: "Frontend 1.1"; Types: full
+Name: "plugins/events"; Description: "Events 1.0"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt, *.text (Text files)"; Types: full
 Name: "loaders/ide"; Description: "*.ide (Item Definition files)"; Types: full
@@ -148,6 +149,8 @@ Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles64.cleo"; DestDir: "{app}\C
 Source: "{#SourceDir}\plugins\Input\build\Input.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/input
 Source: "{#SourceDir}\plugins\Input\build\Input64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/input
 Source: "{#SourceDir}\plugins\Frontend\Frontend.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: plugins/frontend
+Source: "{#SourceDir}\plugins\Events\build\Events.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86 and not IsUnknown; Components: plugins/events
+Source: "{#SourceDir}\plugins\Events\build\Events64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64 and not IsUnknown; Components: plugins/events
 
 Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: InstallImGuiRedux32; Components: plugins/imgui;
 Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiReduxWin64.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/imgui;
@@ -476,7 +479,7 @@ begin
    begin
     FGameId := IdentifyGame(WizardDirValue);
      // reset all checkboxes to their initial state first
-    for I := 1 to 13 do
+    for I := 1 to 15 do
     begin
       WizardForm.ComponentsList.ItemEnabled[I] := True;
       WizardForm.ComponentsList.Checked[I] := True;
@@ -520,8 +523,11 @@ begin
     // disable IDE Loader for unknown host
     if IsUnknown then
     begin
+      // Events Plugin
+      WizardForm.ComponentsList.Checked[11] := False;
+      WizardForm.ComponentsList.ItemEnabled[11] := False;
       // ide loader
-      WizardForm.ComponentsList.Checked[13] := False;
+      WizardForm.ComponentsList.Checked[14] := False;
     end;
 
     // ImGuiRedux is bugged on re3
@@ -537,7 +543,7 @@ begin
     // MSS lib is an ASI loader
     if FileExists(ExpandConstant('{app}\Mss32.dll')) then
     begin
-       WizardForm.ComponentsList.Checked[14] := False;
+       WizardForm.ComponentsList.Checked[15] := False;
     end;
    end;
 end;

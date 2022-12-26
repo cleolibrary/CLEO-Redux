@@ -1,5 +1,30 @@
 # JavaScript API
 
+- [Native functions](#native-functions)
+- [CLEO Redux Bindings](#cleo-redux-bindings)
+  - [Variables](#variables)
+    - [HOST](#host)
+    - [ONMISSION](#onmission)
+    - [TIMERA, TIMERB](#timera-timerb)
+    - [\_\_dirname](#__dirname)
+    - [\_\_filename](#__filename)
+  - [Functions](#functions)
+    - [log](#log)
+    - [wait](#wait)
+    - [showTextBox](#showtextbox)
+    - [exit](#exit)
+    - [native](#native)
+  - [Static Objects](#static-objects)
+    - [Memory](#memory)
+    - [Math](#math)
+    - [FxtStore](#fxtstore)
+    - [CLEO](#cleo)
+      - [CLEO.debug](#cleodebug)
+      - [CLEO.version](#cleoversion)
+      - [CLEO.apiVersion](#cleoapiversion)
+      - [CLEO.runScript](#cleorunscript)
+      - [CLEO.getLastEvent](#cleogetlastevent)
+
 ## Native functions
 
 CLEO Redux supports all commands native to the current game. In the classic GTA 3D series they are also known as _opcodes_. In GTA IV they are known as _native functions_. You can find them in [Sanny Builder Library](https://library.sannybuilder.com/).
@@ -194,71 +219,82 @@ if (native("HAS_MODEL_LOADED", 101)) {
   log(CLEO.apiVersion.build); // undefined
   ```
 
-##### CLEO.runScript
+  ##### CLEO.runScript
 
-- `CLEO.runScript(fileName, args?)` - method that spawns a new instance of the script. `fileName` is the path to the script to launch. `args` is an optional parameter to pass arguments to the script.
+  - `CLEO.runScript(fileName, args?)` - method that spawns a new instance of the script. `fileName` is the path to the script to launch. `args` is an optional parameter to pass arguments to the script.
 
-  > Don't overuse this feature as spawning a new script is a costly operation. Avoid spawning too many scripts in a loop.
+    > Don't overuse this feature as spawning a new script is a costly operation. Avoid spawning too many scripts in a loop.
 
-  `runScript` has the following limitations:
+    `runScript` has the following limitations:
 
-  - JS scripts must have an extension `.mjs`, CS scripts must have an extension `.s`. This is necessary to avoid automatic script loading.
-  - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
+    - JS scripts must have an extension `.mjs`, CS scripts must have an extension `.s`. This is necessary to avoid automatic script loading.
+    - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
 
-  When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
+    When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
 
-  You can spawn multiple instances of the same script with different arguments.
+    You can spawn multiple instances of the same script with different arguments.
 
-  ###### Launching a new JS script
+    ###### Launching a new JS script
 
-  Imagine that you have two files `main.js` and `child.mjs` in the CLEO directory:
+    Imagine that you have two files `main.js` and `child.mjs` in the CLEO directory:
 
-  main.js:
+    main.js:
 
-  ```js
-  CLEO.runScript("./child.mjs", { a: 1, b: "str", c: 10.5 });
-  ```
+    ```js
+    CLEO.runScript("./child.mjs", { a: 1, b: "str", c: 10.5 });
+    ```
 
-  child.mjs:
+    child.mjs:
 
-  ```js
-  showTextBox("child.mjs was launched with: " + a + " " + b + " " + c);
-  ```
+    ```js
+    showTextBox("child.mjs was launched with: " + a + " " + b + " " + c);
+    ```
 
-  Now if you run the game you should see the following message: `child.mjs was launched with: 1 str 10.5`.
+    Now if you run the game you should see the following message: `child.mjs was launched with: 1 str 10.5`.
 
-  ###### Launching a new CS script
+    ###### Launching a new CS script
 
-  main.js:
+    main.js:
 
-  ```js
-  CLEO.runScript("./child.cs", { 1: 500 });
-  ```
+    ```js
+    CLEO.runScript("./child.cs", { 1: 500 });
+    ```
 
-  child.cs:
+    child.cs:
 
-  ```
-  0109: player $PLAYER_CHAR money += 1@
-  0A93: terminate_this_custom_script
-  ```
+    ```
+    0109: player $PLAYER_CHAR money += 1@ // gives the player $500
+    0A93: terminate_this_custom_script
+    ```
 
-  The player will get 500 dollars.
+    To pass floating-point numbers to a CS script use `Memory.FromFloat` function:
 
-  To pass floating-point numbers to a CS script use `Memory.FromFloat` function:
+    main.js:
 
-  main.js:
+    ```js
+    CLEO.runScript("./child.cs", {
+      0: Memory.FromFloat(-921.25),
+      1: Memory.FromFloat(662.125),
+      2: Memory.FromFloat(-100.0),
+    });
+    ```
 
-  ```js
-  CLEO.runScript("./child.cs", {
-    0: Memory.FromFloat(-921.25),
-    1: Memory.FromFloat(662.125),
-    2: Memory.FromFloat(-100.0),
-  });
-  ```
+    child.cs:
 
-  child.cs:
+    ```
+    00A1: set_char_coordinates $PLAYER_ACTOR x 0@ y 1@ z 2@ // teleports the player at -921.25 662.125 -100.0
+    0A93: terminate_this_custom_script
+    ```
 
-  ```
-  00A1: set_char_coordinates $PLAYER_ACTOR x 0@ y 1@ z 2@
-  0A93: terminate_this_custom_script
-  ```
+  ##### CLEO.getLastEvent
+
+  - `CLEO.getLastEvent(): object | undefined` - method that returns the last event object. The event object is a JavaScript object with the following fields:
+
+    - `name` - the name of the event
+    - `data` - any payload [associated with the event](./events.md#list-of-events)
+
+    The method returns `undefined` if there was no event in this frame.
+
+    ```js
+    log(CLEO.getLastEvent()); // { name: "OnVehicleCreate", data: { address: 0x12345678 } }
+    ```

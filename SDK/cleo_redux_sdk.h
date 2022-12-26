@@ -151,5 +151,8 @@ extern "C" {
 	/// since v6
 	/// Is end of arguments reached
 	bool IsEndOfArguments(Context ctx);
+	/// since v7
+	/// Triggers an event with the given name and data
+	void TriggerEvent(const char* name, const char* data);
 }
 

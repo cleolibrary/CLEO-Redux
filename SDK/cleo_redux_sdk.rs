@@ -195,6 +195,10 @@ extern "C" {
     ///
     /// since v6
     fn IsEndOfArguments(ctx: Context) -> bool;
+    /// Trigger an event with the given name and data
+    ///
+    /// since v7
+    fn TriggerEvent(event: *const c_char, data: *const c_char);
 }
 
 macro_rules! sz {
@@ -477,4 +481,12 @@ pub fn get_number_of_active_js_scripts() -> usize {
 #[allow(dead_code)]
 pub fn is_end_of_arguments(ctx: Context) -> bool {
     unsafe { IsEndOfArguments(ctx) }
+}
+
+/// Triggers an event with the given name and data
+///
+/// since v7
+#[allow(dead_code)]
+pub fn trigger_event(name: &str, data: &str) {
+    unsafe { TriggerEvent(sz!(name), sz!(data)) }
 }
