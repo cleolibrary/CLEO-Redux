@@ -1,12 +1,12 @@
-> This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) [click here](./using-memory.md).
-
 # Memory Object (x64)
+
+> This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) [click here](./using-memory.md).
 
 - [Reading and Writing Values](#reading-and-writing-values)
 - [Reading and Writing Strings](#reading-and-writing-strings)
 - [Casting methods](#casting-methods)
 - [Calling Foreign Functions](#calling-foreign-functions)
-    - [Convenience methods with Fn object](#convenience-methods-with-fn-object)
+  - [Convenience methods with Fn object](#convenience-methods-with-fn-object)
 
 An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
 

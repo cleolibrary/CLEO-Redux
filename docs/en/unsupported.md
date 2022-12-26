@@ -12,7 +12,7 @@ The following items are known to be not working and there is no specific timelin
 
 ## Unsupported features in JS
 
-- commands requiring an scm variable (e.g. countdown timers). [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/10).
+- for commands requiring a global SCM variable (e.g. countdown timers) use [scm.ts library](https://github.com/x87/scm.ts).
 
 - commands implicitly loading models or textures (such as widgets) [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/12). You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. 
 

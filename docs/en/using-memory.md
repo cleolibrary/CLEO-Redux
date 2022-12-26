@@ -1,6 +1,6 @@
-> This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) [click here](./using-memory-64.md).
-
 # Memory Object
+
+> This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) [click here](./using-memory-64.md).
 
 - [Reading and Writing Values](#reading-and-writing-values)
 - [Reading and Writing Strings](#reading-and-writing-strings)

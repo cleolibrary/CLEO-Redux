@@ -21,11 +21,11 @@ In short, yes. [See this page](https://github.com/cleolibrary/CLEO-Redux/wiki/Fe
 
 ### Can I use original opcodes?
 
-Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in [our Discord](https://discord.gg/d5dZSfgBZr).
+Yes, you can. Refer to the [Sanny Builder library](https://library.sannybuilder.com/#/sa_unreal). Keep in mind that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in [our Discord](https://discord.gg/d5dZSfgBZr).
 
 ### How do I know what commands can I use in JavaScript?
 
-After each game run, CLEO generates a d.ts file in the CLEO\.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.
+After each game run, CLEO generates a `.d.ts` file in the `CLEO\.config` directory. It's called `gta3.d.ts`, `vc.d.ts` or `sa.d.ts` depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.
 
 To enable autocomplete in VS Code include the following line in your JS script:
 

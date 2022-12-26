@@ -2,6 +2,12 @@
 
 > This feature is highly experimental and might be unstable.
 
+- [Async API](#async-api)
+- [Async Functions](#async-functions)
+- [Concurrent Async Functions](#concurrent-async-functions)
+- [Dynamic Imports](#dynamic-imports)
+- [setTimeout and setInterval](#settimeout-and-setinterval)
+
 CLEO Redux supports asynchronous code via [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) and `async/await` syntax. This enables lots of advanced code patterns.
 
 Note that asynchoronous programming is a fairly complex topic and if you want to learn more about visit the following resources:
@@ -13,7 +19,7 @@ See an example of an async script for GTA III [here](https://github.com/x87/luig
 
 ## Async API
 
-CLEO Redux 1.0.4 has one native async command: `asyncWait`. This command is used to pause a script for a specified amount of time. It returns a `Promise` that resolves after the specified amount of time. `asyncWait` can only be used inside a `async` function.
+CLEO Redux 1.0.4 has one native async command: `asyncWait`. This command pauses the script for a specified amount of time. It returns a `Promise` that resolves after the specified amount of time. `asyncWait` can only be used inside an `async` function.
 
 ```js
 async function delay(ms) {
@@ -25,7 +31,7 @@ async function delay(ms) {
 delay(1000);
 ```
 
-Difference between `asyncWait` and `wait` is that the former is not a blocking command. If you don't put the `await` keyword in front of it, the script execution will continue.
+Difference between `asyncWait` and `wait` is that the former is not a blocking command. If you don't put the `await` keyword in front of it, the script execution continues.
 
 ```js
 async function delay(ms) {
@@ -122,7 +128,7 @@ async function task3() {
 ```
 
 This is very similar to writing traditional `while(true){}` loops with a `wait` command in it, with the difference that the functions must have `async` keyword and use `asyncWait` instead of `wait`
-Each of the three tasks are executed independently from each other. Note that runtime guarantees that all async functions are executed in the same thread. They could share global variables and mutate them. Look at how `gVar` is incremented in `task2` and read in `task3`.
+Each of the three tasks are executed independently from each other. Note that runtime guarantees that all async functions are executed in the same thread. They share global variables and can change them. Look at how `gVar` is being incremented in `task2` and read in `task3`.
 
 ## Dynamic Imports
 
