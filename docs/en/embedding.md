@@ -1,6 +1,14 @@
 # Embedding to custom host
 
-CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not [supported officially](./introduction.md#supported-releases)) host. A *host* is an application in which process `cleo_redux.asi` or `cleo_redux64.asi` [gets loaded or injected](#loading-into-custom-process) and where the CLEO runtime [runs](#launching-the-cleo-runtime). This feature is highly experimental and subject to change at any moment.
+CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not [supported officially](./introduction.md#supported-releases)) host. A _host_ is an application in which process `cleo_redux.asi` or `cleo_redux64.asi` [gets loaded or injected](#loading-into-custom-process) and where the CLEO runtime [runs](#launching-the-cleo-runtime). This feature is highly experimental and subject to change at any moment.
+
+- [Loading into custom process](#loading-into-custom-process)
+- [Launching the CLEO runtime](#launching-the-cleo-runtime)
+  - [Automatic launch](#automatic-launch)
+  - [Manually Controlling the Runtime](#manually-controlling-the-runtime)
+- [Available Commands](#available-commands)
+- [Manifest](#manifest)
+  - [Example](#example)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rk2LvDt7UkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -81,7 +89,7 @@ Manifest is a file with static configuration for the given host. Only unknown ho
 
 - `host` should match the host's executable name. E.g. if the host runs via `application.exe`, the value is `application`. Available in scripts as the [HOST variable](./api.md#host).
 - `host_name` defines the host's custom name used in the [log](./log.md)
-- `compound` defines whether the host uses [compound definitions](./definitions.md). By default the host uses definitions from the file matching `<host>.json`, e.g. `application.json`. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the `.config` folder. 
+- `compound` defines whether the host uses [compound definitions](./definitions.md). By default the host uses definitions from the file matching `<host>.json`, e.g. `application.json`. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the `.config` folder.
 
   When `compound` is set to `true` the host also uses command definitions for the Unknown host (e.g. `unknown_x86.json`). If this file is missing CLEO downloads it from Sanny Builder Library.
 
@@ -91,10 +99,10 @@ Host: [Sanny Builder 3](https://sannybuilder.com) (`sanny.exe`)
 
 ```json
 {
-    "host": "sanny",
-    "host_name": "Sanny Builder 3",
-    "compound": true
+  "host": "sanny",
+  "host_name": "Sanny Builder 3",
+  "compound": true
 }
 ```
 
-`Sanny Builder 3\CLEO\.config` folder contains `sanny.json` and `manifest.json` before the first run. The other files are downloaded or generated automatically. 
+`Sanny Builder 3\CLEO\.config` folder contains `sanny.json` and `manifest.json` before the first run. The other files are downloaded or generated automatically.

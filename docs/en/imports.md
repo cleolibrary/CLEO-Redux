@@ -2,14 +2,19 @@
 
 You can import other scripts and some custom file formats in your code to make the code modular and share the common logic. This page describes static `import` statements (unconditional importing). Their format matches the [ES6 import syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import). CLEO Redux also supports [dynamic imports](./async.md#dynamic-imports) (importing on-demand).
 
+- [Importing scripts](#importing-scripts)
+- [Importing JSON files](#importing-json-files)
+- [Importing other formats](#importing-other-formats)
+  - [TXT](#txt)
+  - [IDE](#ide)
+
 ## Importing scripts
 
 - Extensions: `.js`, `.mjs`, `.ts`
 
-`./` in a path resolves to the current file's directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from './bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\extra\bar.js`. 
+`./` in a path resolves to the current file's directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from './bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\extra\bar.js`.
 
-`../` resolves to the parent directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from '../bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\bar.js`. You can combine `../` to traverse multiple levels up. 
-
+`../` resolves to the parent directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from '../bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\bar.js`. You can combine `../` to traverse multiple levels up.
 
 To avoid running imported `.js` files as standalone scripts, either put them into a separate folder outside of the main [CLEO directory](./cleo-directory.md) (e.g. `CLEO/includes/`) or use the extension `.mjs`.
 
@@ -19,7 +24,6 @@ import func from "./other";
 
 // imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
 import { PedType } from "./includes/types";
-
 ```
 
 ## Importing JSON files
@@ -91,13 +95,11 @@ would be transformed into:
 
 ```json
 {
-    "peds": [
-        ["0", "null", "generic", "PLAYER1", "STAT_PLAYER", "player", "7f"],
-        ["1", "cop", "cop", "COP", "STAT_COP", "man", "7f"]
-    ],
-    "objs": [
-        "170", "grenade", "generic", "1", "100", "0"
-    ]
+  "peds": [
+    ["0", "null", "generic", "PLAYER1", "STAT_PLAYER", "player", "7f"],
+    ["1", "cop", "cop", "COP", "STAT_COP", "man", "7f"]
+  ],
+  "objs": ["170", "grenade", "generic", "1", "100", "0"]
 }
 ```
 

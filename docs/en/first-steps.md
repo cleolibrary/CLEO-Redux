@@ -1,5 +1,15 @@
 # First steps
 
+- [Introduction](#introduction)
+- [Concurrency](#concurrency)
+- [Variables](#variables)
+- [Control Flow](#control-flow)
+  - [Conditions](#conditions)
+  - [Loops](#loops)
+- [Functions](#functions)
+
+## Introduction
+
 Since [available commands](./api.md) vary from game to game for the purpose of this tutorial we will be using CLEO's built-in commands such as [`log`](./log.md) command that is available everywhere.
 
 Once you have CLEO Redux [installed](./installation.md) run the game once to make sure CLEO is loading. You can verify it by having `cleo_redux.log` created in the game root folder. If there are no errors in the log you can start adding new scripts.
@@ -94,7 +104,7 @@ temp = [];
 log(typeof temp); // prints "object" in cleo_redux.log*
 ```
 
-> *`typeof` returns "object" for an array (`[]`). This is a very well known quirk in the language. You can [read more about it here](https://web.mit.edu/jwalden/www/isArray.html) and find other means of differenting between arrays and plain objects.
+> \*`typeof` returns "object" for an array (`[]`). This is a very well known quirk in the language. You can [read more about it here](https://web.mit.edu/jwalden/www/isArray.html) and find other means of differenting between arrays and plain objects.
 
 ## Control Flow
 

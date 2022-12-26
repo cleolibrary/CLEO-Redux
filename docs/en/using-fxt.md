@@ -2,6 +2,9 @@
 
 CLEO Redux supports custom text content without the need to edit game files.
 
+- [Static FXT files](#static-fxt-files)
+- [FxtStore](#fxtstore)
+
 ## Static FXT files
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ctsKy7WnY9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

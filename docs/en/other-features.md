@@ -2,6 +2,11 @@
 
 CLEO Redux puts focus on improving dev experience and make scripting process easier.
 
+- [Integration with Visual Studio Code](#integration-with-visual-studio-code)
+- [SCM Log](#scm-log)
+- [Hot Reload](#hot-reload)
+- [Main Menu Information](#main-menu-information)
+
 ## Integration with Visual Studio Code
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jqz8_lGnG4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -56,4 +61,4 @@ Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Libr
 
 ## Main Menu Information
 
-CLEO Redux displays the information such as the version and the amount of active scripts in the main menu of GTA III / Vice City and San Andreas. To disable this information set [`DisplayMenuInfo`](./config.md#general) to `0`.
+`Frontend` plugin displays some extra information such as the CLEO version and the amount of active scripts in the main menu of GTA III, Vice City, and San Andreas. It also checks for available updates. If this information is not needed, delete `Frontend.cleo` file from the CLEO plugins directory.

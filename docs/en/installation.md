@@ -1,5 +1,10 @@
 # Installation
 
+- [CLEO Directory](#cleo-directory)
+- [Dependency on ASI Loader](#dependency-on-asi-loader)
+- [Note on re3 or reVC](#note-on-re3-or-revc)
+- [Uninstallation](#uninstallation)
+
 CLEO Redux comes with a hassle-free installer that identifies the selected game and downloads all the dependencies. Just run `cleo_redux_setup.exe` and follow its steps.
 
 > Both CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory.
