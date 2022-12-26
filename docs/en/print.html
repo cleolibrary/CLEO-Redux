@@ -374,13 +374,27 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
 <h2 id="general"><a class="header" href="#general">General</a></h2>
 <ul>
-<li><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
-<li><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
-<li><code>AllowFxt</code> - when set to <code>1</code> CLEO loads and <a href="./using-fxt.html">uses</a> <code>*.fxt</code> files located in the CLEO\CLEO_TEXT directory. Enabled by default.</li>
-<li><code>CheckUpdates</code> - (deprecated in favor of <a href="./installation-plugins.html">Frontend</a> plugin)</li>
-<li><code>LogOpcodes</code> - when set to <code>1</code> CLEO <a href="./log.html">logs</a> all executed opcodes in custom scripts.</li>
-<li><code>DisplayMenuInfo</code> - when set to <code>1</code> CLEO displays some information in the main menu. Enabled by default.</li>
-<li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
+<li>
+<p><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</p>
+</li>
+<li>
+<p><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</p>
+</li>
+<li>
+<p><code>AllowFxt</code> - when set to <code>1</code> CLEO loads and <a href="./using-fxt.html">uses</a> <code>*.fxt</code> files located in the CLEO\CLEO_TEXT directory. Enabled by default.</p>
+</li>
+<li>
+<p><code>LogOpcodes</code> - when set to <code>1</code> CLEO <a href="./log.html">logs</a> all executed opcodes in custom scripts.</p>
+</li>
+<li>
+<p><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</p>
+</li>
+<li>
+<p><code>CheckUpdates</code> - (deprecated in favor of <a href="./installation-plugins.html">Frontend</a> plugin)</p>
+</li>
+<li>
+<p><code>DisplayMenuInfo</code> - (deprecated in favor of <a href="./installation-plugins.html">Frontend</a> plugin)</p>
+</li>
 </ul>
 <h2 id="host"><a class="header" href="#host">Host</a></h2>
 <ul>
@@ -625,6 +639,13 @@ if (cop) {
 <blockquote>
 <p>This feature is highly experimental and might be unstable.</p>
 </blockquote>
+<ul>
+<li><a href="async.html#async-api">Async API</a></li>
+<li><a href="async.html#async-functions">Async Functions</a></li>
+<li><a href="async.html#concurrent-async-functions">Concurrent Async Functions</a></li>
+<li><a href="async.html#dynamic-imports">Dynamic Imports</a></li>
+<li><a href="async.html#settimeout-and-setinterval">setTimeout and setInterval</a></li>
+</ul>
 <p>CLEO Redux supports asynchronous code via <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a> and <code>async/await</code> syntax. This enables lots of advanced code patterns.</p>
 <p>Note that asynchoronous programming is a fairly complex topic and if you want to learn more about visit the following resources:</p>
 <ul>
@@ -1063,10 +1084,10 @@ var x = Object.create(null);
     var pi = Math.floor(Math.PI) // pi = 3
 </code></pre>
 <p>Native <code>Math</code> methods were given a higher priority over the game commands with the same functionality. For example, to calculate an absolute value of the number, there is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/abs">Math.abs</a>, not <a href="https://library.sannybuilder.com/#/gta3?q=%22abs%22">Math.Abs</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
+<blockquote>
 <p>This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) <a href="./using-memory-64.html">click here</a>.</p>
 </blockquote>
-<h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
 <ul>
 <li><a href="using-memory.html#reading-and-writing-values">Reading and Writing Values</a></li>
 <li><a href="using-memory.html#reading-and-writing-strings">Reading and Writing Strings</a></li>
@@ -1294,10 +1315,10 @@ if (addr) {
 }
 </code></pre>
 <p>At the moment <code>Memory.Translate</code> should only be used in <code>re3</code> and <code>reVC</code>. In other games you will be getting <code>0</code> as a result most of the time.</p>
-<div style="break-before: page; page-break-before: always;"></div><blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
+<blockquote>
 <p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
 </blockquote>
-<h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
 <ul>
 <li><a href="using-memory-64.html#reading-and-writing-values">Reading and Writing Values</a></li>
 <li><a href="using-memory-64.html#reading-and-writing-strings">Reading and Writing Strings</a></li>
@@ -1521,7 +1542,7 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <p>To stream events in your terminal while testing a script, run:</p>
 <pre><code>tail -f cleo_redux.log
 </code></pre>
-<p><code>tail</code> is a unix command so a compatible environment is needed (for example Git Bash).</p>
+<p><code>tail</code> is a unix command so a compatible environment is needed (for example <a href="https://git-scm.com/downloads">Git Bash</a>).</p>
 <p>The log file also lists all executed opcodes with <a href="./config.html#general"><code>LogOpcodes=1</code></a> and JavaScript commands with <a href="./api.html#cleo"><code>CLEO.debug.trace(true)</code></a>. </p>
 <div style="break-before: page; page-break-before: always;"></div><p>Here you can find answers to the frequently asked questions about support for The Trilogy remaster.</p>
 <ul>
@@ -1543,9 +1564,9 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <h3 id="is-there-any-difference-from-support-of-the-classic-games"><a class="header" href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></h3>
 <p>In short, yes. <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">See this page</a> for detail on what's supported and what's not.</p>
 <h3 id="can-i-use-original-opcodes"><a class="header" href="#can-i-use-original-opcodes">Can I use original opcodes?</a></h3>
-<p>Yes, you can. Refer to the Sanny Builder library https://library.sannybuilder.com/#/sa_unreal. Take a note that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a>.</p>
+<p>Yes, you can. Refer to the <a href="https://library.sannybuilder.com/#/sa_unreal">Sanny Builder library</a>. Keep in mind that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a>.</p>
 <h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
-<p>After each game run, CLEO generates a d.ts file in the CLEO.config directory. It's called gta3.d.ts, vc.d.ts or sa.d.ts depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.</p>
+<p>After each game run, CLEO generates a <code>.d.ts</code> file in the <code>CLEO\.config</code> directory. It's called <code>gta3.d.ts</code>, <code>vc.d.ts</code> or <code>sa.d.ts</code> depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.</p>
 <p>To enable autocomplete in VS Code include the following line in your JS script:</p>
 <pre><code class="language-js">/// &lt;reference path=&quot;./.config/sa.d.ts&quot; /&gt;
 </code></pre>
