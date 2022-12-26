@@ -144,106 +144,117 @@
 <p>This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) <a href="./using-memory-64.html">click here</a>.</p>
 </blockquote>
 <h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
+<ul>
+<li><a href="#reading-and-writing-values">Reading and Writing Values</a></li>
+<li><a href="#reading-and-writing-strings">Reading and Writing Strings</a></li>
+<li><a href="#casting-methods">Casting methods</a></li>
+<li><a href="#calling-foreign-functions">Calling Foreign Functions</a>
+<ul>
+<li><a href="#convenience-methods-with-fn-object">Convenience methods with Fn object</a></li>
+</ul>
+</li>
+<li><a href="#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></li>
+</ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
-    ReadFloat(address: int, vp: boolean): float;
-    WriteFloat(address: int, value: float, vp: boolean): void;
-    ReadI8(address: int, vp: boolean): int;
-    ReadI16(address: int, vp: boolean): int;
-    ReadI32(address: int, vp: boolean): int;
-    ReadU8(address: int, vp: boolean): int;
-    ReadU16(address: int, vp: boolean): int;
-    ReadU32(address: int, vp: boolean): int;
-    ReadUtf8(address: int): string;
-    ReadUtf16(address: int): string;
-    WriteI8(address: int, value: int, vp: boolean): void;
-    WriteI16(address: int, value: int, vp: boolean): void;
-    WriteI32(address: int, value: int, vp: boolean): void;
-    WriteU8(address: int, value: int, vp: boolean): void;
-    WriteU16(address: int, value: int, vp: boolean): void;
-    WriteU32(address: int, value: int, vp: boolean): void;
-    WriteUtf8(address: int, value: string, vp: boolean): void;
-    WriteUtf16(address: int, value: string, vp: boolean): void;
-    Read(address: int, size: int, vp: boolean): int;
-    Write(address: int, size: int, value: int, vp: boolean): void;
+  ReadFloat(address: int, vp: boolean): float;
+  WriteFloat(address: int, value: float, vp: boolean): void;
+  ReadI8(address: int, vp: boolean): int;
+  ReadI16(address: int, vp: boolean): int;
+  ReadI32(address: int, vp: boolean): int;
+  ReadU8(address: int, vp: boolean): int;
+  ReadU16(address: int, vp: boolean): int;
+  ReadU32(address: int, vp: boolean): int;
+  ReadUtf8(address: int): string;
+  ReadUtf16(address: int): string;
+  WriteI8(address: int, value: int, vp: boolean): void;
+  WriteI16(address: int, value: int, vp: boolean): void;
+  WriteI32(address: int, value: int, vp: boolean): void;
+  WriteU8(address: int, value: int, vp: boolean): void;
+  WriteU16(address: int, value: int, vp: boolean): void;
+  WriteU32(address: int, value: int, vp: boolean): void;
+  WriteUtf8(address: int, value: string, vp: boolean): void;
+  WriteUtf16(address: int, value: string, vp: boolean): void;
+  Read(address: int, size: int, vp: boolean): int;
+  Write(address: int, size: int, value: int, vp: boolean): void;
 
-    ToFloat(value: int): float;
-    FromFloat(value: float): int;
-    ToU8(value: int): int;
-    ToU16(value: int): int;
-    ToU32(value: int): int;
-    ToI8(value: int): int;
-    ToI16(value: int): int;
-    ToI32(value: int): int;
+  ToFloat(value: int): float;
+  FromFloat(value: float): int;
+  ToU8(value: int): int;
+  ToU16(value: int): int;
+  ToU32(value: int): int;
+  ToI8(value: int): int;
+  ToI16(value: int): int;
+  ToI32(value: int): int;
 
-    Translate(symbol: string): int;
+  Translate(symbol: string): int;
 
-    CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
-    CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
-    CallFunctionReturnFloat(address: int, numParams: int, pop: int, ...funcParams: int[]): float;
-    CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
-    CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
-    CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
+  CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
+  CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
+  CallFunctionReturnFloat(address: int, numParams: int, pop: int, ...funcParams: int[]): float;
+  CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
+  CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
+  CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
 
-    Fn: {
-        Cdecl(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
-        CdeclI8(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclI16(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclI32(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclU8(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclU16(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclU32(address: int): (...funcParams: int[]) =&gt; int;
+  Fn: {
+    Cdecl(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
+    CdeclI8(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclI16(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclI32(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclU8(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclU16(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclU32(address: int): (...funcParams: int[]) =&gt; int;
 
-        Stdcall(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallFloat(address: int): (...funcParams: int[]) =&gt; float;
-        StdcallI8(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallI16(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallI32(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallU8(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallU16(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallU32(address: int): (...funcParams: int[]) =&gt; int;
+    Stdcall(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallFloat(address: int): (...funcParams: int[]) =&gt; float;
+    StdcallI8(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallI16(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallI32(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallU8(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallU16(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallU32(address: int): (...funcParams: int[]) =&gt; int;
 
-        Thiscall(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallFloat(address: int, struct: int): (...funcParams: int[]) =&gt; float;
-        ThiscallI8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallI16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallI32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallU8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallU16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallU32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-    }
+    Thiscall(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallFloat(address: int, struct: int): (...funcParams: int[]) =&gt; float;
+    ThiscallI8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallI16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallI32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallU8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallU16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallU32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+  };
 }
 </code></pre>
 <h3 id="reading-and-writing-values"><a class="header" href="#reading-and-writing-values">Reading and Writing Values</a></h3>
 <p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
-<pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false)
+<pre><code class="language-js">Memory.WriteFloat(address, 1.0, false);
 </code></pre>
-<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). </p>
+<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable).</p>
 <p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
-<pre><code class="language-js">    var x = Memory.ReadI8(address, true)
+<pre><code class="language-js">var x = Memory.ReadI8(address, true);
 </code></pre>
 <p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
-<pre><code class="language-js">    var gravity = Memory.ReadFloat(gravityAddress, false);
-    gravity += 0.05;
-    Memory.WriteFloat(gravityAddress, gravity, false);
+<pre><code class="language-js">var gravity = Memory.ReadFloat(gravityAddress, false);
+gravity += 0.05;
+Memory.WriteFloat(gravityAddress, gravity, false);
 </code></pre>
-<p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to opcodes <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">0A8D READ_MEMORY</a> and <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">0A8C WRITE_MEMORY</a> and produce the same result. </p>
-<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code> or <code>4</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format. </p>
-<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code> and <code>5</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
-<pre><code class="language-js">    Memory.Write(addr, 0x90, 10, true) // &quot;noping&quot; 10 bytes of code starting from addr
+<p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to opcodes <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">0A8D READ_MEMORY</a> and <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">0A8C WRITE_MEMORY</a> and produce the same result.</p>
+<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code> or <code>4</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format.</p>
+<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code> and <code>5</code> onwards can only be used together with a single byte <code>value</code>. CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
+<pre><code class="language-js">Memory.Write(addr, 0x90, 10, true); // &quot;noping&quot; 10 bytes of code starting from addr
 </code></pre>
 <blockquote>
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
 <h3 id="reading-and-writing-strings"><a class="header" href="#reading-and-writing-strings">Reading and Writing Strings</a></h3>
 <p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and return it as a JavaScript string. They read the character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result.</p>
-<pre><code class="language-js">    var str = Memory.ReadUtf8(address);
-    var str = Memory.ReadUtf16(address);
+<pre><code class="language-js">var str = Memory.ReadUtf8(address);
+var str = Memory.ReadUtf16(address);
 </code></pre>
 <p>The <code>WriteUtf8</code> and <code>WriteUtf16</code> methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. <code>WriteUtf8</code> encodes the string in UTF-8, while <code>WriteUtf16</code> encodes it in UTF-16. Last argument is a boolean value indicating whether the command is allowed to overwrite the memory protection.</p>
-<pre><code class="language-js">    Memory.WriteUtf8(address, &quot;Hello, world!\0&quot;, true);
-    Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
+<pre><code class="language-js">Memory.WriteUtf8(address, &quot;Hello, world!\0&quot;, true);
+Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
 </code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
@@ -280,9 +291,9 @@
 <p><code>Memory.CallMethodReturnFloat</code> - calls a class instance method and returns a floating-point value</p>
 </li>
 </ul>
-<pre><code class="language-js">    Memory.CallFunction(0x1234567, 2, 0, 1000, 2000)
+<pre><code class="language-js">Memory.CallFunction(0x1234567, 2, 0, 1000, 2000);
 </code></pre>
-<p>where <code>0x1234567</code> is the address of the function, <code>2</code> is the number of arguments, <code>0</code> is the <code>pop</code> parameter (see below),  <code>1000</code> and <code>2000</code> are the two arguments passed into the function.</p>
+<p>where <code>0x1234567</code> is the address of the function, <code>2</code> is the number of arguments, <code>0</code> is the <code>pop</code> parameter (see below), <code>1000</code> and <code>2000</code> are the two arguments passed into the function.</p>
 <blockquote>
 <p>Legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:</p>
 <pre><code>0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
@@ -292,12 +303,12 @@
 <p>The third parameter (<code>pop</code>) in <code>Memory.CallFunction</code> defines the calling convention. When it is set to <code>0</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall">stdcall</a> convention. When it is set to the same value as <code>numParam</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl">cdecl</a> convention. Any other value breaks the code.</p>
 <p><code>Memory.CallFunctionReturn</code> has the same interface but additionally it writes the result of the function to a variable.</p>
 <p><code>Memory.CallMethod</code> invokes a method of an object:</p>
-<pre><code class="language-js">    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+<pre><code class="language-js">Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000);
 </code></pre>
 <p>The second parameter (<code>0x7001234</code>) is the object address. The <code>pop</code> parameter is always <code>0</code> (the method uses the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#thiscall">thiscall</a> convention).</p>
 <p>To call the method and get the result out of it, use <code>Memory.CallMethodReturn</code>.</p>
 <p>Note that all arguments are read as 32-bit signed integers. If you need to provide an argument of the float type, use <code>Memory.FromFloat</code>, e.g.</p>
-<pre><code class="language-js">    Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456))
+<pre><code class="language-js">Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456));
 </code></pre>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
 <blockquote>
@@ -335,29 +346,29 @@
     }
 </code></pre>
 <p>These methods is designed to cover all possible function signatures. For example, this code</p>
-<pre><code class="language-js">    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+<pre><code class="language-js">Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000);
 </code></pre>
 <p>can also be written as</p>
-<pre><code class="language-js">    Memory.Fn.Thiscall(0x2345678, 0x7001234)(1000, 2000)
+<pre><code class="language-js">Memory.Fn.Thiscall(0x2345678, 0x7001234)(1000, 2000);
 </code></pre>
 <p>Note a few key differences here. First of all, <code>Memory.Fn</code> methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:</p>
-<pre><code class="language-js">    var myMethod = Memory.Fn.Thiscall(0x2345678, 0x7001234);
-    myMethod(1000, 2000); // calls method 0x2345678 with arguments 1000 and 2000
-    myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
+<pre><code class="language-js">var myMethod = Memory.Fn.Thiscall(0x2345678, 0x7001234);
+myMethod(1000, 2000); // calls method 0x2345678 with arguments 1000 and 2000
+myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
 </code></pre>
 <p>The second difference is that there are no <code>numParams</code> and <code>pop</code> parameters. Each <code>Fn</code> method figures them out automatically.</p>
 <p>By default a returned result is considered a 32-bit signed integer value. If the function returns another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:</p>
-<pre><code class="language-js">    var flag = Memory.Fn.CdeclU8(0x1234567)()
+<pre><code class="language-js">var flag = Memory.Fn.CdeclU8(0x1234567)();
 </code></pre>
-<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as a 8-bit unsigned integer value. </p>
+<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as a 8-bit unsigned integer value.</p>
 <h3 id="finding-memory-addresses-in-re3-and-revc"><a class="header" href="#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></h3>
 <p>Since <code>re3</code> and <code>reVC</code> use address space layout randomization (ASLR) feature, it can be difficult to locate needed addresses. CLEO Redux provides a helper function <code>Memory.Translate</code> that accepts a name of the function or variable and returns its current address. If the requested symbol is not found, the result is 0.</p>
-<pre><code class="language-js">    var addr = Memory.Translate(&quot;CTheScripts::MainScriptSize&quot;);
+<pre><code class="language-js">var addr = Memory.Translate(&quot;CTheScripts::MainScriptSize&quot;);
 
-    // check if address is not zero
-    if (addr) {
-        showTextBox(&quot;MainScriptSize = &quot; + Memory.ReadI32(addr, 0))
-    }
+// check if address is not zero
+if (addr) {
+  showTextBox(&quot;MainScriptSize = &quot; + Memory.ReadI32(addr, 0));
+}
 </code></pre>
 <p>At the moment <code>Memory.Translate</code> should only be used in <code>re3</code> and <code>reVC</code>. In other games you will be getting <code>0</code> as a result most of the time.</p>
 

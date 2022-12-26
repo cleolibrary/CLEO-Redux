@@ -173,6 +173,12 @@
 <p>As an addon CLEO Redux runs alongside CLEO Library delegating it all the care for custom scripts. It means all custom scripts and plugins made for CLEO Library will continue working exactly the same. CLEO Redux only manages JS scripts. All custom commands become available to JavaScript runtime, which means you can use commands currently not implemented natively in CLEO Redux, for example for <a href="https://library.sannybuilder.com/#/gta3/classes/File">files</a>.</p>
 <p>In the delegate mode your game directory contains both <code>cleo.asi</code> (or <code>III.CLEO.asi</code> or <code>VC.CLEO.asi</code>) from CLEO Library and <code>cleo_redux.asi</code> (or <code>cleo_redux64.asi</code>). This mode works in classic GTA III, GTA Vice City and GTA San Andreas where CLEO Library exists.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="installation"><a class="header" href="#installation">Installation</a></h1>
+<ul>
+<li><a href="installation.html#cleo-directory">CLEO Directory</a></li>
+<li><a href="installation.html#dependency-on-asi-loader">Dependency on ASI Loader</a></li>
+<li><a href="installation.html#note-on-re3-or-revc">Note on re3 or reVC</a></li>
+<li><a href="installation.html#uninstallation">Uninstallation</a></li>
+</ul>
 <p>CLEO Redux comes with a hassle-free installer that identifies the selected game and downloads all the dependencies. Just run <code>cleo_redux_setup.exe</code> and follow its steps.</p>
 <blockquote>
 <p>Both CLEO Redux and its installer recognize the target game purely by the executable name in the selected/working directory.</p>
@@ -233,6 +239,19 @@
 <h2 id="removing-the-script"><a class="header" href="#removing-the-script">Removing the script</a></h2>
 <p>Delete the script file from <code>CLEO</code> directory. Some scripts may require extra steps for undoing the installation. In case of any issues check the script documentation or ask its author.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="first-steps"><a class="header" href="#first-steps">First steps</a></h1>
+<ul>
+<li><a href="first-steps.html#introduction">Introduction</a></li>
+<li><a href="first-steps.html#concurrency">Concurrency</a></li>
+<li><a href="first-steps.html#variables">Variables</a></li>
+<li><a href="first-steps.html#control-flow">Control Flow</a>
+<ul>
+<li><a href="first-steps.html#conditions">Conditions</a></li>
+<li><a href="first-steps.html#loops">Loops</a></li>
+</ul>
+</li>
+<li><a href="first-steps.html#functions">Functions</a></li>
+</ul>
+<h2 id="introduction-1"><a class="header" href="#introduction-1">Introduction</a></h2>
 <p>Since <a href="./api.html">available commands</a> vary from game to game for the purpose of this tutorial we will be using CLEO's built-in commands such as <a href="./log.html"><code>log</code></a> command that is available everywhere.</p>
 <p>Once you have CLEO Redux <a href="./installation.html">installed</a> run the game once to make sure CLEO is loading. You can verify it by having <code>cleo_redux.log</code> created in the game root folder. If there are no errors in the log you can start adding new scripts.</p>
 <p>Go to the <a href="./cleo-directory.html">CLEO directory</a> and create a new file named <code>intro.js</code>. This will be a text file and you can edit it in any text editor. We recommend using VS Code as the most advanced choice available today, but other editors, even Notepad, would work too. Open <code>intro.js</code> and add two lines:</p>
@@ -504,19 +523,28 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="imports"><a class="header" href="#imports">Imports</a></h1>
 <p>You can import other scripts and some custom file formats in your code to make the code modular and share the common logic. This page describes static <code>import</code> statements (unconditional importing). Their format matches the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">ES6 import syntax</a>. CLEO Redux also supports <a href="./async.html#dynamic-imports">dynamic imports</a> (importing on-demand).</p>
+<ul>
+<li><a href="imports.html#importing-scripts">Importing scripts</a></li>
+<li><a href="imports.html#importing-json-files">Importing JSON files</a></li>
+<li><a href="imports.html#importing-other-formats">Importing other formats</a>
+<ul>
+<li><a href="imports.html#txt">TXT</a></li>
+<li><a href="imports.html#ide">IDE</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="importing-scripts"><a class="header" href="#importing-scripts">Importing scripts</a></h2>
 <ul>
 <li>Extensions: <code>.js</code>, <code>.mjs</code>, <code>.ts</code></li>
 </ul>
-<p><code>./</code> in a path resolves to the current file's directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from './bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\extra\bar.js</code>. </p>
-<p><code>../</code> resolves to the parent directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>. You can combine <code>../</code> to traverse multiple levels up. </p>
+<p><code>./</code> in a path resolves to the current file's directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from './bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\extra\bar.js</code>.</p>
+<p><code>../</code> resolves to the parent directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>. You can combine <code>../</code> to traverse multiple levels up.</p>
 <p>To avoid running imported <code>.js</code> files as standalone scripts, either put them into a separate folder outside of the main <a href="./cleo-directory.html">CLEO directory</a> (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
 <pre><code class="language-js">// imports default export from other.js or other.mjs located in the same directory
 import func from &quot;./other&quot;;
 
 // imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
 import { PedType } from &quot;./includes/types&quot;;
-
 </code></pre>
 <h2 id="importing-json-files"><a class="header" href="#importing-json-files">Importing JSON files</a></h2>
 <ul>
@@ -568,13 +596,11 @@ end
 </code></pre>
 <p>would be transformed into:</p>
 <pre><code class="language-json">{
-    &quot;peds&quot;: [
-        [&quot;0&quot;, &quot;null&quot;, &quot;generic&quot;, &quot;PLAYER1&quot;, &quot;STAT_PLAYER&quot;, &quot;player&quot;, &quot;7f&quot;],
-        [&quot;1&quot;, &quot;cop&quot;, &quot;cop&quot;, &quot;COP&quot;, &quot;STAT_COP&quot;, &quot;man&quot;, &quot;7f&quot;]
-    ],
-    &quot;objs&quot;: [
-        &quot;170&quot;, &quot;grenade&quot;, &quot;generic&quot;, &quot;1&quot;, &quot;100&quot;, &quot;0&quot;
-    ]
+  &quot;peds&quot;: [
+    [&quot;0&quot;, &quot;null&quot;, &quot;generic&quot;, &quot;PLAYER1&quot;, &quot;STAT_PLAYER&quot;, &quot;player&quot;, &quot;7f&quot;],
+    [&quot;1&quot;, &quot;cop&quot;, &quot;cop&quot;, &quot;COP&quot;, &quot;STAT_COP&quot;, &quot;man&quot;, &quot;7f&quot;]
+  ],
+  &quot;objs&quot;: [&quot;170&quot;, &quot;grenade&quot;, &quot;generic&quot;, &quot;1&quot;, &quot;100&quot;, &quot;0&quot;]
 }
 </code></pre>
 <p>Note that each data element becomes a string, even if it was a number in the original file. The loader does not make any assumption about specific sections, nor validate them. It follows a few simple rules where each section should start with an identifier (&quot;peds&quot;, &quot;objs&quot;) and end with the &quot;end&quot; string. It considers each line to be a comma- or space-separated set of columns that could be anything.</p>
@@ -1041,106 +1067,117 @@ var x = Object.create(null);
 <p>This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) <a href="./using-memory-64.html">click here</a>.</p>
 </blockquote>
 <h1 id="memory-object"><a class="header" href="#memory-object">Memory Object</a></h1>
+<ul>
+<li><a href="using-memory.html#reading-and-writing-values">Reading and Writing Values</a></li>
+<li><a href="using-memory.html#reading-and-writing-strings">Reading and Writing Strings</a></li>
+<li><a href="using-memory.html#casting-methods">Casting methods</a></li>
+<li><a href="using-memory.html#calling-foreign-functions">Calling Foreign Functions</a>
+<ul>
+<li><a href="using-memory.html#convenience-methods-with-fn-object">Convenience methods with Fn object</a></li>
+</ul>
+</li>
+<li><a href="using-memory.html#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></li>
+</ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
-    ReadFloat(address: int, vp: boolean): float;
-    WriteFloat(address: int, value: float, vp: boolean): void;
-    ReadI8(address: int, vp: boolean): int;
-    ReadI16(address: int, vp: boolean): int;
-    ReadI32(address: int, vp: boolean): int;
-    ReadU8(address: int, vp: boolean): int;
-    ReadU16(address: int, vp: boolean): int;
-    ReadU32(address: int, vp: boolean): int;
-    ReadUtf8(address: int): string;
-    ReadUtf16(address: int): string;
-    WriteI8(address: int, value: int, vp: boolean): void;
-    WriteI16(address: int, value: int, vp: boolean): void;
-    WriteI32(address: int, value: int, vp: boolean): void;
-    WriteU8(address: int, value: int, vp: boolean): void;
-    WriteU16(address: int, value: int, vp: boolean): void;
-    WriteU32(address: int, value: int, vp: boolean): void;
-    WriteUtf8(address: int, value: string, vp: boolean): void;
-    WriteUtf16(address: int, value: string, vp: boolean): void;
-    Read(address: int, size: int, vp: boolean): int;
-    Write(address: int, size: int, value: int, vp: boolean): void;
+  ReadFloat(address: int, vp: boolean): float;
+  WriteFloat(address: int, value: float, vp: boolean): void;
+  ReadI8(address: int, vp: boolean): int;
+  ReadI16(address: int, vp: boolean): int;
+  ReadI32(address: int, vp: boolean): int;
+  ReadU8(address: int, vp: boolean): int;
+  ReadU16(address: int, vp: boolean): int;
+  ReadU32(address: int, vp: boolean): int;
+  ReadUtf8(address: int): string;
+  ReadUtf16(address: int): string;
+  WriteI8(address: int, value: int, vp: boolean): void;
+  WriteI16(address: int, value: int, vp: boolean): void;
+  WriteI32(address: int, value: int, vp: boolean): void;
+  WriteU8(address: int, value: int, vp: boolean): void;
+  WriteU16(address: int, value: int, vp: boolean): void;
+  WriteU32(address: int, value: int, vp: boolean): void;
+  WriteUtf8(address: int, value: string, vp: boolean): void;
+  WriteUtf16(address: int, value: string, vp: boolean): void;
+  Read(address: int, size: int, vp: boolean): int;
+  Write(address: int, size: int, value: int, vp: boolean): void;
 
-    ToFloat(value: int): float;
-    FromFloat(value: float): int;
-    ToU8(value: int): int;
-    ToU16(value: int): int;
-    ToU32(value: int): int;
-    ToI8(value: int): int;
-    ToI16(value: int): int;
-    ToI32(value: int): int;
+  ToFloat(value: int): float;
+  FromFloat(value: float): int;
+  ToU8(value: int): int;
+  ToU16(value: int): int;
+  ToU32(value: int): int;
+  ToI8(value: int): int;
+  ToI16(value: int): int;
+  ToI32(value: int): int;
 
-    Translate(symbol: string): int;
+  Translate(symbol: string): int;
 
-    CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
-    CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
-    CallFunctionReturnFloat(address: int, numParams: int, pop: int, ...funcParams: int[]): float;
-    CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
-    CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
-    CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
+  CallFunction(address: int, numParams: int, pop: int, ...funcParams: int[]): void;
+  CallFunctionReturn(address: int, numParams: int, pop: int, ...funcParams: int[]): int;
+  CallFunctionReturnFloat(address: int, numParams: int, pop: int, ...funcParams: int[]): float;
+  CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
+  CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
+  CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
 
-    Fn: {
-        Cdecl(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
-        CdeclI8(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclI16(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclI32(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclU8(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclU16(address: int): (...funcParams: int[]) =&gt; int;
-        CdeclU32(address: int): (...funcParams: int[]) =&gt; int;
+  Fn: {
+    Cdecl(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclFloat(address: int): (...funcParams: int[]) =&gt; float;
+    CdeclI8(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclI16(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclI32(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclU8(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclU16(address: int): (...funcParams: int[]) =&gt; int;
+    CdeclU32(address: int): (...funcParams: int[]) =&gt; int;
 
-        Stdcall(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallFloat(address: int): (...funcParams: int[]) =&gt; float;
-        StdcallI8(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallI16(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallI32(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallU8(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallU16(address: int): (...funcParams: int[]) =&gt; int;
-        StdcallU32(address: int): (...funcParams: int[]) =&gt; int;
+    Stdcall(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallFloat(address: int): (...funcParams: int[]) =&gt; float;
+    StdcallI8(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallI16(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallI32(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallU8(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallU16(address: int): (...funcParams: int[]) =&gt; int;
+    StdcallU32(address: int): (...funcParams: int[]) =&gt; int;
 
-        Thiscall(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallFloat(address: int, struct: int): (...funcParams: int[]) =&gt; float;
-        ThiscallI8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallI16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallI32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallU8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallU16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-        ThiscallU32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
-    }
+    Thiscall(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallFloat(address: int, struct: int): (...funcParams: int[]) =&gt; float;
+    ThiscallI8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallI16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallI32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallU8(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallU16(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+    ThiscallU32(address: int, struct: int): (...funcParams: int[]) =&gt; int;
+  };
 }
 </code></pre>
 <h3 id="reading-and-writing-values"><a class="header" href="#reading-and-writing-values">Reading and Writing Values</a></h3>
 <p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
-<pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false)
+<pre><code class="language-js">Memory.WriteFloat(address, 1.0, false);
 </code></pre>
-<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). </p>
+<p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable).</p>
 <p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
-<pre><code class="language-js">    var x = Memory.ReadI8(address, true)
+<pre><code class="language-js">var x = Memory.ReadI8(address, true);
 </code></pre>
 <p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
-<pre><code class="language-js">    var gravity = Memory.ReadFloat(gravityAddress, false);
-    gravity += 0.05;
-    Memory.WriteFloat(gravityAddress, gravity, false);
+<pre><code class="language-js">var gravity = Memory.ReadFloat(gravityAddress, false);
+gravity += 0.05;
+Memory.WriteFloat(gravityAddress, gravity, false);
 </code></pre>
-<p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to opcodes <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">0A8D READ_MEMORY</a> and <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">0A8C WRITE_MEMORY</a> and produce the same result. </p>
-<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code> or <code>4</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format. </p>
-<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code> and <code>5</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
-<pre><code class="language-js">    Memory.Write(addr, 0x90, 10, true) // &quot;noping&quot; 10 bytes of code starting from addr
+<p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to opcodes <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8D">0A8D READ_MEMORY</a> and <a href="https://library.sannybuilder.com/#/gta3/CLEO/0A8C">0A8C WRITE_MEMORY</a> and produce the same result.</p>
+<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code> or <code>4</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format.</p>
+<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code> and <code>5</code> onwards can only be used together with a single byte <code>value</code>. CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
+<pre><code class="language-js">Memory.Write(addr, 0x90, 10, true); // &quot;noping&quot; 10 bytes of code starting from addr
 </code></pre>
 <blockquote>
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
 <h3 id="reading-and-writing-strings"><a class="header" href="#reading-and-writing-strings">Reading and Writing Strings</a></h3>
 <p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and return it as a JavaScript string. They read the character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result.</p>
-<pre><code class="language-js">    var str = Memory.ReadUtf8(address);
-    var str = Memory.ReadUtf16(address);
+<pre><code class="language-js">var str = Memory.ReadUtf8(address);
+var str = Memory.ReadUtf16(address);
 </code></pre>
 <p>The <code>WriteUtf8</code> and <code>WriteUtf16</code> methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. <code>WriteUtf8</code> encodes the string in UTF-8, while <code>WriteUtf16</code> encodes it in UTF-16. Last argument is a boolean value indicating whether the command is allowed to overwrite the memory protection.</p>
-<pre><code class="language-js">    Memory.WriteUtf8(address, &quot;Hello, world!\0&quot;, true);
-    Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
+<pre><code class="language-js">Memory.WriteUtf8(address, &quot;Hello, world!\0&quot;, true);
+Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
 </code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
@@ -1177,9 +1214,9 @@ var x = Object.create(null);
 <p><code>Memory.CallMethodReturnFloat</code> - calls a class instance method and returns a floating-point value</p>
 </li>
 </ul>
-<pre><code class="language-js">    Memory.CallFunction(0x1234567, 2, 0, 1000, 2000)
+<pre><code class="language-js">Memory.CallFunction(0x1234567, 2, 0, 1000, 2000);
 </code></pre>
-<p>where <code>0x1234567</code> is the address of the function, <code>2</code> is the number of arguments, <code>0</code> is the <code>pop</code> parameter (see below),  <code>1000</code> and <code>2000</code> are the two arguments passed into the function.</p>
+<p>where <code>0x1234567</code> is the address of the function, <code>2</code> is the number of arguments, <code>0</code> is the <code>pop</code> parameter (see below), <code>1000</code> and <code>2000</code> are the two arguments passed into the function.</p>
 <blockquote>
 <p>Legacy SCM implementation of the call commands require the arguments of the invoked function to be listed in reverse order. That's it, you would see the same call in SCM as:</p>
 <pre><code>0AA5: call 0x1234567 num_params 2 pop 0 2000 1000
@@ -1189,12 +1226,12 @@ var x = Object.create(null);
 <p>The third parameter (<code>pop</code>) in <code>Memory.CallFunction</code> defines the calling convention. When it is set to <code>0</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall">stdcall</a> convention. When it is set to the same value as <code>numParam</code>, the function is called using the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl">cdecl</a> convention. Any other value breaks the code.</p>
 <p><code>Memory.CallFunctionReturn</code> has the same interface but additionally it writes the result of the function to a variable.</p>
 <p><code>Memory.CallMethod</code> invokes a method of an object:</p>
-<pre><code class="language-js">    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+<pre><code class="language-js">Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000);
 </code></pre>
 <p>The second parameter (<code>0x7001234</code>) is the object address. The <code>pop</code> parameter is always <code>0</code> (the method uses the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#thiscall">thiscall</a> convention).</p>
 <p>To call the method and get the result out of it, use <code>Memory.CallMethodReturn</code>.</p>
 <p>Note that all arguments are read as 32-bit signed integers. If you need to provide an argument of the float type, use <code>Memory.FromFloat</code>, e.g.</p>
-<pre><code class="language-js">    Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456))
+<pre><code class="language-js">Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456));
 </code></pre>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
 <blockquote>
@@ -1232,86 +1269,96 @@ var x = Object.create(null);
     }
 </code></pre>
 <p>These methods is designed to cover all possible function signatures. For example, this code</p>
-<pre><code class="language-js">    Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000)
+<pre><code class="language-js">Memory.CallMethod(0x2345678, 0x7001234, 2, 0, 1000, 2000);
 </code></pre>
 <p>can also be written as</p>
-<pre><code class="language-js">    Memory.Fn.Thiscall(0x2345678, 0x7001234)(1000, 2000)
+<pre><code class="language-js">Memory.Fn.Thiscall(0x2345678, 0x7001234)(1000, 2000);
 </code></pre>
 <p>Note a few key differences here. First of all, <code>Memory.Fn</code> methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:</p>
-<pre><code class="language-js">    var myMethod = Memory.Fn.Thiscall(0x2345678, 0x7001234);
-    myMethod(1000, 2000); // calls method 0x2345678 with arguments 1000 and 2000
-    myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
+<pre><code class="language-js">var myMethod = Memory.Fn.Thiscall(0x2345678, 0x7001234);
+myMethod(1000, 2000); // calls method 0x2345678 with arguments 1000 and 2000
+myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
 </code></pre>
 <p>The second difference is that there are no <code>numParams</code> and <code>pop</code> parameters. Each <code>Fn</code> method figures them out automatically.</p>
 <p>By default a returned result is considered a 32-bit signed integer value. If the function returns another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:</p>
-<pre><code class="language-js">    var flag = Memory.Fn.CdeclU8(0x1234567)()
+<pre><code class="language-js">var flag = Memory.Fn.CdeclU8(0x1234567)();
 </code></pre>
-<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as a 8-bit unsigned integer value. </p>
+<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as a 8-bit unsigned integer value.</p>
 <h3 id="finding-memory-addresses-in-re3-and-revc"><a class="header" href="#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></h3>
 <p>Since <code>re3</code> and <code>reVC</code> use address space layout randomization (ASLR) feature, it can be difficult to locate needed addresses. CLEO Redux provides a helper function <code>Memory.Translate</code> that accepts a name of the function or variable and returns its current address. If the requested symbol is not found, the result is 0.</p>
-<pre><code class="language-js">    var addr = Memory.Translate(&quot;CTheScripts::MainScriptSize&quot;);
+<pre><code class="language-js">var addr = Memory.Translate(&quot;CTheScripts::MainScriptSize&quot;);
 
-    // check if address is not zero
-    if (addr) {
-        showTextBox(&quot;MainScriptSize = &quot; + Memory.ReadI32(addr, 0))
-    }
+// check if address is not zero
+if (addr) {
+  showTextBox(&quot;MainScriptSize = &quot; + Memory.ReadI32(addr, 0));
+}
 </code></pre>
 <p>At the moment <code>Memory.Translate</code> should only be used in <code>re3</code> and <code>reVC</code>. In other games you will be getting <code>0</code> as a result most of the time.</p>
 <div style="break-before: page; page-break-before: always;"></div><blockquote>
 <p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
 </blockquote>
 <h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
+<ul>
+<li><a href="using-memory-64.html#reading-and-writing-values">Reading and Writing Values</a></li>
+<li><a href="using-memory-64.html#reading-and-writing-strings">Reading and Writing Strings</a></li>
+<li><a href="using-memory-64.html#casting-methods">Casting methods</a></li>
+<li><a href="using-memory-64.html#calling-foreign-functions">Calling Foreign Functions</a>
+<ul>
+<li><a href="using-memory-64.html#convenience-methods-with-fn-object">Convenience methods with Fn object</a></li>
+</ul>
+</li>
+</ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
-    ReadFloat(address: int, vp: boolean, ib: boolean): float;
-    WriteFloat(address: int, value: float, vp: boolean, ib: boolean): void;
-    ReadI8(address: int, vp: boolean, ib: boolean): int;
-    ReadI16(address: int, vp: boolean, ib: boolean): int;
-    ReadI32(address: int, vp: boolean, ib: boolean): int;
-    ReadU8(address: int, vp: boolean, ib: boolean): int;
-    ReadU16(address: int, vp: boolean, ib: boolean): int;
-    ReadU32(address: int, vp: boolean, ib: boolean): int;
-    ReadUtf8(address: int, ib: boolean): string;
-    ReadUtf16(address: int, ib: boolean): string;
-    WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
-    WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
-    WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
-    WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
-    WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
-    WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
-    WriteUtf8(address: int, value: string, vp: boolean, ib: boolean): void;
-    WriteUtf16(address: int, value: string, vp: boolean, ib: boolean): void;
-    Read(address: int, size: int, vp: boolean, ib: boolean): int;
-    Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
+  ReadFloat(address: int, vp: boolean, ib: boolean): float;
+  WriteFloat(address: int, value: float, vp: boolean, ib: boolean): void;
+  ReadI8(address: int, vp: boolean, ib: boolean): int;
+  ReadI16(address: int, vp: boolean, ib: boolean): int;
+  ReadI32(address: int, vp: boolean, ib: boolean): int;
+  ReadU8(address: int, vp: boolean, ib: boolean): int;
+  ReadU16(address: int, vp: boolean, ib: boolean): int;
+  ReadU32(address: int, vp: boolean, ib: boolean): int;
+  ReadUtf8(address: int, ib: boolean): string;
+  ReadUtf16(address: int, ib: boolean): string;
+  WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
+  WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
+  WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
+  WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
+  WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
+  WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
+  WriteUtf8(address: int, value: string, vp: boolean, ib: boolean): void;
+  WriteUtf16(address: int, value: string, vp: boolean, ib: boolean): void;
+  Read(address: int, size: int, vp: boolean, ib: boolean): int;
+  Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
 
-    ToFloat(value: int): float;
-    FromFloat(value: float): int;
-    ToU8(value: int): int;
-    ToU16(value: int): int;
-    ToU32(value: int): int;
-    ToI8(value: int): int;
-    ToI16(value: int): int;
-    ToI32(value: int): int;
+  ToFloat(value: int): float;
+  FromFloat(value: float): int;
+  ToU8(value: int): int;
+  ToU16(value: int): int;
+  ToU32(value: int): int;
+  ToI8(value: int): int;
+  ToI16(value: int): int;
+  ToI32(value: int): int;
 
-    CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: int[]): void;
-    CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: int[]): int;
-    CallFunctionReturnFloat(address: int, ib: boolean, numParams: int, ...funcParams: int[]): float;
+  CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: int[]): void;
+  CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: int[]): int;
+  CallFunctionReturnFloat(address: int, ib: boolean, numParams: int, ...funcParams: int[]): float;
 
-    Fn: {
-        X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-        X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
-        X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-        X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-        X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-        X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-        X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-        X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    }
+  Fn: {
+    X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
+    X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+  };
 }
 </code></pre>
 <h3 id="reading-and-writing-values-1"><a class="header" href="#reading-and-writing-values-1">Reading and Writing Values</a></h3>
 <p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
-<pre><code class="language-js">    Memory.WriteFloat(address, 1.0, false, false)
+<pre><code class="language-js">Memory.WriteFloat(address, 1.0, false, false);
 </code></pre>
 <p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). Due to an ASLR feature memory addresses could change when the game runs because the base address changes. Consider the following example:</p>
 <pre><code>0x1400000000 ImageBase
@@ -1330,29 +1377,29 @@ var x = Object.create(null);
 <pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
 </code></pre>
 <p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
-<pre><code class="language-js">    var x = Memory.ReadI8(offset, true, true)
+<pre><code class="language-js">var x = Memory.ReadI8(offset, true, true);
 </code></pre>
 <p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
-<pre><code class="language-js">    var gravity = Memory.ReadFloat(gravityOffset, false, true);
-    gravity += 0.05;
-    Memory.WriteFloat(gravityOffset, gravity, false, true);
+<pre><code class="language-js">var gravity = Memory.ReadFloat(gravityOffset, false, true);
+gravity += 0.05;
+Memory.WriteFloat(gravityOffset, gravity, false, true);
 </code></pre>
 <p>Finally, last two methods <code>Read</code> and <code>Write</code> is what other methods use under the hood. They have direct binding to the Rust code that reads and write the memory. In JavaScript code you can use input arguments as large as 53-bit numbers.</p>
-<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code>, <code>4</code> or <code>8</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format. </p>
-<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code>, <code>5</code>, <code>6</code>, <code>7</code> and <code>9</code> onwards can only be used together with a single byte <code>value</code>.  CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
-<pre><code class="language-js">    Memory.Write(offset, 0x90, 10, true, true) // &quot;noping&quot; 10 bytes of code starting from offset+image base
+<p>The <code>size</code> parameter in the <code>Read</code> method can only be <code>1</code>, <code>2</code>, <code>4</code> or <code>8</code>. CLEO treats the <code>value</code> as a signed integer stored in the little-endian format.</p>
+<p>In the <code>Write</code> method any <code>size</code> larger than <code>0</code> is allowed. Sizes <code>3</code>, <code>5</code>, <code>6</code>, <code>7</code> and <code>9</code> onwards can only be used together with a single byte <code>value</code>. CLEO uses them to fill a continious block of memory starting at the <code>address</code> with the given <code>value</code> (think of it as <code>memset</code> in C++).</p>
+<pre><code class="language-js">Memory.Write(offset, 0x90, 10, true, true); // &quot;noping&quot; 10 bytes of code starting from offset+image base
 </code></pre>
 <blockquote>
 <p>The usage of any of the read/write methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
 </blockquote>
 <h3 id="reading-and-writing-strings-1"><a class="header" href="#reading-and-writing-strings-1">Reading and Writing Strings</a></h3>
 <p>The <code>ReadUtf8</code> and <code>ReadUtf16</code> methods are used to read strings from the memory and return it as a JavaScript string. They read a character sequence until the first null terminator is found. <code>ReadUtf8</code> expects the string to be encoded in UTF-8, while <code>ReadUtf16</code> expects UTF-16. Null terminator is not included in the result. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
-<pre><code class="language-js">    var str = Memory.ReadUtf8(0x100000, false); // read string from address 0x100000
-    var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+IMAGE_BASE
+<pre><code class="language-js">var str = Memory.ReadUtf8(0x100000, false); // read string from address 0x100000
+var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+IMAGE_BASE
 </code></pre>
 <p>The <code>WriteUtf8</code> and <code>WriteUtf16</code> methods are used to write a JavaScript string to the memory. They write any character sequence including null terminator to the memory. <code>WriteUtf8</code> encodes the string in UTF-8, while <code>WriteUtf16</code> encodes it in UTF-16. Third argument is a boolean value indicating whether the command is allowed to overwrite the memory protection. Last argument <code>ib</code> indicates whethers the <code>address</code> is an absolute address or a relative offset to the image base.</p>
-<pre><code class="language-js">    Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, false); // write string to address 0x100000
-    Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, true); // write string to address 0x100000+IMAGE_BASE
+<pre><code class="language-js">Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, false); // write string to address 0x100000
+Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, true); // write string to address 0x100000+IMAGE_BASE
 </code></pre>
 <h3 id="casting-methods-1"><a class="header" href="#casting-methods-1">Casting methods</a></h3>
 <p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
@@ -1374,12 +1421,12 @@ var x = Object.create(null);
 <li><code>Memory.CallFunctionReturn</code> - calls a function and at the address and returns an integer value</li>
 <li><code>Memory.CallFunctionReturnFloat</code> - calls a function and at the address and returns a floating-point value</li>
 </ul>
-<pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
+<pre><code class="language-js">Memory.CallFunction(0xeffb30, true, 1, 13);
 </code></pre>
 <p>where <code>0xEFFB30</code> is the function offset relative to IMAGE BASE (think of it a randomized start address of the game memory), <code>true</code> is the <code>ib</code> flag (see below), <code>1</code> is the number of input arguments, and <code>13</code> are the only argument passed into the function.</p>
 <p>The <code>ib</code> parameter in <code>Memory.CallFunction</code> has the same meaning as in memory read/write commands. When set to <code>true</code> CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to <code>false</code> no changes to the first argument are made.</p>
 <p>To pass floating-point values to the function, convert the value to integer using <code>Memory.FromFloat</code>:</p>
-<pre><code class="language-js">    Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
+<pre><code class="language-js">Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
 </code></pre>
 <p>The returned value of the function called with <code>Memory.CallFunction</code> is ignored. To read the result use <code>Memory.CallFunctionReturn</code> that has the same parameters. Use <code>Memory.CallFunctionReturnFloat</code> to call a function that returns a floating-point value.</p>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
@@ -1400,24 +1447,24 @@ var x = Object.create(null);
     }
 </code></pre>
 <p>These methods is designed to cover all supported return types. For example, this code</p>
-<pre><code class="language-js">    Memory.CallFunction(0xEFFB30, true, 1, 13)
+<pre><code class="language-js">Memory.CallFunction(0xeffb30, true, 1, 13);
 </code></pre>
 <p>can also be written as</p>
-<pre><code class="language-js">    Memory.Fn.X64(0xEFFB30, true)(13)
+<pre><code class="language-js">Memory.Fn.X64(0xeffb30, true)(13);
 </code></pre>
 <p>Note a few key differences here. First of all, <code>Memory.Fn</code> methods don't invoke a foreign function directly. Instead, they return a new JavaScript function that can be stored in a variable and reused to call the associated foreign function many times with different arguments:</p>
-<pre><code class="language-js">    var f = Memory.Fn.X64(0xEFFB30, true);
-    f(13) // calls function 0xEFFB30 with the argument of 13
-    f(11) // calls method 0xEFFB30 with the argument of 11
+<pre><code class="language-js">var f = Memory.Fn.X64(0xeffb30, true);
+f(13); // calls function 0xEFFB30 with the argument of 13
+f(11); // calls method 0xEFFB30 with the argument of 11
 </code></pre>
 <p>The second difference is that there is no <code>numParams</code> parameter. Each <code>Fn</code> method figures it out automatically.</p>
 <p>By default a returned result is considered a 64-bit signed integer value. If the function returns another type (e.g. a boolean), use one of the methods matching the function signature:</p>
-<pre><code class="language-js">    var flag = Memory.Fn.X64U8(0x1234567, true)()
+<pre><code class="language-js">var flag = Memory.Fn.X64U8(0x1234567, true)();
 </code></pre>
-<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value. </p>
-<pre><code class="language-js">    var float = Memory.Fn.X64Float(0x456789, true)()
+<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value.</p>
+<pre><code class="language-js">var float = Memory.Fn.X64Float(0x456789, true)();
 </code></pre>
-<p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value. </p>
+<p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="deprecated"><a class="header" href="#deprecated">Deprecated</a></h1>
 <p>Usage of the following commands is not recommended.</p>
 <h2 id="game"><a class="header" href="#game">GAME</a></h2>
@@ -1429,6 +1476,14 @@ var x = Object.create(null);
 <h2 id="ts-config"><a class="header" href="#ts-config">TS Config</a></h2>
 <p>CLEO Redux creates <code>tsconfig.json</code> file in the <a href="./cleo-directory.html">CLEO directory</a> when you run it for the first time. It contains necessary information for VS Code and other IDEs on where to look for typing files, so you don't have to include <code>/// &lt;reference path=&quot;...&quot; /&gt;</code> lines in your scripts. You can edit it to change the default settings.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
+<ul>
+<li><a href="troubleshooting.html#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></li>
+<li><a href="troubleshooting.html#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></li>
+<li><a href="troubleshooting.html#scripts-stopped-working-after-cleo-redux-update">Scripts stopped working after CLEO Redux update</a></li>
+<li><a href="troubleshooting.html#game-is-stuck-loading">Game is stuck loading</a></li>
+<li><a href="troubleshooting.html#nothing-happens-when-i-run-the-game-not-even-a-log-file-is-there">Nothing happens when I run the game, not even a log file is there</a></li>
+<li><a href="troubleshooting.html#my-problem-is-not-listed-there">My problem is not listed there</a></li>
+</ul>
 <h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
 <p>CLEO Redux supports &quot;Windows D3D9&quot; version of <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
 <p>During installation you must select the correct version of <code>re3</code> or <code>reVC</code>: either 32-bit or 64-bit.</p>
@@ -1535,6 +1590,12 @@ var x = Object.create(null);
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="other-features"><a class="header" href="#other-features">Other Features</a></h1>
 <p>CLEO Redux puts focus on improving dev experience and make scripting process easier.</p>
+<ul>
+<li><a href="other-features.html#integration-with-visual-studio-code">Integration with Visual Studio Code</a></li>
+<li><a href="other-features.html#scm-log">SCM Log</a></li>
+<li><a href="other-features.html#hot-reload">Hot Reload</a></li>
+<li><a href="other-features.html#main-menu-information">Main Menu Information</a></li>
+</ul>
 <h2 id="integration-with-visual-studio-code"><a class="header" href="#integration-with-visual-studio-code">Integration with Visual Studio Code</a></h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jqz8_lGnG4g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>VS Code has excellent JavaScript support out of the box and is highly customizable. CLEO Redux generates typings for all supported commands that you can use when writing JavaScript in VS Code. Add the following line in your <code>*.js</code> script to get the full autocomplete support:</p>
@@ -1564,9 +1625,13 @@ var x = Object.create(null);
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LAi2syrsxJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>Hot reload for CS scripts does not work when CLEO Redux runs alongside CLEO Library (e.g. in classic San Andreas).</p>
 <h2 id="main-menu-information"><a class="header" href="#main-menu-information">Main Menu Information</a></h2>
-<p>CLEO Redux displays the information such as the version and the amount of active scripts in the main menu of GTA III / Vice City and San Andreas. To disable this information set <a href="./config.html#general"><code>DisplayMenuInfo</code></a> to <code>0</code>.</p>
+<p><code>Frontend</code> plugin displays some extra information such as the CLEO version and the amount of active scripts in the main menu of GTA III, Vice City, and San Andreas. It also checks for available updates. If this information is not needed, delete <code>Frontend.cleo</code> file from the CLEO plugins directory.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="custom-text-fxt"><a class="header" href="#custom-text-fxt">Custom Text (FXT)</a></h1>
 <p>CLEO Redux supports custom text content without the need to edit game files.</p>
+<ul>
+<li><a href="using-fxt.html#static-fxt-files">Static FXT files</a></li>
+<li><a href="using-fxt.html#fxtstore">FxtStore</a></li>
+</ul>
 <h2 id="static-fxt-files"><a class="header" href="#static-fxt-files">Static FXT files</a></h2>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ctsKy7WnY9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <p>CLEO Redux can load and serve static text content. Create a new file with the <code>.fxt</code> extension and put it in the <code>CLEO\CLEO_TEXT</code> <a href="./cleo-directory.html">folder</a>. The file name can be any valid name.</p>
@@ -1649,6 +1714,21 @@ Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&qu
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="embedding-to-custom-host"><a class="header" href="#embedding-to-custom-host">Embedding to custom host</a></h1>
 <p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> <a href="embedding.html#loading-into-custom-process">gets loaded or injected</a> and where the CLEO runtime <a href="embedding.html#launching-the-cleo-runtime">runs</a>. This feature is highly experimental and subject to change at any moment.</p>
+<ul>
+<li><a href="embedding.html#loading-into-custom-process">Loading into custom process</a></li>
+<li><a href="embedding.html#launching-the-cleo-runtime">Launching the CLEO runtime</a>
+<ul>
+<li><a href="embedding.html#automatic-launch">Automatic launch</a></li>
+<li><a href="embedding.html#manually-controlling-the-runtime">Manually Controlling the Runtime</a></li>
+</ul>
+</li>
+<li><a href="embedding.html#available-commands">Available Commands</a></li>
+<li><a href="embedding.html#manifest">Manifest</a>
+<ul>
+<li><a href="embedding.html#example">Example</a></li>
+</ul>
+</li>
+</ul>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rk2LvDt7UkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2 id="loading-into-custom-process"><a class="header" href="#loading-into-custom-process">Loading into custom process</a></h2>
 <p>There are multiple ways of loading ASI file into the target process. They include but not limited to <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases">Ultimate ASI Loader</a> or any <a href="https://github.com/search?q=dll+injector">DLL injector</a> available on GitHub. The host can load CLEO ASI file as a dynamic library when needed using WinAPI's <code>LoadLibrary</code> function.</p>
@@ -1717,21 +1797,40 @@ fn init() {
 <p><code>host_name</code> defines the host's custom name used in the <a href="./log.html">log</a></p>
 </li>
 <li>
-<p><code>compound</code> defines whether the host uses <a href="./definitions.html">compound definitions</a>. By default the host uses definitions from the file matching <code>&lt;host&gt;.json</code>, e.g. <code>application.json</code>. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the <code>.config</code> folder. </p>
+<p><code>compound</code> defines whether the host uses <a href="./definitions.html">compound definitions</a>. By default the host uses definitions from the file matching <code>&lt;host&gt;.json</code>, e.g. <code>application.json</code>. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the <code>.config</code> folder.</p>
 <p>When <code>compound</code> is set to <code>true</code> the host also uses command definitions for the Unknown host (e.g. <code>unknown_x86.json</code>). If this file is missing CLEO downloads it from Sanny Builder Library.</p>
 </li>
 </ul>
 <h3 id="example"><a class="header" href="#example">Example</a></h3>
 <p>Host: <a href="https://sannybuilder.com">Sanny Builder 3</a> (<code>sanny.exe</code>)</p>
 <pre><code class="language-json">{
-    &quot;host&quot;: &quot;sanny&quot;,
-    &quot;host_name&quot;: &quot;Sanny Builder 3&quot;,
-    &quot;compound&quot;: true
+  &quot;host&quot;: &quot;sanny&quot;,
+  &quot;host_name&quot;: &quot;Sanny Builder 3&quot;,
+  &quot;compound&quot;: true
 }
 </code></pre>
-<p><code>Sanny Builder 3\CLEO\.config</code> folder contains <code>sanny.json</code> and <code>manifest.json</code> before the first run. The other files are downloaded or generated automatically. </p>
+<p><code>Sanny Builder 3\CLEO\.config</code> folder contains <code>sanny.json</code> and <code>manifest.json</code> before the first run. The other files are downloaded or generated automatically.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h1>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/SDK">SDK for the C++ and Rust languages</a>.</p>
+<ul>
+<li><a href="using-sdk.html#sdk-version">SDK Version</a></li>
+<li><a href="using-sdk.html#platforms-support">Platforms Support</a></li>
+<li><a href="using-sdk.html#plugin-lifetime">Plugin Lifetime</a></li>
+<li><a href="using-sdk.html#path-resolution-convention">Path Resolution Convention</a></li>
+<li><a href="using-sdk.html#string-arguments">String Arguments</a></li>
+<li><a href="using-sdk.html#developing-new-commands">Developing New Commands</a>
+<ul>
+<li><a href="using-sdk.html#unsafe-commands">Unsafe commands</a></li>
+<li><a href="using-sdk.html#command-interface">Command interface</a>
+<ul>
+<li><a href="using-sdk.html#claiming-opcodes">Claiming Opcodes</a></li>
+<li><a href="using-sdk.html#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="using-sdk.html#developing-file-loaders">Developing File Loaders</a></li>
+</ul>
 <h2 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h2>
 <p>The current version is <code>6</code>. Changes to SDK advance this number by one.</p>
 <h2 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h2>
@@ -1753,10 +1852,10 @@ fn init() {
 </ul>
 </li>
 <li>
-<p>a path starting with <code>./</code> or <code>../</code> gets resolved relative to the script directory. </p>
+<p>a path starting with <code>./</code> or <code>../</code> gets resolved relative to the script directory.</p>
 <p>What is <strong>the script directory</strong>?</p>
 <p>For CS scripts it is always the CLEO directory.</p>
-<p>For JS scripts it could be the CLEO directory (if the JS file is located there). Or if the script is <a href="./script-lifecycle.html#organizing-scripts">located in a subfolder</a> inside the CLEO directory, then the script directory is the one that contains its <code>index.js</code> file. </p>
+<p>For JS scripts it could be the CLEO directory (if the JS file is located there). Or if the script is <a href="./script-lifecycle.html#organizing-scripts">located in a subfolder</a> inside the CLEO directory, then the script directory is the one that contains its <code>index.js</code> file.</p>
 <p>It is different from the resolution algorithm <a href="./imports.html#importing-scripts">used by the <code>import</code> statement</a>. The <code>import</code> statement resolves paths relative to the current file's directory (that can be nested many levels deep), whereas the <code>ResolvePath</code> does not go deeper than the <code>index.js</code> directory. You can use the <a href="./api.html#__dirname"><code>__dirname</code></a> variable to get the directory of the current file:</p>
 <pre><code class="language-js">DynamicLibrary.Load(__dirname + &quot;\\mylib.dll&quot;);
 </code></pre>
@@ -1767,9 +1866,9 @@ fn init() {
 </li>
 </ul>
 <h2 id="string-arguments"><a class="header" href="#string-arguments">String Arguments</a></h2>
-<p>Strings passed in and out of the SDK methods are UTF-8 encoded. </p>
+<p>Strings passed in and out of the SDK methods are UTF-8 encoded.</p>
 <p>If the script uses an integer value where a string is expected SDK treats this number as a pointer to a null-terminated UTF-8 character sequence to read, or to a large enough buffer to store the result to:</p>
-<pre><code class="language-js">IniFile.WriteString(0xDEADBEEF, &quot;my.ini&quot;, &quot;section&quot;, &quot;key&quot;)
+<pre><code class="language-js">IniFile.WriteString(0xdeadbeef, &quot;my.ini&quot;, &quot;section&quot;, &quot;key&quot;);
 </code></pre>
 <p>SDK will read a string from the address <code>0xDEADBEEF</code> and write it to the ini file.</p>
 <pre><code>0AF4: read_string_from_ini_file 'my.ini' section 'section' key 'key' store_to 0xDEADBEEF
@@ -1786,9 +1885,9 @@ fn init() {
 <h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
 <p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions ensure each command claims only an available id. Also it helps to track and document plugins in a single place.</p>
 <h2 id="developing-file-loaders"><a class="header" href="#developing-file-loaders">Developing File Loaders</a></h2>
-<p>A plugin can associate itself with a particular <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> (or in other word a file name with wildcard characters in it, e.g. <code>*.txt</code>) and provide a handler to be called when a script <a href="./imports.html">imports</a> a file matching the pattern. </p>
+<p>A plugin can associate itself with a particular <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> (or in other word a file name with wildcard characters in it, e.g. <code>*.txt</code>) and provide a handler to be called when a script <a href="./imports.html">imports</a> a file matching the pattern.</p>
 <p>The glob pattern can be used to match an arbitrary file name using wildcards to represent any characters (<code>*.pak*</code> would match <code>1.pak1</code>, <code>2.pak1</code>, <code>3.pak3</code>, etc) or a specific file name (<code>gta.dat</code> would match only a <code>gta.dat</code> file). Be mindful about using wildcards to avoid matching unnecessary files. The plugin can associate itself with many globs (for example TextLoader uses <code>*.txt</code> and <code>*.text</code>), but it's recommended to support only related formats in one plugin.</p>
-<p>The handler gets a full path to the file as an input and returns a pointer to the buffer with the content of the file that has been serialized into JSON. The serialized JSON content should be a valid null-terminated UTF-8 string. </p>
+<p>The handler gets a full path to the file as an input and returns a pointer to the buffer with the content of the file that has been serialized into JSON. The serialized JSON content should be a valid null-terminated UTF-8 string.</p>
 <blockquote>
 <p>To allocate a memory buffer for the serialized string the plugin MUST call SDK's method <code>AllocMem</code>. This memory will be released by CLEO Redux once it reads the data from it. Allocating the memory inside the plugin will lead to an error.</p>
 </blockquote>

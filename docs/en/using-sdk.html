@@ -142,6 +142,25 @@
                     <main>
                         <h1 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h1>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/SDK">SDK for the C++ and Rust languages</a>.</p>
+<ul>
+<li><a href="#sdk-version">SDK Version</a></li>
+<li><a href="#platforms-support">Platforms Support</a></li>
+<li><a href="#plugin-lifetime">Plugin Lifetime</a></li>
+<li><a href="#path-resolution-convention">Path Resolution Convention</a></li>
+<li><a href="#string-arguments">String Arguments</a></li>
+<li><a href="#developing-new-commands">Developing New Commands</a>
+<ul>
+<li><a href="#unsafe-commands">Unsafe commands</a></li>
+<li><a href="#command-interface">Command interface</a>
+<ul>
+<li><a href="#claiming-opcodes">Claiming Opcodes</a></li>
+<li><a href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#developing-file-loaders">Developing File Loaders</a></li>
+</ul>
 <h2 id="sdk-version"><a class="header" href="#sdk-version">SDK Version</a></h2>
 <p>The current version is <code>6</code>. Changes to SDK advance this number by one.</p>
 <h2 id="platforms-support"><a class="header" href="#platforms-support">Platforms Support</a></h2>
@@ -163,10 +182,10 @@
 </ul>
 </li>
 <li>
-<p>a path starting with <code>./</code> or <code>../</code> gets resolved relative to the script directory. </p>
+<p>a path starting with <code>./</code> or <code>../</code> gets resolved relative to the script directory.</p>
 <p>What is <strong>the script directory</strong>?</p>
 <p>For CS scripts it is always the CLEO directory.</p>
-<p>For JS scripts it could be the CLEO directory (if the JS file is located there). Or if the script is <a href="./script-lifecycle.html#organizing-scripts">located in a subfolder</a> inside the CLEO directory, then the script directory is the one that contains its <code>index.js</code> file. </p>
+<p>For JS scripts it could be the CLEO directory (if the JS file is located there). Or if the script is <a href="./script-lifecycle.html#organizing-scripts">located in a subfolder</a> inside the CLEO directory, then the script directory is the one that contains its <code>index.js</code> file.</p>
 <p>It is different from the resolution algorithm <a href="./imports.html#importing-scripts">used by the <code>import</code> statement</a>. The <code>import</code> statement resolves paths relative to the current file's directory (that can be nested many levels deep), whereas the <code>ResolvePath</code> does not go deeper than the <code>index.js</code> directory. You can use the <a href="./api.html#__dirname"><code>__dirname</code></a> variable to get the directory of the current file:</p>
 <pre><code class="language-js">DynamicLibrary.Load(__dirname + &quot;\\mylib.dll&quot;);
 </code></pre>
@@ -177,9 +196,9 @@
 </li>
 </ul>
 <h2 id="string-arguments"><a class="header" href="#string-arguments">String Arguments</a></h2>
-<p>Strings passed in and out of the SDK methods are UTF-8 encoded. </p>
+<p>Strings passed in and out of the SDK methods are UTF-8 encoded.</p>
 <p>If the script uses an integer value where a string is expected SDK treats this number as a pointer to a null-terminated UTF-8 character sequence to read, or to a large enough buffer to store the result to:</p>
-<pre><code class="language-js">IniFile.WriteString(0xDEADBEEF, &quot;my.ini&quot;, &quot;section&quot;, &quot;key&quot;)
+<pre><code class="language-js">IniFile.WriteString(0xdeadbeef, &quot;my.ini&quot;, &quot;section&quot;, &quot;key&quot;);
 </code></pre>
 <p>SDK will read a string from the address <code>0xDEADBEEF</code> and write it to the ini file.</p>
 <pre><code>0AF4: read_string_from_ini_file 'my.ini' section 'section' key 'key' store_to 0xDEADBEEF
@@ -196,9 +215,9 @@
 <h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
 <p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions ensure each command claims only an available id. Also it helps to track and document plugins in a single place.</p>
 <h2 id="developing-file-loaders"><a class="header" href="#developing-file-loaders">Developing File Loaders</a></h2>
-<p>A plugin can associate itself with a particular <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> (or in other word a file name with wildcard characters in it, e.g. <code>*.txt</code>) and provide a handler to be called when a script <a href="./imports.html">imports</a> a file matching the pattern. </p>
+<p>A plugin can associate itself with a particular <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> (or in other word a file name with wildcard characters in it, e.g. <code>*.txt</code>) and provide a handler to be called when a script <a href="./imports.html">imports</a> a file matching the pattern.</p>
 <p>The glob pattern can be used to match an arbitrary file name using wildcards to represent any characters (<code>*.pak*</code> would match <code>1.pak1</code>, <code>2.pak1</code>, <code>3.pak3</code>, etc) or a specific file name (<code>gta.dat</code> would match only a <code>gta.dat</code> file). Be mindful about using wildcards to avoid matching unnecessary files. The plugin can associate itself with many globs (for example TextLoader uses <code>*.txt</code> and <code>*.text</code>), but it's recommended to support only related formats in one plugin.</p>
-<p>The handler gets a full path to the file as an input and returns a pointer to the buffer with the content of the file that has been serialized into JSON. The serialized JSON content should be a valid null-terminated UTF-8 string. </p>
+<p>The handler gets a full path to the file as an input and returns a pointer to the buffer with the content of the file that has been serialized into JSON. The serialized JSON content should be a valid null-terminated UTF-8 string.</p>
 <blockquote>
 <p>To allocate a memory buffer for the serialized string the plugin MUST call SDK's method <code>AllocMem</code>. This memory will be released by CLEO Redux once it reads the data from it. Allocating the memory inside the plugin will lead to an error.</p>
 </blockquote>
