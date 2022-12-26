@@ -654,7 +654,7 @@ if (cop) {
 </ul>
 <p>See an example of an async script for GTA III <a href="https://github.com/x87/luigi3_async">here</a>.</p>
 <h2 id="async-api"><a class="header" href="#async-api">Async API</a></h2>
-<p>CLEO Redux 1.0.4 has one native async command: <code>asyncWait</code>. This command is used to pause a script for a specified amount of time. It returns a <code>Promise</code> that resolves after the specified amount of time. <code>asyncWait</code> can only be used inside a <code>async</code> function.</p>
+<p>CLEO Redux 1.0.4 has one native async command: <code>asyncWait</code>. This command pauses the script for a specified amount of time. It returns a <code>Promise</code> that resolves after the specified amount of time. <code>asyncWait</code> can only be used inside an <code>async</code> function.</p>
 <pre><code class="language-js">async function delay(ms) {
   log(&quot;Waiting for &quot; + ms + &quot;ms&quot;);
   await asyncWait(ms);
@@ -663,7 +663,7 @@ if (cop) {
 
 delay(1000);
 </code></pre>
-<p>Difference between <code>asyncWait</code> and <code>wait</code> is that the former is not a blocking command. If you don't put the <code>await</code> keyword in front of it, the script execution will continue.</p>
+<p>Difference between <code>asyncWait</code> and <code>wait</code> is that the former is not a blocking command. If you don't put the <code>await</code> keyword in front of it, the script execution continues.</p>
 <pre><code class="language-js">async function delay(ms) {
   log(&quot;Waiting for &quot; + ms + &quot;ms&quot;);
   asyncWait(ms); // no await here, the script continues
@@ -740,7 +740,7 @@ async function task3() {
 }
 </code></pre>
 <p>This is very similar to writing traditional <code>while(true){}</code> loops with a <code>wait</code> command in it, with the difference that the functions must have <code>async</code> keyword and use <code>asyncWait</code> instead of <code>wait</code>
-Each of the three tasks are executed independently from each other. Note that runtime guarantees that all async functions are executed in the same thread. They could share global variables and mutate them. Look at how <code>gVar</code> is incremented in <code>task2</code> and read in <code>task3</code>.</p>
+Each of the three tasks are executed independently from each other. Note that runtime guarantees that all async functions are executed in the same thread. They share global variables and can change them. Look at how <code>gVar</code> is being incremented in <code>task2</code> and read in <code>task3</code>.</p>
 <h2 id="dynamic-imports"><a class="header" href="#dynamic-imports">Dynamic Imports</a></h2>
 <p>CLEO Redux supports <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import">dynamic imports</a>. It allows to load script files on-demand when they are needed. This is useful for large scripts that are not needed all the time.</p>
 <pre><code class="language-js">(async () =&gt; {
@@ -1724,7 +1724,7 @@ Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&qu
 <h2 id="unsupported-features-in-js"><a class="header" href="#unsupported-features-in-js">Unsupported features in JS</a></h2>
 <ul>
 <li>
-<p>commands requiring an scm variable (e.g. countdown timers). <a href="https://github.com/cleolibrary/CLEO-Redux/issues/10">Tracking issue</a>.</p>
+<p>for commands requiring a global SCM variable (e.g. countdown timers) use <a href="https://github.com/x87/scm.ts">scm.ts library</a>.</p>
 </li>
 <li>
 <p>commands implicitly loading models or textures (such as widgets) <a href="https://github.com/cleolibrary/CLEO-Redux/issues/12">Tracking issue</a>. You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. </p>
