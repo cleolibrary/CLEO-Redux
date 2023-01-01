@@ -1,6 +1,6 @@
 # Events
 
-CLEO Redux 1.0.6 adds initial support for event-driven scripting. This feature allows you to write scripts that react to events that happen in the game.
+CLEO Redux 1.0.6 adds initial support for event-driven scripting. This feature allows you to write scripts that react to events that happen in the game or another scripts.
 
 - [Listening to events](#listening-to-events)
 - [List of events](#list-of-events)
@@ -11,16 +11,22 @@ CLEO Redux 1.0.6 adds initial support for event-driven scripting. This feature a
   - [OnPedDelete](#onpeddelete)
   - [OnObjectDelete](#onobjectdelete)
 - [Creating your own events](#creating-your-own-events)
+- [Dispatching events from scripts](#dispatching-events-from-scripts)
 
 ## Listening to events
 
-A globally available `addEventListener` function creates a new event listener. It takes two arguments: a [predefined event name](#list-of-events) and a function that will be called when the event is triggered (a callback). The callback receives an argument that is an object with a particular structure depending on the event.
+A globally available `addEventListener` function creates a new event listener. It takes two arguments: an event name and a function that will be called when the event is triggered (a callback). 
+
+The event name argument corresponds to [built-in](#list-of-events) or [custom](#dispatching-events-from-scripts) event names.
+
+The callback receives a single argument. This argument is a JavaScript object with two fields: `name` (the event name) and `data` (custom data associated with this event).
 
 > Event listeners only work in [async context](./async.md). Scripts willing to react to game events must not use a blocking `wait` function. Use `asyncWait` instead.
 
 ```js
 addEventListener("OnVehicleCreate", (event) => {
   log("A vehicle is created!");
+  log(event.name); // logs "OnVehicleCreate"
 });
 ```
 
@@ -184,3 +190,23 @@ addEventListener("OnObjectDelete", (event: OnObjectDeleteEvent) => {
 [CLEO Redux SDK](./using-sdk.md) provides a method called `TriggerEvent` that can be used to emit a new event along with some payload. The plugin must decide when the event should be triggered (usually by hooking into a game function). See the [Events.cleo](https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Events) plugin source code for an example.
 
 `TriggerEvent` has two parameters: an event name and a serialized JSON. It will be passed to the event listeners as the `data` property of the event object.
+
+## Dispatching events from scripts
+
+Dispatching events is a safe way for scripts to communicate with each other. For example, one script can dispatch an event when the player enters a specific area, and another script can listen to that event and perform some action. `dispatchEvent` function creates a new custom event. It has the following signature:
+
+```ts
+function dispatchEvent(name: string, data: any): void;
+```
+
+The `name` parameter is the name of the event to dispatch. It corresponds to the `name` argument in `addEventListener`. The `data` is an optional payload that will be passed to the [event listeners](#listening-to-events) as the `data` property of the event object. The payload can be any JSON-serializable value (e.g. functions are not allowed).
+
+```ts
+// Dispatch an event from a script
+dispatchEvent("OnMyCustomEvent", { foo: "bar" });
+
+// Listen to the event in a script
+addEventListener("OnMyCustomEvent", (event) => {
+  log(event.data.foo); // logs "bar"
+});
+```

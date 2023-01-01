@@ -9,11 +9,18 @@
     - [\_\_dirname](#__dirname)
     - [\_\_filename](#__filename)
   - [Functions](#functions)
-    - [log](#log)
-    - [wait](#wait)
-    - [showTextBox](#showtextbox)
+    - [addEventListener](#addeventlistener)
+    - [asyncWait](#asyncwait)
+    - [clearTimeout](#cleartimeout)
+    - [clearInterval](#clearinterval)
+    - [dispatchEvent](#dispatchevent)
     - [exit](#exit)
+    - [log](#log)
     - [native](#native)
+    - [setInterval](#setinterval)
+    - [setTimeout](#settimeout)
+    - [showTextBox](#showtextbox)
+    - [wait](#wait)
   - [Static Objects](#static-objects)
     - [Memory](#memory)
     - [Math](#math)
@@ -23,7 +30,6 @@
       - [CLEO.version](#cleoversion)
       - [CLEO.apiVersion](#cleoapiversion)
       - [CLEO.runScript](#cleorunscript)
-      - [CLEO.getLastEvent](#cleogetlastevent)
 
 ## Native functions
 
@@ -31,7 +37,7 @@ CLEO Redux supports all commands native to the current game. In the classic GTA 
 
 Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function [`native`](./api#native). For example, to change the player's health run `native("SET_PLAYER_HEALTH", 0, 100)`, where `0` is the player's id and `100` is the desired health.
 
-For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called _classes_. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes `Player`, `Car`, or `Text` respectively. You can browse available classes and methods they provide in Sanny Builder Library.
+For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called _classes_. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes `Player`, `Car`, or `Text` respectively. You can browse available classes and their methods in Sanny Builder Library.
 
 For example, to change the player's health using classes run `p.setHealth(100)`, where `p` is an instance of the `Player` class created with `new Player()` or `Player.Create` functions.
 
@@ -97,32 +103,51 @@ an absolute path to the current file
 
 ### Functions
 
-#### log
+#### addEventListener
 
-`log(...values)` prints comma-separated `{values}` to the `cleo_redux.log`
+`addEventListener(name, callback)` calls the `{callback}` function every time an [event](./events.md) with the specified `{name}` is triggered. The `{callback}` function accepts a single argument that contains event-specific data. `addEventListener` returns a function that can be used to remove the listener.
 
 ```js
-var x = 1;
-log("value of x is ", x);
+const cancel = addEventListener("OnVehicleCreate", (event) => {
+  log("A vehicle is created!");
+});
+
+// ...
+
+cancel(); // the event callback won't be called anymore
 ```
 
-#### wait
+#### asyncWait
 
-`wait(timeInMs)` pauses the script execution for at least `{timeInMs}` milliseconds
+`await asyncWait(timeInMs)` pauses the script execution for at least `{timeInMs}` milliseconds. `asyncWait` can be used in async functions.
 
 ```js
-while (true) {
-  wait(1000);
-  log("1 second passed");
+async function loop() {
+  while (true) {
+    await asyncWait(1000);
+    log("1 second passed");
+  }
 }
 ```
 
-#### showTextBox
+#### clearTimeout
 
-`showTextBox(text)` displays `{text}` in the black rectangular box. Not available on an `unknown` host.
+See [setTimeout](#settimeout).
+
+#### clearInterval
+
+See [setInterval](#setinterval).
+
+#### dispatchEvent
+
+`dispatchEvent(name, data?)` triggers a custom event with the specified `{name}` and `{data}`. The `{data}` argument is optional. The event can be caught by [`addEventListener`](#addeventlistener) function from any active script.
 
 ```js
-showTextBox("Hello, world!");
+addEventListener("greeting", (event) => {
+  log(event.data); // prints "hello"
+});
+
+dispatchEvent("greeting", "hello");
 ```
 
 #### exit
@@ -131,6 +156,15 @@ showTextBox("Hello, world!");
 
 ```js
 exit("Script ended");
+```
+
+#### log
+
+`log(...values)` prints comma-separated `{values}` to the `cleo_redux.log`
+
+```js
+var x = 1;
+log("value of x is ", x);
 ```
 
 #### native
@@ -161,6 +195,53 @@ For the conditional commands the result is the boolean value `true` or `false`
 if (native("HAS_MODEL_LOADED", 101)) {
   // checks the condition
   showTextBox("Model with id 101 has been loaded");
+}
+```
+
+#### setInterval
+
+`setInterval(callback, timeInMs?)` calls the `{callback}` function every `{timeInMs}` milliseconds (or `0` if the argument is not present).
+
+`setInterval` returns an unique id that can be used to cancel the interval early using [clearInterval](#clearinterval).
+
+```js
+let intervalId = setInterval(() => {
+  showTextBox("1 second passed");
+}, 1000);
+
+clearInterval(intervalId); // the callback won't be called anymore
+```
+
+#### setTimeout
+
+`setTimeout(callback, timeInMs?)` calls the `{callback}` function after `{timeInMs}` milliseconds (or `0` if the argument is not present).
+
+`setTimeout` returns an unique id that can be used to cancel the timeout early using [clearTimeout](#cleartimeout).
+
+```js
+let timeoutId = setTimeout(() => {
+  exit("Terminate script);
+}, 1000);
+
+clearTimeout(timeoutId); // the callback won't be called
+```
+
+#### showTextBox
+
+`showTextBox(text)` displays `{text}` in the black rectangular box. Not available on an `unknown` host.
+
+```js
+showTextBox("Hello, world!");
+```
+
+#### wait
+
+`wait(timeInMs)` pauses the script execution for at least `{timeInMs}` milliseconds
+
+```js
+while (true) {
+  wait(1000);
+  log("1 second passed");
 }
 ```
 
@@ -227,7 +308,7 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
     `runScript` has the following limitations:
 
-    - JS scripts must have an extension `.mjs`, CS scripts must have an extension `.s`. This is necessary to avoid automatic script loading.
+    - script files must have one of the following extensions: `.mjs`, `.js` (JS scripts), `.ts` (TS scripts), `.s` or `.cs` (CS scripts).
     - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
 
     When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
@@ -284,17 +365,4 @@ if (native("HAS_MODEL_LOADED", 101)) {
     ```
     00A1: set_char_coordinates $PLAYER_ACTOR x 0@ y 1@ z 2@ // teleports the player at -921.25 662.125 -100.0
     0A93: terminate_this_custom_script
-    ```
-
-  ##### CLEO.getLastEvent
-
-  - `CLEO.getLastEvent(): object | undefined` - method that returns the last event object. The event object is a JavaScript object with the following fields:
-
-    - `name` - the name of the event
-    - `data` - any payload [associated with the event](./events.md#list-of-events)
-
-    The method returns `undefined` if there was no event in this frame.
-
-    ```js
-    log(CLEO.getLastEvent()); // { name: "OnVehicleCreate", data: { address: 0x12345678 } }
     ```

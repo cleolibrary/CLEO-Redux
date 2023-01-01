@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.6-dev.20221226"
+#define AppVersion "1.0.6-dev.20230101"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -25,7 +25,7 @@ AppVersion={#AppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
-AppCopyright=Copyright (c) 2021-2022, {#AppPublisher}
+AppCopyright=Copyright (c) 2021-2023, {#AppPublisher}
 DefaultDirName=New folder
 LicenseFile={#SourceDir}\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
