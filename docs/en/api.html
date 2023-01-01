@@ -156,11 +156,18 @@
 </li>
 <li><a href="#functions">Functions</a>
 <ul>
-<li><a href="#log">log</a></li>
-<li><a href="#wait">wait</a></li>
-<li><a href="#showtextbox">showTextBox</a></li>
+<li><a href="#addeventlistener">addEventListener</a></li>
+<li><a href="#asyncwait">asyncWait</a></li>
+<li><a href="#cleartimeout">clearTimeout</a></li>
+<li><a href="#clearinterval">clearInterval</a></li>
+<li><a href="#dispatchevent">dispatchEvent</a></li>
 <li><a href="#exit">exit</a></li>
+<li><a href="#log">log</a></li>
 <li><a href="#native">native</a></li>
+<li><a href="#setinterval">setInterval</a></li>
+<li><a href="#settimeout">setTimeout</a></li>
+<li><a href="#showtextbox">showTextBox</a></li>
+<li><a href="#wait">wait</a></li>
 </ul>
 </li>
 <li><a href="#static-objects">Static Objects</a>
@@ -174,7 +181,6 @@
 <li><a href="#cleoversion">CLEO.version</a></li>
 <li><a href="#cleoapiversion">CLEO.apiVersion</a></li>
 <li><a href="#cleorunscript">CLEO.runScript</a></li>
-<li><a href="#cleogetlastevent">CLEO.getLastEvent</a></li>
 </ul>
 </li>
 </ul>
@@ -185,7 +191,7 @@
 <h2 id="native-functions"><a class="header" href="#native-functions">Native functions</a></h2>
 <p>CLEO Redux supports all commands native to the current game. In the classic GTA 3D series they are also known as <em>opcodes</em>. In GTA IV they are known as <em>native functions</em>. You can find them in <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>.</p>
 <p>Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function <a href="./api#native"><code>native</code></a>. For example, to change the player's health run <code>native(&quot;SET_PLAYER_HEALTH&quot;, 0, 100)</code>, where <code>0</code> is the player's id and <code>100</code> is the desired health.</p>
-<p>For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called <em>classes</em>. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes <code>Player</code>, <code>Car</code>, or <code>Text</code> respectively. You can browse available classes and methods they provide in Sanny Builder Library.</p>
+<p>For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called <em>classes</em>. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes <code>Player</code>, <code>Car</code>, or <code>Text</code> respectively. You can browse available classes and their methods in Sanny Builder Library.</p>
 <p>For example, to change the player's health using classes run <code>p.setHealth(100)</code>, where <code>p</code> is an instance of the <code>Player</code> class created with <code>new Player()</code> or <code>Player.Create</code> functions.</p>
 <h2 id="cleo-redux-bindings"><a class="header" href="#cleo-redux-bindings">CLEO Redux Bindings</a></h2>
 <p>In addition to native commands CLEO Redux adds extra variables and functions.</p>
@@ -227,25 +233,45 @@ if (HOST === &quot;unknown&quot;) {
 <h4 id="__filename"><a class="header" href="#__filename">__filename</a></h4>
 <p>an absolute path to the current file</p>
 <h3 id="functions"><a class="header" href="#functions">Functions</a></h3>
-<h4 id="log"><a class="header" href="#log">log</a></h4>
-<p><code>log(...values)</code> prints comma-separated <code>{values}</code> to the <code>cleo_redux.log</code></p>
-<pre><code class="language-js">var x = 1;
-log(&quot;value of x is &quot;, x);
+<h4 id="addeventlistener"><a class="header" href="#addeventlistener">addEventListener</a></h4>
+<p><code>addEventListener(name, callback)</code> calls the <code>{callback}</code> function every time an <a href="./events.html">event</a> with the specified <code>{name}</code> is triggered. The <code>{callback}</code> function accepts a single argument that contains event-specific data. <code>addEventListener</code> returns a function that can be used to remove the listener.</p>
+<pre><code class="language-js">const cancel = addEventListener(&quot;OnVehicleCreate&quot;, (event) =&gt; {
+  log(&quot;A vehicle is created!&quot;);
+});
+
+// ...
+
+cancel(); // the event callback won't be called anymore
 </code></pre>
-<h4 id="wait"><a class="header" href="#wait">wait</a></h4>
-<p><code>wait(timeInMs)</code> pauses the script execution for at least <code>{timeInMs}</code> milliseconds</p>
-<pre><code class="language-js">while (true) {
-  wait(1000);
-  log(&quot;1 second passed&quot;);
+<h4 id="asyncwait"><a class="header" href="#asyncwait">asyncWait</a></h4>
+<p><code>await asyncWait(timeInMs)</code> pauses the script execution for at least <code>{timeInMs}</code> milliseconds. <code>asyncWait</code> can be used in async functions.</p>
+<pre><code class="language-js">async function loop() {
+  while (true) {
+    await asyncWait(1000);
+    log(&quot;1 second passed&quot;);
+  }
 }
 </code></pre>
-<h4 id="showtextbox"><a class="header" href="#showtextbox">showTextBox</a></h4>
-<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box. Not available on an <code>unknown</code> host.</p>
-<pre><code class="language-js">showTextBox(&quot;Hello, world!&quot;);
+<h4 id="cleartimeout"><a class="header" href="#cleartimeout">clearTimeout</a></h4>
+<p>See <a href="#settimeout">setTimeout</a>.</p>
+<h4 id="clearinterval"><a class="header" href="#clearinterval">clearInterval</a></h4>
+<p>See <a href="#setinterval">setInterval</a>.</p>
+<h4 id="dispatchevent"><a class="header" href="#dispatchevent">dispatchEvent</a></h4>
+<p><code>dispatchEvent(name, data?)</code> triggers a custom event with the specified <code>{name}</code> and <code>{data}</code>. The <code>{data}</code> argument is optional. The event can be caught by <a href="#addeventlistener"><code>addEventListener</code></a> function from any active script.</p>
+<pre><code class="language-js">addEventListener(&quot;greeting&quot;, (event) =&gt; {
+  log(event.data); // prints &quot;hello&quot;
+});
+
+dispatchEvent(&quot;greeting&quot;, &quot;hello&quot;);
 </code></pre>
 <h4 id="exit"><a class="header" href="#exit">exit</a></h4>
 <p><code>exit(reason?)</code> terminates the script immediately. <code>exit</code> function accepts an optional string argument that will be added to the <code>cleo_redux.log</code>.</p>
 <pre><code class="language-js">exit(&quot;Script ended&quot;);
+</code></pre>
+<h4 id="log"><a class="header" href="#log">log</a></h4>
+<p><code>log(...values)</code> prints comma-separated <code>{values}</code> to the <code>cleo_redux.log</code></p>
+<pre><code class="language-js">var x = 1;
+log(&quot;value of x is &quot;, x);
 </code></pre>
 <h4 id="native"><a class="header" href="#native">native</a></h4>
 <p><code>native(command_name, ...input_args)</code> is a low-level function to execute a command using its name <code>{command_name}</code>. The command name matches <code>name</code> property in a JSON file provided by Sanny Builder Library.</p>
@@ -263,6 +289,35 @@ showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
 <pre><code class="language-js">if (native(&quot;HAS_MODEL_LOADED&quot;, 101)) {
   // checks the condition
   showTextBox(&quot;Model with id 101 has been loaded&quot;);
+}
+</code></pre>
+<h4 id="setinterval"><a class="header" href="#setinterval">setInterval</a></h4>
+<p><code>setInterval(callback, timeInMs?)</code> calls the <code>{callback}</code> function every <code>{timeInMs}</code> milliseconds (or <code>0</code> if the argument is not present).</p>
+<p><code>setInterval</code> returns an unique id that can be used to cancel the interval early using <a href="#clearinterval">clearInterval</a>.</p>
+<pre><code class="language-js">let intervalId = setInterval(() =&gt; {
+  showTextBox(&quot;1 second passed&quot;);
+}, 1000);
+
+clearInterval(intervalId); // the callback won't be called anymore
+</code></pre>
+<h4 id="settimeout"><a class="header" href="#settimeout">setTimeout</a></h4>
+<p><code>setTimeout(callback, timeInMs?)</code> calls the <code>{callback}</code> function after <code>{timeInMs}</code> milliseconds (or <code>0</code> if the argument is not present).</p>
+<p><code>setTimeout</code> returns an unique id that can be used to cancel the timeout early using <a href="#cleartimeout">clearTimeout</a>.</p>
+<pre><code class="language-js">let timeoutId = setTimeout(() =&gt; {
+  exit(&quot;Terminate script);
+}, 1000);
+
+clearTimeout(timeoutId); // the callback won't be called
+</code></pre>
+<h4 id="showtextbox"><a class="header" href="#showtextbox">showTextBox</a></h4>
+<p><code>showTextBox(text)</code> displays <code>{text}</code> in the black rectangular box. Not available on an <code>unknown</code> host.</p>
+<pre><code class="language-js">showTextBox(&quot;Hello, world!&quot;);
+</code></pre>
+<h4 id="wait"><a class="header" href="#wait">wait</a></h4>
+<p><code>wait(timeInMs)</code> pauses the script execution for at least <code>{timeInMs}</code> milliseconds</p>
+<pre><code class="language-js">while (true) {
+  wait(1000);
+  log(&quot;1 second passed&quot;);
 }
 </code></pre>
 <h3 id="static-objects"><a class="header" href="#static-objects">Static Objects</a></h3>
@@ -322,7 +377,7 @@ log(CLEO.apiVersion.build); // undefined
 </blockquote>
 <p><code>runScript</code> has the following limitations:</p>
 <ul>
-<li>JS scripts must have an extension <code>.mjs</code>, CS scripts must have an extension <code>.s</code>. This is necessary to avoid automatic script loading.</li>
+<li>script files must have one of the following extensions: <code>.mjs</code>, <code>.js</code> (JS scripts), <code>.ts</code> (TS scripts), <code>.s</code> or <code>.cs</code> (CS scripts).</li>
 <li>spawning CS scripts is not supported in the <a href="./relation-to-cleo-library.html#running-cleo-redux-as-an-addon-to-cleo-library">delegate mode</a> (i.e. won't work in GTA San Andreas with CLEO 4 installed.)</li>
 </ul>
 <p>When running a new script you can also provide arguments to it. <code>args</code> is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.</p>
@@ -355,19 +410,6 @@ log(CLEO.apiVersion.build); // undefined
 <p>child.cs:</p>
 <pre><code>00A1: set_char_coordinates $PLAYER_ACTOR x 0@ y 1@ z 2@ // teleports the player at -921.25 662.125 -100.0
 0A93: terminate_this_custom_script
-</code></pre>
-</li>
-</ul>
-<h5 id="cleogetlastevent"><a class="header" href="#cleogetlastevent">CLEO.getLastEvent</a></h5>
-<ul>
-<li>
-<p><code>CLEO.getLastEvent(): object | undefined</code> - method that returns the last event object. The event object is a JavaScript object with the following fields:</p>
-<ul>
-<li><code>name</code> - the name of the event</li>
-<li><code>data</code> - any payload <a href="./events.html#list-of-events">associated with the event</a></li>
-</ul>
-<p>The method returns <code>undefined</code> if there was no event in this frame.</p>
-<pre><code class="language-js">log(CLEO.getLastEvent()); // { name: &quot;OnVehicleCreate&quot;, data: { address: 0x12345678 } }
 </code></pre>
 </li>
 </ul>

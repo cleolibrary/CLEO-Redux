@@ -141,7 +141,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="events"><a class="header" href="#events">Events</a></h1>
-<p>CLEO Redux 1.0.6 adds initial support for event-driven scripting. This feature allows you to write scripts that react to events that happen in the game.</p>
+<p>CLEO Redux 1.0.6 adds initial support for event-driven scripting. This feature allows you to write scripts that react to events that happen in the game or another scripts.</p>
 <ul>
 <li><a href="#listening-to-events">Listening to events</a></li>
 <li><a href="#list-of-events">List of events</a>
@@ -155,14 +155,18 @@
 </ul>
 </li>
 <li><a href="#creating-your-own-events">Creating your own events</a></li>
+<li><a href="#dispatching-events-from-scripts">Dispatching events from scripts</a></li>
 </ul>
 <h2 id="listening-to-events"><a class="header" href="#listening-to-events">Listening to events</a></h2>
-<p>A globally available <code>addEventListener</code> function creates a new event listener. It takes two arguments: a <a href="#list-of-events">predefined event name</a> and a function that will be called when the event is triggered (a callback). The callback receives an argument that is an object with a particular structure depending on the event.</p>
+<p>A globally available <code>addEventListener</code> function creates a new event listener. It takes two arguments: an event name and a function that will be called when the event is triggered (a callback). </p>
+<p>The event name argument corresponds to <a href="#list-of-events">built-in</a> or <a href="#dispatching-events-from-scripts">custom</a> event names.</p>
+<p>The callback receives a single argument. This argument is a JavaScript object with two fields: <code>name</code> (the event name) and <code>data</code> (custom data associated with this event).</p>
 <blockquote>
 <p>Event listeners only work in <a href="./async.html">async context</a>. Scripts willing to react to game events must not use a blocking <code>wait</code> function. Use <code>asyncWait</code> instead.</p>
 </blockquote>
 <pre><code class="language-js">addEventListener(&quot;OnVehicleCreate&quot;, (event) =&gt; {
   log(&quot;A vehicle is created!&quot;);
+  log(event.name); // logs &quot;OnVehicleCreate&quot;
 });
 </code></pre>
 <p><code>addEventListener</code> returns a function that can be used to stop listening to the event. This is useful when you want to stop listening to the event after a certain condition is met.</p>
@@ -290,6 +294,20 @@ addEventListener(&quot;OnObjectDelete&quot;, (event: OnObjectDeleteEvent) =&gt; 
 <h2 id="creating-your-own-events"><a class="header" href="#creating-your-own-events">Creating your own events</a></h2>
 <p><a href="./using-sdk.html">CLEO Redux SDK</a> provides a method called <code>TriggerEvent</code> that can be used to emit a new event along with some payload. The plugin must decide when the event should be triggered (usually by hooking into a game function). See the <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Events">Events.cleo</a> plugin source code for an example.</p>
 <p><code>TriggerEvent</code> has two parameters: an event name and a serialized JSON. It will be passed to the event listeners as the <code>data</code> property of the event object.</p>
+<h2 id="dispatching-events-from-scripts"><a class="header" href="#dispatching-events-from-scripts">Dispatching events from scripts</a></h2>
+<p>Dispatching events is a safe way for scripts to communicate with each other. For example, one script can dispatch an event when the player enters a specific area, and another script can listen to that event and perform some action. <code>dispatchEvent</code> function creates a new custom event. It has the following signature:</p>
+<pre><code class="language-ts">function dispatchEvent(name: string, data: any): void;
+</code></pre>
+<p>The <code>name</code> parameter is the name of the event to dispatch. It corresponds to the <code>name</code> argument in <code>addEventListener</code>. The <code>data</code> is an optional payload that will be passed to the <a href="#listening-to-events">event listeners</a> as the <code>data</code> property of the event object. The payload can be any JSON-serializable value (e.g. functions are not allowed).</p>
+<pre><code class="language-ts">// Dispatch an event from a script
+dispatchEvent(&quot;OnMyCustomEvent&quot;, { foo: &quot;bar&quot; });
+
+// Listen to the event in a script
+addEventListener(&quot;OnMyCustomEvent&quot;, (event) =&gt; {
+  log(event.data.foo); // logs &quot;bar&quot;
+});
+</code></pre>
+<p>Dispatching events is a safe way for scripts to communicate with each other. For example, a script can dispatch an event when the player enters a specific area, and another script can listen to that event and perform some action.</p>
 
                     </main>
 
