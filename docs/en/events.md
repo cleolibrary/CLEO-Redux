@@ -15,7 +15,7 @@ CLEO Redux 1.0.6 adds initial support for event-driven scripting. This feature a
 
 ## Listening to events
 
-A globally available `addEventListener` function creates a new event listener. It takes two arguments: an event name and a function that will be called when the event is triggered (a callback). 
+A globally available `addEventListener` function creates a new event listener. It takes two arguments: an event name and a function that will be called when the event is triggered (a callback).
 
 The event name argument corresponds to [built-in](#list-of-events) or [custom](#dispatching-events-from-scripts) event names.
 
@@ -210,3 +210,32 @@ addEventListener("OnMyCustomEvent", (event) => {
   log(event.data.foo); // logs "bar"
 });
 ```
+
+## Using events in TypeScript
+
+Both `addEventListener` and `dispatchEvent` are generic functions that can be used to type-check event names and payloads. The following example shows how to use them in TypeScript:
+
+```ts
+// Define an event payload
+export interface WantedLevelChangeEvent {
+  oldWantedLevel: number;
+  newWantedLevel: number;
+  change: number;
+}
+
+// Dispatch an event
+dispatchEvent<WantedLevelChangeEvent>("OnWantedLevelChange", {
+  oldWantedLevel: 0,
+  newWantedLevel: 1,
+  change: 1,
+});
+
+// Listen to the event
+addEventListener<WantedLevelChangeEvent>("OnWantedLevelChange", (event) => {
+  log(event.data.oldWantedLevel); // logs 0
+  log(event.data.newWantedLevel); // logs 1
+  log(event.data.change); // logs 1
+});
+```
+
+`WantedLevelChangeEvent` type allows VS Code to provide auto-completion and type-checking for the event payload.
