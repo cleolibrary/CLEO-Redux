@@ -158,7 +158,7 @@
 <li><a href="#dispatching-events-from-scripts">Dispatching events from scripts</a></li>
 </ul>
 <h2 id="listening-to-events"><a class="header" href="#listening-to-events">Listening to events</a></h2>
-<p>A globally available <code>addEventListener</code> function creates a new event listener. It takes two arguments: an event name and a function that will be called when the event is triggered (a callback). </p>
+<p>A globally available <code>addEventListener</code> function creates a new event listener. It takes two arguments: an event name and a function that will be called when the event is triggered (a callback).</p>
 <p>The event name argument corresponds to <a href="#list-of-events">built-in</a> or <a href="#dispatching-events-from-scripts">custom</a> event names.</p>
 <p>The callback receives a single argument. This argument is a JavaScript object with two fields: <code>name</code> (the event name) and <code>data</code> (custom data associated with this event).</p>
 <blockquote>
@@ -307,6 +307,30 @@ addEventListener(&quot;OnMyCustomEvent&quot;, (event) =&gt; {
   log(event.data.foo); // logs &quot;bar&quot;
 });
 </code></pre>
+<h2 id="using-events-in-typescript"><a class="header" href="#using-events-in-typescript">Using events in TypeScript</a></h2>
+<p>Both <code>addEventListener</code> and <code>dispatchEvent</code> are generic functions that can be used to type-check event names and payloads. The following example shows how to use them in TypeScript:</p>
+<pre><code class="language-ts">// Define an event payload
+export interface WantedLevelChangeEvent {
+  oldWantedLevel: number;
+  newWantedLevel: number;
+  change: number;
+}
+
+// Dispatch an event
+dispatchEvent&lt;WantedLevelChangeEvent&gt;(&quot;OnWantedLevelChange&quot;, {
+  oldWantedLevel: 0,
+  newWantedLevel: 1,
+  change: 1,
+});
+
+// Listen to the event
+addEventListener&lt;WantedLevelChangeEvent&gt;(&quot;OnWantedLevelChange&quot;, (event) =&gt; {
+  log(event.data.oldWantedLevel); // logs 0
+  log(event.data.newWantedLevel); // logs 1
+  log(event.data.change); // logs 1
+});
+</code></pre>
+<p>Providing the WantedLevelChangeEvent type allows VS Code to provide auto-completion and type-checking for the event payload.</p>
 
                     </main>
 
