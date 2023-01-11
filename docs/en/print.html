@@ -637,9 +637,6 @@ if (cop) {
 </code></pre>
 <p>This script shows how you can use <code>.find</code> and other common array methods to find a line in the imported IDE file and use it. It prints <code>1</code> when given a file with the content shown above.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="asynchronous-programming"><a class="header" href="#asynchronous-programming">Asynchronous Programming</a></h1>
-<blockquote>
-<p>This feature is highly experimental and might be unstable.</p>
-</blockquote>
 <ul>
 <li><a href="async.html#async-api">Async API</a></li>
 <li><a href="async.html#async-functions">Async Functions</a></li>
@@ -770,6 +767,7 @@ Each of the three tasks are executed independently from each other. Note that ru
 </code></pre>
 <h2 id="settimeout-and-setinterval"><a class="header" href="#settimeout-and-setinterval">setTimeout and setInterval</a></h2>
 <p>It is easy to implement <code>setTimeout</code> and <code>setInterval</code> using <code>asyncWait</code> and <code>async</code> functions. You can <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/examples/setTimeout%2C%20setInterval.js">find an implementation example here</a>.</p>
+<p>Since 1.0.6 these functions are <a href="./api.html">part of the standard library</a> and are available in all scripts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="events"><a class="header" href="#events">Events</a></h1>
 <p>CLEO Redux 1.0.6 adds initial support for event-driven scripting. This feature allows you to write scripts that react to events that happen in the game or another scripts.</p>
 <ul>
@@ -1376,7 +1374,7 @@ var x = Object.create(null);
 <p>This guide is for x86 hosts (such as classic era games). For the information on using the Memory class on x64 hosts (such as the Definitive edition) <a href="./using-memory-64.html">click here</a>.</p>
 </blockquote>
 <ul>
-<li><a href="using-memory.html#reading-and-writing-values">Reading and Writing Values</a></li>
+<li><a href="using-memory.html#reading-and-writing-numbers">Reading and Writing Numbers</a></li>
 <li><a href="using-memory.html#reading-and-writing-strings">Reading and Writing Strings</a></li>
 <li><a href="using-memory.html#casting-methods">Casting methods</a></li>
 <li><a href="using-memory.html#calling-foreign-functions">Calling Foreign Functions</a>
@@ -1457,12 +1455,12 @@ var x = Object.create(null);
   };
 }
 </code></pre>
-<h3 id="reading-and-writing-values"><a class="header" href="#reading-and-writing-values">Reading and Writing Values</a></h3>
-<p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
+<h3 id="reading-and-writing-numbers"><a class="header" href="#reading-and-writing-numbers">Reading and Writing Numbers</a></h3>
+<p>A group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying numbers stored in the memory. Each method is designed for a particular data type. For example, to change a floating-point number (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>:</p>
 <pre><code class="language-js">Memory.WriteFloat(address, 1.0, false);
 </code></pre>
 <p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable).</p>
-<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
+<p>Similarly, to read a number from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>:</p>
 <pre><code class="language-js">var x = Memory.ReadI8(address, true);
 </code></pre>
 <p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
@@ -1607,7 +1605,7 @@ if (addr) {
 <p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
 </blockquote>
 <ul>
-<li><a href="using-memory-64.html#reading-and-writing-values">Reading and Writing Values</a></li>
+<li><a href="using-memory-64.html#reading-and-writing-numbers">Reading and Writing Numbers</a></li>
 <li><a href="using-memory-64.html#reading-and-writing-strings">Reading and Writing Strings</a></li>
 <li><a href="using-memory-64.html#casting-methods">Casting methods</a></li>
 <li><a href="using-memory-64.html#calling-foreign-functions">Calling Foreign Functions</a>
@@ -1664,8 +1662,8 @@ if (addr) {
   };
 }
 </code></pre>
-<h3 id="reading-and-writing-values-1"><a class="header" href="#reading-and-writing-values-1">Reading and Writing Values</a></h3>
-<p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
+<h3 id="reading-and-writing-numbers-1"><a class="header" href="#reading-and-writing-numbers-1">Reading and Writing Numbers</a></h3>
+<p>A group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying numbers stored in the memory. Each method is designed for a particular data type. For example, to change a floating-point number (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>:</p>
 <pre><code class="language-js">Memory.WriteFloat(address, 1.0, false, false);
 </code></pre>
 <p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). Due to an ASLR feature memory addresses could change when the game runs because the base address changes. Consider the following example:</p>
@@ -1684,7 +1682,7 @@ if (addr) {
 <p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
 <pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
 </code></pre>
-<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
+<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>:</p>
 <pre><code class="language-js">var x = Memory.ReadI8(offset, true, true);
 </code></pre>
 <p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>

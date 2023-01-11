@@ -141,9 +141,6 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="asynchronous-programming"><a class="header" href="#asynchronous-programming">Asynchronous Programming</a></h1>
-<blockquote>
-<p>This feature is highly experimental and might be unstable.</p>
-</blockquote>
 <ul>
 <li><a href="#async-api">Async API</a></li>
 <li><a href="#async-functions">Async Functions</a></li>
@@ -274,6 +271,7 @@ Each of the three tasks are executed independently from each other. Note that ru
 </code></pre>
 <h2 id="settimeout-and-setinterval"><a class="header" href="#settimeout-and-setinterval">setTimeout and setInterval</a></h2>
 <p>It is easy to implement <code>setTimeout</code> and <code>setInterval</code> using <code>asyncWait</code> and <code>async</code> functions. You can <a href="https://github.com/cleolibrary/CLEO-Redux/blob/master/examples/setTimeout%2C%20setInterval.js">find an implementation example here</a>.</p>
+<p>Since 1.0.6 these functions are <a href="./api.html">part of the standard library</a> and are available in all scripts.</p>
 
                     </main>
 

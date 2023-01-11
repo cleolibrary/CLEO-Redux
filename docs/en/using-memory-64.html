@@ -145,7 +145,7 @@
 <p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
 </blockquote>
 <ul>
-<li><a href="#reading-and-writing-values">Reading and Writing Values</a></li>
+<li><a href="#reading-and-writing-numbers">Reading and Writing Numbers</a></li>
 <li><a href="#reading-and-writing-strings">Reading and Writing Strings</a></li>
 <li><a href="#casting-methods">Casting methods</a></li>
 <li><a href="#calling-foreign-functions">Calling Foreign Functions</a>
@@ -202,8 +202,8 @@
   };
 }
 </code></pre>
-<h3 id="reading-and-writing-values"><a class="header" href="#reading-and-writing-values">Reading and Writing Values</a></h3>
-<p>Group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>, e.g.:</p>
+<h3 id="reading-and-writing-numbers"><a class="header" href="#reading-and-writing-numbers">Reading and Writing Numbers</a></h3>
+<p>A group of memory access methods (<code>ReadXXX</code>/<code>WriteXXX</code>) can be used for reading or modifying numbers stored in the memory. Each method is designed for a particular data type. For example, to change a floating-point number (which occupies 4 bytes in the original game) use <code>Memory.WriteFloat</code>:</p>
 <pre><code class="language-js">Memory.WriteFloat(address, 1.0, false, false);
 </code></pre>
 <p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write, the first <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable). The second <code>false</code> is the value of the <code>ib</code> flag that instructs CLEO to treat the <code>address</code> either as an absolute address (<code>ib</code> = <code>false</code>) or a relative offset to the current image base address (<code>ib</code> = <code>true</code>). Due to an ASLR feature memory addresses could change when the game runs because the base address changes. Consider the following example:</p>
@@ -222,7 +222,7 @@
 <p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
 <pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
 </code></pre>
-<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>, e.g.:</p>
+<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>:</p>
 <pre><code class="language-js">var x = Memory.ReadI8(offset, true, true);
 </code></pre>
 <p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
