@@ -2,7 +2,7 @@
 
 > This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) [click here](./using-memory.md).
 
-- [Reading and Writing Values](#reading-and-writing-values)
+- [Reading and Writing Numbers](#reading-and-writing-numbers)
 - [Reading and Writing Strings](#reading-and-writing-strings)
 - [Casting methods](#casting-methods)
 - [Calling Foreign Functions](#calling-foreign-functions)
@@ -59,9 +59,9 @@ interface Memory {
 }
 ```
 
-### Reading and Writing Values
+### Reading and Writing Numbers
 
-Group of memory access methods (`ReadXXX`/`WriteXXX`) can be used for reading or modifying values stored in the memory. Each method is designed for a particular data type. To change a floating-point value (which occupies 4 bytes in the original game) use `Memory.WriteFloat`, e.g.:
+A group of memory access methods (`ReadXXX`/`WriteXXX`) can be used for reading or modifying numbers stored in the memory. Each method is designed for a particular data type. For example, to change a floating-point number (which occupies 4 bytes in the original game) use `Memory.WriteFloat`:
 
 ```js
 Memory.WriteFloat(address, 1.0, false, false);
@@ -93,7 +93,7 @@ For your convenience you can find the current value of the image base in the `cl
 09:27:35 [INFO] Image base address 0x7ff7d1f50000
 ```
 
-Similarly, to read a value from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a `char` or `uint8`) use `Memory.ReadI8`, e.g.:
+Similarly, to read a value from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a `char` or `uint8`) use `Memory.ReadI8`:
 
 ```js
 var x = Memory.ReadI8(offset, true, true);

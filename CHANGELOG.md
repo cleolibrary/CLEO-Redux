@@ -1,9 +1,10 @@
-### 1.0.6
+### 1.0.6 - January 11, 2023
 
 - new built-in functions `addEventListener` and `dispatchEvent`. See https://re.cleo.li/docs/en/events.html
 - add `setTimeout`, `setInterval`, `clearTimeout`, `clearInterval`. See https://re.cleo.li/docs/en/api.html
 - add `.cs`, `.js`, `.ts` to the list of allowed file extensions for [CLEO.runScript](https://re.cleo.li/docs/en/api.html#cleorunscript)
 - fix a rare deadlock causing scripts to stop on timeout
+- fix an issue causing script failures after hot reload
 - fix an issue when Bully commands returned incorrect values
 
 **SDK AND PLUGINS**

@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.0.6-dev.20230101"
+#define AppVersion "1.0.6"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -135,8 +135,8 @@ Source: "{#OutputDir}\bully\CLEO\.config\enums.js"; DestDir: "{app}\CLEO\.config
 
 ; UAL
 ; x86
-Source: "{tmp}\dinput8.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: isIV and IsX86; AfterInstall: Extract('{app}\dinput8.zip', 'dinput8.dll', '{app}');  Components: asiloader;
-Source: "{tmp}\vorbisFile.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: not isIV and IsX86; AfterInstall: Extract('{app}\vorbisFile.zip', 'vorbisFile.dll', '{app}');  Components: asiloader;
+Source: "{tmp}\dinput8.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: (isGTA3 or IsVC or isIV) and IsX86; AfterInstall: Extract('{app}\dinput8.zip', 'dinput8.dll', '{app}');  Components: asiloader;
+Source: "{tmp}\vorbisFile.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: not isGTA3 and not isVC and not isIV and IsX86; AfterInstall: Extract('{app}\vorbisFile.zip', 'vorbisFile.dll', '{app}');  Components: asiloader;
 ; x64
 Source: "{tmp}\d3d9.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: isRe and IsX64; AfterInstall: Extract('{app}\d3d9.zip', 'd3d9.dll', '{app}');  Components: asiloader;
 Source: "{tmp}\version.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: not isRe and IsX64; AfterInstall: Extract('{app}\version.zip', 'version.dll', '{app}');  Components: asiloader;
@@ -597,7 +597,7 @@ begin
           else
             DownloadPage.Add('{#UAL64}/version.zip', 'version.zip', '');
         if IsX86() then
-          if IsIV then
+          if IsGta3 or IsVC or IsIV then
             DownloadPage.Add('{#UAL32}/dinput8.zip', 'dinput8.zip', '')
           else
             DownloadPage.Add('{#UAL32}/vorbisFile.zip', 'vorbisFile.zip', '');

@@ -1,7 +1,5 @@
 # Asynchronous Programming
 
-> This feature is highly experimental and might be unstable.
-
 - [Async API](#async-api)
 - [Async Functions](#async-functions)
 - [Concurrent Async Functions](#concurrent-async-functions)
@@ -173,3 +171,5 @@ When importing JSON files, its content is available via `default` property.
 ## setTimeout and setInterval
 
 It is easy to implement `setTimeout` and `setInterval` using `asyncWait` and `async` functions. You can [find an implementation example here](https://github.com/cleolibrary/CLEO-Redux/blob/master/examples/setTimeout%2C%20setInterval.js).
+
+Since 1.0.6 these functions are [part of the standard library](./api.md) and are available in all scripts.
