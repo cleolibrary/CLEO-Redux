@@ -487,13 +487,13 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>Due to the dynamic nature of JavaScript CLEO Redux needs to know an interface of each native command, i.e. a number of input arguments and returned values and their types. <a href="https://library.sannybuilder.com">Sanny Builder Library</a> serves as the source of command definitions for CLEO Redux.</p>
 <p>At start CLEO validates that a definition file is present and correct and if not tries to download it from GitHub (see the table below) into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.252</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.258</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.253</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.259</code></td></tr>
 <tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.298</code></td></tr>
 <tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.222</code></td></tr>
 <tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.228</code></td></tr>
 <tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.251</code></td></tr>
-<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.46</code></td></tr>
+<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.63</code></td></tr>
 <tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.222</code></td></tr>
 <tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.225</code></td></tr>
 <tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.41</code></td></tr>
@@ -999,6 +999,7 @@ addEventListener&lt;WantedLevelChangeEvent&gt;(&quot;OnWantedLevelChange&quot;, 
 <li><a href="api.html#cleodebug">CLEO.debug</a></li>
 <li><a href="api.html#cleoversion">CLEO.version</a></li>
 <li><a href="api.html#cleoapiversion">CLEO.apiVersion</a></li>
+<li><a href="api.html#cleohostversion">CLEO.hostVersion</a></li>
 <li><a href="api.html#cleorunscript">CLEO.runScript</a></li>
 </ul>
 </li>
@@ -1186,6 +1187,17 @@ log(CLEO.apiVersion.minor); // &quot;219&quot;
 log(CLEO.apiVersion.patch); // undefined
 log(CLEO.apiVersion.pre); // undefined
 log(CLEO.apiVersion.build); // undefined
+</code></pre>
+<h5 id="cleohostversion"><a class="header" href="#cleohostversion">CLEO.hostVersion</a></h5>
+<ul>
+<li><code>CLEO.hostVersion</code> - a complex property providing information about the host version. Currently only available if the current exe file has version info (e.g. GTA IV or GTA Trilogy)</li>
+</ul>
+<pre><code class="language-js">log(CLEO.hostVersion); // &quot;1.2.0.43&quot;
+log(CLEO.hostVersion.major); // &quot;1&quot;
+log(CLEO.hostVersion.minor); // &quot;2&quot;
+log(CLEO.hostVersion.patch); // &quot;0&quot;
+log(CLEO.hostVersion.pre); // undefined
+log(CLEO.hostVersion.build); // &quot;43&quot;
 </code></pre>
 <h5 id="cleorunscript"><a class="header" href="#cleorunscript">CLEO.runScript</a></h5>
 <ul>
