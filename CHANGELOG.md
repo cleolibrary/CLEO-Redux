@@ -1,3 +1,19 @@
+### 1.0.7 - January 27, 2023
+
+- add a new property [`CLEO.hostVersion`](https://re.cleo.li/docs/en/api.html#cleohostversion) that returns the version of the current host. Currently only available if the current exe file has version info (e.g. GTA IV or GTA Trilogy)
+- fix a crash in GTA IV when loading a script with a syntax error
+- fix an issue in GTA IV when some commands always returned the same value (e.g. `GET_CURRENT_CHAR_WEAPON`)
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+- [`CLEO.version`](https://re.cleo.li/docs/en/api.html#cleoversion) and [`CLEO.apiVersion`](https://re.cleo.li/docs/en/api.html#cleoapiversion) incorrectly returned empty strings for missing parts of the version string. Now they return `undefined` instead. 
+```ts
+  log(CLEO.apiVersion.patch); // was "" now undefined
+  log(CLEO.apiVersion.pre); // was "" now undefined
+  log(CLEO.apiVersion.build); // was "" now undefined
+```
+
 ### 1.0.6 - January 11, 2023
 
 - new built-in functions `addEventListener` and `dispatchEvent`. See https://re.cleo.li/docs/en/events.html

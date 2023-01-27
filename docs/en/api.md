@@ -29,6 +29,7 @@
       - [CLEO.debug](#cleodebug)
       - [CLEO.version](#cleoversion)
       - [CLEO.apiVersion](#cleoapiversion)
+      - [CLEO.hostVersion](#cleohostversion)
       - [CLEO.runScript](#cleorunscript)
 
 ## Native functions
@@ -298,6 +299,19 @@ while (true) {
   log(CLEO.apiVersion.patch); // undefined
   log(CLEO.apiVersion.pre); // undefined
   log(CLEO.apiVersion.build); // undefined
+  ```
+
+  ##### CLEO.hostVersion
+
+  - `CLEO.hostVersion` - a complex property providing information about the host version. Currently only available if the current exe file has version info (e.g. GTA IV or GTA Trilogy)
+
+  ```js
+  log(CLEO.hostVersion); // "1.2.0.43"
+  log(CLEO.hostVersion.major); // "1"
+  log(CLEO.hostVersion.minor); // "2"
+  log(CLEO.hostVersion.patch); // "0"
+  log(CLEO.hostVersion.pre); // undefined
+  log(CLEO.hostVersion.build); // "43"
   ```
 
   ##### CLEO.runScript
