@@ -1,3 +1,12 @@
+### 1.1.0 - February 7, 2023
+
+- add support for GTA The Trilogy - The Definitive Edition (Steam) - v1.0.17.38838
+- add `"moduleDetection": "force"` in default `tsconfig.json` to solve [error TS2451 in VS Code](https://github.com/microsoft/TypeScript/issues/47229). Delete your `tsconfig.json` if you want to recreate it with the new option.
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html) for GTA IV
+
 ### 1.0.7 - January 27, 2023
 
 - add a new property [`CLEO.hostVersion`](https://re.cleo.li/docs/en/api.html#cleohostversion) that returns the version of the current host. Currently only available if the current exe file has version info (e.g. GTA IV or GTA Trilogy)
@@ -7,11 +16,12 @@
 **BREAKING CHANGES**
 
 - bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
-- [`CLEO.version`](https://re.cleo.li/docs/en/api.html#cleoversion) and [`CLEO.apiVersion`](https://re.cleo.li/docs/en/api.html#cleoapiversion) incorrectly returned empty strings for missing parts of the version string. Now they return `undefined` instead. 
+- [`CLEO.version`](https://re.cleo.li/docs/en/api.html#cleoversion) and [`CLEO.apiVersion`](https://re.cleo.li/docs/en/api.html#cleoapiversion) incorrectly returned empty strings for missing parts of the version string. Now they return `undefined` instead.
+
 ```ts
-  log(CLEO.apiVersion.patch); // was "" now undefined
-  log(CLEO.apiVersion.pre); // was "" now undefined
-  log(CLEO.apiVersion.build); // was "" now undefined
+log(CLEO.apiVersion.patch); // was "" now undefined
+log(CLEO.apiVersion.pre); // was "" now undefined
+log(CLEO.apiVersion.build); // was "" now undefined
 ```
 
 ### 1.0.6 - January 11, 2023

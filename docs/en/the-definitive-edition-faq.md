@@ -11,9 +11,9 @@ Here you can find answers to the frequently asked questions about support for Th
 
 ### What versions are supported?
 
-- GTA III: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15284** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5)
-- GTA Vice City: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15399** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5)
-- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** (Title Update 1.03), **1.0.0.15483** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5)
+- GTA III: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15284** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5), **1.0.17.38838** (Steam release)
+- GTA Vice City: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15399** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5), **1.0.17.38838** (Steam release)
+- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** (Title Update 1.03), **1.0.0.15483** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5), **1.0.17.38838** (Steam release)
 
 ### Is there any difference from support of the classic games?
 
@@ -27,13 +27,7 @@ Yes, you can. Refer to the [Sanny Builder library](https://library.sannybuilder.
 
 After each game run, CLEO generates a `.d.ts` file in the `CLEO\.config` directory. It's called `gta3.d.ts`, `vc.d.ts` or `sa.d.ts` depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.
 
-To enable autocomplete in VS Code include the following line in your JS script:
-
-```js
-/// <reference path="./.config/sa.d.ts" />
-```
-
-Update the path accordingly depending on which game your script is for and the file location.
+To enable autocomplete in VS Code save your script file with `.ts` extension.
 
 ### Can I use CLEO opcodes?
 
