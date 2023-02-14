@@ -1,3 +1,7 @@
+### 1.1.1 - February 14, 2023
+
+- add support for GTA IV 1.2.0.59
+
 ### 1.1.0 - February 7, 2023
 
 - add support for GTA The Trilogy - The Definitive Edition (Steam) - v1.0.17.38838
