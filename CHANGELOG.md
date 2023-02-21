@@ -1,6 +1,10 @@
+### 1.1.3 - February 21, 2023
+
+- add support for GTA The Trilogy - The Definitive Edition v1.0.17.39540 (Rockstar Games Launcher)
+
 ### 1.1.2 - February 18, 2023
 
-- add support for GTA The Trilogy - The Definitive Edition (Steam) - v1.0.17.39540
+- add support for GTA The Trilogy - The Definitive Edition v1.0.17.39540 (Steam)
 - update default `tsconfig.json` to solve issues with importing JSON files. Delete your `tsconfig.json` if you want to recreate it with the new options.
 
 ### 1.1.1 - February 14, 2023
