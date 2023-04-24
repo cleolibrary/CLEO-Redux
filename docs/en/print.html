@@ -2021,12 +2021,17 @@ Text.PrintHelp(&quot;MY_KEY&quot;); // this displays &quot;Text from FXT file&qu
 <p>for commands requiring a global SCM variable (e.g. countdown timers) use <a href="https://github.com/x87/scm.ts">scm.ts library</a>.</p>
 </li>
 <li>
-<p>commands implicitly loading models or textures (such as widgets) <a href="https://github.com/cleolibrary/CLEO-Redux/issues/12">Tracking issue</a>. You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. </p>
+<p>commands implicitly loading models or textures (such as widgets) <a href="https://github.com/cleolibrary/CLEO-Redux/issues/12">Tracking issue</a>. You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first.</p>
 </li>
 <li>
 <p>you can't call the game functions that need references to variables to store the result. There is no &quot;take an address of the variable&quot; syntax. As a workaround, if the platform permits (e.g. in San Andreas with CLEO 4.4) you can allocate a memory block and pass its address to the function, then read the result from the memory using <a href="./using-memory.html">Memory.Read</a>.</p>
 </li>
+<li>
+<p>only integer numbers can be used as arguments for commands with variable arguments, such as <code>Text.PrintFormattedNow</code>. In the Sanny Builder Library these arguments are referred to as <code>arg: arguments</code>. If you need to pass a floating-point value, you can use <code>Memory.FromFloat</code>:</p>
+</li>
 </ul>
+<pre><code>Text.PrintFormattedNow('%d %d %d %.2f', 100, 1, 2, 3, Memory.FromFloat(1.5))
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="embedding-to-custom-host"><a class="header" href="#embedding-to-custom-host">Embedding to custom host</a></h1>
 <p>CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not <a href="./introduction.html#supported-releases">supported officially</a>) host. A <em>host</em> is an application in which process <code>cleo_redux.asi</code> or <code>cleo_redux64.asi</code> <a href="embedding.html#loading-into-custom-process">gets loaded or injected</a> and where the CLEO runtime <a href="embedding.html#launching-the-cleo-runtime">runs</a>. This feature is highly experimental and subject to change at any moment.</p>
 <ul>
