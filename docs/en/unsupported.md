@@ -14,6 +14,12 @@ The following items are known to be not working and there is no specific timelin
 
 - for commands requiring a global SCM variable (e.g. countdown timers) use [scm.ts library](https://github.com/x87/scm.ts).
 
-- commands implicitly loading models or textures (such as widgets) [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/12). You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first. 
+- commands implicitly loading models or textures (such as widgets) [Tracking issue](https://github.com/cleolibrary/CLEO-Redux/issues/12). You can circumvent the issue by preloading needed resources, e.g. by calling them in a .CS script first.
 
 - you can't call the game functions that need references to variables to store the result. There is no "take an address of the variable" syntax. As a workaround, if the platform permits (e.g. in San Andreas with CLEO 4.4) you can allocate a memory block and pass its address to the function, then read the result from the memory using [Memory.Read](./using-memory.md).
+
+- only integer numbers can be used as arguments for commands with variable arguments, such as `Text.PrintFormattedNow`. In the Sanny Builder Library these arguments are referred to as `arg: arguments`. If you need to pass a floating-point value, you can use `Memory.FromFloat`:
+
+```
+Text.PrintFormattedNow('%d %d %d %.2f', 100, 1, 2, 3, Memory.FromFloat(1.5))
+```
