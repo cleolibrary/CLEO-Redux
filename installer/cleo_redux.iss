@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.1.3"
+#define AppVersion "1.2.0"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -63,7 +63,7 @@ Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mo
 Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: full
 Name: "plugins/input"; Description: "Input 1.3"; Types: full
 Name: "plugins/frontend"; Description: "Frontend 1.1"; Types: full
-Name: "plugins/events"; Description: "Events 1.0"; Types: full
+Name: "plugins/events"; Description: "Events 1.1"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt, *.text (Text files)"; Types: full
 Name: "loaders/ide"; Description: "*.ide (Item Definition files)"; Types: full
@@ -531,14 +531,15 @@ begin
       WizardForm.ComponentsList.Checked[14] := False;
     end;
 
-    // ImGuiRedux is bugged on re3
-    if isRe then
+    // ImGuiRedux is bugged on re3/DE
+    if isRe or Is3Master() or IsVCMaster() or IsSAMaster() then
     begin
       // ImGuiRedux
       WizardForm.ComponentsList.Checked[5] := False;
 
       // D3 Wrapper
       WizardForm.ComponentsList.Checked[6] := False;
+      WizardForm.ComponentsList.ItemEnabled[6] := False;
     end;
 
     // MSS lib is an ASI loader
@@ -569,6 +570,11 @@ begin
  
   if (CurPageID = wpSelectDir) and (WizardDirValue <> '') then
   begin
+    if ((DirExists(WizardDirValue + '\Gameface\Binaries\Win64')) and (
+      FileExists(WizardDirValue + '\PlayGTA3.exe') or 
+      FileExists(WizardDirValue + '\PlayGTAViceCity.exe') or 
+      FileExists(WizardDirValue + '\PlayGTASanAndreas.exe'))) then
+      WizardForm.DirEdit.Text := WizardDirValue + '\Gameface\Binaries\Win64';
     FGameId := IdentifyGame(WizardDirValue);
   end;
 
@@ -594,14 +600,14 @@ begin
       begin
         if IsX64() then
           if isRe then
-            DownloadPage.Add('{#UAL64}/d3d9.zip', 'd3d9.zip', '')
+            DownloadPage.Add('{#UAL64}/d3d9-x64.zip', 'd3d9.zip', '')
           else
-            DownloadPage.Add('{#UAL64}/version.zip', 'version.zip', '');
+            DownloadPage.Add('{#UAL64}/version-x64.zip', 'version.zip', '');
         if IsX86() then
           if IsGta3 or IsVC or IsIV then
-            DownloadPage.Add('{#UAL32}/dinput8.zip', 'dinput8.zip', '')
+            DownloadPage.Add('{#UAL32}/dinput8-Win32.zip', 'dinput8.zip', '')
           else
-            DownloadPage.Add('{#UAL32}/vorbisFile.zip', 'vorbisFile.zip', '');
+            DownloadPage.Add('{#UAL32}/vorbisFile-Win32.zip', 'vorbisFile.zip', '');
       end;
 
       if FDlMemOpsPlugin then

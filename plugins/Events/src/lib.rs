@@ -11,6 +11,6 @@ extern "C" {}
 
 #[ctor]
 fn init() {
-    cleo_redux_sdk::log("Events plugin 1.0");
+    cleo_redux_sdk::log("Events plugin 1.1");
     gta_classic::register_hooks();
 }

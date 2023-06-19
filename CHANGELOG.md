@@ -1,3 +1,23 @@
+### 1.2.0 - June 18, 2023
+
+- add support for GTA The Trilogy - The Definitive Edition v1.0.17.39540 (Epic Games Store)
+- fix an issue when constructor commands for derived classes returned incorrect values (`Heli.Create`, `Boat.Create`, etc.)
+- fix an issue when the library could not read the host version if the path to the executable contained non-ASCII characters
+- improve log for objects: now it gets serialized with all properties, not just `[object Object]`
+
+**INSTALLER**
+
+- update references to Ultimate ASI Loader files to match their new names on GitHub
+- append `Gameface\Binary\Win64` if a root directory of GTA The Trilogy - The Definitive Edition is selected
+
+**SDK AND PLUGINS**
+
+- Events 1.1: add support for latest version of GTA The Trilogy - The Definitive Edition (v1.0.17.39540), all launchers
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 1.1.3 - February 21, 2023
 
 - add support for GTA The Trilogy - The Definitive Edition v1.0.17.39540 (Rockstar Games Launcher)

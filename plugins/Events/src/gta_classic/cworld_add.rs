@@ -15,26 +15,20 @@ static mut CWORLD_ADD: extern "C" fn(*const u8) = std::ptr::null();
 
 lazy_static! {
     static ref CWORLD_ADD_ADDR: Option<usize> = {
-        use crate::utils::{get_exe_version, IMAGE_BASE};
         use cleo_redux_sdk::HostId;
 
         match cleo_redux_sdk::get_host_id() {
-            HostId::RE3 | HostId::REVC => match cleo_redux_sdk::get_symbol_address("CWorld::Add") {
+            HostId::RE3
+            | HostId::REVC
+            | HostId::GTA3
+            | HostId::VC
+            | HostId::SA
+            | HostId::GTA3_UNREAL
+            | HostId::VC_UNREAL
+            | HostId::SA_UNREAL => match cleo_redux_sdk::get_symbol_address("CWorld::Add") {
                 0 => None,
                 x => Some(x),
             },
-            HostId::GTA3 => Some(0x004AE930),
-            HostId::VC => Some(0x004DB3F0),
-            HostId::SA => Some(0x00563220),
-            HostId::GTA3_UNREAL if get_exe_version("LibertyCity.exe") == Some((1, 0, 8, 11827)) => {
-                Some(*IMAGE_BASE + 0xF34DB0)
-            }
-            HostId::VC_UNREAL if get_exe_version("ViceCity.exe") == Some((1, 0, 8, 11827)) => {
-                Some(*IMAGE_BASE + 0xF569F0)
-            }
-            HostId::SA_UNREAL if get_exe_version("SanAndreas.exe") == Some((1, 0, 8, 11827)) => {
-                Some(*IMAGE_BASE + 0x100AF70)
-            }
             _ => None,
         }
     };

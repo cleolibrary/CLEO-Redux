@@ -51,7 +51,7 @@ cancel(); // the event callback won't be called anymore
 
 Triggered after the game creates a new vehicle of any type in the world. An event's `data` object contains the address of the vehicle structure.
 
-Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.8.11827)`, `GTA VC: DE (1.0.8.11827)`, `GTA SA: DE (1.0.8.11827)`
+Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.17.39540)`, `GTA VC: DE (1.0.17.39540)`, `GTA SA: DE (1.0.17.39540)`
 
 ```ts
 interface OnVehicleCreateEvent {
@@ -74,7 +74,7 @@ addEventListener("OnVehicleCreate", (event: OnVehicleCreateEvent) => {
 
 Triggered after the game creates a new ped of any type in the world. An event's `data` object contains the address of the ped structure.
 
-Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.8.11827)`, `GTA VC: DE (1.0.8.11827)`, `GTA SA: DE (1.0.8.11827)`
+Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.17.39540)`, `GTA VC: DE (1.0.17.39540)`, `GTA SA: DE (1.0.17.39540)`
 
 ```ts
 interface OnPedCreateEvent {
@@ -97,7 +97,7 @@ addEventListener("OnPedCreate", (event: OnPedCreateEvent) => {
 
 Triggered after the game creates a new object of any type in the world. An event's `data` object contains the address of the object structure.
 
-Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.8.11827)`, `GTA VC: DE (1.0.8.11827)`, `GTA SA: DE (1.0.8.11827)`
+Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.17.39540)`, `GTA VC: DE (1.0.17.39540)`, `GTA SA: DE (1.0.17.39540)`
 
 ```ts
 interface OnObjectCreateEvent {
@@ -120,7 +120,7 @@ addEventListener("OnObjectCreate", (event: OnObjectCreateEvent) => {
 
 Triggered _before_ the game deletes a vehicle from the world. An event's `data` object contains the address of the vehicle structure.
 
-Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.8.11827)`, `GTA VC: DE (1.0.8.11827)`, `GTA SA: DE (1.0.8.11827)`
+Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.17.39540)`, `GTA VC: DE (1.0.17.39540)`, `GTA SA: DE (1.0.17.39540)`
 
 ```ts
 interface OnVehicleDeleteEvent {
@@ -143,7 +143,7 @@ addEventListener("OnVehicleDelete", (event: OnVehicleDeleteEvent) => {
 
 Triggered _before_ the game deletes a ped from the world. An event's `data` object contains the address of the ped structure.
 
-Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.8.11827)`, `GTA VC: DE (1.0.8.11827)`, `GTA SA: DE (1.0.8.11827)`
+Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.17.39540)`, `GTA VC: DE (1.0.17.39540)`, `GTA SA: DE (1.0.17.39540)`
 
 ```ts
 interface OnPedDeleteEvent {
@@ -166,7 +166,7 @@ addEventListener("OnPedDelete", (event: OnPedDeleteEvent) => {
 
 Triggered _before_ the game deletes an object from the world. An event's `data` object contains the address of the object structure.
 
-Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.8.11827)`, `GTA VC: DE (1.0.8.11827)`, `GTA SA: DE (1.0.8.11827)`
+Supported in: `re3`, `reVC`, `GTA III`, `GTA VC`, `GTA SA`, `GTA III: DE (1.0.17.39540)`, `GTA VC: DE (1.0.17.39540)`, `GTA SA: DE (1.0.17.39540)`
 
 ```ts
 interface OnObjectDeleteEvent {

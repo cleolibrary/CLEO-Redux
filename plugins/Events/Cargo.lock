@@ -43,33 +43,16 @@ dependencies = [
 ]
 
 [[package]]
-name = "detour"
-version = "0.9.0"
-source = "git+https://github.com/x87/detour-rs.git#b0e6366661a6660aa99c4b0b9028d14b27984d44"
-dependencies = [
- "cfg-if",
- "generic-array",
- "lazy_static",
- "libc",
- "libudis86-sys",
- "mmap-fixed-fixed",
- "region",
- "slice-pool",
-]
-
-[[package]]
 name = "events"
-version = "1.0.0"
+version = "1.1.0"
 dependencies = [
  "cleo_redux_sdk",
  "ctor",
- "detour",
  "lazy_static",
  "null_fn",
+ "retour",
  "serde",
  "serde_json",
- "version_info",
- "winapi",
 ]
 
 [[package]]
@@ -187,6 +170,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "retour"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a83f9f8fa2d02a11cb18d157ca898f1d8a197c19b084ef8d0a8da256a5c58935"
+dependencies = [
+ "cfg-if",
+ "generic-array",
+ "lazy_static",
+ "libc",
+ "libudis86-sys",
+ "mmap-fixed-fixed",
+ "region",
+ "slice-pool",
+]
+
+[[package]]
 name = "ryu"
 version = "1.0.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -258,15 +257,6 @@ name = "version_check"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
-
-[[package]]
-name = "version_info"
-version = "0.0.5"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6cb7678f85a3b77528a842d4d47b289bc2867db8e31c79c672641c741ce9eddd"
-dependencies = [
- "winapi",
-]
 
 [[package]]
 name = "winapi"

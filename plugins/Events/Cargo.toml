@@ -1,6 +1,6 @@
 [package]
 name = "events"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 authors = ["Seemann <mail@sannybuilder.com>"]
 
@@ -12,10 +12,7 @@ crate-type = ["cdylib"]
 cleo_redux_sdk = "*"
 ctor = "0.1.21"
 null_fn = "0.1.1"
-detour = {git = "https://github.com/x87/detour-rs.git"}
+retour = "0.1.0"
 serde = {version = "1.0.144", features = ["derive"]}
 serde_json = {version = "1.0.85", features = ["preserve_order"]}
 lazy_static = "1.4.0"
-version_info = "*"
-[target.'cfg(windows)'.dependencies]
-winapi = { version = "0.3", features = ["libloaderapi"] }
