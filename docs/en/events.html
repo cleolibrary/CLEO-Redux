@@ -185,7 +185,7 @@ Events are game- and version- specific. Some of them might not be available on c
 </blockquote>
 <h3 id="onvehiclecreate"><a class="header" href="#onvehiclecreate">OnVehicleCreate</a></h3>
 <p>Triggered after the game creates a new vehicle of any type in the world. An event's <code>data</code> object contains the address of the vehicle structure.</p>
-<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.8.11827)</code>, <code>GTA VC: DE (1.0.8.11827)</code>, <code>GTA SA: DE (1.0.8.11827)</code></p>
+<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.17.39540)</code>, <code>GTA VC: DE (1.0.17.39540)</code>, <code>GTA SA: DE (1.0.17.39540)</code></p>
 <pre><code class="language-ts">interface OnVehicleCreateEvent {
   name: string;
   data: {
@@ -203,7 +203,7 @@ addEventListener(&quot;OnVehicleCreate&quot;, (event: OnVehicleCreateEvent) =&gt
 </code></pre>
 <h3 id="onpedcreate"><a class="header" href="#onpedcreate">OnPedCreate</a></h3>
 <p>Triggered after the game creates a new ped of any type in the world. An event's <code>data</code> object contains the address of the ped structure.</p>
-<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.8.11827)</code>, <code>GTA VC: DE (1.0.8.11827)</code>, <code>GTA SA: DE (1.0.8.11827)</code></p>
+<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.17.39540)</code>, <code>GTA VC: DE (1.0.17.39540)</code>, <code>GTA SA: DE (1.0.17.39540)</code></p>
 <pre><code class="language-ts">interface OnPedCreateEvent {
   name: string;
   data: {
@@ -221,7 +221,7 @@ addEventListener(&quot;OnPedCreate&quot;, (event: OnPedCreateEvent) =&gt; {
 </code></pre>
 <h3 id="onobjectcreate"><a class="header" href="#onobjectcreate">OnObjectCreate</a></h3>
 <p>Triggered after the game creates a new object of any type in the world. An event's <code>data</code> object contains the address of the object structure.</p>
-<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.8.11827)</code>, <code>GTA VC: DE (1.0.8.11827)</code>, <code>GTA SA: DE (1.0.8.11827)</code></p>
+<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.17.39540)</code>, <code>GTA VC: DE (1.0.17.39540)</code>, <code>GTA SA: DE (1.0.17.39540)</code></p>
 <pre><code class="language-ts">interface OnObjectCreateEvent {
   name: string;
   data: {
@@ -239,7 +239,7 @@ addEventListener(&quot;OnObjectCreate&quot;, (event: OnObjectCreateEvent) =&gt; 
 </code></pre>
 <h3 id="onvehicledelete"><a class="header" href="#onvehicledelete">OnVehicleDelete</a></h3>
 <p>Triggered <em>before</em> the game deletes a vehicle from the world. An event's <code>data</code> object contains the address of the vehicle structure.</p>
-<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.8.11827)</code>, <code>GTA VC: DE (1.0.8.11827)</code>, <code>GTA SA: DE (1.0.8.11827)</code></p>
+<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.17.39540)</code>, <code>GTA VC: DE (1.0.17.39540)</code>, <code>GTA SA: DE (1.0.17.39540)</code></p>
 <pre><code class="language-ts">interface OnVehicleDeleteEvent {
   name: string;
   data: {
@@ -257,7 +257,7 @@ addEventListener(&quot;OnVehicleDelete&quot;, (event: OnVehicleDeleteEvent) =&gt
 </code></pre>
 <h3 id="onpeddelete"><a class="header" href="#onpeddelete">OnPedDelete</a></h3>
 <p>Triggered <em>before</em> the game deletes a ped from the world. An event's <code>data</code> object contains the address of the ped structure.</p>
-<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.8.11827)</code>, <code>GTA VC: DE (1.0.8.11827)</code>, <code>GTA SA: DE (1.0.8.11827)</code></p>
+<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.17.39540)</code>, <code>GTA VC: DE (1.0.17.39540)</code>, <code>GTA SA: DE (1.0.17.39540)</code></p>
 <pre><code class="language-ts">interface OnPedDeleteEvent {
   name: string;
   data: {
@@ -275,7 +275,7 @@ addEventListener(&quot;OnPedDelete&quot;, (event: OnPedDeleteEvent) =&gt; {
 </code></pre>
 <h3 id="onobjectdelete"><a class="header" href="#onobjectdelete">OnObjectDelete</a></h3>
 <p>Triggered <em>before</em> the game deletes an object from the world. An event's <code>data</code> object contains the address of the object structure.</p>
-<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.8.11827)</code>, <code>GTA VC: DE (1.0.8.11827)</code>, <code>GTA SA: DE (1.0.8.11827)</code></p>
+<p>Supported in: <code>re3</code>, <code>reVC</code>, <code>GTA III</code>, <code>GTA VC</code>, <code>GTA SA</code>, <code>GTA III: DE (1.0.17.39540)</code>, <code>GTA VC: DE (1.0.17.39540)</code>, <code>GTA SA: DE (1.0.17.39540)</code></p>
 <pre><code class="language-ts">interface OnObjectDeleteEvent {
   name: string;
   data: {
