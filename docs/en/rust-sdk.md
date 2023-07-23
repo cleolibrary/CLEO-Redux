@@ -4,16 +4,5 @@ Rust SDK uses similar to C++ interface with some extra wrapping methods to allow
 
 ## Example
 
-See the `Dylib` plugin. It adds a class `DynamicLibrary` with the following methods:
-
-```ts
-declare class DynamicLibrary {
-    constructor(handle: number);
-    static Load(libraryFileName: string): DynamicLibrary | undefined;
-    free(): void;
-    getProcedure(procName: string): int | undefined;
-}
-```
-
-[See more information](https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary) in Sanny Builder Library. The usage of the `DynamicLibrary` class requires a `dll` [permission](./permissions.md).
-
+See the `Input` plugin. It adds a bunch of new commands to check or emulate keyboard and mouse input. 
+https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input
