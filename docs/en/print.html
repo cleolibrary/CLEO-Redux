@@ -2311,15 +2311,8 @@ public:
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-sdk"><a class="header" href="#rust-sdk">Rust SDK</a></h1>
 <p>Rust SDK uses similar to C++ interface with some extra wrapping methods to allow easily convert between C and Rust types. The header file is available as a <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> on crates.io. See the documentation <a href="https://docs.rs/cleo_redux_sdk/latest/">here</a>.</p>
 <h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
-<p>See the <code>Dylib</code> plugin. It adds a class <code>DynamicLibrary</code> with the following methods:</p>
-<pre><code class="language-ts">declare class DynamicLibrary {
-    constructor(handle: number);
-    static Load(libraryFileName: string): DynamicLibrary | undefined;
-    free(): void;
-    getProcedure(procName: string): int | undefined;
-}
-</code></pre>
-<p><a href="https://library.sannybuilder.com/#/sa_unreal/classes/DynamicLibrary">See more information</a> in Sanny Builder Library. The usage of the <code>DynamicLibrary</code> class requires a <code>dll</code> <a href="./permissions.html">permission</a>.</p>
+<p>See the <code>Input</code> plugin. It adds a bunch of new commands to check or emulate keyboard and mouse input. 
+https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input</p>
 
                     </main>
 
