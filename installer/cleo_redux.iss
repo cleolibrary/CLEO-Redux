@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.2.0"
+#define AppVersion "1.2.1"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -56,7 +56,7 @@ Name: "program"; Description: "CLEO Redux"; Types: full; Flags: fixed
 Name: "program/commands"; Description: "API files (unselect if you prefer to download the latest API files during the first game run)"; Types: full;
 Name: "plugins"; Description: "Extensions"; Types: full
 Name: "plugins/ini"; Description: "IniFiles 1.2"; Types: full
-Name: "plugins/dylib"; Description: "Dylib 1.1"; Types: full
+Name: "plugins/dylib"; Description: "Dylib 2.0"; Types: full
 Name: "plugins/imgui"; Description: "ImGuiRedux (by Grinch_)"; Types: full
 Name: "plugins/imgui/d3d8to9"; Description: "d3d8to9 Wrapper - for games using DirectX 8"; Types: full
 Name: "plugins/imgui/SilentPatch"; Description: "SilentPatch - needed for the mouse to work properly in classic GTA"; Types: full

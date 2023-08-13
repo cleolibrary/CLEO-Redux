@@ -1,4 +1,18 @@
-### 1.2.0 - June 18, 2023
+### 1.2.1 - August 13, 2023
+
+- fix an issue when importing the same file from different folders would result in duplicate code
+- fix a crash in `Memory.Fn` [methods](https://re.cleo.li/docs/en/using-memory.html#convenience-methods-with-fn-object) returning 8-bit or 16-bit results
+- fix a bug with [corona rendering](https://library.sannybuilder.com/#/vc/default/024F) when only one corona was visible [#98](https://github.com/cleolibrary/CLEO-Redux/issues/98)
+
+**SDK AND PLUGINS**
+
+- Dylib 2.0: the plugin rewritten to provide a behavior identical to CLEO4's [LOAD_DYNAMIC_LIBRARY](https://library.sannybuilder.com/#/sa/CLEO/0AA2?p=1&v=1). Now a returned value is the loaded module's address in memory.
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
+### 1.2.0 - June 19, 2023
 
 - add support for GTA The Trilogy - The Definitive Edition v1.0.17.39540 (Epic Games Store)
 - fix an issue when constructor commands for derived classes returned incorrect values (`Heli.Create`, `Boat.Create`, etc.)

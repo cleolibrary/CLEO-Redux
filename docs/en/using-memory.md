@@ -194,11 +194,10 @@ The second parameter (`0x7001234`) is the object address. The `pop` parameter is
 
 To call the method and get the result out of it, use `Memory.CallMethodReturn`.
 
-Note that all arguments are read as 32-bit signed integers. If you need to provide an argument of the float type, use `Memory.FromFloat`, e.g.
-
-```js
-Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456));
-```
+> Input arguments are treated as 32-bit signed integers. If you need to provide a floating-point number, use `Memory.FromFloat`, e.g.
+> ```js
+> Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456));
+> ```
 
 CLEO Redux supports calling foreign functions with up to 16 parameters.
 

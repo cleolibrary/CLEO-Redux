@@ -170,13 +170,13 @@ where `0xEFFB30` is the function offset relative to IMAGE BASE (think of it a ra
 
 The `ib` parameter in `Memory.CallFunction` has the same meaning as in memory read/write commands. When set to `true` CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to `false` no changes to the first argument are made.
 
-To pass floating-point values to the function, convert the value to integer using `Memory.FromFloat`:
+> To pass floating-point values to the function, convert the value to integer using `Memory.FromFloat`:
+>
+> ```js
+> Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
+> ```
 
-```js
-Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
-```
-
-The returned value of the function called with `Memory.CallFunction` is ignored. To read the result use `Memory.CallFunctionReturn` that has the same parameters. Use `Memory.CallFunctionReturnFloat` to call a function that returns a floating-point value.
+A returned value of the function called with `Memory.CallFunction` is ignored. To read the result use `Memory.CallFunctionReturn` that has the same parameters. Use `Memory.CallFunctionReturnFloat` to call a function that returns a floating-point value.
 
 CLEO Redux supports calling foreign functions with up to 16 parameters.
 
