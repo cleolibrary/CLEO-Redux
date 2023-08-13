@@ -271,10 +271,12 @@ Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, true); // write 
 </code></pre>
 <p>where <code>0xEFFB30</code> is the function offset relative to IMAGE BASE (think of it a randomized start address of the game memory), <code>true</code> is the <code>ib</code> flag (see below), <code>1</code> is the number of input arguments, and <code>13</code> are the only argument passed into the function.</p>
 <p>The <code>ib</code> parameter in <code>Memory.CallFunction</code> has the same meaning as in memory read/write commands. When set to <code>true</code> CLEO adds the current known address of the image base to the value provided as the first argument to calculate the absolute memory address of the function. When set to <code>false</code> no changes to the first argument are made.</p>
+<blockquote>
 <p>To pass floating-point values to the function, convert the value to integer using <code>Memory.FromFloat</code>:</p>
 <pre><code class="language-js">Memory.CallFunction(0x1234567, true, 1, Memory.FromFloat(123.456));
 </code></pre>
-<p>The returned value of the function called with <code>Memory.CallFunction</code> is ignored. To read the result use <code>Memory.CallFunctionReturn</code> that has the same parameters. Use <code>Memory.CallFunctionReturnFloat</code> to call a function that returns a floating-point value.</p>
+</blockquote>
+<p>A returned value of the function called with <code>Memory.CallFunction</code> is ignored. To read the result use <code>Memory.CallFunctionReturn</code> that has the same parameters. Use <code>Memory.CallFunctionReturnFloat</code> to call a function that returns a floating-point value.</p>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
 <blockquote>
 <p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>

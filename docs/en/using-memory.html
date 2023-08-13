@@ -307,9 +307,11 @@ Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
 </code></pre>
 <p>The second parameter (<code>0x7001234</code>) is the object address. The <code>pop</code> parameter is always <code>0</code> (the method uses the <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#thiscall">thiscall</a> convention).</p>
 <p>To call the method and get the result out of it, use <code>Memory.CallMethodReturn</code>.</p>
-<p>Note that all arguments are read as 32-bit signed integers. If you need to provide an argument of the float type, use <code>Memory.FromFloat</code>, e.g.</p>
+<blockquote>
+<p>Input arguments are treated as 32-bit signed integers. If you need to provide a floating-point number, use <code>Memory.FromFloat</code>, e.g.</p>
 <pre><code class="language-js">Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456));
 </code></pre>
+</blockquote>
 <p>CLEO Redux supports calling foreign functions with up to 16 parameters.</p>
 <blockquote>
 <p>The usage of any of the call methods requires the <code>mem</code> <a href="./permissions.html">permission</a>.</p>
