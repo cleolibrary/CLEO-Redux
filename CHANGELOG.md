@@ -1,3 +1,7 @@
+### 1.2.2 - August 28, 2023
+
+- fix an issue when commands returning multiple values (`Char#storeClosestEntities`, `Game.GetCurrentResolution()`, etc.) returned just one correct value
+
 ### 1.2.1 - August 13, 2023
 
 - fix an issue when importing the same file from different folders would result in duplicate code
