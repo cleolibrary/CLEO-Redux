@@ -1,0 +1,21 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "cargo"
+    directory: "loaders/IdeLoader"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "cargo"
+    directory: "plugins/Events"
+    schedule:
+      interval: "daily"
+
+  - package-ecosystem: "cargo"
+    directory: "plugins/Input"
+    schedule:
+      interval: "daily"

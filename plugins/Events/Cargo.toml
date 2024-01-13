@@ -10,9 +10,9 @@ crate-type = ["cdylib"]
 
 [dependencies]
 cleo_redux_sdk = "*"
-ctor = "0.1.21"
+ctor = "0.2.6"
 null_fn = "0.1.1"
-retour = "0.1.0"
-serde = {version = "1.0.144", features = ["derive"]}
-serde_json = {version = "1.0.85", features = ["preserve_order"]}
+retour = "0.3.1"
+serde = {version = "1.0.195", features = ["derive"]}
+serde_json = {version = "1.0.111", features = ["preserve_order"]}
 lazy_static = "1.4.0"
