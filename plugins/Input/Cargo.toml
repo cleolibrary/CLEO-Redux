@@ -10,7 +10,7 @@ crate-type = ["cdylib"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ctor = "0.1.21"
+ctor = "0.2.6"
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = ["winuser"] }
-cleo_redux_sdk = "^0.0.10"
+cleo_redux_sdk = "^0.0.14"
