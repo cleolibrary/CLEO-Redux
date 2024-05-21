@@ -14,4 +14,10 @@ tail -f cleo_redux.log
 
 `tail` is a unix command so a compatible environment is needed (for example [Git Bash](https://git-scm.com/downloads)).
 
+For windows users using powershell, run:
+
+```
+Get-Content cleo_redux.log -Wait -Tail 0
+```
+
 The log file also lists all executed opcodes with [`LogOpcodes=1`](./config.md#general) and JavaScript commands with [`CLEO.debug.trace(true)`](./api.md#cleo). 
