@@ -1844,6 +1844,9 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <pre><code>tail -f cleo_redux.log
 </code></pre>
 <p><code>tail</code> is a unix command so a compatible environment is needed (for example <a href="https://git-scm.com/downloads">Git Bash</a>).</p>
+<p>For windows users using powershell, run:</p>
+<pre><code>Get-Content cleo_redux.log -Wait -Tail 0
+</code></pre>
 <p>The log file also lists all executed opcodes with <a href="./config.html#general"><code>LogOpcodes=1</code></a> and JavaScript commands with <a href="./api.html#cleo"><code>CLEO.debug.trace(true)</code></a>. </p>
 <div style="break-before: page; page-break-before: always;"></div><p>Here you can find answers to the frequently asked questions about support for The Trilogy remaster.</p>
 <ul>
