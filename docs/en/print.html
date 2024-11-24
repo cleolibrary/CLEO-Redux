@@ -487,16 +487,16 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>Due to the dynamic nature of JavaScript CLEO Redux needs to know an interface of each native command, i.e. a number of input arguments and returned values and their types. <a href="https://library.sannybuilder.com">Sanny Builder Library</a> serves as the source of command definitions for CLEO Redux.</p>
 <p>At start CLEO validates that a definition file is present and correct and if not tries to download it from GitHub (see the table below) into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.267</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.273</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.319</code></td></tr>
-<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.228</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.234</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.263</code></td></tr>
-<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.78</code></td></tr>
-<tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.225</code></td></tr>
-<tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.228</code></td></tr>
-<tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.41</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.354</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.364</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.795</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.284</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.293</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.401</code></td></tr>
+<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.88</code></td></tr>
+<tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.236</code></td></tr>
+<tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.239</code></td></tr>
+<tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.84</code></td></tr>
 </tbody></table>
 <p>CLEO Redux uses compound definitions (a combination of the primary JSON file for the current game and a JSON file for the Unknown host). It lets SDK commands to work in JS scripts regardless of them being defined or not in the primary JSON file. You should notice that during updates CLEO downloads both <code>&lt;game&gt;.json</code> and <code>unknown.json</code> as well as the accompanying <code>enums.js</code> files. It should not affect any existing scripts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
@@ -1860,11 +1860,11 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <li><a href="the-definitive-edition-faq.html#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></li>
 </ul>
 <h3 id="what-versions-are-supported"><a class="header" href="#what-versions-are-supported">What versions are supported?</a></h3>
-<ul>
-<li>GTA III: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15284</strong> (Title Update 1.04), <strong>1.0.8.11827</strong> (Title Update 1.04.5), <strong>1.0.17.38838</strong> (Steam release), <strong>1.0.17.39540</strong></li>
-<li>GTA Vice City: The Definitive Edition <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15399</strong> (Title Update 1.04), <strong>1.0.8.11827</strong> (Title Update 1.04.5), <strong>1.0.17.38838</strong> (Steam release), <strong>1.0.17.39540</strong></li>
-<li>San Andreas: The Definitive Edition <strong>1.0.0.14296</strong>, <strong>1.0.0.14388</strong>, <strong>1.0.0.14718</strong> (Title Update 1.03), <strong>1.0.0.15483</strong> (Title Update 1.04), <strong>1.0.8.11827</strong> (Title Update 1.04.5), <strong>1.0.17.38838</strong> (Steam release), <strong>1.0.17.39540</strong></li>
-</ul>
+<table><thead><tr><th>Game\Platform</th><th>Rockstar Games (RGL)</th><th>Steam</th><th>Epic Games</th></tr></thead><tbody>
+<tr><td>GTA III: The Definitive Edition</td><td>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15284 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540</td></tr>
+<tr><td>GTA Vice City: The Definitive Edition</td><td>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15399 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540</td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td>1.0.0.14296<br>1.0.0.14388<br>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15483 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540</td></tr>
+</tbody></table>
 <h3 id="is-there-any-difference-from-support-of-the-classic-games"><a class="header" href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></h3>
 <p>In short, yes. <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">See this page</a> for detail on what's supported and what's not.</p>
 <h3 id="can-i-use-original-opcodes"><a class="header" href="#can-i-use-original-opcodes">Can I use original opcodes?</a></h3>
