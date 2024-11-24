@@ -1,3 +1,19 @@
+### 1.3.0 - November 24, 2024
+
+- add support for the latest GTA: The Trilogy patch on Steam and Rockstar Games Launcher
+- fix a script crash when Bully's `CameraSetXYZ` command is used 
+- fix an issue with commands returning multiple values (e.g. `World.GetAnyCharNoSaveRecursive`) crashing the script if nothing was found
+- add missing `Memory.Read` and `Memory.Write` definitions for an unknown host. Also added `Memory.ReadI64`, `Memory.ReadU64`, `Memory.WriteI64`, `Memory.WriteU64` for 64-bit unknown host
+- add `allowJs` option in `tsconfig.json` to allow importing JS files in TS scripts. Delete your `tsconfig.json` if you want to recreate it with the new option
+
+**INSTALLER**
+
+- update references to SilentPatch to their new location on GitHub
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 1.2.2 - August 28, 2023
 
 - fix an issue when commands returning multiple values (`Char#storeClosestEntities`, `Game.GetCurrentResolution()`, etc.) returned just one correct value

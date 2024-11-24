@@ -11,9 +11,11 @@ Here you can find answers to the frequently asked questions about support for Th
 
 ### What versions are supported?
 
-- GTA III: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15284** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5), **1.0.17.38838** (Steam release), **1.0.17.39540**
-- GTA Vice City: The Definitive Edition **1.0.0.14718** (Title Update 1.03), **1.0.0.15399** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5), **1.0.17.38838** (Steam release), **1.0.17.39540**
-- San Andreas: The Definitive Edition **1.0.0.14296**, **1.0.0.14388**, **1.0.0.14718** (Title Update 1.03), **1.0.0.15483** (Title Update 1.04), **1.0.8.11827** (Title Update 1.04.5), **1.0.17.38838** (Steam release), **1.0.17.39540**
+| Game\Platform                                  | Rockstar Games (RGL)                                                                                                                                                         | Steam                                                         | Epic Games |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------- |
+| GTA III: The Definitive Edition       | 1.0.0.14718 (Title Update 1.03)<br>1.0.0.15284 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680                               | 1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181 | 1.0.17.39540        |
+| GTA Vice City: The Definitive Edition | 1.0.0.14718 (Title Update 1.03)<br>1.0.0.15399 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680                               | 1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181 | 1.0.17.39540        |
+| San Andreas: The Definitive Edition   | 1.0.0.14296<br>1.0.0.14388<br>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15483 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680 | 1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181 | 1.0.17.39540        |
 
 ### Is there any difference from support of the classic games?
 

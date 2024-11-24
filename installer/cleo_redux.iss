@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.2.2"
+#define AppVersion "1.3.0"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -11,9 +11,9 @@
 #define ImGuiRedux32 = "https://github.com/user-grinch/ImGuiRedux/releases/download/Win32-latest"
 #define ImGuiRedux64 = "https://github.com/user-grinch/ImGuiRedux/releases/download/Win64-latest"
 
-#define SilentPatchIII = "https://silent.rockstarvision.com/uploads/SilentPatchIII.zip"
-#define SilentPatchVC = "https://silent.rockstarvision.com/uploads/SilentPatchVC.zip"
-#define SilentPatchSA = "https://silent.rockstarvision.com/uploads/SilentPatchSA.zip"
+#define SilentPatchIII = "https://github.com/CookiePLMonster/SilentPatch/releases/latest/download/SilentPatchIII.zip"
+#define SilentPatchVC = "https://github.com/CookiePLMonster/SilentPatch/releases/latest/download/SilentPatchVC.zip"
+#define SilentPatchSA = "https://github.com/CookiePLMonster/SilentPatch/releases/latest/download/SilentPatchSA.zip"
 
 #define MemOps32 = "https://github.com/cleolibrary/CLEO-REDUX-PLUGINS/releases/download/latest/MemoryOperations.zip"
 #define MemOps64 = "https://github.com/cleolibrary/CLEO-REDUX-PLUGINS/releases/download/latest/MemoryOperations64.zip"
@@ -26,7 +26,7 @@ VersionInfoVersion={#AppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#AppPublisher}
 AppPublisherURL={#AppURL}
-AppCopyright=Copyright (c) 2021-2023, {#AppPublisher}
+AppCopyright=Copyright (c) 2021-2024, {#AppPublisher}
 DefaultDirName=New folder
 LicenseFile={#SourceDir}\LICENSE.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
