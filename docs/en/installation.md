@@ -24,6 +24,10 @@ CLEO Redux comes with a hassle-free installer that identifies the selected game 
 
 Once the installation is complete, CLEO Redux is ready to use. You can now [install scripts](./installation-scripts.md) and [extra plugins](./installation-plugins.md) not included in the installer, and change the [default configuration](./config.md) if needed.
 
+### Portable Installation
+
+If you don't want to or can't use the installer, try portable versions available starting from version 1.3.1. There are two separate archives for 32-bit and 64-bit games. Download one that matches your game and extract it into the game folder. The portable version does not include the ASI loader, so you need to [provide it yourself](#dependency-on-asi-loader). Note that portable versions don't include all [plugins](./installation-plugins.md), so you may need to install them manually.
+
 ## CLEO Directory
 
 CLEO directory is the primary location where you install [CLEO scripts](./installation-scripts.md), [CLEO plugins](./installation-plugins.md) and [custom texts](./using-fxt.md). CLEO Redux automatically creates this folder during installation and any time the game starts.
