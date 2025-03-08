@@ -16,6 +16,6 @@ By installing and/or using CLEO Redux you are automatically agreeing to and show
 If you have any questions regarding this License Agreement, please contact opinion@cleo.li
 
 -------------------------------------------------------------------------------
-Copyright (c) 2021-2024, Seemann 
+Copyright (c) 2021-2025, Seemann 
 All rights reserved.
 https://re.cleo.li

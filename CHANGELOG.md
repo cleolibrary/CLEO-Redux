@@ -1,7 +1,14 @@
+### 1.3.1
+
+- [SA] fix an issue with values returned from commands in missions not stored properly
+- [SA] fix a script crash when using `SET_OBJECT_ROTATION` with the Events plugin installed
+- [SA] fix an issue with `GET_CHAR_HIGHEST_PRIORITY_EVENT` always returning `0`
+- force FPU precision in script threads (JS) to match the precision set on the game's main thread which may otherwise produce different results when code runs in SCM and JS.
+
 ### 1.3.0 - November 24, 2024
 
 - add support for the latest GTA: The Trilogy patch on Steam and Rockstar Games Launcher
-- fix a script crash when Bully's `CameraSetXYZ` command is used 
+- fix a script crash when Bully's `CameraSetXYZ` command is used
 - fix an issue with commands returning multiple values (e.g. `World.GetAnyCharNoSaveRecursive`) crashing the script if nothing was found
 - add missing `Memory.Read` and `Memory.Write` definitions for an unknown host. Also added `Memory.ReadI64`, `Memory.ReadU64`, `Memory.WriteI64`, `Memory.WriteU64` for 64-bit unknown host
 - add `allowJs` option in `tsconfig.json` to allow importing JS files in TS scripts. Delete your `tsconfig.json` if you want to recreate it with the new option
