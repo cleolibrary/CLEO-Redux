@@ -2,10 +2,9 @@
 #[macro_export]
 macro_rules! detour {
     ( $addr: expr => $cb: expr ) => {{
-        let hook = retour::RawDetour::new($addr as *const (), $cb as *const ()).unwrap();
-        hook.enable().unwrap();
-        let result = std::mem::transmute(hook.trampoline());
-        std::mem::forget(hook);
+        let hook = minhook::MinHook::create_hook($addr as _, $cb as _).unwrap();
+        minhook::MinHook::enable_hook($addr as _).unwrap();
+        let result = std::mem::transmute(hook);
         result
     }};
 }

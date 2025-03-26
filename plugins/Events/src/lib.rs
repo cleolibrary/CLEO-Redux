@@ -7,10 +7,10 @@ mod gta_classic;
 
 #[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
 #[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
-extern "C" {}
+unsafe extern "C" {}
 
 #[ctor]
 fn init() {
-    cleo_redux_sdk::log("Events plugin 1.1");
+    cleo_redux_sdk::log("Events plugin 1.2");
     gta_classic::register_hooks();
 }

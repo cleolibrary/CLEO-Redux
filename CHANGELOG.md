@@ -1,4 +1,4 @@
-### 1.3.2 - March 25, 2025
+### 1.3.3 - March 26, 2025
 
 - address some false-positive antivirus detections
 

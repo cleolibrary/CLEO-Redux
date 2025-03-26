@@ -3,11 +3,11 @@ use std::{fs::read_to_string, path::Path};
 
 #[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
 #[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
-extern "C" {}
+unsafe extern "C" {}
 
 #[ctor]
 fn init() {
-    cleo_redux_sdk::log("IDE Loader 1.3");
+    cleo_redux_sdk::log("IDE Loader 1.4");
     cleo_redux_sdk::register_loader("*.ide", loader);
     let path = cleo_redux_sdk::get_directory_path(cleo_redux_sdk::Directory::CONFIG)
         .join("ide_loader.d.ts");

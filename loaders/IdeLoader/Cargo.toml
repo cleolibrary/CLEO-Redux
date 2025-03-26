@@ -1,7 +1,7 @@
 [package]
 name = "ide-loader"
-version = "1.3.0"
-edition = "2021"
+version = "1.4.0"
+edition = "2024"
 authors = ["Seemann <mail@sannybuilder.com>"]
 
 [lib]
@@ -12,6 +12,6 @@ crate-type = ["cdylib"]
 [dependencies]
 gta-ide-parser = "0.0.4"
 ctor = "0.1.21"
-serde_json = { version = "1.0", features = ["preserve_order"] }
-serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0.140", features = ["preserve_order"] }
+serde = { version = "1.0.219", features = ["derive"] }
 cleo_redux_sdk = "0.0.14"
