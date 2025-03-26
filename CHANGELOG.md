@@ -1,4 +1,8 @@
-### 1.3.1
+### 1.3.2 - March 25, 2025
+
+- address some false-positive antivirus detections
+
+### 1.3.1 - March 8, 2025
 
 - [SA] fix an issue with values returned from commands in missions not stored properly
 - [SA] fix a script crash when using `SET_OBJECT_ROTATION` with the Events plugin installed
