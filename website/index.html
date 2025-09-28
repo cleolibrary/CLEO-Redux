@@ -4,11 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="CLEO Redux is a plugin for executing JavaScript or TypeScript code in GTA 3D era games and other games" />
+    <meta
+      name="description"
+      content="CLEO Redux is a plugin for executing JavaScript or TypeScript code in GTA 3D era games and other games"
+    />
     <meta name="author" content="Seemann" />
     <title>CLEO Redux</title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/starter2.css" />
+    <link rel="stylesheet" href="assets/css/carousel.css" />
+    <style>
+      .stroke {
+        text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.15), 1px -1px 0 rgba(0, 0, 0, 0.15), -1px 1px 0 rgba(0, 0, 0, 0.15),
+          1px 1px 0 rgba(0, 0, 0, 0.15);
+      }
+    </style>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,7 +29,7 @@
   <body>
     <div id="tsparticles"></div>
 
-    <main class="container-xl" style="height: calc(100% - 120px)">
+    <main class="container-xl">
       <div class="text-right text-white-50 pt-2" style="font-size: 75%">
         <span>
           <svg
@@ -57,7 +69,7 @@
         ></span>
         <a href="https://patreon.com/seemann">Patreon</a>
       </div>
-      <div class="row h-100 align-items-center justify-content-center text-center">
+      <div class="row h-100 align-items-center justify-content-center text-center" style="padding-top: 5rem">
         <div class="col-10">
           <h1 class="font-weight-bold d-flex justify-content-center">
             <span class="d-flex mr-2" style="fill: currentColor; width: 2.5rem">
@@ -101,36 +113,123 @@
             <span class="text-nowrap">CLEO Redux</span>
           </h1>
           <hr class="divider" />
-          <div class="mb-4 text-white-75">
+          <div class="mb-4 text-white-75 stroke">
             <p data-translate="lead1">
               CLEO Redux is a plugin for executing JavaScript or TypeScript code in GTA 3D era games and
               <a href="https://re.cleo.li/docs/en/embedding.html">other games or applications</a>.
             </p>
             <p data-translate="lead2">
-              CLEO Redux provides rich scripting capabilities thanks to its flexible, extensible and secure environment.
+              Its flexible, extensible and secure environment provides rich scripting capabilities with low-entry
+              barrier.
             </p>
           </div>
 
           <div class="d-flex flex-row justify-content-center">
             <div class="d-inline-block" data-translate="get-started">
-              <a class="btn btn-outline-primary mr-4 font-weight-light" href="/docs">Get Started</a>
+              <a class="btn btn-outline-primary mr-4 font-weight-light stroke" href="/docs">Get Started</a>
             </div>
 
             <div class="d-flex flex-column">
               <a
-                class="btn btn-outline-primary font-weight-light"
+                class="btn btn-outline-primary font-weight-light stroke"
                 href="https://github.com/cleolibrary/CLEO-Redux/releases/latest"
                 data-translate="download"
                 >Download</a
               >
-              <small class="pt-1 text-muted">v1.3.3 | March 26, 2025</small>
+              <small class="pt-1 text-muted stroke">v1.3.3 | March 26, 2025</small>
+            </div>
+          </div>
+
+          <div style="background: rgba(0, 0, 0, 0.25); border-radius: 8px; margin-top: 2rem; padding: 0.5rem 1rem">
+            <div class="d-flex flex-column">
+              <div class="mb-2 mr-3 h3 font-weight-bold stroke">Featured Projects</div>
+
+              <div id="featuredProjectsCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
+                <ol class="carousel-indicators">
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="0" class="active"></li>
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="1"></li>
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="2"></li>
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="3"></li>
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="4"></li>
+                </ol>
+
+                <div class="carousel-inner text-center">
+                  <div class="carousel-item active">
+                    <div class="d-flex flex-column align-items-center">
+                      <img
+                        src="https://i.imgur.com/MpDX5CR.png"
+                        alt="GTA: Blue & Blood"
+                        style="max-height: 320px; object-fit: contain; margin-bottom: 10px; border-radius: 4px"
+                      />
+                      <a href="https://gtaforums.com/topic/999966-grand-theft-auto-blue-blood/">GTA: Blue & Blood</a>
+                      <small class="text-muted">by Members Only</small>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center">
+                      <img
+                        src="https://i.imgur.com/j5ZSzY8.jpeg"
+                        alt="Extended Controls"
+                        style="max-height: 320px; object-fit: contain; margin-bottom: 10px; border-radius: 4px"
+                      />
+                      <a
+                        href="https://github.com/VitalRus95/gta-scripts/tree/main/CLEO%20Redux/GTA%20SA/Extended%20Controls"
+                        >Extended Controls</a
+                      >
+                      <small class="text-muted">by Vital</small>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center">
+                      <img
+                        src="https://i.imgur.com/AFTGcuH.png"
+                        alt="Mission Framework"
+                        style="max-height: 320px; object-fit: contain; margin-bottom: 10px; border-radius: 4px"
+                      />
+                      <a href="https://github.com/wmysterio/CLEO-Redux-Missions-Framework">Mission Framework</a>
+                      <small class="text-muted">by wmysterio</small>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center">
+                      <img
+                        src="https://i.imgur.com/262kxJV.jpeg"
+                        alt="GTA IV Scripts"
+                        style="max-height: 320px; object-fit: contain; margin-bottom: 10px; border-radius: 4px"
+                      />
+                      <a href="https://github.com/ricardofiorani/cleo-redux-scripts">GTA IV Scripts</a>
+                      <small class="text-muted">by Ricardo</small>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center">
+                      <img
+                        src="https://i.imgur.com/OuuZO9G.jpeg"
+                        alt="Ragdoll Balancing"
+                        style="max-height: 320px; object-fit: contain; margin-bottom: 10px; border-radius: 4px"
+                      />
+                      <a href="https://www.youtube.com/watch?v=VD6_3WYGNlw">Ragdoll Balancing</a>
+                      <small class="text-muted">by Cowboy69</small>
+                    </div>
+                  </div>
+                </div>
+
+                <a class="carousel-control-prev" href="#featuredProjectsCarousel" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#featuredProjectsCarousel" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </main>
 
-    <footer class="text-white-50 p-3 text-center">
+    <footer class="text-white-50 p-3 text-center stroke">
       <small>
         <p class="m-0">
           CLEO Redux ©
@@ -177,6 +276,32 @@
           }
         });
       }
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Initialize carousel manually -->
+    <script>
+      $(document).ready(function () {
+        // Select random starting item (0-4 for 5 items)
+        var randomIndex = Math.floor(Math.random() * 5);
+
+        // Remove active class from default first item
+        $("#featuredProjectsCarousel .carousel-item.active").removeClass("active");
+        $("#featuredProjectsCarousel .carousel-indicators .active").removeClass("active");
+
+        // Add active class to random item and indicator
+        $("#featuredProjectsCarousel .carousel-item").eq(randomIndex).addClass("active");
+        $("#featuredProjectsCarousel .carousel-indicators li").eq(randomIndex).addClass("active");
+
+        // Initialize carousel
+        $("#featuredProjectsCarousel").carousel({
+          interval: 10000,
+          ride: "carousel",
+        });
+      });
     </script>
 
     <script

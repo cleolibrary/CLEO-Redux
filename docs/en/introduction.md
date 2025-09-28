@@ -12,10 +12,7 @@ Grand Theft Auto series:
 - GTA Vice City 1.0
 - GTA San Andreas 1.0 (only with [CLEO 4.4](https://github.com/cleolibrary/CLEO4))
 - GTA IV The Complete Edition (1.2.0.43, 1.2.0.59)
-
-Grand Theft Auto: The Trilogy - The Definitive Edition:
-
-- Title Update 1.03 and Title Update 1.04 (see [details](./the-definitive-edition-faq.md))
+- Grand Theft Auto: The Trilogy - The Definitive Edition (see [details](./the-definitive-edition-faq.md))
 
 Other games and applications:
 
