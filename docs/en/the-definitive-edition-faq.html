@@ -144,11 +144,10 @@
 <ul>
 <li><a href="#what-versions-are-supported">What versions are supported?</a></li>
 <li><a href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></li>
-<li><a href="#can-i-use-original-opcodes">Can I use original opcodes?</a></li>
+<li><a href="#what-commandsopcodes-are-available">What commands/opcodes are available?</a></li>
 <li><a href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></li>
-<li><a href="#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></li>
 <li><a href="#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></li>
-<li><a href="#how-do-i-compile-cleo-scripts-with-sanny-builder">How do I compile CLEO scripts with Sanny Builder?</a></li>
+<li><a href="#how-do-i-compile-cleo-scripts-for-the-triogy-with-sanny-builder">How do I compile CLEO scripts for the Triogy with Sanny Builder?</a></li>
 <li><a href="#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></li>
 </ul>
 <h3 id="what-versions-are-supported"><a class="header" href="#what-versions-are-supported">What versions are supported?</a></h3>
@@ -159,48 +158,23 @@
 </tbody></table>
 <h3 id="is-there-any-difference-from-support-of-the-classic-games"><a class="header" href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></h3>
 <p>In short, yes. <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">See this page</a> for detail on what's supported and what's not.</p>
-<h3 id="can-i-use-original-opcodes"><a class="header" href="#can-i-use-original-opcodes">Can I use original opcodes?</a></h3>
-<p>Yes, you can. Refer to the <a href="https://library.sannybuilder.com/#/sa_unreal">Sanny Builder library</a>. Keep in mind that some opcodes have been changed from the classic games, so don't expect everything to work like it was in classic. If you run into an issue, find help in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a>.</p>
+<h3 id="what-commandsopcodes-are-available"><a class="header" href="#what-commandsopcodes-are-available">What commands/opcodes are available?</a></h3>
+<p>CLEO Redux supports all native commands provided by the game engine. You can find the list of all commands in the <a href="https://library.sannybuilder.com/#/sa_unreal">Sanny Builder library</a>. </p>
+<p>In addition to that, CLEO Redux adds <a href="https://library.sannybuilder.com/#/unknown_x64/script">new commands via plugins</a>.</p>
 <h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
 <p>After each game run, CLEO generates a <code>.d.ts</code> file in the <code>CLEO\.config</code> directory. It's called <code>gta3.d.ts</code>, <code>vc.d.ts</code> or <code>sa.d.ts</code> depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.</p>
 <p>To enable autocomplete in VS Code save your script file with <code>.ts</code> extension.</p>
-<h3 id="can-i-use-cleo-opcodes"><a class="header" href="#can-i-use-cleo-opcodes">Can I use CLEO opcodes?</a></h3>
-<p>Opcodes from CLEO Library (CLEO 4 or CLEO for GTA III and Vice City) are not supported. But CLEO Redux adds its own new opcodes for some operations.</p>
-<ul>
-<li>0C00 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C00">IS_KEY_PRESSED</a></li>
-<li>0C01 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C01">INT_ADD</a></li>
-<li>0C02 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C02">INT_SUB</a></li>
-<li>0C03 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C03">INT_MUL</a></li>
-<li>0C04 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C04">INT_DIV</a></li>
-<li>0C05 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C05">TERMINATE_THIS_CUSTOM_SCRIPT</a></li>
-<li>0C06 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C06">WRITE_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-<li>0C07 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C07">READ_MEMORY</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-<li>0C08 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C08">CALL_FUNCTION</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-<li>0C09 <a href="https://library.sannybuilder.com/#/sa_unreal/CLEO/0C09">CALL_FUNCTION_RETURN</a> (<strong>UNSAFE</strong> - requires <code>mem</code> permission)</li>
-</ul>
-<p>Note that Sanny Builder does not support these new opcodes out-of-the-box yet. To enable new opcodes in your CS scripts add the following lines on top of your script:</p>
-<pre><code>{$O 0C00=1,  is_key_pressed %1d% }
-{$O 0C01=3,%3d% = %1d% + %2d% }
-{$O 0C02=3,%3d% = %1d% - %2d% }
-{$O 0C03=3,%3d% = %1d% * %2d% }
-{$O 0C04=3,%3d% = %1d% / %2d% }
-{$O 0C05=0,terminate_this_custom_script }
-{$O 0C06=5,write_memory %1d% size %2d% value %3d% virtual_protect %4d% ib %5d% }
-{$O 0C07=5,%5d% = read_memory %1d% size %2d% virtual_protect %3d% ib %4d% }
-{$O 0C08=-1,call_function %1d% ib %2d% num_params %3d%}
-{$O 0C09=-1,call_function_return %1d% ib %2d% num_params %3d%}
-</code></pre>
-<p>This list might not be complete as there are custom plugins with extra commands (see <a href="./using-sdk.html">Using SDK</a>). Refer to <a href="https://library.sannybuilder.com">Sanny Builder Library</a> for the complete list of available commands for each game.</p>
 <h3 id="can-i-work-with-the-game-memory-or-call-the-game-functions"><a class="header" href="#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></h3>
 <p>Yes, check the <a href="using-memory-64.html">Memory guide</a>.</p>
-<h3 id="how-do-i-compile-cleo-scripts-with-sanny-builder"><a class="header" href="#how-do-i-compile-cleo-scripts-with-sanny-builder">How do I compile CLEO scripts with Sanny Builder?</a></h3>
-<p>Use SA Mobile mode to compile CLEO scripts for San Andreas: The Definitive Edition. Note that CLEO Redux does not support CS scripts in GTA III: DE and VC: DE. JS scripts are supported in all games.</p>
+<h3 id="how-do-i-compile-cleo-scripts-for-the-triogy-with-sanny-builder"><a class="header" href="#how-do-i-compile-cleo-scripts-for-the-triogy-with-sanny-builder">How do I compile CLEO scripts for the Triogy with Sanny Builder?</a></h3>
+<p>CLEO Redux provides limited support of compiled scripts (.CS) for the San Andreas: Definitive Edition only. It is recommended to write scripts using JavaScript or TypeScript.</p>
+<p>To compile CLEO scripts for San Andreas: The Definitive Edition using Sanny Builer use SA Mobile mode. </p>
 <h3 id="i-cant-find-an-answer-to-my-question-here-where-do-i-go"><a class="header" href="#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></h3>
 <ul>
 <li>Check the <a href="troubleshooting.html">troubleshooting guide</a>.</li>
 <li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/issues">GitHub tickets</a></li>
 <li>Check the <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">Feature support page</a></li>
-<li>Ask a question in <a href="https://discord.gg/d5dZSfgBZr">our Discord</a></li>
+<li>Ask a question in <a href="https://cleo.li/discord">our Discord</a></li>
 </ul>
 
                     </main>
