@@ -233,41 +233,6 @@
       </small>
     </footer>
 
-    <script>
-      function parseCookie() {
-        return document.cookie
-          .split(";")
-          .map((v) => v.split("="))
-          .reduce((acc, v) => {
-            if (v.length < 2) {
-              return acc;
-            }
-            acc[decodeURIComponent(v[0].trim())] = decodeURIComponent(v[1].trim());
-            return acc;
-          }, {});
-      }
-      var translate = {
-        lead1:
-          "CLEO Redux &ndash; это плагин для исполнения JavaScript или TypeScript кода в играх серии Grand Theft Auto, а также <a href='https://re.cleo.li/docs/en/embedding.html'>других играх и приложениях</a>.",
-        lead2:
-          "CLEO Redux открывает широкие возможности для скриптинга, благодаря сочетанию гибкости, расширяемости и безопасности.",
-        "get-started": "<a class='btn btn-outline-primary mr-4 font-weight-light' href='/docs/ru'>Узнать больше</a>",
-        download: "Скачать",
-        license: "<a href='LICENSE-RU.txt'>Пользовательское соглашение</a>",
-      };
-
-      var cookie = parseCookie(document.cookie);
-      if (cookie.lang === "ru") {
-        document.querySelectorAll("[data-translate]").forEach(function (el) {
-          var attr = el.getAttribute("data-translate");
-          console.log(attr);
-          if (translate[attr]) {
-            el.innerHTML = translate[attr];
-          }
-        });
-      }
-    </script>
-
     <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
