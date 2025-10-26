@@ -486,16 +486,16 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>Due to the dynamic nature of JavaScript CLEO Redux needs to know an interface of each native command, i.e. a number of input arguments and returned values and their types. <a href="https://library.sannybuilder.com">Sanny Builder Library</a> serves as the source of command definitions for CLEO Redux.</p>
 <p>At start CLEO validates that a definition file is present and correct and if not tries to download it from GitHub (see the table below) into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.354</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.364</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>0.795</code></td></tr>
-<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.284</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.293</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.401</code></td></tr>
-<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.88</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.384</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.395</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>1.15</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.301</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.312</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.462</code></td></tr>
+<tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.108</code></td></tr>
 <tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.236</code></td></tr>
 <tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.239</code></td></tr>
-<tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.84</code></td></tr>
+<tr><td>Bully: Scholarship Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/bully/bully.json">bully.json</a></td><td><code>0.122</code></td></tr>
 </tbody></table>
 <p>CLEO Redux uses compound definitions (a combination of the primary JSON file for the current game and a JSON file for the Unknown host). It lets SDK commands to work in JS scripts regardless of them being defined or not in the primary JSON file. You should notice that during updates CLEO downloads both <code>&lt;game&gt;.json</code> and <code>unknown.json</code> as well as the accompanying <code>enums.js</code> files. It should not affect any existing scripts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
@@ -1394,29 +1394,30 @@ var x = Object.create(null);
 </ul>
 </li>
 <li><a href="using-memory.html#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></li>
+<li><a href="using-memory.html#allocating-and-freeing-memory">Allocating and Freeing Memory</a></li>
 </ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
-  ReadFloat(address: int, vp: boolean): float;
-  WriteFloat(address: int, value: float, vp: boolean): void;
-  ReadI8(address: int, vp: boolean): int;
-  ReadI16(address: int, vp: boolean): int;
-  ReadI32(address: int, vp: boolean): int;
-  ReadU8(address: int, vp: boolean): int;
-  ReadU16(address: int, vp: boolean): int;
-  ReadU32(address: int, vp: boolean): int;
+  ReadFloat(address: int, vp?: boolean): float;
+  WriteFloat(address: int, value: float, vp?: boolean): void;
+  ReadI8(address: int, vp?: boolean): int;
+  ReadI16(address: int, vp?: boolean): int;
+  ReadI32(address: int, vp?: boolean): int;
+  ReadU8(address: int, vp?: boolean): int;
+  ReadU16(address: int, vp?: boolean): int;
+  ReadU32(address: int, vp?: boolean): int;
   ReadUtf8(address: int): string;
   ReadUtf16(address: int): string;
-  WriteI8(address: int, value: int, vp: boolean): void;
-  WriteI16(address: int, value: int, vp: boolean): void;
-  WriteI32(address: int, value: int, vp: boolean): void;
-  WriteU8(address: int, value: int, vp: boolean): void;
-  WriteU16(address: int, value: int, vp: boolean): void;
-  WriteU32(address: int, value: int, vp: boolean): void;
-  WriteUtf8(address: int, value: string, vp: boolean): void;
-  WriteUtf16(address: int, value: string, vp: boolean): void;
-  Read(address: int, size: int, vp: boolean): int;
-  Write(address: int, size: int, value: int, vp: boolean): void;
+  WriteI8(address: int, value: int, vp?: boolean): void;
+  WriteI16(address: int, value: int, vp?: boolean): void;
+  WriteI32(address: int, value: int, vp?: boolean): void;
+  WriteU8(address: int, value: int, vp?: boolean): void;
+  WriteU16(address: int, value: int, vp?: boolean): void;
+  WriteU32(address: int, value: int, vp?: boolean): void;
+  WriteUtf8(address: int, value: string, vp?: boolean): void;
+  WriteUtf16(address: int, value: string, vp?: boolean): void;
+  Read(address: int, size: int, vp?: boolean): int;
+  Write(address: int, size: int, value: int, vp?: boolean): void;
 
   ToFloat(value: int): float;
   FromFloat(value: float): int;
@@ -1435,6 +1436,9 @@ var x = Object.create(null);
   CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
   CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
   CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
+
+  Allocate(size: int): int;
+  Free(address: int): void;
 
   Fn: {
     Cdecl(address: int): (...funcParams: int[]) =&gt; int;
@@ -1613,6 +1617,13 @@ if (addr) {
 }
 </code></pre>
 <p>At the moment <code>Memory.Translate</code> should only be used in <code>re3</code> and <code>reVC</code>. In other games you will be getting <code>0</code> as a result most of the time.</p>
+<h3 id="allocating-and-freeing-memory"><a class="header" href="#allocating-and-freeing-memory">Allocating and Freeing Memory</a></h3>
+<p>To allocate a block of memory in the current process use <code>Memory.Allocate</code> method. It accepts the size of the block in bytes and returns the address of the allocated memory. Memory is guaranteed to be zero-initialized.</p>
+<pre><code class="language-js">var addr = Memory.Allocate(1024); // allocate 1KB of memory
+</code></pre>
+<p>To free previously allocated memory use <code>Memory.Free</code> method. It accepts the address of the memory block to free.</p>
+<pre><code class="language-js">Memory.Free(addr);
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
 <blockquote>
 <p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
@@ -1626,29 +1637,34 @@ if (addr) {
 <li><a href="using-memory-64.html#convenience-methods-with-fn-object">Convenience methods with Fn object</a></li>
 </ul>
 </li>
+<li><a href="using-memory-64.html#allocating-and-freeing-memory">Allocating and Freeing Memory</a></li>
 </ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
-  ReadFloat(address: int, vp: boolean, ib: boolean): float;
-  WriteFloat(address: int, value: float, vp: boolean, ib: boolean): void;
-  ReadI8(address: int, vp: boolean, ib: boolean): int;
-  ReadI16(address: int, vp: boolean, ib: boolean): int;
-  ReadI32(address: int, vp: boolean, ib: boolean): int;
-  ReadU8(address: int, vp: boolean, ib: boolean): int;
-  ReadU16(address: int, vp: boolean, ib: boolean): int;
-  ReadU32(address: int, vp: boolean, ib: boolean): int;
-  ReadUtf8(address: int, ib: boolean): string;
-  ReadUtf16(address: int, ib: boolean): string;
-  WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteUtf8(address: int, value: string, vp: boolean, ib: boolean): void;
-  WriteUtf16(address: int, value: string, vp: boolean, ib: boolean): void;
-  Read(address: int, size: int, vp: boolean, ib: boolean): int;
-  Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
+  ReadFloat(address: int, vp?: boolean, ib?: boolean): float;
+  WriteFloat(address: int, value: float, vp?: boolean, ib?: boolean): void;
+  ReadI8(address: int, vp?: boolean, ib?: boolean): int;
+  ReadI16(address: int, vp?: boolean, ib?: boolean): int;
+  ReadI32(address: int, vp?: boolean, ib?: boolean): int;
+  ReadI64(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU8(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU16(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU32(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU64(address: int, vp?: boolean, ib?: boolean): int;
+  ReadUtf8(address: int, ib?: boolean): string;
+  ReadUtf16(address: int, ib?: boolean): string;
+  WriteI8(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteI16(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteI32(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteI64(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU8(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU16(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU32(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU64(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteUtf8(address: int, value: string, vp?: boolean, ib?: boolean): void;
+  WriteUtf16(address: int, value: string, vp?: boolean, ib?: boolean): void;
+  Read(address: int, size: int, vp?: boolean, ib?: boolean): int;
+  Write(address: int, size: int, value: int, vp?: boolean, ib?: boolean): void;
 
   ToFloat(value: int): float;
   FromFloat(value: float): int;
@@ -1658,20 +1674,24 @@ if (addr) {
   ToI8(value: int): int;
   ToI16(value: int): int;
   ToI32(value: int): int;
+  Translate(symbol: string): int;
 
   CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: int[]): void;
   CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: int[]): int;
   CallFunctionReturnFloat(address: int, ib: boolean, numParams: int, ...funcParams: int[]): float;
 
+  Allocate(size: int): int;
+  Free(address: int): void;
+
   Fn: {
-    X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
-    X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64Float(address: int, ib?: boolean): (...funcParams: int[]) =&gt; float;
+    X64I8(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64I16(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64I32(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64U8(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64U16(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64U32(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
   };
 }
 </code></pre>
@@ -1786,6 +1806,13 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <pre><code class="language-js">var float = Memory.Fn.X64Float(0x456789, true)();
 </code></pre>
 <p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value.</p>
+<h3 id="allocating-and-freeing-memory-1"><a class="header" href="#allocating-and-freeing-memory-1">Allocating and Freeing Memory</a></h3>
+<p>To allocate a block of memory in the current process use <code>Memory.Allocate</code> method. It accepts the size of the block in bytes and returns the address of the allocated memory. Memory is guaranteed to be zero-initialized.</p>
+<pre><code class="language-js">var addr = Memory.Allocate(1024); // allocate 1KB of memory
+</code></pre>
+<p>To free previously allocated memory use <code>Memory.Free</code> method. It accepts the address of the memory block to free.</p>
+<pre><code class="language-js">Memory.Free(addr);
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="deprecated"><a class="header" href="#deprecated">Deprecated</a></h1>
 <p>Usage of the following commands is not recommended.</p>
 <h2 id="game"><a class="header" href="#game">GAME</a></h2>
@@ -2082,7 +2109,7 @@ fn init() {
 <p>In the self-hosted mode CLEO Redux supports <a href="./api.html#cleo-redux-bindings">own bindings</a> and commands made with <a href="./using-sdk.html">SDK</a>. It uses command definitions for the Unknown host from Sanny Builder Library (available for <a href="https://library.sannybuilder.com/#/unknown_x86">32-bit</a> and <a href="https://library.sannybuilder.com/#/unknown_x64">64-bit</a>).</p>
 <p>You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file <code>.config/unknown.d.ts</code>.</p>
 <h2 id="manifest"><a class="header" href="#manifest">Manifest</a></h2>
-<p>Manifest is a file with static configuration for the given host. Only unknown hosts make use of it. The configuration should be stored in <code>.config\manifest.json</code> with the following structure:</p>
+<p>Manifest is a file with static configuration for the given host. Can be used with any host to override some default values. The configuration should be stored in <code>.config\manifest.json</code> with the following structure:</p>
 <pre><code class="language-json">{
     &quot;host&quot;: string,
     &quot;host_name&quot;: string,
@@ -2091,7 +2118,10 @@ fn init() {
 </code></pre>
 <ul>
 <li>
-<p><code>host</code> should match the host's executable name. E.g. if the host runs via <code>application.exe</code>, the value is <code>application</code>. Available in scripts as the <a href="./api.html#host">HOST variable</a>.</p>
+<p><code>host</code> specifies the host executable name. Available in scripts as the <a href="./api.html#host">HOST variable</a>.</p>
+<ul>
+<li>Well-known values are <code>re3</code>, <code>reVC</code>, <code>gta3</code>, <code>vc</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>gta_iv</code>, <code>bully</code>. When the <code>host</code> value matches one of those, CLEO uses built-in definitions and features for the given game, ignoring the actual executable name.</li>
+</ul>
 </li>
 <li>
 <p><code>host_name</code> defines the host's custom name used in the <a href="./log.html">log</a></p>
@@ -2101,15 +2131,26 @@ fn init() {
 <p>When <code>compound</code> is set to <code>true</code> the host also uses command definitions for the Unknown host (e.g. <code>unknown_x86.json</code>). If this file is missing CLEO downloads it from Sanny Builder Library.</p>
 </li>
 </ul>
-<h3 id="example"><a class="header" href="#example">Example</a></h3>
-<p>Host: <a href="https://sannybuilder.com">Sanny Builder 3</a> (<code>sanny.exe</code>)</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>Host: <a href="https://sannybuilder.com">Sanny Builder 4</a> (<code>sanny.exe</code>)</p>
 <pre><code class="language-json">{
   &quot;host&quot;: &quot;sanny&quot;,
-  &quot;host_name&quot;: &quot;Sanny Builder 3&quot;,
+  &quot;host_name&quot;: &quot;Sanny Builder 4&quot;,
   &quot;compound&quot;: true
 }
 </code></pre>
-<p><code>Sanny Builder 3\CLEO\.config</code> folder contains <code>sanny.json</code> and <code>manifest.json</code> before the first run. The other files are downloaded or generated automatically.</p>
+<p><code>Sanny Builder 4\CLEO\.config</code> folder must contain <code>sanny.json</code> and <code>manifest.json</code> before the first run. The other files will be downloaded or generated automatically.</p>
+<pre><code class="language-json">{
+  &quot;host&quot;: &quot;sa&quot;,
+  &quot;host_name&quot;: &quot;GTA SA: My Custom Mod&quot;
+}
+</code></pre>
+<p>In this example the host is a custom mod for GTA San Andreas with the executable name different from <code>gta_sa.exe</code>. CLEO uses built-in definitions for GTA SA and overrides the host name in the log.</p>
+<pre><code class="language-json">{
+  &quot;host_name&quot;: &quot;Vice City Modpack&quot;
+}
+</code></pre>
+<p>It overrides only the host name in the log file.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="cleo-redux-sdk"><a class="header" href="#cleo-redux-sdk">CLEO Redux SDK</a></h1>
 <p>SDK provides a way to create new script commands for any game that CLEO Redux supports. It is agnostic to the game title and the underlying runtime (CS or JS). At this moment CLEO provides <a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/SDK">SDK for the C++ and Rust languages</a>.</p>
 <ul>
@@ -2286,11 +2327,11 @@ public:
 </ul>
 <pre><code class="language-js">var result = native(&quot;INT_ADD&quot;, 10, 20); // 30
 </code></pre>
-<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
+<h2 id="example"><a class="header" href="#example">Example</a></h2>
 <p>See the <a href="https://library.sannybuilder.com/#/sa_unreal/classes/IniFile"><code>IniFiles</code></a> plugin that includes a complete project for Visual Studio 2019.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="rust-sdk"><a class="header" href="#rust-sdk">Rust SDK</a></h1>
 <p>Rust SDK uses similar to C++ interface with some extra wrapping methods to allow easily convert between C and Rust types. The header file is available as a <a href="https://crates.io/crates/cleo_redux_sdk">crate</a> on crates.io. See the documentation <a href="https://docs.rs/cleo_redux_sdk/latest/">here</a>.</p>
-<h2 id="example-2"><a class="header" href="#example-2">Example</a></h2>
+<h2 id="example-1"><a class="header" href="#example-1">Example</a></h2>
 <p>See the <code>Input</code> plugin. It adds a bunch of new commands to check or emulate keyboard and mouse input. 
 https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input</p>
 

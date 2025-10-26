@@ -153,29 +153,34 @@
 <li><a href="#convenience-methods-with-fn-object">Convenience methods with Fn object</a></li>
 </ul>
 </li>
+<li><a href="#allocating-and-freeing-memory">Allocating and Freeing Memory</a></li>
 </ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
-  ReadFloat(address: int, vp: boolean, ib: boolean): float;
-  WriteFloat(address: int, value: float, vp: boolean, ib: boolean): void;
-  ReadI8(address: int, vp: boolean, ib: boolean): int;
-  ReadI16(address: int, vp: boolean, ib: boolean): int;
-  ReadI32(address: int, vp: boolean, ib: boolean): int;
-  ReadU8(address: int, vp: boolean, ib: boolean): int;
-  ReadU16(address: int, vp: boolean, ib: boolean): int;
-  ReadU32(address: int, vp: boolean, ib: boolean): int;
-  ReadUtf8(address: int, ib: boolean): string;
-  ReadUtf16(address: int, ib: boolean): string;
-  WriteI8(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteI16(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteI32(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteU8(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteU16(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteU32(address: int, value: int, vp: boolean, ib: boolean): void;
-  WriteUtf8(address: int, value: string, vp: boolean, ib: boolean): void;
-  WriteUtf16(address: int, value: string, vp: boolean, ib: boolean): void;
-  Read(address: int, size: int, vp: boolean, ib: boolean): int;
-  Write(address: int, size: int, value: int, vp: boolean, ib: boolean): void;
+  ReadFloat(address: int, vp?: boolean, ib?: boolean): float;
+  WriteFloat(address: int, value: float, vp?: boolean, ib?: boolean): void;
+  ReadI8(address: int, vp?: boolean, ib?: boolean): int;
+  ReadI16(address: int, vp?: boolean, ib?: boolean): int;
+  ReadI32(address: int, vp?: boolean, ib?: boolean): int;
+  ReadI64(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU8(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU16(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU32(address: int, vp?: boolean, ib?: boolean): int;
+  ReadU64(address: int, vp?: boolean, ib?: boolean): int;
+  ReadUtf8(address: int, ib?: boolean): string;
+  ReadUtf16(address: int, ib?: boolean): string;
+  WriteI8(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteI16(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteI32(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteI64(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU8(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU16(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU32(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteU64(address: int, value: int, vp?: boolean, ib?: boolean): void;
+  WriteUtf8(address: int, value: string, vp?: boolean, ib?: boolean): void;
+  WriteUtf16(address: int, value: string, vp?: boolean, ib?: boolean): void;
+  Read(address: int, size: int, vp?: boolean, ib?: boolean): int;
+  Write(address: int, size: int, value: int, vp?: boolean, ib?: boolean): void;
 
   ToFloat(value: int): float;
   FromFloat(value: float): int;
@@ -185,20 +190,24 @@
   ToI8(value: int): int;
   ToI16(value: int): int;
   ToI32(value: int): int;
+  Translate(symbol: string): int;
 
   CallFunction(address: int, ib: boolean, numParams: int, ...funcParams: int[]): void;
   CallFunctionReturn(address: int, ib: boolean, numParams: int, ...funcParams: int[]): int;
   CallFunctionReturnFloat(address: int, ib: boolean, numParams: int, ...funcParams: int[]): float;
 
+  Allocate(size: int): int;
+  Free(address: int): void;
+
   Fn: {
-    X64(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64Float(address: int, ib: boolean): (...funcParams: int[]) =&gt; float;
-    X64I8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64I16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64I32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64U8(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64U16(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
-    X64U32(address: int, ib: boolean): (...funcParams: int[]) =&gt; int;
+    X64(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64Float(address: int, ib?: boolean): (...funcParams: int[]) =&gt; float;
+    X64I8(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64I16(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64I32(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64U8(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64U16(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
+    X64U32(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
   };
 }
 </code></pre>
@@ -313,6 +322,13 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <pre><code class="language-js">var float = Memory.Fn.X64Float(0x456789, true)();
 </code></pre>
 <p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value.</p>
+<h3 id="allocating-and-freeing-memory"><a class="header" href="#allocating-and-freeing-memory">Allocating and Freeing Memory</a></h3>
+<p>To allocate a block of memory in the current process use <code>Memory.Allocate</code> method. It accepts the size of the block in bytes and returns the address of the allocated memory. Memory is guaranteed to be zero-initialized.</p>
+<pre><code class="language-js">var addr = Memory.Allocate(1024); // allocate 1KB of memory
+</code></pre>
+<p>To free previously allocated memory use <code>Memory.Free</code> method. It accepts the address of the memory block to free.</p>
+<pre><code class="language-js">Memory.Free(addr);
+</code></pre>
 
                     </main>
 

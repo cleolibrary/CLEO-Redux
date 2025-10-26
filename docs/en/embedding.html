@@ -210,7 +210,7 @@ fn init() {
 <p>In the self-hosted mode CLEO Redux supports <a href="./api.html#cleo-redux-bindings">own bindings</a> and commands made with <a href="./using-sdk.html">SDK</a>. It uses command definitions for the Unknown host from Sanny Builder Library (available for <a href="https://library.sannybuilder.com/#/unknown_x86">32-bit</a> and <a href="https://library.sannybuilder.com/#/unknown_x64">64-bit</a>).</p>
 <p>You can use all standard JavaScript features. The list of available commands can be seen in the auto-generated file <code>.config/unknown.d.ts</code>.</p>
 <h2 id="manifest"><a class="header" href="#manifest">Manifest</a></h2>
-<p>Manifest is a file with static configuration for the given host. Only unknown hosts make use of it. The configuration should be stored in <code>.config\manifest.json</code> with the following structure:</p>
+<p>Manifest is a file with static configuration for the given host. Can be used with any host to override some default values. The configuration should be stored in <code>.config\manifest.json</code> with the following structure:</p>
 <pre><code class="language-json">{
     &quot;host&quot;: string,
     &quot;host_name&quot;: string,
@@ -219,7 +219,10 @@ fn init() {
 </code></pre>
 <ul>
 <li>
-<p><code>host</code> should match the host's executable name. E.g. if the host runs via <code>application.exe</code>, the value is <code>application</code>. Available in scripts as the <a href="./api.html#host">HOST variable</a>.</p>
+<p><code>host</code> specifies the host executable name. Available in scripts as the <a href="./api.html#host">HOST variable</a>.</p>
+<ul>
+<li>Well-known values are <code>re3</code>, <code>reVC</code>, <code>gta3</code>, <code>vc</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>gta_iv</code>, <code>bully</code>. When the <code>host</code> value matches one of those, CLEO uses built-in definitions and features for the given game, ignoring the actual executable name.</li>
+</ul>
 </li>
 <li>
 <p><code>host_name</code> defines the host's custom name used in the <a href="./log.html">log</a></p>
@@ -229,15 +232,26 @@ fn init() {
 <p>When <code>compound</code> is set to <code>true</code> the host also uses command definitions for the Unknown host (e.g. <code>unknown_x86.json</code>). If this file is missing CLEO downloads it from Sanny Builder Library.</p>
 </li>
 </ul>
-<h3 id="example"><a class="header" href="#example">Example</a></h3>
-<p>Host: <a href="https://sannybuilder.com">Sanny Builder 3</a> (<code>sanny.exe</code>)</p>
+<h3 id="examples"><a class="header" href="#examples">Examples</a></h3>
+<p>Host: <a href="https://sannybuilder.com">Sanny Builder 4</a> (<code>sanny.exe</code>)</p>
 <pre><code class="language-json">{
   &quot;host&quot;: &quot;sanny&quot;,
-  &quot;host_name&quot;: &quot;Sanny Builder 3&quot;,
+  &quot;host_name&quot;: &quot;Sanny Builder 4&quot;,
   &quot;compound&quot;: true
 }
 </code></pre>
-<p><code>Sanny Builder 3\CLEO\.config</code> folder contains <code>sanny.json</code> and <code>manifest.json</code> before the first run. The other files are downloaded or generated automatically.</p>
+<p><code>Sanny Builder 4\CLEO\.config</code> folder must contain <code>sanny.json</code> and <code>manifest.json</code> before the first run. The other files will be downloaded or generated automatically.</p>
+<pre><code class="language-json">{
+  &quot;host&quot;: &quot;sa&quot;,
+  &quot;host_name&quot;: &quot;GTA SA: My Custom Mod&quot;
+}
+</code></pre>
+<p>In this example the host is a custom mod for GTA San Andreas with the executable name different from <code>gta_sa.exe</code>. CLEO uses built-in definitions for GTA SA and overrides the host name in the log.</p>
+<pre><code class="language-json">{
+  &quot;host_name&quot;: &quot;Vice City Modpack&quot;
+}
+</code></pre>
+<p>It overrides only the host name in the log file.</p>
 
                     </main>
 
