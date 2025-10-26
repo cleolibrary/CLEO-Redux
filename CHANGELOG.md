@@ -1,4 +1,4 @@
-### 1.4.0 - October 25, 2025
+### 1.4.0 - October 26, 2025
 - add `Memory.Allocate` and `Memory.Free` commands in all supported games and platforms
 - the `vp` argument on Memory.Read/Write commands is now optional (false by default). The `ib` argument is also false by default on the x64 platform  
 - add support for passing string arguments directly into native functions (family of `Memory.CallXXX` and `Memory.Fn.XXX` methods)
