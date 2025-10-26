@@ -8,31 +8,32 @@
 - [Calling Foreign Functions](#calling-foreign-functions)
   - [Convenience methods with Fn object](#convenience-methods-with-fn-object)
 - [Finding Memory Addresses in re3 and reVC](#finding-memory-addresses-in-re3-and-revc)
+- [Allocating and Freeing Memory](#allocating-and-freeing-memory)
 
 An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
 
 ```ts
 interface Memory {
-  ReadFloat(address: int, vp: boolean): float;
-  WriteFloat(address: int, value: float, vp: boolean): void;
-  ReadI8(address: int, vp: boolean): int;
-  ReadI16(address: int, vp: boolean): int;
-  ReadI32(address: int, vp: boolean): int;
-  ReadU8(address: int, vp: boolean): int;
-  ReadU16(address: int, vp: boolean): int;
-  ReadU32(address: int, vp: boolean): int;
+  ReadFloat(address: int, vp?: boolean): float;
+  WriteFloat(address: int, value: float, vp?: boolean): void;
+  ReadI8(address: int, vp?: boolean): int;
+  ReadI16(address: int, vp?: boolean): int;
+  ReadI32(address: int, vp?: boolean): int;
+  ReadU8(address: int, vp?: boolean): int;
+  ReadU16(address: int, vp?: boolean): int;
+  ReadU32(address: int, vp?: boolean): int;
   ReadUtf8(address: int): string;
   ReadUtf16(address: int): string;
-  WriteI8(address: int, value: int, vp: boolean): void;
-  WriteI16(address: int, value: int, vp: boolean): void;
-  WriteI32(address: int, value: int, vp: boolean): void;
-  WriteU8(address: int, value: int, vp: boolean): void;
-  WriteU16(address: int, value: int, vp: boolean): void;
-  WriteU32(address: int, value: int, vp: boolean): void;
-  WriteUtf8(address: int, value: string, vp: boolean): void;
-  WriteUtf16(address: int, value: string, vp: boolean): void;
-  Read(address: int, size: int, vp: boolean): int;
-  Write(address: int, size: int, value: int, vp: boolean): void;
+  WriteI8(address: int, value: int, vp?: boolean): void;
+  WriteI16(address: int, value: int, vp?: boolean): void;
+  WriteI32(address: int, value: int, vp?: boolean): void;
+  WriteU8(address: int, value: int, vp?: boolean): void;
+  WriteU16(address: int, value: int, vp?: boolean): void;
+  WriteU32(address: int, value: int, vp?: boolean): void;
+  WriteUtf8(address: int, value: string, vp?: boolean): void;
+  WriteUtf16(address: int, value: string, vp?: boolean): void;
+  Read(address: int, size: int, vp?: boolean): int;
+  Write(address: int, size: int, value: int, vp?: boolean): void;
 
   ToFloat(value: int): float;
   FromFloat(value: float): int;
@@ -51,6 +52,9 @@ interface Memory {
   CallMethod(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): void;
   CallMethodReturn(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): int;
   CallMethodReturnFloat(address: int, struct: int, numParams: int, pop: int, ...funcParams: int[]): float;
+
+  Allocate(size: int): int;
+  Free(address: int): void;
 
   Fn: {
     Cdecl(address: int): (...funcParams: int[]) => int;
@@ -282,3 +286,17 @@ if (addr) {
 ```
 
 At the moment `Memory.Translate` should only be used in `re3` and `reVC`. In other games you will be getting `0` as a result most of the time.
+
+### Allocating and Freeing Memory
+
+To allocate a block of memory in the current process use `Memory.Allocate` method. It accepts the size of the block in bytes and returns the address of the allocated memory. Memory is guaranteed to be zero-initialized.
+
+```js
+var addr = Memory.Allocate(1024); // allocate 1KB of memory
+```
+
+To free previously allocated memory use `Memory.Free` method. It accepts the address of the memory block to free.
+
+```js
+Memory.Free(addr);
+```

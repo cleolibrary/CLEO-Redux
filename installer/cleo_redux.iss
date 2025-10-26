@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.3.3"
+#define AppVersion "1.4.0"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -46,7 +46,6 @@ Uninstallable=false
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
-Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"; LicenseFile: "..\LICENSE-RU.txt"
 
 [Types]
 Name: "full"; Description: "Full"; Flags: iscustom
@@ -194,14 +193,6 @@ m5 =32-bit (x86)
 m6 =64-bit (x64)
 m7 =Automatically run as self-host
 m8 =CLEO Redux supports both 32-bit and 64-bit versions of re3 and reVC. To continue installation select either one of the two available versions of CLEO Redux.
-
-russian.m2 =Выберите версию CLEO Redux
-russian.m3 =Какую версию CLEO Redux (32-битную или 64-битную) нужно установить?
-russian.m4 =В выбранной директории не нашлось поддерживаемых игр или приложений. Для продолжения установки выберите одну из двух возможных версий CLEO Redux. Подсказка: она должна совпадать с версией (архитектурой) игры или приложения, в которой будет запускаться CLEO Redux.
-russian.m5 =32-битная (x86)
-russian.m6 =64-битная (x64)
-russian.m7 =Автоматически запускать в автономном режиме
-russian.m8 =CLEO Redux поддерживает как 32-битные, так и 64-битные версии re3 и reVC. Для продолжения установки выберите одну из двух возможных версий CLEO Redux.
            
 [Code]
 const

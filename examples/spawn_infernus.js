@@ -43,11 +43,14 @@ function getInfernusMI() {
   switch (HOST) {
     case "re3":
     case "gta3":
+    case "gta3_unreal":
       return 101;
     case "reVC":
     case "vc":
+    case "vc_unreal":
       return 141;
     case "sa":
+    case "sa_unreal":
       return 411;
   }
 }

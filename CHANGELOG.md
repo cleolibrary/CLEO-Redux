@@ -1,3 +1,20 @@
+### 1.4.0 - October 25, 2025
+- add `Memory.Allocate` and `Memory.Free` commands in all supported games and platforms
+- the `vp` argument on Memory.Read/Write commands is now optional (false by default). The `ib` argument is also false by default on the x64 platform  
+- add support for passing string arguments directly into native functions (family of `Memory.CallXXX` and `Memory.Fn.XXX` methods)
+- add support for importing files with `*.mts` extension (TypeScript files that are not auto-loaded)
+- `Memory.Translate` supports pointer symbols using `*` prefix (i.e. `Memory.Translate("*name")` is a shortcut for `Memory.ReadI32(Memory.Translate("name"))`)
+- TypeScript errors should display the correct line number
+- rework [Manifest file](https://re.cleo.li/docs/en/embedding.html#manifest) support: all values became optional, `host_name` can be used to override any host name, `host` can specify a known host in case it runs a renamed executable
+- [SA] fix intermittent crashes when using scripted tasks (e.g. `Task.GoStraightToCoord`)
+- [SA] fix premature script execution during game loading sequence
+- [SA] fix an issue when non-static methods with variadic arguments did not provide the class instance as the first argument (e.g. `File.WriteFormattedString`)
+- [IV] add missing natives (e.g. `VMAG`)
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 1.3.3 - March 26, 2025
 
 - address some false-positive antivirus detections

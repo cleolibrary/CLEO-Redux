@@ -77,7 +77,7 @@ You can use all standard JavaScript features. The list of available commands can
 
 ## Manifest
 
-Manifest is a file with static configuration for the given host. Only unknown hosts make use of it. The configuration should be stored in `.config\manifest.json` with the following structure:
+Manifest is a file with static configuration for the given host. Can be used with any host to override some default values. The configuration should be stored in `.config\manifest.json` with the following structure:
 
 ```json
 {
@@ -87,22 +87,39 @@ Manifest is a file with static configuration for the given host. Only unknown ho
 }
 ```
 
-- `host` should match the host's executable name. E.g. if the host runs via `application.exe`, the value is `application`. Available in scripts as the [HOST variable](./api.md#host).
+- `host` specifies the host executable name. Available in scripts as the [HOST variable](./api.md#host).
+  - Well-known values are `re3`, `reVC`, `gta3`, `vc`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `gta_iv`, `bully`. When the `host` value matches one of those, CLEO uses built-in definitions and features for the given game, ignoring the actual executable name.
 - `host_name` defines the host's custom name used in the [log](./log.md)
 - `compound` defines whether the host uses [compound definitions](./definitions.md). By default the host uses definitions from the file matching `<host>.json`, e.g. `application.json`. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the `.config` folder.
 
   When `compound` is set to `true` the host also uses command definitions for the Unknown host (e.g. `unknown_x86.json`). If this file is missing CLEO downloads it from Sanny Builder Library.
 
-### Example
+### Examples
 
-Host: [Sanny Builder 3](https://sannybuilder.com) (`sanny.exe`)
+Host: [Sanny Builder 4](https://sannybuilder.com) (`sanny.exe`)
 
 ```json
 {
   "host": "sanny",
-  "host_name": "Sanny Builder 3",
+  "host_name": "Sanny Builder 4",
   "compound": true
 }
 ```
 
-`Sanny Builder 3\CLEO\.config` folder contains `sanny.json` and `manifest.json` before the first run. The other files are downloaded or generated automatically.
+`Sanny Builder 4\CLEO\.config` folder must contain `sanny.json` and `manifest.json` before the first run. The other files will be downloaded or generated automatically.
+
+```json
+{
+  "host": "sa",
+  "host_name": "GTA SA: My Custom Mod"
+}
+```
+In this example the host is a custom mod for GTA San Andreas with the executable name different from `gta_sa.exe`. CLEO uses built-in definitions for GTA SA and overrides the host name in the log.
+
+```json
+{
+  "host_name": "Vice City Modpack"
+}
+```
+
+It overrides only the host name in the log file.
