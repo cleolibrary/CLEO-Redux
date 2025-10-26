@@ -19,14 +19,11 @@ jobs:
       - name: copy
         run: |
           cp LICENSE.txt website
-          cp LICENSE-RU.txt website
 
       - name: Install mdbook
         run: curl -L https://github.com/rust-lang/mdBook/releases/download/v$MDBOOK/mdbook-v$MDBOOK-x86_64-unknown-linux-gnu.tar.gz | tar xz -C ~/.cargo/bin
       - name: Build book (en)
         run: mdbook build docs/en -d ../../website/docs/en
-      - name: Build book (ru)
-        run: mdbook build docs/ru -d ../../website/docs/ru
 
       - name: Deploy gh-pages
         uses: peaceiris/actions-gh-pages@v3
