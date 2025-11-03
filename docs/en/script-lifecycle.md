@@ -51,3 +51,5 @@ CLEO/
  After scanning subdirectories, CLEO loads `index.js` and `text.fxt` located in the `folderA` and skips `folderB` as there is no `index.js` file.
 
  > CLEO_TEXT, CLEO_PLUGINS, and .config are not considered as script directories.
+
+ > `index.ts` is also supported if you prefer [TypeScript](./typescript.md).

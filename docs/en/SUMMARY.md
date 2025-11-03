@@ -32,7 +32,6 @@
       - [Math Object](./using-math.md)
       - [Memory Object](./using-memory.md)
       - [Memory Object (x64)](./using-memory-64.md)
-      - [Deprecated](./deprecated-bindings.md)
   - [TypeScript](./typescript.md)
 
 - [Troubleshooting](./troubleshooting.md)

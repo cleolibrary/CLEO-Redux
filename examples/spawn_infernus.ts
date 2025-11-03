@@ -1,5 +1,3 @@
-// this path below assumes the script file is located in CLEO directory. Adjust accordingly to your setup.
-/// <reference path="./.config/gta3.d.ts" />
 import { KeyCode } from "./.config/enums";
 
 /**

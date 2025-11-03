@@ -1,5 +1,3 @@
-/// <reference path=".config/vc.d.ts" />
-
 const LEFTMOUSEBUTTON = 1;
 var player = new Player(0);
 
