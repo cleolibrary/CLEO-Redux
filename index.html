@@ -30,7 +30,7 @@
     <div id="tsparticles"></div>
 
     <main class="container-xl">
-      <div class="text-right text-white-50 pt-2" style="font-size: 75%">
+      <div class="text-center text-white-50 pt-2" style="font-size: 75%">
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@
 
           <div style="background: rgba(0, 0, 0, 0.25); border-radius: 8px; margin-top: 2rem; padding: 0.5rem 1rem">
             <div class="d-flex flex-column">
-              <div class="mb-2 mr-3 h3 font-weight-bold stroke">Featured Projects</div>
+              <div class="pt-3 mr-3 h3 font-weight-bold stroke">Featured Projects</div>
 
               <div id="featuredProjectsCarousel" class="carousel slide" data-ride="carousel" data-interval="10000">
                 <ol class="carousel-indicators">
@@ -287,8 +287,8 @@
     <!-- Initialize carousel manually -->
     <script>
       $(document).ready(function () {
-        // Select random starting item (0-5 for 6 items)
-        var randomIndex = Math.floor(Math.random() * 6);
+        // Select random starting item
+        var randomIndex = Math.floor(Math.random() * 7);
 
         // Remove active class from default first item
         $("#featuredProjectsCarousel .carousel-item.active").removeClass("active");
