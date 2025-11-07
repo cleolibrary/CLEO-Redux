@@ -151,6 +151,8 @@
                   <li data-target="#featuredProjectsCarousel" data-slide-to="2"></li>
                   <li data-target="#featuredProjectsCarousel" data-slide-to="3"></li>
                   <li data-target="#featuredProjectsCarousel" data-slide-to="4"></li>
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="5"></li>
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="6"></li>
                 </ol>
 
                 <div class="carousel-inner text-center">
@@ -197,9 +199,54 @@
                   </div>
                   <div class="carousel-item">
                     <div class="d-flex flex-column align-items-center">
-                      <img src="https://i.imgur.com/OuuZO9G.jpeg" alt="Ragdoll Balancing" />
-                      <a href="https://www.youtube.com/watch?v=VD6_3WYGNlw">Ragdoll Balancing</a>
+                      <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/VD6_3WYGNlw?si=ydlC8QcVaOeqlP6i"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                      ></iframe>
+                      <a href="https://libertycity.net/files/gta-4/227098-ragdoll-balancing.html">Ragdoll Balancing</a>
                       <small class="text-muted">by Cowboy69</small>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center">
+                      <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/_whPSB7gBa0?si=iJc9Sk64NkAwyqmU"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                      ></iframe>
+
+                      <a href="https://github.com/emil6strutui/cleo-redux-carrec-injecter">Vehicle Recording Menu</a>
+                      <small class="text-muted">by Benjamin Strutui</small>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center">
+                      <img
+                        src="https://staticdelivery.nexusmods.com/mods/4142/images/thumbnails/817/817-1702837677-1119713764.png"
+                        alt="Cheat Menu mod for GTA III-VC-SA DE"
+                        style="
+                          max-height: 320px;
+                          object-fit: contain;
+                          margin-bottom: 10px;
+                          border-radius: 4px;
+                          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                        "
+                      />
+                      <a href="https://www.nexusmods.com/grandtheftautothetrilogy/mods/817"
+                        >Cheat Menu mod for GTA III-VC-SA Definitive Edition</a
+                      >
+                      <small class="text-muted">by Mateusz Korbut</small>
                     </div>
                   </div>
                 </div>
@@ -240,8 +287,8 @@
     <!-- Initialize carousel manually -->
     <script>
       $(document).ready(function () {
-        // Select random starting item (0-4 for 5 items)
-        var randomIndex = Math.floor(Math.random() * 5);
+        // Select random starting item (0-5 for 6 items)
+        var randomIndex = Math.floor(Math.random() * 6);
 
         // Remove active class from default first item
         $("#featuredProjectsCarousel .carousel-item.active").removeClass("active");
