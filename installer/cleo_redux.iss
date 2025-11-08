@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.4.0"
+#define AppVersion "1.4.1"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"

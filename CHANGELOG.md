@@ -1,3 +1,8 @@
+### 1.4.1 - November 8, 2025
+
+- fix `Memory.ToXXX` conversion utils failing under certain values (_Error converting from js 'f64' into type 'u32': Underflow_)
+- [SA] fix `FIND_FIRST_FILE` not returning a file name
+
 ### 1.4.0 - October 26, 2025
 - add `Memory.Allocate` and `Memory.Free` commands in all supported games and platforms
 - the `vp` argument on Memory.Read/Write commands is now optional (false by default). The `ib` argument is also false by default on the x64 platform  
