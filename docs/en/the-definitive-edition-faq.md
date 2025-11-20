@@ -9,6 +9,8 @@ Here you can find answers to the frequently asked questions about support for Th
 
 ### What versions are supported?
 
+> The versions listed below refer to the executable file and can be checked by right-clicking the game’s executable (`LibertyCity.exe`, `ViceCity.exe`, or `SanAndreas.exe`) and opening Properties → Details → File Version.
+
 | Game\Platform                                  | Rockstar Games (RGL)                                                                                                                                                         | Steam                                                         | Epic Games |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------- |
 | GTA III: The Definitive Edition       | 1.0.0.14718 (Title Update 1.03)<br>1.0.0.15284 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680                               | 1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181 | 1.0.17.39540        |
