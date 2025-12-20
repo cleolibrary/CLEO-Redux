@@ -1,3 +1,9 @@
+### 1.4.2 - December 20, 2025
+
+- [III, VC] support long input strings if CLEO library is present (e.g. `Text.PrintStringNow("Hello, world!", 500);`)
+- fix a major issue causing parallel scripts execution during game loading
+- fix `Memory.Fn.CdeclFloat`, `Memory.Fn.StdcallFloat`, `Memory.Fn.ThiscallFloat` not returning correct floating-point values on 32-bit platform
+
 ### 1.4.1 - November 8, 2025
 
 - fix `Memory.ToXXX` conversion utils failing under certain values (_Error converting from js 'f64' into type 'u32': Underflow_)
@@ -534,7 +540,7 @@ CLEO Redux' primary distribution file has been renamed to `cleo_redux.asi`. To a
 
 - `asFloat` has been removed in favor of `Memory.ToFloat`
 - class `Object` has been renamed to `ScriptObject` to avoid conflicts with native JavaScript Object.
-- deprecated command `isKeyPressed` has been deleted. Use `Pad.isKeyPressed` instead
+- deprecated command `isKeyPressed` has been deleted. Use `Pad.IsKeyPressed` instead
 
 ### 0.5.3 - Oct 2, 2021
 
