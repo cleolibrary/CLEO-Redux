@@ -322,7 +322,7 @@ while (true) {
 
     `runScript` has the following limitations:
 
-    - script files must have one of the following extensions: `.mjs`, `.js` (JS scripts), `.ts` (TS scripts), `.s` or `.cs` (CS scripts).
+    - script files must have one of the following extensions: `.mjs`, `.js` (JS scripts), `.mts`, `.ts` (TS scripts), `.s` or `.cs` (CS scripts).
     - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
 
     When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
