@@ -13,7 +13,7 @@ namespace std {
     public:
         TxtLoader()
         {
-            Log("TXT Loader 1.1");
+            Log("TXT Loader 1.2");
             RegisterLoader("*.txt", Loader);
             RegisterLoader("*.text", Loader);
             GenerateTypings();
@@ -34,9 +34,11 @@ namespace std {
             // construct a JSON array where every item is a line from the source file
             ss << "[";
             if (getline(input_file, line)) {
-                ss << "\"" << line << "\"";
+              EscapeJsonString(line);
+              ss << "\"" << line << "\"";
             }
             while (getline(input_file, line)) {
+                EscapeJsonString(line);
                 ss << ",\"" << line << "\"";
             }
             ss << "]";
@@ -47,7 +49,7 @@ namespace std {
             char* buf = reinterpret_cast<char*>(AllocMem(content.length() + 1));
 
             // copy serialized string to the buffer
-            sprintf(buf, content.c_str());
+            strcpy(buf, content.c_str());
 
             // let CLEO read from the buffer and free up the memory
             return buf;
@@ -79,6 +81,34 @@ declare module "*.text" {
 )";
 
             typing_file.close();
+        }
+
+        static void EscapeJsonString(std::string& s)
+        {
+          std::string result;
+          result.reserve(s.length());
+          
+          for (char c : s) {
+            switch (c) {
+              case '"':  result += "\\\""; break;
+              case '\\': result += "\\\\"; break;
+              case '\b': result += "\\b"; break;
+              case '\f': result += "\\f"; break;
+              case '\n': result += "\\n"; break;
+              case '\r': result += "\\r"; break;
+              case '\t': result += "\\t"; break;
+              default:
+                if (c >= 0 && c < 0x20) {
+                  // Escape control characters
+                  char buf[7];
+                  sprintf(buf, "\\u%04x", (unsigned char)c);
+                  result += buf;
+                } else {
+                  result += c;
+                }
+            }
+          }
+          s = result;
         }
 
     } TxtLoader;
