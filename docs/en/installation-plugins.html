@@ -143,16 +143,17 @@
                         <h1 id="plugins"><a class="header" href="#plugins">Plugins</a></h1>
 <p>Plugins are optional programs adding extra scripting commands with the help of <a href="./using-sdk.html">CLEO Redux SDK</a>. A plugin file has a <code>.cleo</code> extension and should be copied to the <code>CLEO\CLEO_PLUGINS</code> directory.</p>
 <h2 id="list-of-plugins"><a class="header" href="#list-of-plugins">List of plugins</a></h2>
-<table><thead><tr><th>Name</th><th>Description</th><th>Link</th></tr></thead><tbody>
-<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/ini">IniFiles</a></td><td>Reading from and writing to INI files</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/IniFiles">src</a></td></tr>
-<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/dylib">Dylib</a></td><td>Loading DLL files and importing functions</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Dylib">src</a></td></tr>
-<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/input">Input</a></td><td>Checking for keyboard and mouse input, emulating key presses</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input">src</a></td></tr>
-<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/imgui">ImGuiRedux</a></td><td>Dear ImGui bindings</td><td><a href="https://github.com/user-grinch/ImGuiRedux">GitHub repo</a></td></tr>
-<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/memops">MemoryOperations</a></td><td>Low-level memory operations</td><td><a href="https://github.com/cleolibrary/CLEO-REDUX-PLUGINS">GitHub repo</a></td></tr>
-<tr><td>Frontend</td><td>Checking for updates on GitHub and displaying information in the main menu</td><td></td></tr>
-<tr><td>Events</td><td>Emitting <a href="./events.html">custom events</a></td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Events">src</a></td></tr>
+<table><thead><tr><th>Name</th><th>Description</th><th>Link</th><th>Portable</th></tr></thead><tbody>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/ini">IniFiles</a></td><td>Reading from and writing to INI files</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/IniFiles">src</a></td><td>Yes</td></tr>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/dylib">Dylib</a></td><td>Loading DLL files and importing functions</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Dylib">src</a></td><td>Yes</td></tr>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/input">Input</a></td><td>Checking for keyboard and mouse input, emulating key presses</td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input">src</a></td><td>Yes</td></tr>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/imgui">ImGuiRedux</a></td><td>Dear ImGui bindings</td><td><a href="https://github.com/user-grinch/ImGuiRedux">GitHub repo</a></td><td>No</td></tr>
+<tr><td><a href="https://library.sannybuilder.com/#/unknown_x86/memops">MemoryOperations</a></td><td>Low-level memory operations</td><td><a href="https://github.com/cleolibrary/CLEO-REDUX-PLUGINS">GitHub repo</a></td><td>No</td></tr>
+<tr><td>Frontend</td><td>Checking for updates on GitHub and displaying information in the main menu</td><td>Available only in the installer</td><td>No</td></tr>
+<tr><td>Events</td><td>Emitting <a href="./events.html">custom events</a></td><td><a href="https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Events">src</a></td><td>Yes</td></tr>
 </tbody></table>
-<p>Plugins are included in the CLEO Redux installer. You can opt out of some of them by unchecking the corresponding checkbox in the installer.</p>
+<p>Plugins are included in the CLEO Redux installer. You can opt out of some of them by unchecking the corresponding checkbox in the installer.
+Portable plugins are also included in the portable versions of CLEO Redux (standalone archives). Non-portable plugins need to be downloaded and installed manually.</p>
 
                     </main>
 
