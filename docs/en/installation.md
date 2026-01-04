@@ -26,7 +26,7 @@ Once the installation is complete, CLEO Redux is ready to use. You can now [inst
 
 ### Portable Installation
 
-If you don't want to or can't use the installer, try portable versions available starting from version 1.3.1. There are two separate archives for 32-bit and 64-bit games. Download one that matches your game and extract it into the game folder. The portable version does not include the ASI loader, so you need to [provide it yourself](#dependency-on-asi-loader). Note that portable versions don't include all [plugins](./installation-plugins.md), so you may need to install them manually.
+If you don't want to or can't use the installer, try portable versions available starting from version 1.3.1. There are two separate archives for 32-bit and 64-bit games. Download one that matches your game and extract it into the game folder. The portable version does not include the ASI loader, so you need to [provide it yourself](#dependency-on-asi-loader). Note that portable versions don't include some [plugins](./installation-plugins.md), so you may need to install them manually.
 
 ## CLEO Directory
 
