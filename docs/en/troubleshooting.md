@@ -37,4 +37,4 @@ Check that you have installed Ultimate ASI Loader correctly. Sometimes you might
 
 - Check the [GitHub tickets](https://github.com/cleolibrary/CLEO-Redux/issues)
 - Check the [Feature support page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix)
-- Ask a question in [our Discord](https://discord.gg/d5dZSfgBZr)
+- Ask a question in [our Discord](https://cleo.li/discord)
