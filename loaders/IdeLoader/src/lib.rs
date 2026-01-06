@@ -7,8 +7,9 @@ unsafe extern "C" {}
 
 #[ctor]
 fn init() {
-    cleo_redux_sdk::log("IDE Loader 1.4");
+    cleo_redux_sdk::log("IDE Loader 1.5");
     cleo_redux_sdk::register_loader("*.ide", loader);
+    cleo_redux_sdk::register_loader("*.zon", loader);
     let path = cleo_redux_sdk::get_directory_path(cleo_redux_sdk::Directory::CONFIG)
         .join("ide_loader.d.ts");
     if let Err(e) = std::fs::write(path, include_str!("./ide_loader.d.ts")) {

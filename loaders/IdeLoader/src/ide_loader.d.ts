@@ -20,3 +20,11 @@ declare module "*.ide" {
   const value: Record<IdeKey, string[]>;
   export default value;
 }
+
+declare module "*.zon" {
+  enum ZonKey {
+    zone = "zone",
+  }
+  const value: Record<ZonKey, string[]>;
+  export default value;
+}
