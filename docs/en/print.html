@@ -488,12 +488,12 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>Due to the dynamic nature of JavaScript CLEO Redux needs to know an interface of each native command, i.e. a number of input arguments and returned values and their types. <a href="https://library.sannybuilder.com">Sanny Builder Library</a> serves as the source of command definitions for CLEO Redux.</p>
 <p>At start CLEO validates that a definition file is present and correct and if not tries to download it from GitHub (see the table below) into your local <code>CLEO/.config</code> directory. If that did not happen, or you don't want to let CLEO make network calls, manually download the required file and place it in the <code>CLEO/.config</code> directory.</p>
 <table><thead><tr><th>Game</th><th>File</th><th>Minimum Required Version</th></tr></thead><tbody>
-<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.384</code></td></tr>
-<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.395</code></td></tr>
-<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>1.15</code></td></tr>
-<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.301</code></td></tr>
-<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.312</code></td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.462</code></td></tr>
+<tr><td>GTA III, re3</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3/gta3.json">gta3.json</a></td><td><code>0.389</code></td></tr>
+<tr><td>GTA VC, reVC</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc/vc.json">vc.json</a></td><td><code>0.401</code></td></tr>
+<tr><td>GTA San Andreas (Classic) 1.0</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa/sa.json">sa.json</a></td><td><code>1.52</code></td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta3_unreal/gta3_unreal.json">gta3_unreal.json</a></td><td><code>0.306</code></td></tr>
+<tr><td>Vice City: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/vc_unreal/vc_unreal.json">vc_unreal.json</a></td><td><code>0.318</code></td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td><a href="https://github.com/sannybuilder/library/blob/master/sa_unreal/sa_unreal.json">sa_unreal.json</a></td><td><code>0.493</code></td></tr>
 <tr><td>GTA IV</td><td><a href="https://github.com/sannybuilder/library/blob/master/gta_iv/gta_iv.json">gta_iv.json</a></td><td><code>0.108</code></td></tr>
 <tr><td>Unknown (32-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x86/unknown_x86.json">unknown_x86.json</a></td><td><code>0.236</code></td></tr>
 <tr><td>Unknown (64-bit)</td><td><a href="https://github.com/sannybuilder/library/blob/master/unknown_x64/unknown_x64.json">unknown_x64.json</a></td><td><code>0.239</code></td></tr>
@@ -548,7 +548,7 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <li><a href="imports.html#importing-other-formats">Importing other formats</a>
 <ul>
 <li><a href="imports.html#txt">TXT</a></li>
-<li><a href="imports.html#ide">IDE</a></li>
+<li><a href="imports.html#ide-zon">IDE, ZON</a></li>
 </ul>
 </li>
 </ul>
@@ -592,12 +592,12 @@ for (const line of lines) {
 
 log(lines.join(&quot;&quot;)); // prints the entire file
 </code></pre>
-<h3 id="ide"><a class="header" href="#ide">IDE</a></h3>
+<h3 id="ide-zon"><a class="header" href="#ide-zon">IDE, ZON</a></h3>
 <ul>
-<li>Extensions: <code>.ide</code></li>
+<li>Extensions: <code>.ide</code>, <code>.zon</code></li>
 <li>Plugin name: <code>IdeLoader.cleo</code></li>
 </ul>
-<p>The IDE loader transforms an item definition file (<code>*.ide</code>) that is widely used in GTA series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:</p>
+<p>The IDE loader transforms an item definition file (<code>*.ide</code>, <code>*.zon</code>) that is widely used in GTA series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:</p>
 <pre><code class="language-ts">interface Ide {
   [key: string]: Array&lt;Array&lt;string&gt;&gt;;
 }
@@ -1400,6 +1400,7 @@ var x = Object.create(null);
 </li>
 <li><a href="using-memory.html#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></li>
 <li><a href="using-memory.html#allocating-and-freeing-memory">Allocating and Freeing Memory</a></li>
+<li><a href="using-memory.html#watching-values">Watching Values</a></li>
 </ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
@@ -1444,6 +1445,7 @@ var x = Object.create(null);
 
   Allocate(size: int): int;
   Free(address: int): void;
+  Watch(getter, callback, options): () =&gt; void;
 
   Fn: {
     Cdecl(address: int): (...funcParams: int[]) =&gt; int;
@@ -1629,6 +1631,51 @@ if (addr) {
 <p>To free previously allocated memory use <code>Memory.Free</code> method. It accepts the address of the memory block to free.</p>
 <pre><code class="language-js">Memory.Free(addr);
 </code></pre>
+<h3 id="watching-values"><a class="header" href="#watching-values">Watching Values</a></h3>
+<p>Use <code>Memory.Watch</code> to poll a value and call a function when it changes. This is useful for debugging or writing reactive scripts. For example, you can watch the <code>ONMISSION</code> global variable to detect when a mission starts or ends:</p>
+<pre><code class="language-js">Memory.Watch(
+  () =&gt; ONMISSION,
+  (value) =&gt; {
+    if (value) {
+      log(&quot;Mission started!&quot;);
+    } else {
+      log(&quot;Mission ended!&quot;);
+    }
+  },
+);
+</code></pre>
+<p>The function returns a <em>stop</em> function:</p>
+<pre><code class="language-js">const stop = Memory.Watch(
+  () =&gt; ONMISSION,
+  (value, oldValue) =&gt; {
+    log(&quot;ONMISSION changed: &quot; + oldValue + &quot; -&gt; &quot; + value);
+  },
+);
+
+// later...
+stop();
+</code></pre>
+<p>You can use <code>Memory.Watch</code> multiple times to watch different values. Each watcher will work independently and call its callback when the corresponding value changes. Note that watchers only work in <a href="./async.html">async scripts</a>.</p>
+<p>You can customize the behavior of the watcher by passing an optional <code>options</code> object as the 3rd argument to <code>Memory.Watch</code>:</p>
+<ul>
+<li><code>options.interval</code> (or pass a number as the 3rd argument) sets the polling interval in milliseconds. Defaults to <code>0</code> (every frame).</li>
+<li><code>options.matcher(a, b)</code> can customize change detection. It should return <code>true</code> when values are considered equal (no change).</li>
+</ul>
+<pre><code class="language-js">Memory.Watch(
+  ...,
+  ...,
+  16, // check every 16ms (roughly every frame at 60fps)
+);
+
+Memory.Watch(
+  ...,
+  ...,
+  {
+    interval: 100, // check every 100ms
+    matcher: (a, b) =&gt; Math.abs(a - b) &lt; 0.01, // consider values equal if they are close enough
+  }
+);
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="memory-object-x64"><a class="header" href="#memory-object-x64">Memory Object (x64)</a></h1>
 <blockquote>
 <p>This guide is for x64 hosts (e.g. the remastered trilogy). For the information on using the Memory class on x86 (classic era games) <a href="./using-memory.html">click here</a>.</p>
@@ -1643,6 +1690,7 @@ if (addr) {
 </ul>
 </li>
 <li><a href="using-memory-64.html#allocating-and-freeing-memory">Allocating and Freeing Memory</a></li>
+<li><a href="using-memory-64.html#watching-values">Watching Values</a></li>
 </ul>
 <p>An intrinsic object <code>Memory</code> provides methods for accessing and manipulating the data or code in the current process. It has the following interface:</p>
 <pre><code class="language-ts">interface Memory {
@@ -1687,6 +1735,7 @@ if (addr) {
 
   Allocate(size: int): int;
   Free(address: int): void;
+  Watch(getter, callback, options): () =&gt; void;
 
   Fn: {
     X64(address: int, ib?: boolean): (...funcParams: int[]) =&gt; int;
@@ -1817,6 +1866,51 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 </code></pre>
 <p>To free previously allocated memory use <code>Memory.Free</code> method. It accepts the address of the memory block to free.</p>
 <pre><code class="language-js">Memory.Free(addr);
+</code></pre>
+<h3 id="watching-values-1"><a class="header" href="#watching-values-1">Watching Values</a></h3>
+<p>Use <code>Memory.Watch</code> to poll a value and call a function when it changes. This is useful for debugging or writing reactive scripts. For example, you can watch the <code>ONMISSION</code> global variable to detect when a mission starts or ends:</p>
+<pre><code class="language-js">Memory.Watch(
+  () =&gt; ONMISSION,
+  (value) =&gt; {
+    if (value) {
+      log(&quot;Mission started!&quot;);
+    } else {
+      log(&quot;Mission ended!&quot;);
+    }
+  },
+);
+</code></pre>
+<p>The function returns a <em>stop</em> function:</p>
+<pre><code class="language-js">const stop = Memory.Watch(
+  () =&gt; ONMISSION,
+  (value, oldValue) =&gt; {
+    log(&quot;ONMISSION changed: &quot; + oldValue + &quot; -&gt; &quot; + value);
+  },
+);
+
+// later...
+stop();
+</code></pre>
+<p>You can use <code>Memory.Watch</code> multiple times to watch different values. Each watcher will work independently and call its callback when the corresponding value changes. Note that watchers only work in <a href="./async.html">async scripts</a>.</p>
+<p>You can customize the behavior of the watcher by passing an optional <code>options</code> object as the 3rd argument to <code>Memory.Watch</code>:</p>
+<ul>
+<li><code>options.interval</code> (or pass a number as the 3rd argument) sets the polling interval in milliseconds. Defaults to <code>0</code> (every frame).</li>
+<li><code>options.matcher(a, b)</code> can customize change detection. It should return <code>true</code> when values are considered equal (no change).</li>
+</ul>
+<pre><code class="language-js">Memory.Watch(
+  ...,
+  ...,
+  16, // check every 16ms (roughly every frame at 60fps)
+);
+
+Memory.Watch(
+  ...,
+  ...,
+  {
+    interval: 100, // check every 100ms
+    matcher: (a, b) =&gt; Math.abs(a - b) &lt; 0.01, // consider values equal if they are close enough
+  }
+);
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="typescript"><a class="header" href="#typescript">TypeScript</a></h1>
 <p>CLEO Redux has first-class support for TypeScript. TypeScript is a superset of JavaScript with static types and other features. It is compiled to JavaScript and can be efficiently used in large-scale projects. TypeScript has excellent IDE support so you get autocompletion, type checking and other features in your editor for free.</p>

@@ -148,7 +148,7 @@
 <li><a href="#importing-other-formats">Importing other formats</a>
 <ul>
 <li><a href="#txt">TXT</a></li>
-<li><a href="#ide">IDE</a></li>
+<li><a href="#ide-zon">IDE, ZON</a></li>
 </ul>
 </li>
 </ul>
@@ -192,12 +192,12 @@ for (const line of lines) {
 
 log(lines.join(&quot;&quot;)); // prints the entire file
 </code></pre>
-<h3 id="ide"><a class="header" href="#ide">IDE</a></h3>
+<h3 id="ide-zon"><a class="header" href="#ide-zon">IDE, ZON</a></h3>
 <ul>
-<li>Extensions: <code>.ide</code></li>
+<li>Extensions: <code>.ide</code>, <code>.zon</code></li>
 <li>Plugin name: <code>IdeLoader.cleo</code></li>
 </ul>
-<p>The IDE loader transforms an item definition file (<code>*.ide</code>) that is widely used in GTA series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:</p>
+<p>The IDE loader transforms an item definition file (<code>*.ide</code>, <code>*.zon</code>) that is widely used in GTA series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:</p>
 <pre><code class="language-ts">interface Ide {
   [key: string]: Array&lt;Array&lt;string&gt;&gt;;
 }
