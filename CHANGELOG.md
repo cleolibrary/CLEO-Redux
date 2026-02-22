@@ -1,3 +1,15 @@
+### 1.4.3 - February 21, 2026
+
+- allow importing from folder using index files (i.e. `import * as myModule from './myModule';` where `myModule` is a folder with either `index.ts`, `index.mts`, `index.js`, or `index.mjs` file inside)
+- use TypeScript enum syntax for enums and update generated typings to use correct enum types (e.g. `AnimGroup` instead of `int`)
+- add [`Memory.Watch`](https://re.cleo.li/docs/en/using-memory.html#watching-values) method to trigger a callback when the value changes (works only in async scripts)
+- add `.zon` files support in IdeLoader
+- fix an issue in TextLoader when some text files could not be loaded due to a JSON parsing error
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 1.4.2 - December 20, 2025
 
 - [III, VC] support long input strings if CLEO library is present (e.g. `Text.PrintStringNow("Hello, world!", 500);`)
@@ -10,8 +22,9 @@
 - [SA] fix `FIND_FIRST_FILE` not returning a file name
 
 ### 1.4.0 - October 26, 2025
+
 - add `Memory.Allocate` and `Memory.Free` commands in all supported games and platforms
-- the `vp` argument on Memory.Read/Write commands is now optional (false by default). The `ib` argument is also false by default on the x64 platform  
+- the `vp` argument on Memory.Read/Write commands is now optional (false by default). The `ib` argument is also false by default on the x64 platform
 - add support for passing string arguments directly into native functions (family of `Memory.CallXXX` and `Memory.Fn.XXX` methods)
 - add support for importing files with `*.mts` extension (TypeScript files that are not auto-loaded)
 - `Memory.Translate` supports pointer symbols using `*` prefix (i.e. `Memory.Translate("*name")` is a shortcut for `Memory.ReadI32(Memory.Translate("name"))`)
@@ -406,7 +419,6 @@ let groundZ = CWorldFindGroundZForCoord(x, y);
 ### 0.8.4 - Dec 17, 2021
 
 - for San Andreas: The Definitive Edition:
-
   - new opcodes `0C06 WRITE_MEMORY` and `0C07 READ_MEMORY`, as well as corresponding JavaScript commands: `Memory.Write` and `Memory.Read`. [Read the guide](using-memory-64.md) for more information
   - fix an issue with opcodes `0C01`, `0C02`, `0C03`, `0C04` crashing the game
 

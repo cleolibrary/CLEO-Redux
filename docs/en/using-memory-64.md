@@ -8,6 +8,7 @@
 - [Calling Foreign Functions](#calling-foreign-functions)
   - [Convenience methods with Fn object](#convenience-methods-with-fn-object)
 - [Allocating and Freeing Memory](#allocating-and-freeing-memory)
+- [Watching Values](#watching-values)
 
 An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
 
@@ -54,6 +55,7 @@ interface Memory {
 
   Allocate(size: int): int;
   Free(address: int): void;
+  Watch(getter, callback, options): () => void;
 
   Fn: {
     X64(address: int, ib?: boolean): (...funcParams: int[]) => int;
@@ -256,4 +258,60 @@ To free previously allocated memory use `Memory.Free` method. It accepts the add
 
 ```js
 Memory.Free(addr);
+```
+
+
+### Watching Values
+
+Use `Memory.Watch` to poll a value and call a function when it changes. This is useful for debugging or writing reactive scripts. For example, you can watch the `ONMISSION` global variable to detect when a mission starts or ends:
+
+```js
+Memory.Watch(
+  () => ONMISSION,
+  (value) => {
+    if (value) {
+      log("Mission started!");
+    } else {
+      log("Mission ended!");
+    }
+  },
+);
+```
+
+The function returns a _stop_ function:
+
+```js
+const stop = Memory.Watch(
+  () => ONMISSION,
+  (value, oldValue) => {
+    log("ONMISSION changed: " + oldValue + " -> " + value);
+  },
+);
+
+// later...
+stop();
+```
+
+You can use `Memory.Watch` multiple times to watch different values. Each watcher will work independently and call its callback when the corresponding value changes. Note that watchers only work in [async scripts](./async.md).
+
+You can customize the behavior of the watcher by passing an optional `options` object as the 3rd argument to `Memory.Watch`:
+
+- `options.interval` (or pass a number as the 3rd argument) sets the polling interval in milliseconds. Defaults to `0` (every frame).
+- `options.matcher(a, b)` can customize change detection. It should return `true` when values are considered equal (no change).
+
+```js
+Memory.Watch(
+  ...,
+  ...,
+  16, // check every 16ms (roughly every frame at 60fps)
+);
+
+Memory.Watch(
+  ...,
+  ...,
+  {
+    interval: 100, // check every 100ms
+    matcher: (a, b) => Math.abs(a - b) < 0.01, // consider values equal if they are close enough
+  }
+);
 ```

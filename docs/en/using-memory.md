@@ -9,6 +9,7 @@
   - [Convenience methods with Fn object](#convenience-methods-with-fn-object)
 - [Finding Memory Addresses in re3 and reVC](#finding-memory-addresses-in-re3-and-revc)
 - [Allocating and Freeing Memory](#allocating-and-freeing-memory)
+- [Watching Values](#watching-values)
 
 An intrinsic object `Memory` provides methods for accessing and manipulating the data or code in the current process. It has the following interface:
 
@@ -55,6 +56,7 @@ interface Memory {
 
   Allocate(size: int): int;
   Free(address: int): void;
+  Watch(getter, callback, options): () => void;
 
   Fn: {
     Cdecl(address: int): (...funcParams: int[]) => int;
@@ -199,6 +201,7 @@ The second parameter (`0x7001234`) is the object address. The `pop` parameter is
 To call the method and get the result out of it, use `Memory.CallMethodReturn`.
 
 > Input arguments are treated as 32-bit signed integers. If you need to provide a floating-point number, use `Memory.FromFloat`, e.g.
+>
 > ```js
 > Memory.CallFunction(0x1234567, 1, 1, Memory.FromFloat(123.456));
 > ```
@@ -299,4 +302,59 @@ To free previously allocated memory use `Memory.Free` method. It accepts the add
 
 ```js
 Memory.Free(addr);
+```
+
+### Watching Values
+
+Use `Memory.Watch` to poll a value and call a function when it changes. This is useful for debugging or writing reactive scripts. For example, you can watch the `ONMISSION` global variable to detect when a mission starts or ends:
+
+```js
+Memory.Watch(
+  () => ONMISSION,
+  (value) => {
+    if (value) {
+      log("Mission started!");
+    } else {
+      log("Mission ended!");
+    }
+  },
+);
+```
+
+The function returns a _stop_ function:
+
+```js
+const stop = Memory.Watch(
+  () => ONMISSION,
+  (value, oldValue) => {
+    log("ONMISSION changed: " + oldValue + " -> " + value);
+  },
+);
+
+// later...
+stop();
+```
+
+You can use `Memory.Watch` multiple times to watch different values. Each watcher will work independently and call its callback when the corresponding value changes. Note that watchers only work in [async scripts](./async.md).
+
+You can customize the behavior of the watcher by passing an optional `options` object as the 3rd argument to `Memory.Watch`:
+
+- `options.interval` (or pass a number as the 3rd argument) sets the polling interval in milliseconds. Defaults to `0` (every frame).
+- `options.matcher(a, b)` can customize change detection. It should return `true` when values are considered equal (no change).
+
+```js
+Memory.Watch(
+  ...,
+  ...,
+  16, // check every 16ms (roughly every frame at 60fps)
+);
+
+Memory.Watch(
+  ...,
+  ...,
+  {
+    interval: 100, // check every 100ms
+    matcher: (a, b) => Math.abs(a - b) < 0.01, // consider values equal if they are close enough
+  }
+);
 ```

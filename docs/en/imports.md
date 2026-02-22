@@ -6,7 +6,7 @@ You can import other scripts and some custom file formats in your code to make t
 - [Importing JSON files](#importing-json-files)
 - [Importing other formats](#importing-other-formats)
   - [TXT](#txt)
-  - [IDE](#ide)
+  - [IDE, ZON](#ide-zon)
 
 ## Importing scripts
 
@@ -64,12 +64,12 @@ import lines from "./some-file.txt";
 log(lines.join("")); // prints the entire file
 ```
 
-### IDE
+### IDE, ZON
 
-- Extensions: `.ide`
+- Extensions: `.ide`, `.zon`
 - Plugin name: `IdeLoader.cleo`
 
-The IDE loader transforms an item definition file (`*.ide`) that is widely used in GTA series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:
+The IDE loader transforms an item definition file (`*.ide`, `*.zon`) that is widely used in GTA series games. The file is imported as an object where each key corresponds to a section in the file and the value is an array of array of strings:
 
 ```ts
 interface Ide {
