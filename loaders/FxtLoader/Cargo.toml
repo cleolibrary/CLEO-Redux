@@ -1,0 +1,14 @@
+[package]
+name = "fxt-loader"
+version = "1.0.0"
+edition = "2024"
+authors = ["Seemann <mail@sannybuilder.com>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+ctor = "0.1.21"
+serde_json = { version = "1.0.140", features = ["preserve_order"] }
+serde = { version = "1.0.219", features = ["derive"] }
+cleo_redux_sdk = "0.0.14"
