@@ -501,8 +501,8 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 </tbody></table>
 <p>CLEO Redux uses compound definitions (a combination of the primary JSON file for the current game and a JSON file for the Unknown host). It lets SDK commands to work in JS scripts regardless of them being defined or not in the primary JSON file. You should notice that during updates CLEO downloads both <code>&lt;game&gt;.json</code> and <code>unknown.json</code> as well as the accompanying <code>enums.js</code> files. It should not affect any existing scripts.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="script-lifecycle"><a class="header" href="#script-lifecycle">Script Lifecycle</a></h1>
-<p>A file with the JavaScript code should have a <code>.js</code> extension and contain valid instructions. </p>
-<p>Valid instructions include a code conforming to the ECMAScript 2020 standard and custom bindings available in the CLEO Redux runtime. If the runtime encounters an unknown or <a href="./permissions.html">illegal</a> instruction the execution halts and a new error is <a href="./log.html">logged</a> in <code>cleo_redux.log</code>. The script may have no instructions (the empty script). </p>
+<p>A file with the JavaScript code should have a <code>.js</code> extension and contain valid instructions.</p>
+<p>Valid instructions include a code conforming to the ECMAScript 2020 standard and custom bindings available in the CLEO Redux runtime. If the runtime encounters an unknown or <a href="./permissions.html">illegal</a> instruction the execution halts and a new error is <a href="./log.html">logged</a> in <code>cleo_redux.log</code>. The script may have no instructions (the empty script).</p>
 <p>CLEO script runs as soon as the new game starts or a save file is loaded. If you change the file while the game is running, CLEO <a href="./other-features.html#hot-reload">reloads</a> the script and it restarts.</p>
 <p>The script terminates automatically when the last instruction has been executed. The runtime also terminates stuck scripts to prevent the game from freezing. The stuck script is the one that took more than <code>2</code> seconds to run since the last wait command. If that happened, check out your loops, some of the are missing the wait command.</p>
 <pre><code class="language-js">while (true) {
@@ -516,10 +516,28 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
   // still meaningless, but does not freeze the game
 }
 </code></pre>
+<h2 id="boot-scripts"><a class="header" href="#boot-scripts">Boot Scripts</a></h2>
+<blockquote>
+<p>This feature is available since CLEO Redux v1.5.0.</p>
+</blockquote>
+<p>Boot scripts are special one-shot scripts running as soon as runtime is loaded. They can set up initial state or perform operations that don't require the game loop.</p>
+<p>Boot scripts are identified by the <code>.boot.mjs</code> or <code>.boot.mts</code> filename suffix (case-insensitive). For example:</p>
+<ul>
+<li><code>init.boot.mjs</code></li>
+<li><code>CLEO/mod/mod.boot.mjs</code></li>
+</ul>
+<p>Boot scripts have the following characteristics:</p>
+<ul>
+<li><strong>Immediate execution</strong>: They run automatically on a known host, or when the SDK method <code>RuntimeInit()</code> is called.</li>
+<li><strong>Single frame operations</strong>: Boot scripts do not have access to <code>wait()</code> or <code>asyncWait()</code> commands, their execution is limited to a single frame.</li>
+</ul>
+<p>Example boot script:</p>
+<pre><code class="language-js">// init.boot.mjs
+log(&quot;Initializing...&quot;);
+</code></pre>
 <h2 id="organizing-scripts"><a class="header" href="#organizing-scripts">Organizing Scripts</a></h2>
-<p>A single self-contained script file can be placed directly in the <a href="./cleo-directory.html">CLEO directory</a>. </p>
-<p>Complex JS scripts having a lot of dependencies (imported files, <a href="./using-fxt.html">FXT</a> dictionaries) can be organized in folders. CLEO Redux scans the subdirectories of the <a href="./cleo-directory.html">CLEO directory</a> and checks if there is a file named <code>index.js</code>. If <code>index.js</code> is found, CLEO Redux runs it. It also loads all FXT files from the same directory. </p>
-<p>Let's have a look at the example structure: </p>
+<p>A single self-contained script file can be placed directly in the <a href="./cleo-directory.html">CLEO directory</a>.</p>
+<p>Consider this example structure:</p>
 <pre><code>CLEO/
 ├─ CLEO_TEXT/
 │  ├─ main.fxt
@@ -532,14 +550,56 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 ├─ script1.js
 ├─ script2.cs
 </code></pre>
-<p>By default CLEO Redux loads all CS and JS files from the root of the CLEO directory and FXT files from the <code>CLEO_TEXT</code> folder. So it loads <code>script1.js</code>, <code>script2.cs</code>, and <code>main.fxt</code>. </p>
-<p>After scanning subdirectories, CLEO loads <code>index.js</code> and <code>text.fxt</code> located in the <code>folderA</code> and skips <code>folderB</code> as there is no <code>index.js</code> file.</p>
+<p>By default CLEO Redux loads all CS and JS files from the root of the CLEO directory and FXT files from the <code>CLEO_TEXT</code> folder. So it loads <code>script1.js</code>, <code>script2.cs</code>, and <code>main.fxt</code>.</p>
+<h3 id="script-directories-indexjsindexts"><a class="header" href="#script-directories-indexjsindexts">Script Directories (index.js/index.ts)</a></h3>
+<p>Complex JS/TS scripts having a lot of dependencies (imported files, <a href="./using-fxt.html">FXT</a> dictionaries) can be organized in folders. CLEO Redux scans the subdirectories of the <a href="./cleo-directory.html">CLEO directory</a> and finds directories with either an <code>index.js</code>/<code>index.ts</code> file or a <code>mod.json</code> manifest file.</p>
+<p>When using <code>index.js</code> or <code>index.ts</code> as the entry point, CLEO Redux runs this file and also loads all FXT files from the same directory. In the example above, CLEO loads <code>index.js</code> and <code>text.fxt</code> located in the <code>folderA</code> and skips <code>folderB</code> as there is no <code>index.js</code> file.</p>
 <blockquote>
-<p>CLEO_TEXT, CLEO_PLUGINS, and .config are not considered as script directories.</p>
+<p>CLEO_TEXT, CLEO_PLUGINS, and .config directories are exempt from this rule and are reserved for other purposes.</p>
 </blockquote>
+<h3 id="using-modjson-manifest"><a class="header" href="#using-modjson-manifest">Using mod.json manifest</a></h3>
 <blockquote>
-<p><code>index.ts</code> is also supported if you prefer <a href="./typescript.html">TypeScript</a>.</p>
+<p>This feature is available since CLEO Redux v1.5.0.</p>
 </blockquote>
+<p>Alternatively, you can use a <code>mod.json</code> file to configure your script directory. This allows you to:</p>
+<ul>
+<li>Specify custom metadata (name, description, version, etc.)</li>
+<li>Declare <a href="./permissions.html">permissions</a> without using tokens in the directory name</li>
+<li>Define multiple entry points (JavaScript/TypeScript only)</li>
+</ul>
+<p>Here's an example using <code>mod.json</code>:</p>
+<pre><code>CLEO/
+├─ my_mod/
+│  ├─ mod.json
+│  ├─ main.ts
+│  ├─ utils.ts
+│  ├─ text.fxt
+├─ script1.js
+</code></pre>
+<p>With a <code>mod.json</code> file like:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;My Script&quot;,
+  &quot;permissions&quot;: [&quot;mem&quot;, &quot;dll&quot;],
+  &quot;entries&quot;: [&quot;main.ts&quot;]
+}
+</code></pre>
+<p>Instead of naming the folder as <code>my_mod[mem][dll]</code>, you can use the <code>permissions</code> field in <code>mod.json</code>. The <code>entries</code> field specifies which files should be executed as entry points. If omitted, CLEO Redux defaults to <code>index.js</code> or <code>index.ts</code>.</p>
+<h4 id="multiple-entry-points"><a class="header" href="#multiple-entry-points">Multiple entry points</a></h4>
+<p>You can specify multiple entry points or use wildcard patterns (JS/TS files only):</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;My Scripts&quot;,
+  &quot;entries&quot;: [&quot;main.ts&quot;, &quot;subscript.ts&quot;]
+}
+</code></pre>
+<p>Or with patterns:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;My Scripts&quot;,
+  &quot;entries&quot;: [&quot;*.ts&quot;, &quot;plugins/**/*.ts&quot;]
+}
+</code></pre>
+<p>This will execute all <code>.ts</code> files in the root and all <code>.ts</code> files in the <code>plugins</code> and its subdirectories.</p>
+<h3 id="permission-handling"><a class="header" href="#permission-handling">Permission handling</a></h3>
+<p>When both directory name suffix and <code>mod.json</code> permissions are present, the directory name suffix takes precedence. For example, <code>my_mod[mem]</code> with <code>mod.json</code> specifying <code>[&quot;dll&quot;]</code> will result in <code>mem</code> permission being granted.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="imports"><a class="header" href="#imports">Imports</a></h1>
 <p>You can import other scripts and some custom file formats in your code to make the code modular and share the common logic. This page describes static <code>import</code> statements (unconditional importing). Their format matches the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">ES6 import syntax</a>. CLEO Redux also supports <a href="./async.html#dynamic-imports">dynamic imports</a> (importing on-demand).</p>
 <ul>
