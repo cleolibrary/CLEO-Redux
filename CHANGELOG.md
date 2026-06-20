@@ -1,3 +1,46 @@
+### 1.5.0 - June 20, 2026
+
+- add support for [boot scripts](https://re.cleo.li/docs/en/script-lifecycle.html#boot-scripts) (synchronous one-shot scripts that run on startup)
+  - they use the `.boot.mjs` or `.boot.mts` file extension
+  - they don't have access to `wait()` or `asyncWait()` commands
+- add support for declaring script metadata and permissions in a `mod.json` manifest file located in the [script directory](https://re.cleo.li/docs/en/script-lifecycle.html#using-modjson-manifest) (alternative to file name suffixes)
+- string results returned by CLEO Library commands in GTA III, Vice City, and San Andreas are no longer limited to 16 characters and can now be up to 1024 characters long
+
+```js
+log(Text.GetLabelString("INSMCP")); // Output: Load failed!~n~~n~The current Mission Pack is not available. Please recheck that the current Mission Pack is installed correctly or start a new game.
+```
+
+- add `Memory.GetImageBase()` to retrieve the address of the main module. Can be used to calculate absolute addresses in games with ASLR (e.g. The Trilogy)
+- fix some `Memory` class methods not working (`ReadU64`, `WriteU64`, `Fn.X64`)
+- fix command `MISSION_HAS_FINISHED` not working after `ONMISSION = false`
+- update default generated `tsconfig.json` to use options `"moduleResolution": "bundler"` and `"module": "esnext"` so TypeScript won't complain about file imports without extensions (e.g. `import * as enums from ".config/enums"`);
+- unload manually spawned scripts (`CLEO.runScript`) if the main script is reloaded
+- when parsing class metadata in a JSON file, CLEO Redux correctly remaps `"extends": "Object"` to `"extends": "ScriptObject"` (needed for the `CutsceneObject` class in GTA III / VC)
+- add support for GTA The Trilogy - The Definitive Edition v1.0.112.6680 (Epic Games Store)
+- add FXT support in Vice City: The Definitive Edition (only for the latest release)
+- let configuring a directory for the `cleo_redux.log` via the `LogDirectory` option in the `cleo.ini` (e.g. `LogDirectory=CLEO`)
+
+**SDK AND PLUGINS**
+
+- add FxtLoader to import FXT files in scripts
+
+```js
+/*
+ my.fxt:
+ Key1 Text1
+ Key2 Text2
+*/
+
+import myFxt from "./cleo_text/my.fxt";
+
+log(myFxt.Key1); // Output: Text1
+log(myFxt.Key2); // Output: Text2
+```
+
+**BREAKING CHANGES**
+
+- bumped minimum required versions of [command definitions](https://re.cleo.li/docs/en/definitions.html)
+
 ### 1.4.3 - February 21, 2026
 
 - allow importing from folder using index files (i.e. `import * as myModule from './myModule';` where `myModule` is a folder with either `index.ts`, `index.mts`, `index.js`, or `index.mjs` file inside)

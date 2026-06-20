@@ -74,7 +74,7 @@ SDK will read a string from the ini file and write it at the address `0xDEADBEEF
 
 ## Developing New Commands
 
-To register custom command handlers the plugin must call `RegisterCommand` in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with the one argument which is a pointer to the current context. This pointer must be used for calling other SDK methods. See [C++ SDK](./cpp-sdk.md) guide or [Rust SDK](./rust-sdk.md) guide for examples.
+To register custom command handlers the plugin must call `RegisterCommand` in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with one argument, which is a pointer to the current context. This pointer must be used for calling other SDK methods. See [C++ SDK](./cpp-sdk.md) guide or [Rust SDK](./rust-sdk.md) guide for examples.
 
 ### Unsafe commands
 
@@ -94,7 +94,7 @@ One of the common issues with CLEO Library plugins was that commands authored by
 
 ## Developing File Loaders
 
-A plugin can associate itself with a particular [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) (or in other word a file name with wildcard characters in it, e.g. `*.txt`) and provide a handler to be called when a script [imports](./imports.md) a file matching the pattern.
+A plugin can associate itself with a particular [glob pattern](<https://en.wikipedia.org/wiki/Glob_(programming)>) (or in other words a file name with wildcard characters in it, e.g. `*.txt`) and provide a handler to be called when a script [imports](./imports.md) a file matching the pattern.
 
 The glob pattern can be used to match an arbitrary file name using wildcards to represent any characters (`*.pak*` would match `1.pak1`, `2.pak1`, `3.pak3`, etc) or a specific file name (`gta.dat` would match only a `gta.dat` file). Be mindful about using wildcards to avoid matching unnecessary files. The plugin can associate itself with many globs (for example TextLoader uses `*.txt` and `*.text`), but it's recommended to support only related formats in one plugin.
 

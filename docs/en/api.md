@@ -36,7 +36,7 @@
 
 CLEO Redux supports all commands native to the current game. In the classic GTA 3D series they are also known as _opcodes_. In GTA IV they are known as _native functions_. You can find them in [Sanny Builder Library](https://library.sannybuilder.com/).
 
-Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function [`native`](./api#native). For example, to change the player's health run `native("SET_PLAYER_HEALTH", 0, 100)`, where `0` is the player's id and `100` is the desired health.
+Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function [`native`](#native). For example, to change the player's health run `native("SET_PLAYER_HEALTH", 0, 100)`, where `0` is the player's id and `100` is the desired health.
 
 For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called _classes_. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes `Player`, `Car`, or `Text` respectively. You can browse available classes and their methods in Sanny Builder Library.
 
@@ -50,7 +50,7 @@ In addition to native commands CLEO Redux adds extra variables and functions.
 
 #### HOST
 
-the host name (previously available as `GAME` variable). Possible values are `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `gta_iv`, `bully`, `unknown`.
+the host name (previously available as `GAME` variable). Possible values are `gta3`, `vc`, `re3`, `reVC`, `sa`, `gta3_unreal`, `vc_unreal`, `sa_unreal`, `gta_iv`, `bully`, `reLCS`, `reVCS`, `reSA`, `unknown`.
 
 CLEO plugins can use SDK to customize the name for their needs.
 
@@ -203,7 +203,7 @@ if (native("HAS_MODEL_LOADED", 101)) {
 
 `setInterval(callback, timeInMs?)` calls the `{callback}` function every `{timeInMs}` milliseconds (or `0` if the argument is not present).
 
-`setInterval` returns an unique id that can be used to cancel the interval early using [clearInterval](#clearinterval).
+`setInterval` returns a unique id that can be used to cancel the interval early using [clearInterval](#clearinterval).
 
 ```js
 let intervalId = setInterval(() => {
@@ -217,11 +217,11 @@ clearInterval(intervalId); // the callback won't be called anymore
 
 `setTimeout(callback, timeInMs?)` calls the `{callback}` function after `{timeInMs}` milliseconds (or `0` if the argument is not present).
 
-`setTimeout` returns an unique id that can be used to cancel the timeout early using [clearTimeout](#cleartimeout).
+`setTimeout` returns a unique id that can be used to cancel the timeout early using [clearTimeout](#cleartimeout).
 
 ```js
 let timeoutId = setTimeout(() => {
-  exit("Terminate script);
+  exit("Terminate script");
 }, 1000);
 
 clearTimeout(timeoutId); // the callback won't be called
@@ -265,7 +265,6 @@ while (true) {
 - `CLEO` object provides access to the runtime information and utilities:
 
   ##### CLEO.debug
-
   - `CLEO.debug.trace(flag)` toggles on and off command tracing in the current script. When {flag} is true all executed commands get added to `cleo_redux.log`:
 
   ```js
@@ -276,7 +275,6 @@ while (true) {
   ```
 
   ##### CLEO.version
-
   - `CLEO.version` - a complex property providing information about current CLEO version
 
   ```js
@@ -289,7 +287,6 @@ while (true) {
   ```
 
   ##### CLEO.apiVersion
-
   - `CLEO.apiVersion` - a complex property providing information about current API (using `meta.version` field in the [primary definition](./definitions.md) file). Scripts can use it to check if the user has a particular API version installed.
 
   ```js
@@ -302,7 +299,6 @@ while (true) {
   ```
 
   ##### CLEO.hostVersion
-
   - `CLEO.hostVersion` - a complex property providing information about the host version. Currently only available if the current exe file has version info (e.g. GTA IV or GTA Trilogy)
 
   ```js
@@ -315,19 +311,19 @@ while (true) {
   ```
 
   ##### CLEO.runScript
-
   - `CLEO.runScript(fileName, args?)` - method that spawns a new instance of the script. `fileName` is the path to the script to launch. `args` is an optional parameter to pass arguments to the script.
 
     > Don't overuse this feature as spawning a new script is a costly operation. Avoid spawning too many scripts in a loop.
 
     `runScript` has the following limitations:
-
     - script files must have one of the following extensions: `.mjs`, `.js` (JS scripts), `.mts`, `.ts` (TS scripts), `.s` or `.cs` (CS scripts).
     - spawning CS scripts is not supported in the [delegate mode](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) (i.e. won't work in GTA San Andreas with CLEO 4 installed.)
 
     When running a new script you can also provide arguments to it. `args` is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.
 
     You can spawn multiple instances of the same script with different arguments.
+
+    > If the script is reloaded, all scripts spawned by it with `runScript` will be automatically unloaded.
 
     ###### Launching a new JS script
 

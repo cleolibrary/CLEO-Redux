@@ -17,10 +17,18 @@ Grand Theft Auto series:
 Other games and applications:
 
 - Bully: Scholarship Edition 1.200
-- re3 & reVC (see [details](./troubleshooting.md#cleo-does-not-work-with-re3-or-revc))
+- re3 & reVC (see [details](./troubleshooting.md#support-for-reversed-versions-re3-revc-and-similar))
 - unknown host (see [details](./embedding.md))
 
 For the complete reference on supported features [refer to this page](https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix). Also there are known limitations [listed here](unsupported.md).
+
+## Supported Windows Versions
+
+CLEO Redux supports Windows 10 and Windows 11.
+
+Windows 7 support was removed in version 1.3.0; version 1.2.2 is the last release that supports Windows 7. 
+
+Other Windows versions have not been tested.
 
 ## License
 

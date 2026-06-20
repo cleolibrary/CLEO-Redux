@@ -56,6 +56,7 @@ interface Memory {
 
   Allocate(size: int): int;
   Free(address: int): void;
+  GetImageBase(): int;
   Watch(getter, callback, options): () => void;
 
   Fn: {
@@ -99,13 +100,13 @@ Memory.WriteFloat(address, 1.0, false);
 
 where `address` is a variable storing the memory location, `1.0` is the value to write and `false` means it's not necessary to change the memory protection with `VirtualProtect` (the address is already writable).
 
-Similarly, to read a number from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a `char` or `uint8`) use `Memory.ReadI8`:
+Similarly, to read a number from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read an 8-bit unsigned integer (also known as a `char` or `uint8`) use `Memory.ReadU8`:
 
 ```js
-var x = Memory.ReadI8(address, true);
+var x = Memory.ReadU8(address, true);
 ```
 
-variable `x` now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses `true` as the last argument, which means the default protection attribute for this address will be changed to `PAGE_EXECUTE_READWRITE` before the read.
+variable `x` now holds an 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses `true` as the last argument, which means the default protection attribute for this address will be changed to `PAGE_EXECUTE_READWRITE` before the read.
 
 ```js
 var gravity = Memory.ReadFloat(gravityAddress, false);
@@ -143,7 +144,7 @@ Memory.WriteUtf16(address, "Hello, world!\0", true);
 
 ### Casting methods
 
-By default `Read` and `Write` methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods `ToXXX`/`FromXXX`. They act similarly to [reinterpret_cast](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160) operator in C++.
+By default `Read` and `Write` methods treat data as signed integer values. It can be inconvenient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods `ToXXX`/`FromXXX`. They act similarly to the [reinterpret_cast](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160) operator in C++.
 
 To get a quick idea what to expect from those methods see the following examples:
 
@@ -273,7 +274,7 @@ By default a returned result is considered a 32-bit signed integer value. If the
 var flag = Memory.Fn.CdeclU8(0x1234567)();
 ```
 
-This code invokes a `cdecl` function at `0x1234567` with no arguments and stores the result as a 8-bit unsigned integer value.
+This code invokes a `cdecl` function at `0x1234567` with no arguments and stores the result as an 8-bit unsigned integer value.
 
 ### Finding Memory Addresses in re3 and reVC
 

@@ -4,11 +4,11 @@
 [![Discord](https://img.shields.io/discord/911487285990674473?style=for-the-badge)](https://cleo.li/discord)
 [![YouTube Channel](https://img.shields.io/badge/YouTube-Channel-FF0000?style=for-the-badge)](https://www.youtube.com/playlist?list=PLNxQuEFtVkeizoLEQiok7qzr1f0mcwfFb)
 
-CLEO Redux is an experimental runtime for GTA 3D era games and, with limited functionality, [other games or applications](https://re.cleo.li/docs/en/embedding.html). It supports [JavaScript](https://re.cleo.li/docs/en/javascript.html) and [TypeScript](https://re.cleo.li/docs/en/typescript.html) languages.
+CLEO Redux is a scripting runtime for GTA 3D era games and, with limited functionality, [other games or applications](https://re.cleo.li/docs/en/embedding.html). It supports [JavaScript](https://re.cleo.li/docs/en/javascript.html) and [TypeScript](https://re.cleo.li/docs/en/typescript.html) languages.
 
 Its flexible, extensible and secure environment provides rich scripting capabilities and allows easily add and remove countless mini-scripts.
 
-A complete simple script looks like this:
+A simple script example:
 
 ```js
 const VK_F4 = 115;

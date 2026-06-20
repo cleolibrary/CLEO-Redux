@@ -35,7 +35,7 @@ If you see the message, open `intro.js` again and change "Hello world" to anothe
 
 ## Concurrency
 
-There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game loop iteration. It reduces a number of possible issues caused due to the use of shared resources from multiple parallel scripts. The game's main loop is also locked while CLEO scripts get processed.
+There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentially on each game loop iteration. It reduces a number of possible issues caused due to the use of shared resources from multiple parallel scripts. The game's main loop is also locked while CLEO scripts get processed.
 
 When the script is ready to return control to the main script or another script in the queue, it must call the `wait(n)` command where `n` is a number greater than or equal to zero. This command pauses the current script for at least `n` milliseconds:
 
@@ -110,9 +110,9 @@ log(typeof temp); // prints "object" in cleo_redux.log*
 
 ### Conditions
 
-So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what if we want to execute a command only when some condition is met, lets say a button is pressed? We can use conditions.
+So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceeded to the second line if there was one, then to the third line, etc. But what if we want to execute a command only when some condition is met, let's say a button is pressed? We can use conditions.
 
-In JavaScript an `if` statement allows to conditionally execute a branch of code if the condition is met. For example, when you write:
+In JavaScript an `if` statement allows you to conditionally execute a branch of code if the condition is met. For example, when you write:
 
 ```js
 if (true) {
@@ -128,7 +128,7 @@ if (false) {
 }
 ```
 
-when the condition evaluates to `false` inside the if block does not run so you won't see the log messages.
+when the condition evaluates to `false`, the code inside the `if` block does not run, so you won't see the log messages.
 
 You can have any expression in the `if` statement. JavaScript runtime will try its best to convert it to a boolean (simply saying, convert to `true` or `false`). Here are some examples of expressions that get evaluated to `true` (they are called `truthy`):
 
@@ -147,7 +147,7 @@ if (0) {...}
 if ("") {...}
 ```
 
-Of course you can have complex experession like functions or methods calls inside the if condition:
+Of course you can have complex expressions, such as function or method calls, inside the if condition:
 
 ```js
 if ("string".length > 0) {...}
@@ -155,7 +155,7 @@ if ([1,2,3].includes(3)) {...}
 if ( ({ status: 'open'}).status === 'open' ) {...}
 ```
 
-CLEO API has many conditional commands for different types of checks. For example, the `Input` plugin provides commands to check the user input (i.g. a check that the button is pressed). Go to `intro.js` and change its content to:
+CLEO API has many conditional commands for different types of checks. For example, the `Input` plugin provides commands to check user input (e.g. a check that a button is pressed). Go to `intro.js` and change its content to:
 
 ```js
 // intro script, revision 2
@@ -167,7 +167,7 @@ if (native("IS_KEY_PRESSED", 115)) {
 
 Run the game. In `cleo_redux.log` you should not see the line "F4 button is pressed". Now try running it while holding the `F4` button. A new log entry should appear.
 
-You can combine multiple conditions in the same if statement using `&&` (AND) or `||` (or) operators :
+You can combine multiple conditions in the same if statement using `&&` (AND) or `||` (OR) operators:
 
 ```js
 if (native("IS_KEY_PRESSED", 115) || native("IS_KEY_PRESSED", 116)) {
@@ -193,8 +193,54 @@ if (native("IS_KEY_PRESSED", 115)) {
 
 ### Loops
 
-TBD
+Loops are useful when the same block of code needs to run many times.
+
+A `while` loop runs as long as the condition is `true`:
+
+```js
+let count = 0;
+while (count < 3) {
+  log("loop iteration", count);
+  count += 1;
+}
+```
+
+You can also use a `for` loop when you know in advance how many iterations you need:
+
+```js
+for (let i = 0; i < 3; i++) {
+  log("for iteration", i);
+}
+```
 
 ## Functions
 
-TBD
+Functions let you group reusable logic under a name.
+
+```js
+function showPlayerName(name) {
+  log("Player name:", name);
+}
+
+showPlayerName("CJ");
+showPlayerName("Tommy");
+```
+
+Functions can return values:
+
+```js
+function add(a, b) {
+  return a + b;
+}
+
+const result = add(2, 3);
+log("2 + 3 =", result);
+```
+
+You can also create anonymous functions and pass them to APIs such as `setTimeout`:
+
+```js
+setTimeout(() => {
+  log("Timeout finished");
+}, 1000);
+```

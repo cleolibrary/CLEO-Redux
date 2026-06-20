@@ -1,5 +1,5 @@
 #define AppName "CLEO Redux"
-#define AppVersion "1.4.3"
+#define AppVersion "1.5.0"
 #define AppPublisher "Seemann"
 #define AppURL "https://re.cleo.li"
 #define SourceDir "..\"
@@ -66,8 +66,9 @@ Name: "plugins/events"; Description: "Events 1.2"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt, *.text (Text files)"; Types: full
 Name: "loaders/ide"; Description: "*.ide, *.zon (Item Definition, Zones)"; Types: full
+Name: "loaders/fxt"; Description: "*.fxt (FXT Files)"; Types: full
 Name: "modules"; Description: "Extra Modules"; Types: full
-Name: "modules/scmts"; Description: "scm.ts 0.4.2"; Types: full
+Name: "modules/scmts"; Description: "scm.ts 0.5.1"; Types: full
 
 Name: "asiloader"; Description: "Ultimate ASI Loader (by ThirteenAG)"; Types: full
 
@@ -169,9 +170,11 @@ Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader.cleo"; DestDir: "{app}
 Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/text
 Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/ide
 Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/ide
+Source: "{#SourceDir}\loaders\FxtLoader\build\FxtLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/fxt
+Source: "{#SourceDir}\loaders\FxtLoader\build\FxtLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/fxt
 
 ; Extra Modules
-Source: "{#OutputDir}\scm.mts"; DestDir: "{app}\CLEO\cleo_modules"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: modules/scmts
+Source: "{#OutputDir}\scm.mts"; DestDir: "{app}\CLEO"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: modules/scmts
 
 [INI]
 Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowCs"; String: 1
@@ -476,15 +479,15 @@ begin
    begin
     FGameId := IdentifyGame(WizardDirValue);
      // reset all checkboxes to their initial state first
-    for I := 1 to 17 do
+    for I := 1 to 18 do
     begin
       WizardForm.ComponentsList.ItemEnabled[I] := True;
       WizardForm.ComponentsList.Checked[I] := True;
     end;
     
     // scm.ts: https://github.com/x87/scm.ts
-    WizardForm.ComponentsList.ItemEnabled[16] := False;
-    WizardForm.ComponentsList.Checked[16] := False;
+    WizardForm.ComponentsList.ItemEnabled[17] := False;
+    WizardForm.ComponentsList.Checked[17] := False;
 
     if (IsX64()) then
     begin
@@ -523,12 +526,12 @@ begin
         // scm.ts supports only GTA III, VC and SA: https://github.com/x87/scm.ts        
         if (IsGta3 or IsVC or IsSA) then
         begin
-          WizardForm.ComponentsList.ItemEnabled[16] := True;
-          WizardForm.ComponentsList.Checked[16] := True;
+          WizardForm.ComponentsList.ItemEnabled[17] := True;
+          WizardForm.ComponentsList.Checked[17] := True;
         end;
     end;
 
-    // disable IDE Loader for unknown host
+    // disable IDE and FXT Loader for unknown host
     if IsUnknown then
     begin
       // Events Plugin
@@ -536,6 +539,8 @@ begin
       WizardForm.ComponentsList.ItemEnabled[11] := False;
       // ide loader
       WizardForm.ComponentsList.Checked[14] := False;
+      // fxt loader
+      WizardForm.ComponentsList.Checked[15] := False;
     end;
 
     // ImGuiRedux is bugged on re3/DE
@@ -552,7 +557,7 @@ begin
     // MSS lib is an ASI loader
     if FileExists(ExpandConstant('{app}\Mss32.dll')) then
     begin
-       WizardForm.ComponentsList.Checked[17] := False;
+       WizardForm.ComponentsList.Checked[18] := False;
     end;
    end;
 end;

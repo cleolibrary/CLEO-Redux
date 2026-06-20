@@ -55,6 +55,7 @@ interface Memory {
 
   Allocate(size: int): int;
   Free(address: int): void;
+  GetImageBase(): int;
   Watch(getter, callback, options): () => void;
 
   Fn: {
@@ -98,19 +99,26 @@ You want to change `SomeValue` that is currently located at `0x1400000020`. You 
 
 effectively breaking the script. In this case, calculate a relative offset from the image base ( `0x1500000020` - `0x1500000000` = `0x20` ), that will be permanent for the particular game version. Use `Memory.Write` as follows: `Memory.Write(0x20, 1, 1, false, true)`. CLEO will sum up the offset (`0x20`) with the current value of the image base (`0x1400000000`, `0x1500000000`, etc) and write to the correct absolute address.
 
-For your convenience you can find the current value of the image base in the `cleo_redux.log`, e.g.:
+For your convenience you can find the current value of the image base using `Memory.GetImageBase()` method:
 
 ```
-09:27:35 [INFO] Image base address 0x7ff7d1f50000
+var imageBase = Memory.GetImageBase();
+var address = imageBase + 0x500020;
+Memory.WriteFloat(address, 1.0, false, false);
+```
+or
+```
+var offset = 0x500020;
+Memory.WriteFloat(offset, 1.0, false, true);
 ```
 
-Similarly, to read a value from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a `char` or `uint8`) use `Memory.ReadI8`:
+Similarly, to read a value from the memory, use one of the `ReadXXX` methods, depending on what data type the memory address contains. For example, to read an 8-bit unsigned integer (also known as a `char` or `uint8`) use `Memory.ReadU8`:
 
 ```js
-var x = Memory.ReadI8(offset, true, true);
+var x = Memory.ReadU8(offset, true, true);
 ```
 
-variable `x` now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses `true` as the last argument, which means the default protection attribute for this address will be changed to `PAGE_EXECUTE_READWRITE` before the read.
+variable `x` now holds an 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses `true` as the last argument, which means the default protection attribute for this address will be changed to `PAGE_EXECUTE_READWRITE` before the read.
 
 ```js
 var gravity = Memory.ReadFloat(gravityOffset, false, true);
@@ -148,7 +156,7 @@ Memory.WriteUtf8(0x100000, "Hello, world!\0\0", true, true); // write string to 
 
 ### Casting methods
 
-By default `Read` and `Write` methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods `ToXXX`/`FromXXX`. They act similarly to [reinterpret_cast](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160) operator in C++.
+By default `Read` and `Write` methods treat data as signed integer values. It can be inconvenient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods `ToXXX`/`FromXXX`. They act similarly to the [reinterpret_cast](https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160) operator in C++.
 
 To get a quick idea what to expect from those methods see the following examples:
 
@@ -238,7 +246,7 @@ By default a returned result is considered a 64-bit signed integer value. If the
 var flag = Memory.Fn.X64U8(0x1234567, true)();
 ```
 
-This code invokes a function at `0x1234567` + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value.
+This code invokes a function at `0x1234567` + IMAGE_BASE with no arguments and stores the result as an 8-bit unsigned integer value.
 
 ```js
 var float = Memory.Fn.X64Float(0x456789, true)();

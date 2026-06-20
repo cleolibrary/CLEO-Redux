@@ -27,6 +27,9 @@ enum class HostId
 	SA_UNREAL = 8,
 	IV = 9,
 	BULLY = 10,
+	RELCS = 11,
+	REVCS = 12,
+	RESA = 13,
 	MANIFEST = 254,
 	UNKNOWN = 255
 };

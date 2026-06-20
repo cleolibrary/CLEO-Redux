@@ -13,9 +13,49 @@ Any unsafe operation is allowed. Use this only when you trust the scripts you ru
 
 This is the default permission level.
 
-No unsafe operation is allowed unless the script explicitly requests it. Currently to request a permission, the name of the script file must include the permissions tokens wrapped in square brackets.
+No unsafe operation is allowed unless the script explicitly requests it. Permissions can be requested in three ways:
 
-For example, if the script wants to access the memory via `0A8D READ_MEMORY` the file name must contain `[mem]`, e.g. `cool-spawner[mem].cs`. If the file is named differently CLEO rejects `0A8D` and the script crashes.
+#### File Names (All Script Types)
+
+Include permission tokens wrapped in square brackets directly in the script file name. This works for all script types (CS, JS, TS):
+
+- `cool-spawner[mem].cs`
+- `main[mem][dll].ts`
+- `script[fs].js`
+
+If the file is named differently without the required permission tokens, CLEO rejects unsafe operations.
+
+#### Directory Names (JS/TS Only)
+
+For [script directories](./script-lifecycle.md#organizing-scripts) (subdirectories with `index.js`/`index.ts`), include permission tokens in the directory name:
+
+```
+CLEO/
+├─ my_mod[mem][dll]/
+│  ├─ index.ts
+│  ├─ utils.ts
+```
+
+#### mod.json Manifest (JS/TS Only)
+
+Alternatively, declare permissions in a `mod.json` file within your script directory:
+
+```
+CLEO/
+├─ my_mod/
+│  ├─ mod.json
+│  ├─ index.ts
+```
+
+With `mod.json` content:
+
+```json
+{
+  "permissions": ["mem", "dll"]
+}
+```
+
+This allows you to keep your script directory name clean while still requesting necessary permissions. When both directory name suffixes and `mod.json` permissions are present, the directory name suffix takes precedence.
 
 ### Strict
 

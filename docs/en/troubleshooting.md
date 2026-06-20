@@ -1,13 +1,13 @@
 # Troubleshooting
 
-- [CLEO does not work with re3 or reVC](#cleo-does-not-work-with-re3-or-revc)
+- [Support for reversed versions (re3, reVC, and similar)](#support-for-reversed-versions-re3-revc-and-similar)
 - [Game crashes with CLEO on San Andreas: The Definitive Edition](#game-crashes-with-cleo-on-san-andreas-the-definitive-edition)
 - [Scripts stopped working after CLEO Redux update](#scripts-stopped-working-after-cleo-redux-update)
 - [Game is stuck loading](#game-is-stuck-loading)
 - [Nothing happens when I run the game, not even a log file is there](#nothing-happens-when-i-run-the-game-not-even-a-log-file-is-there)
 - [My problem is not listed there](#my-problem-is-not-listed-there)
 
-## CLEO does not work with re3 or reVC
+## Support for reversed versions (re3, reVC, and similar)
 
 {{#include ./re3-reVC-notes.md}}
 
