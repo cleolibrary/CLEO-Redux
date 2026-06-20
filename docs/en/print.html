@@ -153,10 +153,14 @@
 <p>Other games and applications:</p>
 <ul>
 <li>Bully: Scholarship Edition 1.200</li>
-<li>re3 &amp; reVC (see <a href="./troubleshooting.html#cleo-does-not-work-with-re3-or-revc">details</a>)</li>
+<li>re3 &amp; reVC (see <a href="./troubleshooting.html#support-for-reversed-versions-re3-revc-and-similar">details</a>)</li>
 <li>unknown host (see <a href="./embedding.html">details</a>)</li>
 </ul>
 <p>For the complete reference on supported features <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">refer to this page</a>. Also there are known limitations <a href="unsupported.html">listed here</a>.</p>
+<h2 id="supported-windows-versions"><a class="header" href="#supported-windows-versions">Supported Windows Versions</a></h2>
+<p>CLEO Redux supports Windows 10 and Windows 11.</p>
+<p>Windows 7 support was removed in version 1.3.0; version 1.2.2 is the last release that supports Windows 7. </p>
+<p>Other Windows versions have not been tested.</p>
 <h2 id="license"><a class="header" href="#license">License</a></h2>
 <p>CLEO Redux is available under the <a href="https://re.cleo.li/LICENSE.txt">end-user license agreement</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="relation-to-cleo-library"><a class="header" href="#relation-to-cleo-library">Relation to CLEO Library</a></h1>
@@ -209,9 +213,14 @@
 </ul>
 <p>If the default name does not work with the given game, try renaming the dll file into another compatible name. Visit <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader">Ultimate ASI loader repo</a> for more information.</p>
 <h2 id="note-on-re3-or-revc"><a class="header" href="#note-on-re3-or-revc">Note on re3 or reVC</a></h2>
-<p>CLEO Redux supports &quot;Windows D3D9&quot; version of <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
+<p>CLEO Redux supports <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
 <p>During installation you must select the correct version of <code>re3</code> or <code>reVC</code>: either 32-bit or 64-bit.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
+<blockquote>
+<p>CLEO Redux also supports <code>reLCS</code> and <code>reVCS</code> should they ever be released. The requirements are the same.</p>
+<p>It also works with GTA SA Reversed (<code>gta_reversed.dll</code> &amp; <code>gta_reversed.pdb</code>).</p>
+</blockquote>
+<p>ASI Loader is required unless the game has built-in support for ASI plugins (e.g. via the MSS library).</p>
 <h2 id="uninstallation"><a class="header" href="#uninstallation">Uninstallation</a></h2>
 <p>To uninstall CLEO Redux perform the following steps:</p>
 <ul>
@@ -266,7 +275,7 @@ log(&quot;Hello world&quot;);
 <p>If you can't find this line, try to read through other messages, they might point you out the issue.</p>
 <p>If you see the message, open <code>intro.js</code> again and change &quot;Hello world&quot; to another text. Save the file and go back to game. Play, then switch back to <code>cleo_redux.log</code>. Notice how the log now contains the new message. The script was reloaded on the fly as you saved it and the game now runs an updated version of it. This is called <a href="./other-features.html#hot-reload">hot reloading</a>.</p>
 <h2 id="concurrency"><a class="header" href="#concurrency">Concurrency</a></h2>
-<p>There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentually on each game loop iteration. It reduces a number of possible issues caused due to the use of shared resources from multiple parallel scripts. The game's main loop is also locked while CLEO scripts get processed.</p>
+<p>There is so little fun in a single script, so let's explore another important aspect. CLEO Redux can load and run many scripts concurrently. But they do not run in parallel, or at the same time. Instead there is a queue of scripts to execute them sequentially on each game loop iteration. It reduces a number of possible issues caused due to the use of shared resources from multiple parallel scripts. The game's main loop is also locked while CLEO scripts get processed.</p>
 <p>When the script is ready to return control to the main script or another script in the queue, it must call the <code>wait(n)</code> command where <code>n</code> is a number greater than or equal to zero. This command pauses the current script for at least <code>n</code> milliseconds:</p>
 <pre><code class="language-js">wait(250); // pause current script and wake up after 250 milliseconds
 </code></pre>
@@ -315,8 +324,8 @@ log(typeof temp); // prints &quot;object&quot; in cleo_redux.log*
 </blockquote>
 <h2 id="control-flow"><a class="header" href="#control-flow">Control Flow</a></h2>
 <h3 id="conditions"><a class="header" href="#conditions">Conditions</a></h3>
-<p>So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceed to the second line if there was one, then to the third line, etc. But what if we want to execute a command only when some condition is met, lets say a button is pressed? We can use conditions.</p>
-<p>In JavaScript an <code>if</code> statement allows to conditionally execute a branch of code if the condition is met. For example, when you write:</p>
+<p>So far we have been running commands in the script in a sequence from top to bottom. The runtime executed the first line, then proceeded to the second line if there was one, then to the third line, etc. But what if we want to execute a command only when some condition is met, let's say a button is pressed? We can use conditions.</p>
+<p>In JavaScript an <code>if</code> statement allows you to conditionally execute a branch of code if the condition is met. For example, when you write:</p>
 <pre><code class="language-js">if (true) {
   log(&quot;this is always printed&quot;);
 }
@@ -326,7 +335,7 @@ log(typeof temp); // prints &quot;object&quot; in cleo_redux.log*
   log(&quot;this will never be printed&quot;);
 }
 </code></pre>
-<p>when the condition evaluates to <code>false</code> inside the if block does not run so you won't see the log messages.</p>
+<p>when the condition evaluates to <code>false</code>, the code inside the <code>if</code> block does not run, so you won't see the log messages.</p>
 <p>You can have any expression in the <code>if</code> statement. JavaScript runtime will try its best to convert it to a boolean (simply saying, convert to <code>true</code> or <code>false</code>). Here are some examples of expressions that get evaluated to <code>true</code> (they are called <code>truthy</code>):</p>
 <pre><code class="language-js">if (1) {...}
 if (&quot;string&quot;) {...}
@@ -338,12 +347,12 @@ if ({}) {...}
 <pre><code class="language-js">if (0) {...}
 if (&quot;&quot;) {...}
 </code></pre>
-<p>Of course you can have complex experession like functions or methods calls inside the if condition:</p>
+<p>Of course you can have complex expressions, such as function or method calls, inside the if condition:</p>
 <pre><code class="language-js">if (&quot;string&quot;.length &gt; 0) {...}
 if ([1,2,3].includes(3)) {...}
 if ( ({ status: 'open'}).status === 'open' ) {...}
 </code></pre>
-<p>CLEO API has many conditional commands for different types of checks. For example, the <code>Input</code> plugin provides commands to check the user input (i.g. a check that the button is pressed). Go to <code>intro.js</code> and change its content to:</p>
+<p>CLEO API has many conditional commands for different types of checks. For example, the <code>Input</code> plugin provides commands to check user input (e.g. a check that a button is pressed). Go to <code>intro.js</code> and change its content to:</p>
 <pre><code class="language-js">// intro script, revision 2
 wait(2000);
 if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
@@ -351,7 +360,7 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 }
 </code></pre>
 <p>Run the game. In <code>cleo_redux.log</code> you should not see the line &quot;F4 button is pressed&quot;. Now try running it while holding the <code>F4</code> button. A new log entry should appear.</p>
-<p>You can combine multiple conditions in the same if statement using <code>&amp;&amp;</code> (AND) or <code>||</code> (or) operators :</p>
+<p>You can combine multiple conditions in the same if statement using <code>&amp;&amp;</code> (AND) or <code>||</code> (OR) operators:</p>
 <pre><code class="language-js">if (native(&quot;IS_KEY_PRESSED&quot;, 115) || native(&quot;IS_KEY_PRESSED&quot;, 116)) {
   log(&quot;Either F4 or F5 button is pressed&quot;);
 }
@@ -368,34 +377,51 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 }
 </code></pre>
 <h3 id="loops"><a class="header" href="#loops">Loops</a></h3>
-<p>TBD</p>
+<p>Loops are useful when the same block of code needs to run many times.</p>
+<p>A <code>while</code> loop runs as long as the condition is <code>true</code>:</p>
+<pre><code class="language-js">let count = 0;
+while (count &lt; 3) {
+  log(&quot;loop iteration&quot;, count);
+  count += 1;
+}
+</code></pre>
+<p>You can also use a <code>for</code> loop when you know in advance how many iterations you need:</p>
+<pre><code class="language-js">for (let i = 0; i &lt; 3; i++) {
+  log(&quot;for iteration&quot;, i);
+}
+</code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<p>TBD</p>
+<p>Functions let you group reusable logic under a name.</p>
+<pre><code class="language-js">function showPlayerName(name) {
+  log(&quot;Player name:&quot;, name);
+}
+
+showPlayerName(&quot;CJ&quot;);
+showPlayerName(&quot;Tommy&quot;);
+</code></pre>
+<p>Functions can return values:</p>
+<pre><code class="language-js">function add(a, b) {
+  return a + b;
+}
+
+const result = add(2, 3);
+log(&quot;2 + 3 =&quot;, result);
+</code></pre>
+<p>You can also create anonymous functions and pass them to APIs such as <code>setTimeout</code>:</p>
+<pre><code class="language-js">setTimeout(() =&gt; {
+  log(&quot;Timeout finished&quot;);
+}, 1000);
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="configuration"><a class="header" href="#configuration">Configuration</a></h1>
 <p>CLEO Redux exposes some of the configurable settings in the file <code>CLEO\.config\cleo.ini</code>.</p>
 <h2 id="general"><a class="header" href="#general">General</a></h2>
 <ul>
-<li>
-<p><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</p>
-</li>
-<li>
-<p><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> and <code>*.ts</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</p>
-</li>
-<li>
-<p><code>AllowFxt</code> - when set to <code>1</code> CLEO loads and <a href="./using-fxt.html">uses</a> <code>*.fxt</code> files located in the CLEO\CLEO_TEXT directory. Enabled by default.</p>
-</li>
-<li>
-<p><code>LogOpcodes</code> - when set to <code>1</code> CLEO <a href="./log.html">logs</a> all executed opcodes in custom scripts.</p>
-</li>
-<li>
-<p><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</p>
-</li>
-<li>
-<p><code>CheckUpdates</code> - (deprecated in favor of <a href="./installation-plugins.html">Frontend</a> plugin)</p>
-</li>
-<li>
-<p><code>DisplayMenuInfo</code> - (deprecated in favor of <a href="./installation-plugins.html">Frontend</a> plugin)</p>
-</li>
+<li><code>AllowCs</code> - when set to <code>1</code> CLEO loads and executes <code>*.cs</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
+<li><code>AllowJs</code> - when set to <code>1</code> CLEO loads and executes <code>*.js</code> and <code>*.ts</code> files located in the <a href="./cleo-directory.html">CLEO directory</a>. Enabled by default.</li>
+<li><code>AllowFxt</code> - when set to <code>1</code> CLEO loads and <a href="./using-fxt.html">uses</a> <code>*.fxt</code> files located in the CLEO\CLEO_TEXT directory. Enabled by default.</li>
+<li><code>LogOpcodes</code> - when set to <code>1</code> CLEO <a href="./log.html">logs</a> all executed opcodes in custom scripts.</li>
+<li><code>PermissionLevel</code> - sets the <a href="./permissions.html">permission level</a> for unsafe operations (see below). Default is <code>Lax</code>.</li>
+<li><code>LogDirectory</code> - specifies a custom directory for the <a href="./log.html">log file</a>.</li>
 </ul>
 <h2 id="host"><a class="header" href="#host">Host</a></h2>
 <ul>
@@ -411,8 +437,35 @@ if (native(&quot;IS_KEY_PRESSED&quot;, 115)) {
 <p>Any unsafe operation is allowed. Use this only when you trust the scripts you run.</p>
 <h3 id="lax"><a class="header" href="#lax">Lax</a></h3>
 <p>This is the default permission level.</p>
-<p>No unsafe operation is allowed unless the script explicitly requests it. Currently to request a permission, the name of the script file must include the permissions tokens wrapped in square brackets.</p>
-<p>For example, if the script wants to access the memory via <code>0A8D READ_MEMORY</code> the file name must contain <code>[mem]</code>, e.g. <code>cool-spawner[mem].cs</code>. If the file is named differently CLEO rejects <code>0A8D</code> and the script crashes.</p>
+<p>No unsafe operation is allowed unless the script explicitly requests it. Permissions can be requested in three ways:</p>
+<h4 id="file-names-all-script-types"><a class="header" href="#file-names-all-script-types">File Names (All Script Types)</a></h4>
+<p>Include permission tokens wrapped in square brackets directly in the script file name. This works for all script types (CS, JS, TS):</p>
+<ul>
+<li><code>cool-spawner[mem].cs</code></li>
+<li><code>main[mem][dll].ts</code></li>
+<li><code>script[fs].js</code></li>
+</ul>
+<p>If the file is named differently without the required permission tokens, CLEO rejects unsafe operations.</p>
+<h4 id="directory-names-jsts-only"><a class="header" href="#directory-names-jsts-only">Directory Names (JS/TS Only)</a></h4>
+<p>For <a href="./script-lifecycle.html#organizing-scripts">script directories</a> (subdirectories with <code>index.js</code>/<code>index.ts</code>), include permission tokens in the directory name:</p>
+<pre><code>CLEO/
+├─ my_mod[mem][dll]/
+│  ├─ index.ts
+│  ├─ utils.ts
+</code></pre>
+<h4 id="modjson-manifest-jsts-only"><a class="header" href="#modjson-manifest-jsts-only">mod.json Manifest (JS/TS Only)</a></h4>
+<p>Alternatively, declare permissions in a <code>mod.json</code> file within your script directory:</p>
+<pre><code>CLEO/
+├─ my_mod/
+│  ├─ mod.json
+│  ├─ index.ts
+</code></pre>
+<p>With <code>mod.json</code> content:</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: [&quot;mem&quot;, &quot;dll&quot;]
+}
+</code></pre>
+<p>This allows you to keep your script directory name clean while still requesting necessary permissions. When both directory name suffixes and <code>mod.json</code> permissions are present, the directory name suffix takes precedence.</p>
 <h3 id="strict"><a class="header" href="#strict">Strict</a></h3>
 <p>No unsafe operation is allowed unless the script explicitly requests it (see <code>&quot;Lax&quot;</code>) and the CLEO config file permits this type of operation under the <code>Permissions</code> section.</p>
 <p>Permissions section in <code>cleo.ini</code> allows to enable or disable groups of unsafe operations by using the <a href="permissions.html#known-permission-tokens">permission tokens</a>. For example,</p>
@@ -1074,14 +1127,14 @@ addEventListener&lt;WantedLevelChangeEvent&gt;(&quot;OnWantedLevelChange&quot;, 
 </ul>
 <h2 id="native-functions"><a class="header" href="#native-functions">Native functions</a></h2>
 <p>CLEO Redux supports all commands native to the current game. In the classic GTA 3D series they are also known as <em>opcodes</em>. In GTA IV they are known as <em>native functions</em>. You can find them in <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>.</p>
-<p>Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function <a href="./api#native"><code>native</code></a>. For example, to change the player's health run <code>native(&quot;SET_PLAYER_HEALTH&quot;, 0, 100)</code>, where <code>0</code> is the player's id and <code>100</code> is the desired health.</p>
+<p>Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function <a href="api.html#native"><code>native</code></a>. For example, to change the player's health run <code>native(&quot;SET_PLAYER_HEALTH&quot;, 0, 100)</code>, where <code>0</code> is the player's id and <code>100</code> is the desired health.</p>
 <p>For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called <em>classes</em>. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes <code>Player</code>, <code>Car</code>, or <code>Text</code> respectively. You can browse available classes and their methods in Sanny Builder Library.</p>
 <p>For example, to change the player's health using classes run <code>p.setHealth(100)</code>, where <code>p</code> is an instance of the <code>Player</code> class created with <code>new Player()</code> or <code>Player.Create</code> functions.</p>
 <h2 id="cleo-redux-bindings"><a class="header" href="#cleo-redux-bindings">CLEO Redux Bindings</a></h2>
 <p>In addition to native commands CLEO Redux adds extra variables and functions.</p>
 <h3 id="variables-1"><a class="header" href="#variables-1">Variables</a></h3>
 <h4 id="host-1"><a class="header" href="#host-1">HOST</a></h4>
-<p>the host name (previously available as <code>GAME</code> variable). Possible values are <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>gta_iv</code>, <code>bully</code>, <code>unknown</code>.</p>
+<p>the host name (previously available as <code>GAME</code> variable). Possible values are <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>gta_iv</code>, <code>bully</code>, <code>reLCS</code>, <code>reVCS</code>, <code>reSA</code>, <code>unknown</code>.</p>
 <p>CLEO plugins can use SDK to customize the name for their needs.</p>
 <pre><code class="language-js">if (HOST === &quot;gta3&quot;) {
   showTextBox(&quot;This is GTA III&quot;);
@@ -1177,7 +1230,7 @@ showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
 </code></pre>
 <h4 id="setinterval"><a class="header" href="#setinterval">setInterval</a></h4>
 <p><code>setInterval(callback, timeInMs?)</code> calls the <code>{callback}</code> function every <code>{timeInMs}</code> milliseconds (or <code>0</code> if the argument is not present).</p>
-<p><code>setInterval</code> returns an unique id that can be used to cancel the interval early using <a href="api.html#clearinterval">clearInterval</a>.</p>
+<p><code>setInterval</code> returns a unique id that can be used to cancel the interval early using <a href="api.html#clearinterval">clearInterval</a>.</p>
 <pre><code class="language-js">let intervalId = setInterval(() =&gt; {
   showTextBox(&quot;1 second passed&quot;);
 }, 1000);
@@ -1186,9 +1239,9 @@ clearInterval(intervalId); // the callback won't be called anymore
 </code></pre>
 <h4 id="settimeout"><a class="header" href="#settimeout">setTimeout</a></h4>
 <p><code>setTimeout(callback, timeInMs?)</code> calls the <code>{callback}</code> function after <code>{timeInMs}</code> milliseconds (or <code>0</code> if the argument is not present).</p>
-<p><code>setTimeout</code> returns an unique id that can be used to cancel the timeout early using <a href="api.html#cleartimeout">clearTimeout</a>.</p>
+<p><code>setTimeout</code> returns a unique id that can be used to cancel the timeout early using <a href="api.html#cleartimeout">clearTimeout</a>.</p>
 <pre><code class="language-js">let timeoutId = setTimeout(() =&gt; {
-  exit(&quot;Terminate script);
+  exit(&quot;Terminate script&quot;);
 }, 1000);
 
 clearTimeout(timeoutId); // the callback won't be called
@@ -1277,6 +1330,9 @@ log(CLEO.hostVersion.build); // &quot;43&quot;
 </ul>
 <p>When running a new script you can also provide arguments to it. <code>args</code> is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.</p>
 <p>You can spawn multiple instances of the same script with different arguments.</p>
+<blockquote>
+<p>If the script is reloaded, all scripts spawned by it with <code>runScript</code> will be automatically unloaded.</p>
+</blockquote>
 <h6 id="launching-a-new-js-script"><a class="header" href="#launching-a-new-js-script">Launching a new JS script</a></h6>
 <p>Imagine that you have two files <code>main.js</code> and <code>child.mjs</code> in the CLEO directory:</p>
 <p>main.js:</p>
@@ -1505,6 +1561,7 @@ var x = Object.create(null);
 
   Allocate(size: int): int;
   Free(address: int): void;
+  GetImageBase(): int;
   Watch(getter, callback, options): () =&gt; void;
 
   Fn: {
@@ -1542,10 +1599,10 @@ var x = Object.create(null);
 <pre><code class="language-js">Memory.WriteFloat(address, 1.0, false);
 </code></pre>
 <p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable).</p>
-<p>Similarly, to read a number from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>:</p>
-<pre><code class="language-js">var x = Memory.ReadI8(address, true);
+<p>Similarly, to read a number from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read an 8-bit unsigned integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadU8</code>:</p>
+<pre><code class="language-js">var x = Memory.ReadU8(address, true);
 </code></pre>
-<p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
+<p>variable <code>x</code> now holds an 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
 <pre><code class="language-js">var gravity = Memory.ReadFloat(gravityAddress, false);
 gravity += 0.05;
 Memory.WriteFloat(gravityAddress, gravity, false);
@@ -1568,7 +1625,7 @@ var str = Memory.ReadUtf16(address);
 Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
 </code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
-<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
+<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvenient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to the <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
 <pre><code class="language-js">    Memory.FromFloat(1.0) =&gt; 1065353216
     Memory.ToFloat(1065353216) =&gt; 1.0
@@ -1673,7 +1730,7 @@ myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
 <p>By default a returned result is considered a 32-bit signed integer value. If the function returns another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:</p>
 <pre><code class="language-js">var flag = Memory.Fn.CdeclU8(0x1234567)();
 </code></pre>
-<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as a 8-bit unsigned integer value.</p>
+<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as an 8-bit unsigned integer value.</p>
 <h3 id="finding-memory-addresses-in-re3-and-revc"><a class="header" href="#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></h3>
 <p>Since <code>re3</code> and <code>reVC</code> use address space layout randomization (ASLR) feature, it can be difficult to locate needed addresses. CLEO Redux provides a helper function <code>Memory.Translate</code> that accepts a name of the function or variable and returns its current address. If the requested symbol is not found, the result is 0.</p>
 <pre><code class="language-js">var addr = Memory.Translate(&quot;CTheScripts::MainScriptSize&quot;);
@@ -1795,6 +1852,7 @@ Memory.Watch(
 
   Allocate(size: int): int;
   Free(address: int): void;
+  GetImageBase(): int;
   Watch(getter, callback, options): () =&gt; void;
 
   Fn: {
@@ -1826,13 +1884,19 @@ Memory.Watch(
 0x1500000020 SomeValue
 </code></pre>
 <p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use <code>Memory.Write</code> as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
-<p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
-<pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
+<p>For your convenience you can find the current value of the image base using <code>Memory.GetImageBase()</code> method:</p>
+<pre><code>var imageBase = Memory.GetImageBase();
+var address = imageBase + 0x500020;
+Memory.WriteFloat(address, 1.0, false, false);
 </code></pre>
-<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>:</p>
-<pre><code class="language-js">var x = Memory.ReadI8(offset, true, true);
+<p>or</p>
+<pre><code>var offset = 0x500020;
+Memory.WriteFloat(offset, 1.0, false, true);
 </code></pre>
-<p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
+<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read an 8-bit unsigned integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadU8</code>:</p>
+<pre><code class="language-js">var x = Memory.ReadU8(offset, true, true);
+</code></pre>
+<p>variable <code>x</code> now holds an 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
 <pre><code class="language-js">var gravity = Memory.ReadFloat(gravityOffset, false, true);
 gravity += 0.05;
 Memory.WriteFloat(gravityOffset, gravity, false, true);
@@ -1855,7 +1919,7 @@ var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+
 Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, true); // write string to address 0x100000+IMAGE_BASE
 </code></pre>
 <h3 id="casting-methods-1"><a class="header" href="#casting-methods-1">Casting methods</a></h3>
-<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
+<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvenient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to the <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
 <pre><code class="language-js">    Memory.FromFloat(1.0) =&gt; 1065353216
     Memory.ToFloat(1065353216) =&gt; 1.0
@@ -1916,7 +1980,7 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <p>By default a returned result is considered a 64-bit signed integer value. If the function returns another type (e.g. a boolean), use one of the methods matching the function signature:</p>
 <pre><code class="language-js">var flag = Memory.Fn.X64U8(0x1234567, true)();
 </code></pre>
-<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value.</p>
+<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as an 8-bit unsigned integer value.</p>
 <pre><code class="language-js">var float = Memory.Fn.X64Float(0x456789, true)();
 </code></pre>
 <p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value.</p>
@@ -1980,17 +2044,22 @@ Memory.Watch(
 <p>CLEO Redux creates <code>tsconfig.json</code> file in the <a href="./cleo-directory.html">CLEO directory</a> when you run it for the first time. It contains necessary information for VS Code and other IDEs on where to look for typing files, so you don't have to include <code>/// &lt;reference path=&quot;...&quot; /&gt;</code> lines in your scripts. You can edit it to change the default settings.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
 <ul>
-<li><a href="troubleshooting.html#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></li>
+<li><a href="troubleshooting.html#support-for-reversed-versions-re3-revc-and-similar">Support for reversed versions (re3, reVC, and similar)</a></li>
 <li><a href="troubleshooting.html#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></li>
 <li><a href="troubleshooting.html#scripts-stopped-working-after-cleo-redux-update">Scripts stopped working after CLEO Redux update</a></li>
 <li><a href="troubleshooting.html#game-is-stuck-loading">Game is stuck loading</a></li>
 <li><a href="troubleshooting.html#nothing-happens-when-i-run-the-game-not-even-a-log-file-is-there">Nothing happens when I run the game, not even a log file is there</a></li>
 <li><a href="troubleshooting.html#my-problem-is-not-listed-there">My problem is not listed there</a></li>
 </ul>
-<h2 id="cleo-does-not-work-with-re3-or-revc"><a class="header" href="#cleo-does-not-work-with-re3-or-revc">CLEO does not work with re3 or reVC</a></h2>
-<p>CLEO Redux supports &quot;Windows D3D9&quot; version of <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
+<h2 id="support-for-reversed-versions-re3-revc-and-similar"><a class="header" href="#support-for-reversed-versions-re3-revc-and-similar">Support for reversed versions (re3, reVC, and similar)</a></h2>
+<p>CLEO Redux supports <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
 <p>During installation you must select the correct version of <code>re3</code> or <code>reVC</code>: either 32-bit or 64-bit.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
+<blockquote>
+<p>CLEO Redux also supports <code>reLCS</code> and <code>reVCS</code> should they ever be released. The requirements are the same.</p>
+<p>It also works with GTA SA Reversed (<code>gta_reversed.dll</code> &amp; <code>gta_reversed.pdb</code>).</p>
+</blockquote>
+<p>ASI Loader is required unless the game has built-in support for ASI plugins (e.g. via the MSS library).</p>
 <h2 id="game-crashes-with-cleo-on-san-andreas-the-definitive-edition"><a class="header" href="#game-crashes-with-cleo-on-san-andreas-the-definitive-edition">Game crashes with CLEO on San Andreas: The Definitive Edition</a></h2>
 <ul>
 <li>make sure you installed the 64-bit version of Ultimate ASI Loader (<a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/download/x64-latest/version.zip">direct link to the latest release</a>).
@@ -2016,10 +2085,11 @@ Memory.Watch(
 <li>Ask a question in <a href="https://cleo.li/discord">our Discord</a></li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="log-1"><a class="header" href="#log-1">Log</a></h1>
-<p>CLEO logs important events and errors immediately as they occur in the <code>cleo_redux.log</code> file located in the game directory.</p>
+<p>CLEO logs important events and errors immediately as they occur in the <code>cleo_redux.log</code> file. This file is located in the same directory where you put <code>cleo_redux.asi</code>.</p>
 <blockquote>
-<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>.</p>
 </blockquote>
+<p>You can also configure a custom log directory in the <code>cleo.ini</code> file using the <code>LogDirectory</code> option (e.g. <code>LogDirectory=CLEO</code>), in which case the log file will be created in that directory instead of the default folder.</p>
 <p>The log file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.</p>
 <p>To stream events in your terminal while testing a script, run:</p>
 <pre><code>tail -f cleo_redux.log
@@ -2033,34 +2103,39 @@ Memory.Watch(
 <ul>
 <li><a href="the-definitive-edition-faq.html#what-versions-are-supported">What versions are supported?</a></li>
 <li><a href="the-definitive-edition-faq.html#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></li>
-<li><a href="the-definitive-edition-faq.html#what-commandsopcodes-are-available">What commands/opcodes are available?</a></li>
+<li><a href="the-definitive-edition-faq.html#what-commands-are-available">What commands are available?</a></li>
 <li><a href="the-definitive-edition-faq.html#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></li>
 <li><a href="the-definitive-edition-faq.html#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></li>
-<li><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-for-the-triogy-with-sanny-builder">How do I compile CLEO scripts for the Triogy with Sanny Builder?</a></li>
+<li><a href="the-definitive-edition-faq.html#how-do-i-compile-cleo-scripts-for-the-trilogy-with-sanny-builder">How do I compile CLEO scripts for the Trilogy with Sanny Builder?</a></li>
 <li><a href="the-definitive-edition-faq.html#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></li>
 </ul>
 <h3 id="what-versions-are-supported"><a class="header" href="#what-versions-are-supported">What versions are supported?</a></h3>
 <blockquote>
+<p>As of version 1.5.0, CLEO Redux supports the latest available PC versions of the games distributed on three platforms: RGL, Steam, and Epic Games.</p>
+</blockquote>
+<blockquote>
 <p>The versions listed below refer to the executable file and can be checked by right-clicking the game’s executable (<code>LibertyCity.exe</code>, <code>ViceCity.exe</code>, or <code>SanAndreas.exe</code>) and opening Properties → Details → File Version.</p>
 </blockquote>
 <table><thead><tr><th>Game\Platform</th><th>Rockstar Games (RGL)</th><th>Steam</th><th>Epic Games</th></tr></thead><tbody>
-<tr><td>GTA III: The Definitive Edition</td><td>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15284 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540</td></tr>
-<tr><td>GTA Vice City: The Definitive Edition</td><td>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15399 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540</td></tr>
-<tr><td>San Andreas: The Definitive Edition</td><td>1.0.0.14296<br>1.0.0.14388<br>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15483 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540</td></tr>
+<tr><td>GTA III: The Definitive Edition</td><td>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15284 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540<br>1.0.112.6680</td></tr>
+<tr><td>GTA Vice City: The Definitive Edition</td><td>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15399 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540<br>1.0.112.6680</td></tr>
+<tr><td>San Andreas: The Definitive Edition</td><td>1.0.0.14296<br>1.0.0.14388<br>1.0.0.14718 (Title Update 1.03)<br>1.0.0.15483 (Title Update 1.04)<br>1.0.8.11827 (Title Update 1.04.5)<br>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680</td><td>1.0.17.38838<br>1.0.17.39540<br>1.0.112.6680<br>1.0.113.21181</td><td>1.0.17.39540<br>1.0.112.6680</td></tr>
 </tbody></table>
 <h3 id="is-there-any-difference-from-support-of-the-classic-games"><a class="header" href="#is-there-any-difference-from-support-of-the-classic-games">Is there any difference from support of the classic games?</a></h3>
 <p>In short, yes. <a href="https://github.com/cleolibrary/CLEO-Redux/wiki/Feature-Support-Matrix">See this page</a> for detail on what's supported and what's not.</p>
-<h3 id="what-commandsopcodes-are-available"><a class="header" href="#what-commandsopcodes-are-available">What commands/opcodes are available?</a></h3>
-<p>CLEO Redux supports all native commands provided by the game engine. You can find the list of all commands in the <a href="https://library.sannybuilder.com/#/sa_unreal">Sanny Builder library</a>. </p>
+<h3 id="what-commands-are-available"><a class="header" href="#what-commands-are-available">What commands are available?</a></h3>
+<p>CLEO Redux supports all native commands provided by the game engine. You can find the list of all commands in the <a href="https://library.sannybuilder.com/#/sa_unreal">Sanny Builder library</a>.</p>
 <p>In addition to that, CLEO Redux adds <a href="https://library.sannybuilder.com/#/unknown_x64/script">new commands via plugins</a>.</p>
 <h3 id="how-do-i-know-what-commands-can-i-use-in-javascript"><a class="header" href="#how-do-i-know-what-commands-can-i-use-in-javascript">How do I know what commands can I use in JavaScript?</a></h3>
 <p>After each game run, CLEO generates a <code>.d.ts</code> file in the <code>CLEO\.config</code> directory. It's called <code>gta3.d.ts</code>, <code>vc.d.ts</code> or <code>sa.d.ts</code> depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.</p>
 <p>To enable autocomplete in VS Code save your script file with <code>.ts</code> extension.</p>
 <h3 id="can-i-work-with-the-game-memory-or-call-the-game-functions"><a class="header" href="#can-i-work-with-the-game-memory-or-call-the-game-functions">Can I work with the game memory or call the game functions?</a></h3>
 <p>Yes, check the <a href="using-memory-64.html">Memory guide</a>.</p>
-<h3 id="how-do-i-compile-cleo-scripts-for-the-triogy-with-sanny-builder"><a class="header" href="#how-do-i-compile-cleo-scripts-for-the-triogy-with-sanny-builder">How do I compile CLEO scripts for the Triogy with Sanny Builder?</a></h3>
-<p>CLEO Redux provides limited support of compiled scripts (.CS) for the San Andreas: Definitive Edition only. It is recommended to write scripts using JavaScript or TypeScript.</p>
-<p>To compile CLEO scripts for San Andreas: The Definitive Edition using Sanny Builer use SA Mobile mode. </p>
+<h3 id="how-do-i-compile-cleo-scripts-for-the-trilogy-with-sanny-builder"><a class="header" href="#how-do-i-compile-cleo-scripts-for-the-trilogy-with-sanny-builder">How do I compile CLEO scripts for the Trilogy with Sanny Builder?</a></h3>
+<blockquote>
+<p>As of version 1.5.0, support for compiled scripts (.CS) in The Trilogy is deprecated and will be removed in one of the future releases. It is recommended to write scripts using JavaScript or TypeScript.</p>
+</blockquote>
+<p>CLEO Redux provides limited support of compiled scripts (.CS) for the San Andreas: Definitive Edition only. To compile CLEO scripts for this game use Sanny Builder in SA Mobile mode. </p>
 <h3 id="i-cant-find-an-answer-to-my-question-here-where-do-i-go"><a class="header" href="#i-cant-find-an-answer-to-my-question-here-where-do-i-go">I can't find an answer to my question here, where do I go?</a></h3>
 <ul>
 <li>Check the <a href="troubleshooting.html">troubleshooting guide</a>.</li>
@@ -2374,7 +2449,7 @@ fn init() {
 </code></pre>
 <p>SDK will read a string from the ini file and write it at the address <code>0xDEADBEEF</code>.</p>
 <h2 id="developing-new-commands"><a class="header" href="#developing-new-commands">Developing New Commands</a></h2>
-<p>To register custom command handlers the plugin must call <code>RegisterCommand</code> in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with the one argument which is a pointer to the current context. This pointer must be used for calling other SDK methods. See <a href="./cpp-sdk.html">C++ SDK</a> guide or <a href="./rust-sdk.html">Rust SDK</a> guide for examples.</p>
+<p>To register custom command handlers the plugin must call <code>RegisterCommand</code> in the DllMain function. Once a user script encounters this command CLEO Redux invokes the handler with one argument, which is a pointer to the current context. This pointer must be used for calling other SDK methods. See <a href="./cpp-sdk.html">C++ SDK</a> guide or <a href="./rust-sdk.html">Rust SDK</a> guide for examples.</p>
 <h3 id="unsafe-commands"><a class="header" href="#unsafe-commands">Unsafe commands</a></h3>
 <p>New commands that use low-level WinAPI and can potentially damage user environment must be explicitly registered with a permission token (third argument to the <code>RegisterCommand</code>). User can disallow usage of unsafe commands in the scripts using <a href="./permissions.html">permission config</a>. At the moment three permission tokens are used: <code>mem</code>, <code>fs</code>, and <code>dll</code>. They mark commands operating with the host process, user files and external libraries.</p>
 <h3 id="command-interface"><a class="header" href="#command-interface">Command interface</a></h3>
@@ -2384,7 +2459,7 @@ fn init() {
 <h4 id="why-use-command-names-and-not-an-id-for-the-command-lookup"><a class="header" href="#why-use-command-names-and-not-an-id-for-the-command-lookup">Why use command names and not an id for the command lookup?</a></h4>
 <p>One of the common issues with CLEO Library plugins was that commands authored by different people often had id collisions. If two plugins add commands with the same id, it is impossible to use them both. Using string names minimizes the collisions with custom plugins as well as with native opcodes. The library's definitions ensure each command claims only an available id. Also it helps to track and document plugins in a single place.</p>
 <h2 id="developing-file-loaders"><a class="header" href="#developing-file-loaders">Developing File Loaders</a></h2>
-<p>A plugin can associate itself with a particular <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> (or in other word a file name with wildcard characters in it, e.g. <code>*.txt</code>) and provide a handler to be called when a script <a href="./imports.html">imports</a> a file matching the pattern.</p>
+<p>A plugin can associate itself with a particular <a href="https://en.wikipedia.org/wiki/Glob_(programming)">glob pattern</a> (or in other words a file name with wildcard characters in it, e.g. <code>*.txt</code>) and provide a handler to be called when a script <a href="./imports.html">imports</a> a file matching the pattern.</p>
 <p>The glob pattern can be used to match an arbitrary file name using wildcards to represent any characters (<code>*.pak*</code> would match <code>1.pak1</code>, <code>2.pak1</code>, <code>3.pak3</code>, etc) or a specific file name (<code>gta.dat</code> would match only a <code>gta.dat</code> file). Be mindful about using wildcards to avoid matching unnecessary files. The plugin can associate itself with many globs (for example TextLoader uses <code>*.txt</code> and <code>*.text</code>), but it's recommended to support only related formats in one plugin.</p>
 <p>The handler gets a full path to the file as an input and returns a pointer to the buffer with the content of the file that has been serialized into JSON. The serialized JSON content should be a valid null-terminated UTF-8 string.</p>
 <blockquote>

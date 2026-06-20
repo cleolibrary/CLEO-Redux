@@ -199,6 +199,7 @@
 
   Allocate(size: int): int;
   Free(address: int): void;
+  GetImageBase(): int;
   Watch(getter, callback, options): () =&gt; void;
 
   Fn: {
@@ -230,13 +231,19 @@
 0x1500000020 SomeValue
 </code></pre>
 <p>effectively breaking the script. In this case, calculate a relative offset from the image base ( <code>0x1500000020</code> - <code>0x1500000000</code> = <code>0x20</code> ), that will be permanent for the particular game version. Use <code>Memory.Write</code> as follows: <code>Memory.Write(0x20, 1, 1, false, true)</code>. CLEO will sum up the offset (<code>0x20</code>) with the current value of the image base (<code>0x1400000000</code>, <code>0x1500000000</code>, etc) and write to the correct absolute address.</p>
-<p>For your convenience you can find the current value of the image base in the <code>cleo_redux.log</code>, e.g.:</p>
-<pre><code>09:27:35 [INFO] Image base address 0x7ff7d1f50000
+<p>For your convenience you can find the current value of the image base using <code>Memory.GetImageBase()</code> method:</p>
+<pre><code>var imageBase = Memory.GetImageBase();
+var address = imageBase + 0x500020;
+Memory.WriteFloat(address, 1.0, false, false);
 </code></pre>
-<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>:</p>
-<pre><code class="language-js">var x = Memory.ReadI8(offset, true, true);
+<p>or</p>
+<pre><code>var offset = 0x500020;
+Memory.WriteFloat(offset, 1.0, false, true);
 </code></pre>
-<p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
+<p>Similarly, to read a value from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read an 8-bit unsigned integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadU8</code>:</p>
+<pre><code class="language-js">var x = Memory.ReadU8(offset, true, true);
+</code></pre>
+<p>variable <code>x</code> now holds an 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
 <pre><code class="language-js">var gravity = Memory.ReadFloat(gravityOffset, false, true);
 gravity += 0.05;
 Memory.WriteFloat(gravityOffset, gravity, false, true);
@@ -259,7 +266,7 @@ var str = Memory.ReadUtf8(0x100000, true); // read string from address 0x100000+
 Memory.WriteUtf8(0x100000, &quot;Hello, world!\0\0&quot;, true, true); // write string to address 0x100000+IMAGE_BASE
 </code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
-<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
+<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvenient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to the <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
 <pre><code class="language-js">    Memory.FromFloat(1.0) =&gt; 1065353216
     Memory.ToFloat(1065353216) =&gt; 1.0
@@ -320,7 +327,7 @@ f(11); // calls method 0xEFFB30 with the argument of 11
 <p>By default a returned result is considered a 64-bit signed integer value. If the function returns another type (e.g. a boolean), use one of the methods matching the function signature:</p>
 <pre><code class="language-js">var flag = Memory.Fn.X64U8(0x1234567, true)();
 </code></pre>
-<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as a 8-bit unsigned integer value.</p>
+<p>This code invokes a function at <code>0x1234567</code> + IMAGE_BASE with no arguments and stores the result as an 8-bit unsigned integer value.</p>
 <pre><code class="language-js">var float = Memory.Fn.X64Float(0x456789, true)();
 </code></pre>
 <p>This code invokes a function at <code>0x456789</code> + IMAGE_BASE with no arguments and stores the result as a floating-point value.</p>

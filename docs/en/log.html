@@ -141,10 +141,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="log"><a class="header" href="#log">Log</a></h1>
-<p>CLEO logs important events and errors immediately as they occur in the <code>cleo_redux.log</code> file located in the game directory.</p>
+<p>CLEO logs important events and errors immediately as they occur in the <code>cleo_redux.log</code> file. This file is located in the same directory where you put <code>cleo_redux.asi</code>.</p>
 <blockquote>
-<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>. <code>cleo_redux.log</code> and the <code>CLEO</code> directory can be found there.</p>
+<p>If CLEO fails to create new files in the game directory due to the lack of write permissions, it fallbacks to using alternate path at <code>C:\Users\&lt;your_username&gt;\AppData\Roaming\CLEO Redux</code>.</p>
 </blockquote>
+<p>You can also configure a custom log directory in the <code>cleo.ini</code> file using the <code>LogDirectory</code> option (e.g. <code>LogDirectory=CLEO</code>), in which case the log file will be created in that directory instead of the default folder.</p>
 <p>The log file gets overwritten on each game run. If you experience any issue when using CLEO Redux, start investigating the root cause from this file.</p>
 <p>To stream events in your terminal while testing a script, run:</p>
 <pre><code>tail -f cleo_redux.log

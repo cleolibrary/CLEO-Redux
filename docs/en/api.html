@@ -191,14 +191,14 @@
 </ul>
 <h2 id="native-functions"><a class="header" href="#native-functions">Native functions</a></h2>
 <p>CLEO Redux supports all commands native to the current game. In the classic GTA 3D series they are also known as <em>opcodes</em>. In GTA IV they are known as <em>native functions</em>. You can find them in <a href="https://library.sannybuilder.com/">Sanny Builder Library</a>.</p>
-<p>Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function <a href="./api#native"><code>native</code></a>. For example, to change the player's health run <code>native(&quot;SET_PLAYER_HEALTH&quot;, 0, 100)</code>, where <code>0</code> is the player's id and <code>100</code> is the desired health.</p>
+<p>Each available command has a predefined name that the game associates with a particular set of instructions running as you execute that command with arguments. To call a command by name use a built-in function <a href="#native"><code>native</code></a>. For example, to change the player's health run <code>native(&quot;SET_PLAYER_HEALTH&quot;, 0, 100)</code>, where <code>0</code> is the player's id and <code>100</code> is the desired health.</p>
 <p>For convenience, CLEO Redux also defines a wide set of abstractions on top of the native functions called <em>classes</em>. Each class represents a group of commands around some domain, e.g. commands related to the player, vehicles, or text display can be found in classes <code>Player</code>, <code>Car</code>, or <code>Text</code> respectively. You can browse available classes and their methods in Sanny Builder Library.</p>
 <p>For example, to change the player's health using classes run <code>p.setHealth(100)</code>, where <code>p</code> is an instance of the <code>Player</code> class created with <code>new Player()</code> or <code>Player.Create</code> functions.</p>
 <h2 id="cleo-redux-bindings"><a class="header" href="#cleo-redux-bindings">CLEO Redux Bindings</a></h2>
 <p>In addition to native commands CLEO Redux adds extra variables and functions.</p>
 <h3 id="variables"><a class="header" href="#variables">Variables</a></h3>
 <h4 id="host"><a class="header" href="#host">HOST</a></h4>
-<p>the host name (previously available as <code>GAME</code> variable). Possible values are <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>gta_iv</code>, <code>bully</code>, <code>unknown</code>.</p>
+<p>the host name (previously available as <code>GAME</code> variable). Possible values are <code>gta3</code>, <code>vc</code>, <code>re3</code>, <code>reVC</code>, <code>sa</code>, <code>gta3_unreal</code>, <code>vc_unreal</code>, <code>sa_unreal</code>, <code>gta_iv</code>, <code>bully</code>, <code>reLCS</code>, <code>reVCS</code>, <code>reSA</code>, <code>unknown</code>.</p>
 <p>CLEO plugins can use SDK to customize the name for their needs.</p>
 <pre><code class="language-js">if (HOST === &quot;gta3&quot;) {
   showTextBox(&quot;This is GTA III&quot;);
@@ -294,7 +294,7 @@ showTextBox(`Character pos: x ${pos.x} y ${pos.y} z ${pos.z}`);
 </code></pre>
 <h4 id="setinterval"><a class="header" href="#setinterval">setInterval</a></h4>
 <p><code>setInterval(callback, timeInMs?)</code> calls the <code>{callback}</code> function every <code>{timeInMs}</code> milliseconds (or <code>0</code> if the argument is not present).</p>
-<p><code>setInterval</code> returns an unique id that can be used to cancel the interval early using <a href="#clearinterval">clearInterval</a>.</p>
+<p><code>setInterval</code> returns a unique id that can be used to cancel the interval early using <a href="#clearinterval">clearInterval</a>.</p>
 <pre><code class="language-js">let intervalId = setInterval(() =&gt; {
   showTextBox(&quot;1 second passed&quot;);
 }, 1000);
@@ -303,9 +303,9 @@ clearInterval(intervalId); // the callback won't be called anymore
 </code></pre>
 <h4 id="settimeout"><a class="header" href="#settimeout">setTimeout</a></h4>
 <p><code>setTimeout(callback, timeInMs?)</code> calls the <code>{callback}</code> function after <code>{timeInMs}</code> milliseconds (or <code>0</code> if the argument is not present).</p>
-<p><code>setTimeout</code> returns an unique id that can be used to cancel the timeout early using <a href="#cleartimeout">clearTimeout</a>.</p>
+<p><code>setTimeout</code> returns a unique id that can be used to cancel the timeout early using <a href="#cleartimeout">clearTimeout</a>.</p>
 <pre><code class="language-js">let timeoutId = setTimeout(() =&gt; {
-  exit(&quot;Terminate script);
+  exit(&quot;Terminate script&quot;);
 }, 1000);
 
 clearTimeout(timeoutId); // the callback won't be called
@@ -394,6 +394,9 @@ log(CLEO.hostVersion.build); // &quot;43&quot;
 </ul>
 <p>When running a new script you can also provide arguments to it. <code>args</code> is a JavaScript object which keys correspond to variable names in the script. Key names for a CS script are numeric and correspond to local variables (0@, 1@, 2@, etc). JS scripts can receive both numbers and strings as arguments, whereas CS scripts can only receive numbers.</p>
 <p>You can spawn multiple instances of the same script with different arguments.</p>
+<blockquote>
+<p>If the script is reloaded, all scripts spawned by it with <code>runScript</code> will be automatically unloaded.</p>
+</blockquote>
 <h6 id="launching-a-new-js-script"><a class="header" href="#launching-a-new-js-script">Launching a new JS script</a></h6>
 <p>Imagine that you have two files <code>main.js</code> and <code>child.mjs</code> in the CLEO directory:</p>
 <p>main.js:</p>

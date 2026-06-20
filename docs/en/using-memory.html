@@ -200,6 +200,7 @@
 
   Allocate(size: int): int;
   Free(address: int): void;
+  GetImageBase(): int;
   Watch(getter, callback, options): () =&gt; void;
 
   Fn: {
@@ -237,10 +238,10 @@
 <pre><code class="language-js">Memory.WriteFloat(address, 1.0, false);
 </code></pre>
 <p>where <code>address</code> is a variable storing the memory location, <code>1.0</code> is the value to write and <code>false</code> means it's not necessary to change the memory protection with <code>VirtualProtect</code> (the address is already writable).</p>
-<p>Similarly, to read a number from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read a 8-bit signed integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadI8</code>:</p>
-<pre><code class="language-js">var x = Memory.ReadI8(address, true);
+<p>Similarly, to read a number from the memory, use one of the <code>ReadXXX</code> methods, depending on what data type the memory address contains. For example, to read an 8-bit unsigned integer (also known as a <code>char</code> or <code>uint8</code>) use <code>Memory.ReadU8</code>:</p>
+<pre><code class="language-js">var x = Memory.ReadU8(address, true);
 </code></pre>
-<p>variable <code>x</code> now holds a 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
+<p>variable <code>x</code> now holds an 8-bit integer value in the range (0..255). For the sake of showing possible options, this example uses <code>true</code> as the last argument, which means the default protection attribute for this address will be changed to <code>PAGE_EXECUTE_READWRITE</code> before the read.</p>
 <pre><code class="language-js">var gravity = Memory.ReadFloat(gravityAddress, false);
 gravity += 0.05;
 Memory.WriteFloat(gravityAddress, gravity, false);
@@ -263,7 +264,7 @@ var str = Memory.ReadUtf16(address);
 Memory.WriteUtf16(address, &quot;Hello, world!\0&quot;, true);
 </code></pre>
 <h3 id="casting-methods"><a class="header" href="#casting-methods">Casting methods</a></h3>
-<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvinient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
+<p>By default <code>Read</code> and <code>Write</code> methods treat data as signed integer values. It can be inconvenient if the memory holds a floating-point value in IEEE 754 format or a large 32-bit signed integer (e.g. a pointer). In this case use casting methods <code>ToXXX</code>/<code>FromXXX</code>. They act similarly to the <a href="https://docs.microsoft.com/en-us/cpp/cpp/reinterpret-cast-operator?view=msvc-160">reinterpret_cast</a> operator in C++.</p>
 <p>To get a quick idea what to expect from those methods see the following examples:</p>
 <pre><code class="language-js">    Memory.FromFloat(1.0) =&gt; 1065353216
     Memory.ToFloat(1065353216) =&gt; 1.0
@@ -368,7 +369,7 @@ myMethod(3000, 5000); // calls method 0x2345678 with arguments 3000 and 5000
 <p>By default a returned result is considered a 32-bit signed integer value. If the function returns another type (a floating-point value, or a signed integer), use one of the methods matching the function signature, e.g.:</p>
 <pre><code class="language-js">var flag = Memory.Fn.CdeclU8(0x1234567)();
 </code></pre>
-<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as a 8-bit unsigned integer value.</p>
+<p>This code invokes a <code>cdecl</code> function at <code>0x1234567</code> with no arguments and stores the result as an 8-bit unsigned integer value.</p>
 <h3 id="finding-memory-addresses-in-re3-and-revc"><a class="header" href="#finding-memory-addresses-in-re3-and-revc">Finding Memory Addresses in re3 and reVC</a></h3>
 <p>Since <code>re3</code> and <code>reVC</code> use address space layout randomization (ASLR) feature, it can be difficult to locate needed addresses. CLEO Redux provides a helper function <code>Memory.Translate</code> that accepts a name of the function or variable and returns its current address. If the requested symbol is not found, the result is 0.</p>
 <pre><code class="language-js">var addr = Memory.Translate(&quot;CTheScripts::MainScriptSize&quot;);

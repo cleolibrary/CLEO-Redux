@@ -180,9 +180,14 @@
 </ul>
 <p>If the default name does not work with the given game, try renaming the dll file into another compatible name. Visit <a href="https://github.com/ThirteenAG/Ultimate-ASI-Loader">Ultimate ASI loader repo</a> for more information.</p>
 <h2 id="note-on-re3-or-revc"><a class="header" href="#note-on-re3-or-revc">Note on re3 or reVC</a></h2>
-<p>CLEO Redux supports &quot;Windows D3D9&quot; version of <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
+<p>CLEO Redux supports <code>re3</code> or <code>reVC</code> (both 32-bit and 64-bit).</p>
 <p>During installation you must select the correct version of <code>re3</code> or <code>reVC</code>: either 32-bit or 64-bit.</p>
 <p>When running on <code>re3</code> and <code>reVC</code> make sure the game directory contains the file <code>re3.pdb</code> (for <strong>re3</strong>) or <code>reVC.pdb</code> (for <strong>reVC</strong>). Due to the dynamic nature of memory addresses in those implementations CLEO Redux relies on debug information stored in the PDB file to correctly locate itself.</p>
+<blockquote>
+<p>CLEO Redux also supports <code>reLCS</code> and <code>reVCS</code> should they ever be released. The requirements are the same.</p>
+<p>It also works with GTA SA Reversed (<code>gta_reversed.dll</code> &amp; <code>gta_reversed.pdb</code>).</p>
+</blockquote>
+<p>ASI Loader is required unless the game has built-in support for ASI plugins (e.g. via the MSS library).</p>
 <h2 id="uninstallation"><a class="header" href="#uninstallation">Uninstallation</a></h2>
 <p>To uninstall CLEO Redux perform the following steps:</p>
 <ul>

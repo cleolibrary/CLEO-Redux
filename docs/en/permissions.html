@@ -147,8 +147,35 @@
 <p>Any unsafe operation is allowed. Use this only when you trust the scripts you run.</p>
 <h3 id="lax"><a class="header" href="#lax">Lax</a></h3>
 <p>This is the default permission level.</p>
-<p>No unsafe operation is allowed unless the script explicitly requests it. Currently to request a permission, the name of the script file must include the permissions tokens wrapped in square brackets.</p>
-<p>For example, if the script wants to access the memory via <code>0A8D READ_MEMORY</code> the file name must contain <code>[mem]</code>, e.g. <code>cool-spawner[mem].cs</code>. If the file is named differently CLEO rejects <code>0A8D</code> and the script crashes.</p>
+<p>No unsafe operation is allowed unless the script explicitly requests it. Permissions can be requested in three ways:</p>
+<h4 id="file-names-all-script-types"><a class="header" href="#file-names-all-script-types">File Names (All Script Types)</a></h4>
+<p>Include permission tokens wrapped in square brackets directly in the script file name. This works for all script types (CS, JS, TS):</p>
+<ul>
+<li><code>cool-spawner[mem].cs</code></li>
+<li><code>main[mem][dll].ts</code></li>
+<li><code>script[fs].js</code></li>
+</ul>
+<p>If the file is named differently without the required permission tokens, CLEO rejects unsafe operations.</p>
+<h4 id="directory-names-jsts-only"><a class="header" href="#directory-names-jsts-only">Directory Names (JS/TS Only)</a></h4>
+<p>For <a href="./script-lifecycle.html#organizing-scripts">script directories</a> (subdirectories with <code>index.js</code>/<code>index.ts</code>), include permission tokens in the directory name:</p>
+<pre><code>CLEO/
+├─ my_mod[mem][dll]/
+│  ├─ index.ts
+│  ├─ utils.ts
+</code></pre>
+<h4 id="modjson-manifest-jsts-only"><a class="header" href="#modjson-manifest-jsts-only">mod.json Manifest (JS/TS Only)</a></h4>
+<p>Alternatively, declare permissions in a <code>mod.json</code> file within your script directory:</p>
+<pre><code>CLEO/
+├─ my_mod/
+│  ├─ mod.json
+│  ├─ index.ts
+</code></pre>
+<p>With <code>mod.json</code> content:</p>
+<pre><code class="language-json">{
+  &quot;permissions&quot;: [&quot;mem&quot;, &quot;dll&quot;]
+}
+</code></pre>
+<p>This allows you to keep your script directory name clean while still requesting necessary permissions. When both directory name suffixes and <code>mod.json</code> permissions are present, the directory name suffix takes precedence.</p>
 <h3 id="strict"><a class="header" href="#strict">Strict</a></h3>
 <p>No unsafe operation is allowed unless the script explicitly requests it (see <code>&quot;Lax&quot;</code>) and the CLEO config file permits this type of operation under the <code>Permissions</code> section.</p>
 <p>Permissions section in <code>cleo.ini</code> allows to enable or disable groups of unsafe operations by using the <a href="#known-permission-tokens">permission tokens</a>. For example,</p>
