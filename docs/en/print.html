@@ -662,16 +662,17 @@ log(&quot;Initializing...&quot;);
 <ul>
 <li><a href="imports.html#txt">TXT</a></li>
 <li><a href="imports.html#ide-zon">IDE, ZON</a></li>
+<li><a href="imports.html#fxt">FXT</a></li>
 </ul>
 </li>
 </ul>
 <h2 id="importing-scripts"><a class="header" href="#importing-scripts">Importing scripts</a></h2>
 <ul>
-<li>Extensions: <code>.js</code>, <code>.mjs</code>, <code>.ts</code></li>
+<li>Extensions: <code>.js</code>, <code>.mjs</code>, <code>.ts</code>, <code>.mts</code></li>
 </ul>
 <p><code>./</code> in a path resolves to the current file's directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from './bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\extra\bar.js</code>.</p>
 <p><code>../</code> resolves to the parent directory. If a script is located at <code>C:\Game\CLEO\mod1\extra\addon.js</code> and it contains <code>import { foo } from '../bar.js'</code>, the runtime will try to load <code>C:\Game\CLEO\mod1\bar.js</code>. You can combine <code>../</code> to traverse multiple levels up.</p>
-<p>To avoid running imported <code>.js</code> files as standalone scripts, either put them into a separate folder outside of the main <a href="./cleo-directory.html">CLEO directory</a> (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code>.</p>
+<p>To avoid running imported <code>.js</code> files as standalone scripts, either put them into a separate folder outside of the main <a href="./cleo-directory.html">CLEO directory</a> (e.g. <code>CLEO/includes/</code>) or use the extension <code>.mjs</code> (or <code>.mts</code> for TypeScript files).</p>
 <pre><code class="language-js">// imports default export from other.js or other.mjs located in the same directory
 import func from &quot;./other&quot;;
 
@@ -753,6 +754,22 @@ if (cop) {
 }
 </code></pre>
 <p>This script shows how you can use <code>.find</code> and other common array methods to find a line in the imported IDE file and use it. It prints <code>1</code> when given a file with the content shown above.</p>
+<h3 id="fxt"><a class="header" href="#fxt">FXT</a></h3>
+<ul>
+<li>Extensions: <code>.fxt</code></li>
+<li>Plugin name: <code>FxtLoader.cleo</code></li>
+</ul>
+<p>The FXT loader allows you to import <a href="./using-fxt.html">FXT files</a> in the script. The loader transforms an FXT file into an object where each key is a GXT label and the value is the corresponding text string.</p>
+<p>a.fxt:</p>
+<pre><code>Key1 Text1
+Key2 Text2
+</code></pre>
+<p>b.js:</p>
+<pre><code class="language-js">import myFxt from &quot;./a.fxt&quot;;
+
+log(myFxt.Key1); // Output: Text1
+log(myFxt.Key2); // Output: Text2
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="asynchronous-programming"><a class="header" href="#asynchronous-programming">Asynchronous Programming</a></h1>
 <ul>
 <li><a href="async.html#async-api">Async API</a></li>
