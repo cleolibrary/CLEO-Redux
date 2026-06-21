@@ -7,16 +7,17 @@ You can import other scripts and some custom file formats in your code to make t
 - [Importing other formats](#importing-other-formats)
   - [TXT](#txt)
   - [IDE, ZON](#ide-zon)
+  - [FXT](#fxt)
 
 ## Importing scripts
 
-- Extensions: `.js`, `.mjs`, `.ts`
+- Extensions: `.js`, `.mjs`, `.ts`, `.mts`
 
 `./` in a path resolves to the current file's directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from './bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\extra\bar.js`.
 
 `../` resolves to the parent directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from '../bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\bar.js`. You can combine `../` to traverse multiple levels up.
 
-To avoid running imported `.js` files as standalone scripts, either put them into a separate folder outside of the main [CLEO directory](./cleo-directory.md) (e.g. `CLEO/includes/`) or use the extension `.mjs`.
+To avoid running imported `.js` files as standalone scripts, either put them into a separate folder outside of the main [CLEO directory](./cleo-directory.md) (e.g. `CLEO/includes/`) or use the extension `.mjs` (or `.mts` for TypeScript files).
 
 ```js
 // imports default export from other.js or other.mjs located in the same directory
@@ -124,3 +125,26 @@ if (cop) {
 ```
 
 This script shows how you can use `.find` and other common array methods to find a line in the imported IDE file and use it. It prints `1` when given a file with the content shown above.
+
+### FXT
+
+- Extensions: `.fxt`
+- Plugin name: `FxtLoader.cleo`
+
+The FXT loader allows you to import [FXT files](./using-fxt.md) in the script. The loader transforms an FXT file into an object where each key is a GXT label and the value is the corresponding text string.
+
+a.fxt:
+
+```
+Key1 Text1
+Key2 Text2
+```
+
+b.js:
+
+```js
+import myFxt from "./a.fxt";
+
+log(myFxt.Key1); // Output: Text1
+log(myFxt.Key2); // Output: Text2
+```

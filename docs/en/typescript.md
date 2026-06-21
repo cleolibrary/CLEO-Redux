@@ -9,3 +9,26 @@ TS scripts have `.ts` extension and can be used anywhere [where JS scripts are s
 ## TS Config
 
 CLEO Redux creates `tsconfig.json` file in the [CLEO directory](./cleo-directory.md) when you run it for the first time. It contains necessary information for VS Code and other IDEs on where to look for typing files, so you don't have to include `/// <reference path="..." />` lines in your scripts. You can edit it to change the default settings.
+
+Default `tsconfig.json` file:
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "esnext",
+    "noEmit": true,
+    "moduleDetection": "force",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true,
+    "allowArbitraryExtensions": true,
+    "allowJs": true,
+    "checkJs": true,
+    "lib": ["ES2020"],
+    "types": []
+  },
+  "include": ["**/*.ts", "**/*.mts", ".config/*.d.ts"]
+}
+```
