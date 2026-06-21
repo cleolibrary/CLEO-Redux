@@ -2059,6 +2059,26 @@ Memory.Watch(
 <p>TS scripts have <code>.ts</code> extension and can be used anywhere <a href="./script-lifecycle.html">where JS scripts are supported</a>. They can be imported directly in both JS and TS scripts using <a href="./imports.html"><code>import</code></a> statements.</p>
 <h2 id="ts-config"><a class="header" href="#ts-config">TS Config</a></h2>
 <p>CLEO Redux creates <code>tsconfig.json</code> file in the <a href="./cleo-directory.html">CLEO directory</a> when you run it for the first time. It contains necessary information for VS Code and other IDEs on where to look for typing files, so you don't have to include <code>/// &lt;reference path=&quot;...&quot; /&gt;</code> lines in your scripts. You can edit it to change the default settings.</p>
+<p>Default <code>tsconfig.json</code> file:</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;target&quot;: &quot;ES2020&quot;,
+    &quot;module&quot;: &quot;esnext&quot;,
+    &quot;noEmit&quot;: true,
+    &quot;moduleDetection&quot;: &quot;force&quot;,
+    &quot;moduleResolution&quot;: &quot;bundler&quot;,
+    &quot;resolveJsonModule&quot;: true,
+    &quot;allowSyntheticDefaultImports&quot;: true,
+    &quot;allowImportingTsExtensions&quot;: true,
+    &quot;allowArbitraryExtensions&quot;: true,
+    &quot;allowJs&quot;: true,
+    &quot;checkJs&quot;: true,
+    &quot;lib&quot;: [&quot;ES2020&quot;],
+    &quot;types&quot;: []
+  },
+  &quot;include&quot;: [&quot;**/*.ts&quot;, &quot;**/*.mts&quot;, &quot;.config/*.d.ts&quot;]
+}
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="troubleshooting"><a class="header" href="#troubleshooting">Troubleshooting</a></h1>
 <ul>
 <li><a href="troubleshooting.html#support-for-reversed-versions-re3-revc-and-similar">Support for reversed versions (re3, reVC, and similar)</a></li>
