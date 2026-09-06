@@ -157,6 +157,7 @@
                   <li data-target="#featuredProjectsCarousel" data-slide-to="5"></li>
                   <li data-target="#featuredProjectsCarousel" data-slide-to="6"></li>
                   <li data-target="#featuredProjectsCarousel" data-slide-to="7"></li>
+                  <li data-target="#featuredProjectsCarousel" data-slide-to="8"></li>
                 </ol>
 
                 <div class="carousel-inner text-center">
@@ -295,6 +296,30 @@
                       <small class="text-muted">by Vital</small>
                     </div>
                   </div>
+                  <div class="carousel-item">
+                    <div class="d-flex flex-column align-items-center">
+                      <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/da73b6bYtUQ"
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="
+                          accelerometer;
+                          autoplay;
+                          clipboard-write;
+                          encrypted-media;
+                          gyroscope;
+                          picture-in-picture;
+                          web-share;
+                        "
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                      ></iframe>
+                      <a href="https://www.youtube.com/watch?v=da73b6bYtUQ">Dynamic Car Camera</a>
+                      <small class="text-muted">by 8eHg</small>
+                    </div>
+                  </div>
                 </div>
 
                 <a class="carousel-control-prev" href="#featuredProjectsCarousel" role="button" data-slide="prev">
@@ -334,7 +359,7 @@
     <script>
       $(document).ready(function () {
         // Select random starting item
-        var randomIndex = Math.floor(Math.random() * 7);
+        var randomIndex = Math.floor(Math.random() * 9);
 
         // Remove active class from default first item
         $("#featuredProjectsCarousel .carousel-item.active").removeClass("active");
