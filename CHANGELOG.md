@@ -1,3 +1,8 @@
+### 1.5.1 - September 26, 2026
+
+- fix strings returned from SDK commands losing their first character in some cases
+- don't load FXT files in older builds of GTA Vice City: The Definitive Edition where this feature is not available
+
 ### 1.5.0 - June 20, 2026
 
 - add support for [boot scripts](https://re.cleo.li/docs/en/script-lifecycle.html#boot-scripts) (synchronous one-shot scripts that run on startup)
@@ -17,7 +22,7 @@ log(Text.GetLabelString("INSMCP")); // Output: Load failed!~n~~n~The current Mis
 - unload manually spawned scripts (`CLEO.runScript`) if the main script is reloaded
 - when parsing class metadata in a JSON file, CLEO Redux correctly remaps `"extends": "Object"` to `"extends": "ScriptObject"` (needed for the `CutsceneObject` class in GTA III / VC)
 - add support for GTA The Trilogy - The Definitive Edition v1.0.112.6680 (Epic Games Store)
-- add FXT support in Vice City: The Definitive Edition (only for the latest release)
+- add FXT support in GTA Vice City: The Definitive Edition (only for the latest release)
 - let configuring a directory for the `cleo_redux.log` via the `LogDirectory` option in the `cleo.ini` (e.g. `LogDirectory=CLEO`)
 
 **SDK AND PLUGINS**
