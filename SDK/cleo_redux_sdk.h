@@ -12,7 +12,9 @@ enum class HandlerResult
 	// End the script gracefully
 	TERMINATE = 2,
 	// End the script and throw an error
-	ERR = -1
+	ERR = -1,
+	// Soft error, the command failed, but script may continue
+	FAILED = -2
 };
 
 enum class HostId
@@ -48,14 +50,86 @@ enum class Directory
 	CWD = 4,
 	// Host root directory
 	HOST = 5,
+	// since v8
+	// Directory cleo_redux.asi was loaded from (not necessarily the host directory,
+	// an ASI loader may place it in a subfolder)
+	ASI = 6,
 };
 
 typedef void* Context;
 typedef intptr_t isize;
 
+// The type of a command parameter, as seen by a plugin JIT backend.
+typedef enum CleoParamType {
+	// A 4-byte signed integer (also: engine enums and `name` hashes)
+	CLEO_PARAM_INT = 0,
+	// A 4-byte IEEE-754 value
+	CLEO_PARAM_FLOAT = 1,
+	// A 1-byte boolean
+	CLEO_PARAM_BOOL = 2,
+	// A REDengine-style string value
+	CLEO_PARAM_STRING = 3,
+	// A vector; `size` is the element count (usually 3)
+	CLEO_PARAM_VECTOR = 4,
+	// A class instance (a handle); `class_name` names the declared class
+	CLEO_PARAM_HANDLE = 5,
+	// An unclassified value
+	CLEO_PARAM_ANY = 6,
+	// A value this ABI cannot pass (arrays, structs, out parameters)
+	CLEO_PARAM_UNSUPPORTED = 7
+} CleoParamType;
+
+typedef struct CleoParam {
+	CleoParamType type;
+	// NUL-terminated class name when type is HANDLE/ANY; NULL otherwise
+	const char* class_name;
+	// Element count for a VECTOR; 0 otherwise
+	uint32_t size;
+} CleoParam;
+
+// A borrowed view of a command, valid only for the CleoJitBackend::create call.
+typedef struct CleoCommand {
+	const char* name;
+	const char* member;
+	int32_t is_static;
+	int32_t is_condition;
+	const CleoParam* inputs;
+	uint32_t input_count;
+	const CleoParam* outputs;
+	uint32_t output_count;
+} CleoCommand;
+
+typedef void* JitState;
+
+// The vtable a plugin installs with RegisterJitBackend. `abi_version` must match
+// the value the running CLEO Redux build expects (currently 1).
+typedef struct CleoJitBackend {
+	uint32_t abi_version;
+	JitState (*create)(const CleoCommand* command);
+	void (*destroy)(JitState state);
+	void (*input_int)(JitState state, int64_t value);
+	void (*input_float)(JitState state, float value);
+	void (*input_string)(JitState state, const char* value);
+	void (*input_vector)(JitState state, float x, float y, float z);
+	void (*input_global_var)(JitState state, uint64_t index);
+	void (*end_of_arguments)(JitState state);
+	void (*before_alloc)(JitState state);
+	void (*alloc_int)(JitState state);
+	void (*alloc_float)(JitState state);
+	void (*alloc_string)(JitState state);
+	void (*alloc_vector)(JitState state, uint64_t size);
+	int64_t (*get_int)(JitState state, uint64_t index);
+	float (*get_float)(JitState state, uint64_t index);
+	// Copies a NUL-terminated result string into dest (at most max_len bytes)
+	void (*get_string)(JitState state, uint64_t index, char* dest, uint64_t max_len);
+	int64_t (*get_handle)(JitState state, uint64_t index);
+	HandlerResult (*execute)(JitState state, const char* command_name);
+} CleoJitBackend;
+
 typedef HandlerResult (*CommandHandler)(Context);
 typedef void* (*CustomLoader)(const char*);
 typedef void (*OnTickCallback)(unsigned int current_time, int time_step);
+typedef void (*OnGameProcessCallback)(unsigned int current_time, int time_step, bool is_paused, bool is_restarting);
 typedef void (*OnRuntimeInitCallback)();
 typedef void (*OnShowTextBoxCallback)(const char*);
 
@@ -130,6 +204,14 @@ extern "C" {
 	// since v4
 	// Registers a new callback invoked on each main loop iteration (after scripts are executed)
 	void OnAfterScripts(OnTickCallback callback);
+	// since v8
+	// Registers a new callback invoked on every game loop iteration (before CGame::Process), including frames where scripts are not executed (e.g. while the game is paused).
+	// is_paused mirrors CTimer::m_UserPause || CTimer::m_CodePause; is_restarting is true when the runtime is being (re)initialized.
+	void OnBeforeGameProcess(OnGameProcessCallback callback);
+	// since v8
+	// Registers a new callback invoked on every game loop iteration (after CGame::Process), including frames where scripts are not executed (e.g. while the game is paused).
+	// is_paused mirrors CTimer::m_UserPause || CTimer::m_CodePause; is_restarting is true when the runtime is being (re)initialized.
+	void OnAfterGameProcess(OnGameProcessCallback callback);
 	// since v4
 	// Registers a new callback invoked on each runtime init event (new game, saved game load, or SDK's RuntimeInit)
     void OnRuntimeInit(OnRuntimeInitCallback callback);
@@ -137,7 +219,7 @@ extern "C" {
 	// Registers a new callback invoked on a ShowTextBox function call. Providing a callback shadows built-in ShowTextBox implementation.
     void OnShowTextBox(OnShowTextBoxCallback callback);
     /// since v6
-	/// Returns the absolute path to the CLEO root directory or one of its sub-directories
+	/// Returns the absolute path to the CLEO root directory, one of its sub-directories, or the directory cleo_redux.asi was loaded from
     void GetDirectoryPath(Directory dir, char* dest);
     /// since v6
     /// Returns CLEO Redux version as a string
@@ -157,5 +239,10 @@ extern "C" {
 	/// since v7
 	/// Triggers an event with the given name and data
 	void TriggerEvent(const char* name, const char* data);
+	/// since v8
+	/// Registers a JIT backend for the given host name. The backend owns every
+	/// command of that host and takes precedence over individually registered
+	/// commands. The backend struct must stay valid for the lifetime of the process.
+	void RegisterJitBackend(const char* host_name, const CleoJitBackend* backend);
 }
 
