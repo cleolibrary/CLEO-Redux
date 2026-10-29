@@ -12,6 +12,8 @@ pub enum HandlerResult {
     TERMINATE = 2,
     /// End the script and throw an error
     ERR = -1,
+    /// Soft error, the command failed, but script may continue
+    FAILED = -2,
 }
 
 #[allow(non_camel_case_types)]
@@ -51,6 +53,10 @@ pub enum Directory {
     CWD = 4,
     /// Host root directory
     HOST = 5,
+    /// since v8
+    /// Directory cleo_redux.asi was loaded from (not necessarily the host directory, an ASI
+    /// loader may place it in a subfolder)
+    ASI = 6,
 }
 
 #[allow(non_camel_case_types)]
@@ -62,8 +68,81 @@ pub type Context = *const c_void;
 pub type CustomCommand = extern "C" fn(Context) -> HandlerResult;
 pub type CustomLoader = extern "C" fn(*const c_char) -> *mut c_void;
 pub type OnTickCallback = extern "C" fn(current_time: u32, time_step: i32);
+pub type OnGameProcessCallback =
+    extern "C" fn(current_time: u32, time_step: i32, is_paused: bool, is_restarting: bool);
 pub type OnRuntimeInitCallback = extern "C" fn();
 pub type OnShowTextBoxCallback = extern "C" fn(*const c_char);
+
+/// The type of a command parameter, as seen by a plugin JIT backend.
+#[allow(non_camel_case_types)]
+#[repr(C)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub enum CleoParamType {
+    CLEO_PARAM_INT = 0,
+    CLEO_PARAM_FLOAT = 1,
+    CLEO_PARAM_BOOL = 2,
+    CLEO_PARAM_STRING = 3,
+    CLEO_PARAM_VECTOR = 4,
+    CLEO_PARAM_HANDLE = 5,
+    CLEO_PARAM_ANY = 6,
+    CLEO_PARAM_UNSUPPORTED = 7,
+}
+
+/// One declared command parameter.
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CleoParam {
+    pub r#type: CleoParamType,
+    /// NUL-terminated class name when `r#type` is `CLEO_PARAM_HANDLE`/`CLEO_PARAM_ANY`.
+    pub class_name: *const c_char,
+    /// Element count for `CLEO_PARAM_VECTOR`.
+    pub size: u32,
+}
+
+/// A borrowed view of a command, valid only for the `CleoJitBackend::create` call.
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct CleoCommand {
+    pub name: *const c_char,
+    pub member: *const c_char,
+    pub is_static: i32,
+    pub is_condition: i32,
+    pub inputs: *const CleoParam,
+    pub input_count: u32,
+    pub outputs: *const CleoParam,
+    pub output_count: u32,
+}
+
+/// Opaque per-call state allocated by a plugin backend.
+pub type JitState = *mut c_void;
+
+/// The vtable a plugin installs with [`register_jit_backend`].
+///
+/// `abi_version` must equal the value the running CLEO Redux build expects
+/// (currently `1`). The struct must stay valid for the lifetime of the process.
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct CleoJitBackend {
+    pub abi_version: u32,
+    pub create: extern "C" fn(command: *const CleoCommand) -> JitState,
+    pub destroy: extern "C" fn(state: JitState),
+    pub input_int: extern "C" fn(state: JitState, value: i64),
+    pub input_float: extern "C" fn(state: JitState, value: f32),
+    pub input_string: extern "C" fn(state: JitState, value: *const c_char),
+    pub input_vector: extern "C" fn(state: JitState, x: f32, y: f32, z: f32),
+    pub input_global_var: extern "C" fn(state: JitState, index: u64),
+    pub end_of_arguments: extern "C" fn(state: JitState),
+    pub before_alloc: extern "C" fn(state: JitState),
+    pub alloc_int: extern "C" fn(state: JitState),
+    pub alloc_float: extern "C" fn(state: JitState),
+    pub alloc_string: extern "C" fn(state: JitState),
+    pub alloc_vector: extern "C" fn(state: JitState, size: u64),
+    pub get_int: extern "C" fn(state: JitState, index: u64) -> i64,
+    pub get_float: extern "C" fn(state: JitState, index: u64) -> f32,
+    pub get_string: extern "C" fn(state: JitState, index: u64, dest: *mut c_char, max_len: u64),
+    pub get_handle: extern "C" fn(state: JitState, index: u64) -> i64,
+    pub execute: extern "C" fn(state: JitState, command_name: *const c_char) -> HandlerResult,
+}
 
 #[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
 #[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
@@ -166,6 +245,18 @@ extern "C" {
     ///
     /// since v4
     fn OnAfterScripts(cb: OnTickCallback);
+    /// Registers a new callback invoked on every game loop iteration (before
+    /// CGame::Process), including frames where scripts are not executed (e.g. while the
+    /// game is paused).
+    ///
+    /// since v8
+    fn OnBeforeGameProcess(cb: OnGameProcessCallback);
+    /// Registers a new callback invoked on every game loop iteration (after
+    /// CGame::Process), including frames where scripts are not executed (e.g. while the
+    /// game is paused).
+    ///
+    /// since v8
+    fn OnAfterGameProcess(cb: OnGameProcessCallback);
     /// Registers a new callback invoked on each runtime init event (new game, saved game load, or SDK's RuntimeInit)
     ///
     /// since v4
@@ -202,12 +293,28 @@ extern "C" {
     ///
     /// since v7
     fn TriggerEvent(event: *const c_char, data: *const c_char);
+    /// Registers a JIT backend for the given host name.
+    ///
+    /// since v8
+    fn RegisterJitBackend(host_name: *const c_char, backend: *const CleoJitBackend);
 }
 
 macro_rules! sz {
     ($name:expr) => {
         std::ffi::CString::new($name).unwrap().as_ptr()
     };
+}
+
+/// Registers a JIT backend for the given host name.
+///
+/// The backend owns every command of that host and takes precedence over
+/// individually registered commands. The struct must stay valid for the lifetime
+/// of the process.
+///
+/// since v8
+#[allow(dead_code)]
+pub fn register_jit_backend(host_name: &str, backend: &'static CleoJitBackend) {
+    unsafe { RegisterJitBackend(sz!(host_name), backend) };
 }
 
 /// Registers a new callback handler for the command with the given name. Permission token is required for unsafe operations interacting with the user environment (e.g. mem, fs, net)
@@ -414,6 +521,32 @@ pub fn on_after_scripts(cb: OnTickCallback) {
     }
 }
 
+/// Registers a new callback invoked on every game loop iteration (before CGame::Process),
+/// including frames where scripts are not executed (e.g. while the game is paused).
+/// `is_paused` mirrors `CTimer::m_UserPause || CTimer::m_CodePause`; `is_restarting` is
+/// true when the runtime is being (re)initialized.
+///
+/// since v8
+#[allow(dead_code)]
+pub fn on_before_game_process(cb: OnGameProcessCallback) {
+    unsafe {
+        OnBeforeGameProcess(cb);
+    }
+}
+
+/// Registers a new callback invoked on every game loop iteration (after CGame::Process),
+/// including frames where scripts are not executed (e.g. while the game is paused).
+/// `is_paused` mirrors `CTimer::m_UserPause || CTimer::m_CodePause`; `is_restarting` is
+/// true when the runtime is being (re)initialized.
+///
+/// since v8
+#[allow(dead_code)]
+pub fn on_after_game_process(cb: OnGameProcessCallback) {
+    unsafe {
+        OnAfterGameProcess(cb);
+    }
+}
+
 /// Registers a new callback invoked on each runtime init event (new game, saved game load, or SDK's RuntimeInit)
 ///
 /// since v4
@@ -434,7 +567,8 @@ pub fn on_show_text_box(cb: OnShowTextBoxCallback) {
     }
 }
 
-/// Returns the absolute path to the CLEO root directory or one of its sub-directories
+/// Returns the absolute path to the CLEO root directory, one of its sub-directories, or the
+/// directory cleo_redux.asi was loaded from
 ///
 /// since v6
 #[allow(dead_code)]
