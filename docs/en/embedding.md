@@ -106,7 +106,7 @@ Host: [Sanny Builder 4](https://sannybuilder.com) (`sanny.exe`)
 }
 ```
 
-`Sanny Builder 4\CLEO\.config` folder must contain `sanny.json` and `manifest.json` before the first run. The other files will be downloaded or generated automatically.
+`Sanny Builder 4\cleo\.config` folder must contain `sanny.json` and `manifest.json` before the first run. The other files will be downloaded or generated automatically.
 
 ```json
 {

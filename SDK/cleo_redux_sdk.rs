@@ -41,13 +41,13 @@ pub enum HostId {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub enum Directory {
-    /// /CLEO directory
+    /// /cleo directory
     CLEO = 0,
-    /// /CLEO/.config
+    /// /cleo/.config
     CONFIG = 1,
-    /// /CLEO/CLEO_TEXT
+    /// /cleo/cleo_text
     TEXT = 2,
-    /// /CLEO/CLEO_PLUGINS
+    /// /cleo/cleo_plugins
     PLUGINS = 3,
     /// Current working directory
     CWD = 4,
@@ -158,8 +158,8 @@ extern "C" {
     /// Resolves a path to the absolute path
     ///     - absolute path gets resolved as is
     /// - path starting with "CLEO/" gets resolved relative to the CLEO directory
-    ///    * either {game}\CLEO or
-    ///    * {user}\AppData\Roaming\CLEO Redux\CLEO
+    ///    * either {game}\cleo or
+    ///    * {user}\AppData\Roaming\CLEO Redux\cleo
     ///  - all other paths get resolved relative to the cwd (game directory)
     ///
     /// since v1
@@ -402,8 +402,8 @@ pub fn get_cwd() -> std::path::PathBuf {
 /// Resolves a path to the absolute path
 ///     - absolute path gets resolved as is
 /// - path starting with "CLEO/" gets resolved relative to the CLEO directory
-///    * either {game}\CLEO or
-///    * {user}\AppData\Roaming\CLEO Redux\CLEO
+///    * either {game}\cleo or
+///    * {user}\AppData\Roaming\CLEO Redux\cleo
 ///  - all other paths get resolved relative to the cwd (game directory)
 ///
 /// since v1

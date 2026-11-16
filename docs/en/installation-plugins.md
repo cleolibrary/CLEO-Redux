@@ -1,6 +1,6 @@
 # Plugins
 
-Plugins are optional programs adding extra scripting commands with the help of [CLEO Redux SDK](./using-sdk.md). A plugin file has a `.cleo` extension and should be copied to the `CLEO\CLEO_PLUGINS` directory.
+Plugins are optional programs adding extra scripting commands with the help of [CLEO Redux SDK](./using-sdk.md). A plugin file has a `.cleo` extension and should be copied to the `cleo\cleo_plugins` directory.
 
 ## List of plugins
 

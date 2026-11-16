@@ -1,6 +1,6 @@
 // in-game demo for the audio plugin (GTA III and VC).
 //
-// Put this file in <game>/scripts/CLEO/, then start a game
+// Put this file and audio_demo.mp3 in <game>\cleo\, then start a game
 // and press the number keys. Press the same key again to stop a demo.
 //
 //   1 progress      2 volume       3 volume fade   4 speed
@@ -15,8 +15,8 @@ const MUSIC = 2; // AudioStreamType.Music
 const MENU =
   "AUDIO DEMO  press 1-9~n~1 prog  2 vol  3 vol fade~n~4 speed  5 spd fade  6 3D orbit~n~7 point  8 pause  9 seek";
 
-// Audio file to play (check if they exist)
-const AUDIO = "audio\\bclosed.mp3";
+// Audio file to play (sits next to this script; CC0 recording, see README)
+const AUDIO = __dirname + "\\audio_demo.mp3";
 
 const KEYS = [49, 50, 51, 52, 53, 54, 55, 56, 57];
 let pchar = new Player(0).getChar();
@@ -328,8 +328,8 @@ function status(text: string): void {
 }
 
 function noAudio(): void {
-  log("[audio-demo] cannot open bclosed.mp3");
-  status(`Cannot open audio~n~check if audio\\bclosed.mp3 exists`);
+  log(`[audio-demo] cannot open ${AUDIO}`);
+  status(`Cannot open audio~n~check if audio_demo.mp3 is in the CLEO folder`);
   wait(2500);
 }
 

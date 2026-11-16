@@ -65,7 +65,7 @@ public:
 } TestPlugin;
 ```
 
-- compile the project and place `.cleo` file to the [`CLEO_PLUGINS`](./installation-plugins.md) folder.
+- compile the project and place `.cleo` file to the [`cleo_plugins`](./installation-plugins.md) folder.
 
 - add command definition in the JSON file for the target game (e.g. `gta3.json` for GTA III or `unknown_x86.json` for an Unknown (x86) host). Each `GetXXXParam`/`SetXXXParam` should be paired with an input or output in the command definition
 

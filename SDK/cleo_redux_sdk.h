@@ -38,13 +38,13 @@ enum class HostId
 
 enum class Directory
 {
-	// /CLEO directory
+	// /cleo directory
 	CLEO = 0,
-	// /CLEO/.config
+	// /cleo/.config
 	CONFIG = 1,
-	// /CLEO/CLEO_TEXT
+	// /cleo/cleo_text
 	TEXT = 2,
-	// /CLEO/CLEO_PLUGINS
+	// /cleo/cleo_plugins
 	PLUGINS = 3,
 	// Current working directory
 	CWD = 4,

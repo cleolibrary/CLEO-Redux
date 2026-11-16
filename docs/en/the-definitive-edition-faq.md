@@ -31,7 +31,7 @@ In addition to that, CLEO Redux adds [new commands via plugins](https://library.
 
 ### How do I know what commands can I use in JavaScript?
 
-After each game run, CLEO generates a `.d.ts` file in the `CLEO\.config` directory. It's called `gta3.d.ts`, `vc.d.ts` or `sa.d.ts` depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.
+After each game run, CLEO generates a `.d.ts` file in the `cleo\.config` directory. It's called `gta3.d.ts`, `vc.d.ts` or `sa.d.ts` depending on the game. This file lists all supported functions and methods that you can use in JavaScript code.
 
 To enable autocomplete in VS Code save your script file with `.ts` extension.
 
