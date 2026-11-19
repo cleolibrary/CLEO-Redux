@@ -124,6 +124,36 @@ namespace audio::host
         return true;
     }
 
+    float ClassicAudio::Shape(float slider, bool /*music*/) const
+    {
+        // ReadSliders reports byte / 128; the mixer's own maths wants the byte back.
+        const float clamped = (std::clamp)(slider, 0.0f, 1.0f);
+        const auto volume   = static_cast<uint8_t>(std::lround(clamped * kSampleManagerVolumeScale));
+
+        return SampleManagerGain(volume);
+    }
+
+    bool SaAudio::ReadSliders(float& sfx, float& music) const
+    {
+        const uintptr_t hardware = Addr(a.audioHardware);
+        if (hardware == 0) return false;
+
+        const float musicFactor = *At<float>(hardware + kSaMusicScalingOffset);
+        const float sfxFactor   = *At<float>(hardware + kSaSfxScalingOffset);
+
+        // The slider tops out at 64, so the factor tops out at 1.0; a value outside
+        // that (or a float read out of an unrelated object) means the address does not
+        // fit this build.
+        const float limit = kSaScalingMax + 0.01f;
+        if (!std::isfinite(sfxFactor) || !std::isfinite(musicFactor)) return false;
+        if (sfxFactor < 0.0f || sfxFactor > limit) return false;
+        if (musicFactor < 0.0f || musicFactor > limit) return false;
+
+        sfx   = sfxFactor;
+        music = musicFactor;
+        return true;
+    }
+
     bool RemasterAudio::ReadSliders(float& sfx, float& music) const
     {
         const uintptr_t settings = Settings();

@@ -18,6 +18,7 @@ namespace audio::host
         constexpr const char* kScriptVmSymbol = "CRunningScript::ProcessCommands100To199";
 
         GameHost MakeClassic(const ClassicPreset& preset);
+        GameHost MakeSaClassic(const SaClassicPreset& preset);
         GameHost MakeRemaster(const RemasterBuildRow& row, uintptr_t imageBase);
         GameHost MakeDetected(const RemasterBuildRow* rows, size_t count);
         GameHost MakeT0();
@@ -45,14 +46,33 @@ namespace audio::host
             return host;
         }
 
+        GameHost MakeSaClassic(const SaClassicPreset& preset)
+        {
+            GameHost host = AssembleHost(preset);
+
+            LogInfo(
+                "Audio plugin: build '%s' (TheCamera %p, CAEAudioHardware %p, pools object/ped/vehicle %p/%p/%p)",
+                host.name.c_str(), reinterpret_cast<void*>(preset.camera.camera),
+                reinterpret_cast<void*>(preset.audio.audioHardware),
+                reinterpret_cast<void*>(preset.pools.objectGlobal), reinterpret_cast<void*>(preset.pools.pedGlobal),
+                reinterpret_cast<void*>(preset.pools.vehicleGlobal)
+            );
+            LogInfo(
+                "Audio plugin: pool sizes object/ped/vehicle %d/%d/%d", host.pools->Count(EntityKind::Object),
+                host.pools->Count(EntityKind::Ped), host.pools->Count(EntityKind::Vehicle)
+            );
+            LogTier(host);
+
+            return host;
+        }
+
         GameHost MakeRemaster(const RemasterBuildRow& row, uintptr_t imageBase)
         {
             GameHost host = AssembleHost(row, imageBase);
 
             LogInfo(
-                "Audio plugin: build '%s' (TheCamera %p, CCamera %p, pools object/ped/vehicle %p/%p/%p)",
-                host.name.c_str(), reinterpret_cast<void*>(Rebase(row.camera.camera, imageBase)),
-                reinterpret_cast<void*>(Rebase(row.camera.cameraObject, imageBase)),
+                "Audio plugin: build '%s' (TheCamera %p, pools object/ped/vehicle %p/%p/%p)", host.name.c_str(),
+                reinterpret_cast<void*>(Rebase(row.camera.camera, imageBase)),
                 reinterpret_cast<void*>(Rebase(row.pools.objectGlobal, imageBase)),
                 reinterpret_cast<void*>(Rebase(row.pools.pedGlobal, imageBase)),
                 reinterpret_cast<void*>(Rebase(row.pools.vehicleGlobal, imageBase))
@@ -163,6 +183,8 @@ namespace audio::host
             return MakeClassic(kIiiClassic);
         case HostId::VC:
             return MakeClassic(kVcClassic);
+        case HostId::SA:
+            return MakeSaClassic(kSaClassic);
         case HostId::GTA3_UNREAL:
             return MakeDetected(kIiiDeBuilds, std::size(kIiiDeBuilds));
         case HostId::VC_UNREAL:
@@ -170,7 +192,7 @@ namespace audio::host
         case HostId::SA_UNREAL:
             return MakeDetected(kSaDeBuilds, std::size(kSaDeBuilds));
         default:
-            // Classic SA, IV, Bully, re3/reVC, custom hosts.
+            // IV, Bully, re3/reVC, custom hosts.
             return MakeT0();
         }
     }

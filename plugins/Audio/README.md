@@ -11,16 +11,16 @@ Optionally create [`audio.ini`](#audioini) to tweak the audio device and master 
 
 ## Feature Matrix
 
-| Feature                               | III 1.0 EN                     | VC 1.0 US | III / VC DE | SA DE | Other Games      |
-| ------------------------------------- | ------------------------------ | --------- | ----------- | ----- | ---------------- |
-| 2D playback, all formats, URL streams | yes                            | yes       | yes         | yes   | yes              |
-| Volume                                | dynamic based on in-game audio | same      | same        | same  | only `audio.ini` |
-| Slow motion changes pitch             | yes                            | yes       | yes         | yes   | no               |
-| 3D sound with live listener           | yes                            | yes       | yes         | yes   | no               |
-| `AT_CHAR` / `AT_CAR` / `AT_OBJECT`    | yes                            | yes       | yes         | yes   | no               |
-| Pause / menu freeze                   | yes                            | yes       | yes         | yes   | yes              |
+| Feature                               | III / VC / SA 1.0              | III / VC / SA DE | Other Games      |
+| ------------------------------------- | ------------------------------ | ---------------- | ---------------- |
+| 2D playback, all formats, URL streams | yes                            | yes              | yes              |
+| Volume                                | dynamic based on in-game audio | same             | only `audio.ini` |
+| Slow motion changes pitch             | yes                            | yes              | no               |
+| 3D sound with live listener           | yes                            | yes              | no               |
+| `AT_CHAR` / `AT_CAR` / `AT_OBJECT`    | yes                            | yes              | no               |
+| Pause / menu freeze                   | yes                            | yes              | yes              |
 
-For GTA SA 1.0 it is recommended to use CLEO5's `SA.Audio` plugin instead.
+GTA SA 1.0 US is the only SA build the plugin knows addresses for; other SA builds are not supported and fall back to `audio.ini` only, with 2D playback.
 
 ## Example Usage
 

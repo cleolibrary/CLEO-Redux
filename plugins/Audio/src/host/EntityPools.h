@@ -22,10 +22,12 @@ namespace audio::host
     };
 
     // 0x4: III/VC classic (vptr first). 0x8: III/VC DE. SA DE kept the classic
-    // pointer + simple transform instead of an inline matrix.
+    // pointer + simple transform instead of an inline matrix. SA 1.0 US is the same
+    // shape one field earlier: CPlaceable is vptr, CSimpleTransform, CMatrix*.
     inline constexpr EntityLayout kEntityInline         = {0x4, 0, 0};
     inline constexpr EntityLayout kEntityInlineRemaster = {0x8, 0, 0};
     inline constexpr EntityLayout kEntityPointer        = {0, 0x18, 0x8};
+    inline constexpr EntityLayout kEntityPointerSa      = {0, 0x14, 0x4};
 
     class EntityPools final : public IEntityResolver, protected HostModule
     {
@@ -42,6 +44,9 @@ namespace audio::host
 
         static constexpr Addresses kIii10      = {0x880E28, 0x8F2C60, 0x9430DC, 0x19C, 0x5F0, 0x5A8};
         static constexpr Addresses kVc10       = {0x94DBE0, 0x97F2AC, 0xA0FDE4, 0x1A0, 0x6D8, 0x5DC};
+        // SA 1.0 US: CPools::ms_pObjectPool/ms_pPedPool/ms_pVehiclePool, pool strides
+        // from CPools::GetObject/GetPed/GetVehicle.
+        static constexpr Addresses kSa10       = {0xB7449C, 0xB74490, 0xB74494, 0x19C, 0x7C4, 0xA18};
         static constexpr Addresses kIiiDeSteam = {0x53D74B8, 0x53D7470, 0x53D74A8, 0x2B0, 0x920, 0x7A0};
         static constexpr Addresses kIiiDeEpic  = {0x53CF518, 0x53CF4D0, 0x53CF508, 0x2B0, 0x920, 0x7A0};
         static constexpr Addresses kIiiDeRgl   = {0x53CE4E0, 0x53CE4A8, 0x53CE4E8, 0x2B0, 0x920, 0x7A0};

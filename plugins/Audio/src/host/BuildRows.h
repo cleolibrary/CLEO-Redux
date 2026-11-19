@@ -39,6 +39,28 @@ namespace audio::host
 
     inline constexpr ClassicPreset kClassicPresets[] = {kIiiClassic, kVcClassic};
 
+    // SA 1.0 US keeps its sliders in CAEAudioHardware (not a SampleManager) and its cam
+    // array in CCamera, so it has its own audio manager on top of the usual rows.
+    //
+    // Strides here are the pool strides from CPools::GetObject/GetPed/GetVehicle
+    // (0x19C/0x7C4/0xA18), which are bigger than the C++ class sizes.
+    struct SaClassicPreset
+    {
+        const char* name;
+        SaAudio::Addresses audio;
+        CameraView::Addresses camera;
+        EntityPools::Addresses pools;
+        EntityLayout entities;
+    };
+
+    inline constexpr SaClassicPreset kSaClassic = {
+        "SA 1.0 US",
+        SaAudio::kSa10,
+        CameraView::kSa10,
+        EntityPools::kSa10,
+        kEntityPointerSa,
+    };
+
     inline constexpr RemasterBuildRow kIiiDeBuilds[] = {
         {"III DE 1.0.113.21181 (Steam)", 0x10310F0, 0, RemasterAudio::kIiiDeSteam, CameraView::kIiiDeSteam,
          EntityPools::kIiiDeSteam, kEntityInlineRemaster},

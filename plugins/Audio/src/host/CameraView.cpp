@@ -18,7 +18,9 @@ namespace audio::host
 
     std::optional<Camera> CameraView::GetFrame() const
     {
-        if (a.cameraObject != 0) return ReadActiveCam();
+        // The cam array wins: SA and the remasters read the active entry, III/VC read the
+        // placed matrix (which sits at offset 0 in VC, so its absence is not a marker).
+        if (a.cam.stride != 0) return ReadActiveCam();
         if (a.camera != 0) return ReadPlacedMatrix();
 
         return std::nullopt;
@@ -27,9 +29,12 @@ namespace audio::host
     bool CameraView::JustChanged() const
     {
         const uintptr_t camera = Addr(a.camera);
-        if (camera == 0) return false;
+        if (camera == 0 || (a.justSwitched == 0 && a.justRestored == 0)) return false;
 
-        return *At<bool>(camera + a.justSwitched) || *At<bool>(camera + a.justRestored);
+        const bool switched = a.justSwitched != 0 && *At<bool>(camera + a.justSwitched);
+        const bool restored = a.justRestored != 0 && *At<bool>(camera + a.justRestored);
+
+        return switched || restored;
     }
 
     std::optional<Camera> CameraView::ReadPlacedMatrix() const
@@ -48,15 +53,15 @@ namespace audio::host
 
     std::optional<Camera> CameraView::ReadActiveCam() const
     {
-        const UnrealCamLayout& cam   = a.cam;
-        const uintptr_t cameraObject = Addr(a.cameraObject);
+        const CamArrayLayout& cam = a.cam;
+        const uintptr_t base      = Addr(a.camera);
 
-        if (cam.array == 0 || cam.stride == 0) return std::nullopt;
+        if (base == 0 || cam.array == 0 || cam.stride == 0) return std::nullopt;
 
-        const uint8_t activeCam = *reinterpret_cast<const uint8_t*>(cameraObject + cam.activeCam);
-        if (activeCam >= kUnrealCamCount) return std::nullopt;
+        const uint8_t activeCam = *reinterpret_cast<const uint8_t*>(base + cam.activeCam);
+        if (activeCam >= kCamArrayCount) return std::nullopt;
 
-        const uintptr_t entry = cameraObject + cam.array + cam.stride * activeCam;
+        const uintptr_t entry = base + cam.array + cam.stride * activeCam;
         const Vec3 position   = *At<Vec3>(entry + cam.source);
         Vec3 forward          = *At<Vec3>(entry + cam.front);
         const Vec3 up         = *At<Vec3>(entry + cam.up);

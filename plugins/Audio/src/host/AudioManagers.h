@@ -39,10 +39,43 @@ namespace audio::host
     // A recovered offset has to be within this distance of one of the three above.
     inline constexpr float kUnrealAudioCurveOffsetTolerance = 0.05f;
     inline constexpr float kUnrealMaxVolumePercent          = 100.0f;
-    // The SampleManager mixes `byte / 128` for its own sounds. Not 127: the byte 64
-    // has to read as 0.5.
+    // The sliders are read as `byte / 128` so the byte 64 reads as 0.5 (what the
+    // game's own menu shows); what the mixer ends up with is SampleManagerGain().
     inline constexpr float kSampleManagerVolumeScale = 128.0f;
     inline constexpr int32_t kMaxSubmixEntries       = 64;
+
+    // The classic SampleManager never feeds an AIL volume straight from the slider
+    // byte: each channel refresh mixes
+    //
+    //   (m_nEffectsFade * channelVolume * m_nEffectsVolume) >> 14
+    //
+    // (VC 0x5D70D0 and III's twin, with the fade byte and a full channel both at 127
+    // during play). The integer floor costs a whole step, so byte 1 already mixes to
+    // 0 while byte 2 gives 1/127: the game is silent on 1, and only a played-through
+    // slider reaches a real 0. Mirroring that keeps the plugin silent exactly where
+    // the game is, instead of playing 1/128 audibly because the mouse left the slider
+    // on 1 rather than 0.
+    inline constexpr unsigned kSampleManagerVolumeMax = 127;
+    inline constexpr unsigned kSampleManagerMixShift  = 14;
+
+    inline float SampleManagerGain(uint8_t volume)
+    {
+        const unsigned mixed = (kSampleManagerVolumeMax * kSampleManagerVolumeMax * volume) >> kSampleManagerMixShift;
+        return static_cast<float>(mixed) / static_cast<float>(kSampleManagerVolumeMax);
+    }
+
+    // San Andreas does not use the SampleManager mixer at all. CAudioEngine hands
+    // CAEAudioHardware one float scaling factor per family
+    //
+    //   SetEffectsMasterVolume (0x506E10): factor = volume * 0.015625, i.e. volume / 64
+    //
+    // and the hardware multiplies every voice by it. The menu keeps 0..64 in
+    // CMenuManager::m_nSfxVolume / m_nRadioVolume and moves it in steps of 4 (default
+    // 64), so the factor *is* the slider: no integer floor, no dead zone, and 1/64 stays
+    // audible because it is a float multiply.
+    inline constexpr size_t kSaMusicScalingOffset = 0x410; // m_fMusicMasterScalingFactor
+    inline constexpr size_t kSaSfxScalingOffset   = 0x414; // m_fEffectMasterScalingFactor
+    inline constexpr float kSaScalingMax          = 1.0f;
 
     // Shared half: the game speed and the remaster curve maths.
     class AudioManager : public IAudioManager, protected HostModule
@@ -64,7 +97,7 @@ namespace audio::host
 
         // 0..1, or false when this host has no mixer or the value looks wrong.
         virtual bool ReadSliders(float& sfx, float& music) const = 0;
-        // Slider value -> what the game feeds its mixer; the classics pass it through.
+        // Slider value -> what the game feeds its mixer; overridden by both families.
         virtual float Shape(float slider, bool /*music*/) const { return slider; }
 
       private:
@@ -86,6 +119,31 @@ namespace audio::host
         static constexpr Addresses kVc  = {0x983B90, 0x0, 0x1, 0x97F264};
 
         explicit ClassicAudio(Addresses addresses, uintptr_t imageBase = 0)
+            : AudioManager({addresses.timeScale}, imageBase), a(addresses)
+        {
+        }
+
+      protected:
+        bool ReadSliders(float& sfx, float& music) const override;
+        float Shape(float slider, bool music) const override;
+
+      private:
+        Addresses a;
+    };
+
+    // SA 1.0 US: the CAEAudioHardware scaling factors, not a byte mixer.
+    class SaAudio final : public AudioManager
+    {
+      public:
+        struct Addresses
+        {
+            uintptr_t audioHardware; // CAEAudioHardware
+            uintptr_t timeScale;     // CTimer::ms_fTimeScale
+        };
+
+        static constexpr Addresses kSa10 = {0xB5F8B8, 0xB7CB64};
+
+        explicit SaAudio(Addresses addresses, uintptr_t imageBase = 0)
             : AudioManager({addresses.timeScale}, imageBase), a(addresses)
         {
         }

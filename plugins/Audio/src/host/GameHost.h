@@ -44,6 +44,19 @@ namespace audio::host
         return host;
     }
 
+    // SA 1.0 US: the sliders live in CAEAudioHardware instead of the SampleManager, but
+    // the camera and the pools follow the same classic layout.
+    inline GameHost AssembleHost(const SaClassicPreset& preset)
+    {
+        GameHost host;
+        host.audio = std::make_unique<SaAudio>(preset.audio);
+        host.view  = std::make_unique<CameraView>(preset.camera);
+        host.pools = std::make_unique<EntityPools>(preset.pools, preset.entities);
+        host.tier  = HostTier::T2;
+        host.name  = preset.name != nullptr ? preset.name : "";
+        return host;
+    }
+
     // DE
     inline GameHost AssembleHost(const RemasterBuildRow& row, uintptr_t imageBase)
     {
@@ -51,7 +64,7 @@ namespace audio::host
         host.audio = std::make_unique<RemasterAudio>(row.audio, imageBase);
         host.view  = std::make_unique<CameraView>(row.camera, imageBase);
         host.pools = std::make_unique<EntityPools>(row.pools, row.entities, imageBase);
-        host.tier  = row.camera.cameraObject != 0 ? HostTier::T2 : HostTier::T1;
+        host.tier  = row.camera.camera != 0 ? HostTier::T2 : HostTier::T1;
         host.name  = row.name != nullptr ? row.name : "";
         return host;
     }
