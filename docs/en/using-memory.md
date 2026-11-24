@@ -7,7 +7,7 @@
 - [Casting methods](#casting-methods)
 - [Calling Foreign Functions](#calling-foreign-functions)
   - [Convenience methods with Fn object](#convenience-methods-with-fn-object)
-- [Finding Memory Addresses in re3 and reVC](#finding-memory-addresses-in-re3-and-revc)
+- [Finding Memory Addresses](#finding-memory-addresses)
 - [Allocating and Freeing Memory](#allocating-and-freeing-memory)
 - [Watching Values](#watching-values)
 
@@ -276,7 +276,7 @@ var flag = Memory.Fn.CdeclU8(0x1234567)();
 
 This code invokes a `cdecl` function at `0x1234567` with no arguments and stores the result as an 8-bit unsigned integer value.
 
-### Finding Memory Addresses in re3 and reVC
+### Finding Memory Addresses
 
 Since `re3` and `reVC` use address space layout randomization (ASLR) feature, it can be difficult to locate needed addresses. CLEO Redux provides a helper function `Memory.Translate` that accepts a name of the function or variable and returns its current address. If the requested symbol is not found, the result is 0.
 
@@ -289,7 +289,7 @@ if (addr) {
 }
 ```
 
-At the moment `Memory.Translate` should only be used in `re3` and `reVC`. In other games you will be getting `0` as a result most of the time.
+`Memory.Translate` works well on games with a PDB file (e.g. re3 or reVC). For any other build, supply your own [symbol table](./embedding.md#symbol-tables) and translate from it.
 
 ### Allocating and Freeing Memory
 

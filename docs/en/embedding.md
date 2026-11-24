@@ -8,7 +8,8 @@ CLEO Redux can be embedded and run JS scripts on an unknown (i.e. not [supported
   - [Manually Controlling the Runtime](#manually-controlling-the-runtime)
 - [Available Commands](#available-commands)
 - [Manifest](#manifest)
-  - [Example](#example)
+  - [Symbol tables](#symbol-tables)
+  - [Examples](#examples)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rk2LvDt7UkI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -83,7 +84,8 @@ Manifest is a file with static configuration for the given host. Can be used wit
 {
     "host": string,
     "host_name": string,
-    "compound": boolean
+    "compound": boolean,
+    "locator": string | string[]
 }
 ```
 
@@ -93,6 +95,39 @@ Manifest is a file with static configuration for the given host. Can be used wit
 - `compound` defines whether the host uses [compound definitions](./definitions.md). By default the host uses definitions from the file matching `<host>.json`, e.g. `application.json`. This file should be provided by the person managing integration of CLEO Redux with the given host and placed in the `.config` folder.
 
   When `compound` is set to `true` the host also uses command definitions for the Unknown host (e.g. `unknown_x86.json`). If this file is missing CLEO downloads it from Sanny Builder Library.
+- `locator` lists [symbol tables](#symbol-tables) extending the built-in one. Accepts one path or an array of paths, relative to `.config` folder. Default value is `["*.gps"]`. Files are read in list order. If duplicate symbols are found, the last one wins.
+
+### Symbol tables
+
+A `.gps` file maps symbol names to addresses for the host. Tables are read once at startup, before any hooks are installed, so changing one requires a host restart.
+
+```json
+{
+  "schema": 1,
+  "host": {
+    "version": "1.0.113.21181",
+    "size": 89497064
+  },
+  "symbols": {
+    "CGame::Process": "1147810",
+    "CHud::SetHelpMessage": "E8 ?? ?? ?? ?? 48 83 C4 20",
+    "CVehicle::ProcessControl": "140A1B2C0"
+  }
+}
+```
+
+- `schema` is the format version (currently `1`). A file written for a newer schema is still read; unknown fields are ignored.
+- `symbols` maps a symbol name to one of:
+  - a hexadecimal **offset** from the image base (e.g. `"1147810"`),
+  - an **absolute** address (e.g. `"140A1B2C0"` - any value not below the image base is treated as absolute),
+  - a byte **signature** (e.g. `"E8 ?? ?? ?? ??"`) scanned in the main module.
+- `host` is optional and defines a set of conditions for symbol table to be accepted: `name` (host name, e.g. `sa_unreal`), `version` (e.g. `1.0.113.21181`), `size` (executable size in bytes), `pattern` (a signature that must be found in the executable).
+
+A file that is not well-formed JSON, or that misses `schema`/`symbols`, is reported in the [log](./log.md) and ignored as a whole. 
+
+`.gps` files are loaded on any host by default, drop them into `.config` folder to extend or overwrite the symbol table.
+
+To get an absolute address of a symbol from a script use [Memory.Translate](./using-memory.md#finding-memory-addresses).
 
 ### Examples
 
