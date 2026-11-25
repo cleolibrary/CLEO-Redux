@@ -16,7 +16,7 @@ SDK provides a way to create new script commands for any game that CLEO Redux su
 
 ## SDK Version
 
-The current version is `6`. Changes to SDK advance this number by one.
+The current version is `8`. Changes to SDK advance this number by one.
 
 ## Platforms Support
 

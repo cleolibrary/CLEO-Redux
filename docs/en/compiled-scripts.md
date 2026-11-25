@@ -4,7 +4,7 @@ Older games in Grand Theft Auto 3D series (GTA III, Vice City, San Andreas) use 
 
 CS scripts run alongside the original SCM scripts and are subject to the [same limitations](https://docs.sannybuilder.com/scm-documentation/gta-limits).
 
-[Check the FAQ](the-definitive-edition-faq.md#how-do-i-compile-cleo-scripts-with-sanny-builder) for the information on CS support in the remastered games.
+[Check the FAQ](the-definitive-edition-faq.md#how-do-i-compile-cleo-scripts-for-the-trilogy-with-sanny-builder) for the information on CS support in the remastered games.
 
 ## Writing a Compiled Script
 
