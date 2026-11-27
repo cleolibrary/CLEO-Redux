@@ -9,7 +9,7 @@ crate-type = ["cdylib"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-cleo_redux_sdk = "*"
+cleo_redux_sdk = "0.0.15"
 ctor = "0.1.21"
 null_fn = "0.1.1"
 minhook = "0.7.1"

@@ -4,5 +4,5 @@ Rust SDK uses similar to C++ interface with some extra wrapping methods to allow
 
 ## Example
 
-See the `Input` plugin. It adds a bunch of new commands to check or emulate keyboard and mouse input. 
-https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input
+See the [Input](https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/Input) plugin. It adds a bunch of new commands to check or emulate keyboard and mouse input. 
+

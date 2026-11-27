@@ -24,11 +24,9 @@ For the complete reference on supported features [refer to this page](https://gi
 
 ## Supported Windows Versions
 
-CLEO Redux supports Windows 10 and Windows 11.
+CLEO Redux supports Windows 8, 10, and 11 (recommended).
 
-Windows 7 support was removed in version 1.3.0; version 1.2.2 is the last release that supports Windows 7. 
-
-Other Windows versions have not been tested.
+Windows 7 requires a separate build of CLEO Redux (available in both 32-bit and 64-bit versions). However, stability is not guaranteed.
 
 ## License
 

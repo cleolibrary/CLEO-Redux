@@ -175,7 +175,7 @@ namespace audio::host
     GameHost CreateHost()
     {
         const HostId hostId = GetHostId();
-        LogInfo("Audio plugin: host id %d", static_cast<int>(hostId));
+        LogInfo("Audio Plugin 1.0");
 
         switch (hostId)
         {

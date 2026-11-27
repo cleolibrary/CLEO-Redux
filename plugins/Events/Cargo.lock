@@ -16,9 +16,9 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "cleo_redux_sdk"
-version = "0.0.14"
+version = "0.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7c581e6079ed52c7efa171e87c0582a41acab4a41da5d74ca6bcdd8a3379632c"
+checksum = "3ef87571ef360c8810a1d353484d982ee8bed99f5aae85ec62fdc110499eb8b3"
 
 [[package]]
 name = "ctor"

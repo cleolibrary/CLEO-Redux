@@ -97,4 +97,4 @@ var result = native("INT_ADD", 10, 20); // 30
 
 ## Example
 
-See the [`IniFiles`](https://library.sannybuilder.com/#/sa_unreal/classes/IniFile) plugin that includes a complete project for Visual Studio 2019.
+See the [IniFiles](https://github.com/cleolibrary/CLEO-Redux/tree/master/plugins/IniFiles) plugin that includes a complete project for Visual Studio 2019.

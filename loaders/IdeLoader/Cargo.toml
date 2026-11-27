@@ -14,4 +14,4 @@ gta-ide-parser = "0.0.4"
 ctor = "0.1.21"
 serde_json = { version = "1.0.140", features = ["preserve_order"] }
 serde = { version = "1.0.219", features = ["derive"] }
-cleo_redux_sdk = "0.0.14"
+cleo_redux_sdk = "0.0.15"
