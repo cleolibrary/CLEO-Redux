@@ -34,18 +34,14 @@ This is how it can be implemented in Rust:
 ```toml
 [dependencies]
 ctor = "0.1.21"
-cleo_redux_sdk = "^0.0.6"
+cleo_redux_sdk = "^0.0.15"
 ```
 
 ```rust
 use ctor::*;
 
-#[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
-#[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
-
 #[ctor]
 fn init() {
-    use cleo_redux_sdk;
     use std::{thread, time};
 
     // load CLEO scripts, FXT, enable file watcher

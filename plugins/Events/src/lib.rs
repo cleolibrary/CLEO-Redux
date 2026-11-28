@@ -5,10 +5,6 @@ extern crate lazy_static;
 mod utils;
 mod gta_classic;
 
-#[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
-#[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
-unsafe extern "C" {}
-
 #[ctor]
 fn init() {
     cleo_redux_sdk::log("Events plugin 1.2");
