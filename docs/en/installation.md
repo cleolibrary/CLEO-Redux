@@ -32,7 +32,7 @@ If you don't want to or can't use the installer, try portable versions available
 
 CLEO directory is the primary location where you install [CLEO scripts](./installation-scripts.md), [CLEO plugins](./installation-plugins.md) and [custom texts](./using-fxt.md). CLEO Redux automatically creates this folder during installation and any time the game starts.
 
-In most cases this directory can be found in the game folder. If, however, CLEO lacks write permissions there and fails to create new files, it uses an alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `CLEO` directory can be found there.
+In most cases this directory can be found in the game folder. If, however, CLEO lacks write permissions there and fails to create new files, it uses an alternate path at `C:\Users\<your_username>\AppData\Roaming\CLEO Redux`. `cleo_redux.log` and the `cleo` directory can be found there.
 
 ## Dependency on ASI Loader
 
@@ -56,5 +56,5 @@ If the default name does not work with the given game, try renaming the dll file
 To uninstall CLEO Redux perform the following steps:
 
 - Delete `cleo_redux.asi` (or `cleo_redux64.asi`).
-- Delete the `CLEO` folder (optional).
+- Delete the `cleo` folder (optional).
 - Delete the `cleo_redux.log` (optional)

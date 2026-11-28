@@ -33,7 +33,7 @@ Boot scripts are special one-shot scripts running as soon as runtime is loaded. 
 Boot scripts are identified by the `.boot.mjs` or `.boot.mts` filename suffix (case-insensitive). For example:
 
 - `init.boot.mjs`
-- `CLEO/mod/mod.boot.mjs`
+- `cleo\mod\mod.boot.mjs`
 
 Boot scripts have the following characteristics:
 
@@ -54,8 +54,8 @@ A single self-contained script file can be placed directly in the [CLEO director
 Consider this example structure:
 
 ```
-CLEO/
-├─ CLEO_TEXT/
+cleo/
+├─ cleo_text/
 │  ├─ main.fxt
 ├─ folderA/
 │  ├─ text.fxt
@@ -67,7 +67,7 @@ CLEO/
 ├─ script2.cs
 ```
 
-By default CLEO Redux loads all CS and JS files from the root of the CLEO directory and FXT files from the `CLEO_TEXT` folder. So it loads `script1.js`, `script2.cs`, and `main.fxt`.
+By default CLEO Redux loads all CS and JS files from the root of the CLEO directory and FXT files from the `cleo_text` folder. So it loads `script1.js`, `script2.cs`, and `main.fxt`.
 
 ### Script Directories (index.js/index.ts)
 
@@ -75,7 +75,7 @@ Complex JS/TS scripts having a lot of dependencies (imported files, [FXT](./usin
 
 When using `index.js` or `index.ts` as the entry point, CLEO Redux runs this file and also loads all FXT files from the same directory. In the example above, CLEO loads `index.js` and `text.fxt` located in the `folderA` and skips `folderB` as there is no `index.js` file.
 
-> CLEO_TEXT, CLEO_PLUGINS, and .config directories are exempt from this rule and are reserved for other purposes.
+> cleo_text, cleo_plugins, and .config directories are exempt from this rule and are reserved for other purposes.
 
 ### Using mod.json manifest
 
@@ -90,7 +90,7 @@ Alternatively, you can use a `mod.json` file to configure your script directory.
 Here's an example using `mod.json`:
 
 ```
-CLEO/
+cleo/
 ├─ my_mod/
 │  ├─ mod.json
 │  ├─ main.ts

@@ -30,7 +30,7 @@ If the file is named differently without the required permission tokens, CLEO re
 For [script directories](./script-lifecycle.md#organizing-scripts) (subdirectories with `index.js`/`index.ts`), include permission tokens in the directory name:
 
 ```
-CLEO/
+cleo/
 ├─ my_mod[mem][dll]/
 │  ├─ index.ts
 │  ├─ utils.ts
@@ -41,7 +41,7 @@ CLEO/
 Alternatively, declare permissions in a `mod.json` file within your script directory:
 
 ```
-CLEO/
+cleo/
 ├─ my_mod/
 │  ├─ mod.json
 │  ├─ index.ts

@@ -13,17 +13,17 @@ You can import other scripts and some custom file formats in your code to make t
 
 - Extensions: `.js`, `.mjs`, `.ts`, `.mts`
 
-`./` in a path resolves to the current file's directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from './bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\extra\bar.js`.
+`./` in a path resolves to the current file's directory. If a script is located at `C:\Game\cleo\mod1\extra\addon.js` and it contains `import { foo } from './bar.js'`, the runtime will try to load `C:\Game\cleo\mod1\extra\bar.js`.
 
-`../` resolves to the parent directory. If a script is located at `C:\Game\CLEO\mod1\extra\addon.js` and it contains `import { foo } from '../bar.js'`, the runtime will try to load `C:\Game\CLEO\mod1\bar.js`. You can combine `../` to traverse multiple levels up.
+`../` resolves to the parent directory. If a script is located at `C:\Game\cleo\mod1\extra\addon.js` and it contains `import { foo } from '../bar.js'`, the runtime will try to load `C:\Game\cleo\mod1\bar.js`. You can combine `../` to traverse multiple levels up.
 
-To avoid running imported `.js` files as standalone scripts, either put them into a separate folder outside of the main [CLEO directory](./cleo-directory.md) (e.g. `CLEO/includes/`) or use the extension `.mjs` (or `.mts` for TypeScript files).
+To avoid running imported `.js` files as standalone scripts, either put them into a separate folder outside of the main [CLEO directory](./cleo-directory.md) (e.g. `cleo\includes\`) or use the extension `.mjs` (or `.mts` for TypeScript files).
 
 ```js
 // imports default export from other.js or other.mjs located in the same directory
 import func from "./other";
 
-// imports named export PedType from types.js or types.mjs located in the CLEO/includes directory
+// imports named export PedType from types.js or types.mjs located in the cleo\includes directory
 import { PedType } from "./includes/types";
 ```
 

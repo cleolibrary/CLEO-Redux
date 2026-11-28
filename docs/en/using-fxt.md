@@ -9,7 +9,7 @@ CLEO Redux supports custom text content without the need to edit game files.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ctsKy7WnY9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `CLEO\CLEO_TEXT` [folder](./cleo-directory.md). The file name can be any valid name.
+CLEO Redux can load and serve static text content. Create a new file with the `.fxt` extension and put it in the `cleo\cleo_text` [folder](./cleo-directory.md). The file name can be any valid name.
 
 Each FXT file contains a list of the key-value entries in the following format:
 

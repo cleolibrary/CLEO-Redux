@@ -13,4 +13,4 @@ crate-type = ["cdylib"]
 ctor = "0.1.21"
 [target.'cfg(windows)'.dependencies]
 winapi = { version = "0.3", features = ["winuser"] }
-cleo_redux_sdk = "^0.0.10"
+cleo_redux_sdk = "0.0.15"

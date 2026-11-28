@@ -16,7 +16,7 @@ SDK provides a way to create new script commands for any game that CLEO Redux su
 
 ## SDK Version
 
-The current version is `6`. Changes to SDK advance this number by one.
+The current version is `8`. Changes to SDK advance this number by one.
 
 ## Platforms Support
 
@@ -26,7 +26,7 @@ It's recommended for 64-bit plugins to have `64` in their names (e.g. `myplugin6
 
 ## Plugin Lifetime
 
-Each plugin is a dynamic-link library (DLL) with the `.cleo` extension that must be placed in `CLEO\CLEO_PLUGINS`. CLEO Redux scans this directory on startup and loads all `.cleo` files using WinAPI's function `LoadLibrary`.
+Each plugin is a dynamic-link library (DLL) with the `.cleo` extension that must be placed in `cleo\cleo_plugins`. CLEO Redux scans this directory on startup and loads all `.cleo` files using WinAPI's function `LoadLibrary`.
 
 ## Path Resolution Convention
 
@@ -34,8 +34,8 @@ String arguments representing a path to the directory or file must be normalized
 
 - an absolute path gets resolved as is
 - a path starting with `CLEO/` or `CLEO\\` gets resolved relative to the [CLEO directory](./cleo-directory.md) which is either
-  - `{game}\CLEO` or
-  - `{user}\AppData\Roaming\CLEO Redux\CLEO`
+  - `{game}\cleo` or
+  - `{user}\AppData\Roaming\CLEO Redux\cleo`
 - a path starting with `./` or `../` gets resolved relative to the script directory.
 
   What is **the script directory**?

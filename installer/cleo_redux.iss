@@ -63,6 +63,7 @@ Name: "plugins/memops"; Description: "MemoryOperations (by ThirteenAG)"; Types: 
 Name: "plugins/input"; Description: "Input 1.3"; Types: full
 Name: "plugins/frontend"; Description: "Frontend 1.1"; Types: full
 Name: "plugins/events"; Description: "Events 1.2"; Types: full
+Name: "plugins/audio"; Description: "Audio 1.0 (BASS, plays mp3/wav from scripts)"; Types: full
 Name: "loaders"; Description: "File Loaders"; Types: full
 Name: "loaders/text"; Description: "*.txt, *.text (Text files)"; Types: full
 Name: "loaders/ide"; Description: "*.ide, *.zon (Item Definition, Zones)"; Types: full
@@ -74,7 +75,7 @@ Name: "asiloader"; Description: "Ultimate ASI Loader (by ThirteenAG)"; Types: fu
 
 [Dirs]
 Name: "{app}"; Permissions: users-modify
-Name: "{app}\CLEO"; Permissions: users-modify
+Name: "{app}\cleo"; Permissions: users-modify
 
 [Files]
 ; CLEO
@@ -82,57 +83,57 @@ Source: "{#SourceDir}\cleo_redux.asi"; DestDir: "{app}"; Flags: ignoreversion; C
 Source: "{#SourceDir}\cleo_redux64.asi"; DestDir: "{app}"; Flags: ignoreversion; Check: IsX64;  Components: program;
 
 ; SDK
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX86;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown_x86.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX86; Components: program/commands;
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\unknown.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX86; Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX64;  Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown_x64.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX64; Components: program/commands;
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\unknown.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsX64; Components: program/commands;
+Source: "{#OutputDir}\unknown_x86\cleo\.config\unknown_x86.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsX86;  Components: program/commands;
+Source: "{#OutputDir}\unknown_x86\cleo\.config\unknown_x86.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsX86; Components: program/commands;
+Source: "{#OutputDir}\unknown_x86\cleo\.config\unknown.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsX86; Components: program/commands;
+Source: "{#OutputDir}\unknown_x64\cleo\.config\unknown_x64.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsX64;  Components: program/commands;
+Source: "{#OutputDir}\unknown_x64\cleo\.config\unknown_x64.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsX64; Components: program/commands;
+Source: "{#OutputDir}\unknown_x64\cleo\.config\unknown.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsX64; Components: program/commands;
 
 ; unknown x86
-Source: "{#OutputDir}\unknown_x86\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86;  Components: program/commands;
+Source: "{#OutputDir}\unknown_x86\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsUnknown and IsX86;  Components: program/commands;
 ; unknown x64
-Source: "{#OutputDir}\unknown_x64\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64;  Components: program/commands;
+Source: "{#OutputDir}\unknown_x64\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsUnknown and IsX64;  Components: program/commands;
 ; GTA III and re3
-Source: "{#OutputDir}\gta3\CLEO\.config\gta3.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
-Source: "{#OutputDir}\gta3\CLEO\.config\gta3.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
-Source: "{#OutputDir}\gta3\CLEO\.config\gta3.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
-Source: "{#OutputDir}\gta3\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
+Source: "{#OutputDir}\gta3\cleo\.config\gta3.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
+Source: "{#OutputDir}\gta3\cleo\.config\gta3.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
+Source: "{#OutputDir}\gta3\cleo\.config\gta3.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
+Source: "{#OutputDir}\gta3\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsGta3;  Components: program/commands;
 ; GTA VC and reVC
-Source: "{#OutputDir}\vc\CLEO\.config\vc.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
-Source: "{#OutputDir}\vc\CLEO\.config\vc.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
-Source: "{#OutputDir}\vc\CLEO\.config\vc.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
-Source: "{#OutputDir}\vc\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
+Source: "{#OutputDir}\vc\cleo\.config\vc.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
+Source: "{#OutputDir}\vc\cleo\.config\vc.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
+Source: "{#OutputDir}\vc\cleo\.config\vc.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
+Source: "{#OutputDir}\vc\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVC;  Components: program/commands;
 ; GTA SA
-Source: "{#OutputDir}\sa\CLEO\.config\sa.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
-Source: "{#OutputDir}\sa\CLEO\.config\sa.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
-Source: "{#OutputDir}\sa\CLEO\.config\sa.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
-Source: "{#OutputDir}\sa\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
+Source: "{#OutputDir}\sa\cleo\.config\sa.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
+Source: "{#OutputDir}\sa\cleo\.config\sa.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
+Source: "{#OutputDir}\sa\cleo\.config\sa.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
+Source: "{#OutputDir}\sa\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSA;  Components: program/commands;
 ; GTA IV
-Source: "{#OutputDir}\gta_iv\CLEO\.config\gta_iv.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
-Source: "{#OutputDir}\gta_iv\CLEO\.config\gta_iv.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
-Source: "{#OutputDir}\gta_iv\CLEO\.config\gta_iv.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
-Source: "{#OutputDir}\gta_iv\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
+Source: "{#OutputDir}\gta_iv\cleo\.config\gta_iv.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
+Source: "{#OutputDir}\gta_iv\cleo\.config\gta_iv.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
+Source: "{#OutputDir}\gta_iv\cleo\.config\gta_iv.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
+Source: "{#OutputDir}\gta_iv\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsIV;  Components: program/commands;
 ; GTA III Unreal
-Source: "{#OutputDir}\gta3_unreal\CLEO\.config\gta3_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
-Source: "{#OutputDir}\gta3_unreal\CLEO\.config\gta3_unreal.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
-Source: "{#OutputDir}\gta3_unreal\CLEO\.config\gta3.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
-Source: "{#OutputDir}\gta3_unreal\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
+Source: "{#OutputDir}\gta3_unreal\cleo\.config\gta3_unreal.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
+Source: "{#OutputDir}\gta3_unreal\cleo\.config\gta3_unreal.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
+Source: "{#OutputDir}\gta3_unreal\cleo\.config\gta3.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
+Source: "{#OutputDir}\gta3_unreal\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: Is3Master;  Components: program/commands;
 ; GTA VC Unreal
-Source: "{#OutputDir}\vc_unreal\CLEO\.config\vc_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
-Source: "{#OutputDir}\vc_unreal\CLEO\.config\vc_unreal.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
-Source: "{#OutputDir}\vc_unreal\CLEO\.config\vc.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
-Source: "{#OutputDir}\vc_unreal\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
+Source: "{#OutputDir}\vc_unreal\cleo\.config\vc_unreal.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
+Source: "{#OutputDir}\vc_unreal\cleo\.config\vc_unreal.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
+Source: "{#OutputDir}\vc_unreal\cleo\.config\vc.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
+Source: "{#OutputDir}\vc_unreal\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsVCMaster;  Components: program/commands;
 ; GTA SA Unreal
-Source: "{#OutputDir}\sa_unreal\CLEO\.config\sa_unreal.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
-Source: "{#OutputDir}\sa_unreal\CLEO\.config\sa_unreal.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
-Source: "{#OutputDir}\sa_unreal\CLEO\.config\sa.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
-Source: "{#OutputDir}\sa_unreal\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
+Source: "{#OutputDir}\sa_unreal\cleo\.config\sa_unreal.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
+Source: "{#OutputDir}\sa_unreal\cleo\.config\sa_unreal.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
+Source: "{#OutputDir}\sa_unreal\cleo\.config\sa.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
+Source: "{#OutputDir}\sa_unreal\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsSAMaster;  Components: program/commands;
 ; Bully
-Source: "{#OutputDir}\bully\CLEO\.config\bully.json"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
-Source: "{#OutputDir}\bully\CLEO\.config\bully.enums.mts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
-Source: "{#OutputDir}\bully\CLEO\.config\bully.d.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
-Source: "{#OutputDir}\bully\CLEO\.config\enums.ts"; DestDir: "{app}\CLEO\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
+Source: "{#OutputDir}\bully\cleo\.config\bully.json"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
+Source: "{#OutputDir}\bully\cleo\.config\bully.enums.mts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
+Source: "{#OutputDir}\bully\cleo\.config\bully.d.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
+Source: "{#OutputDir}\bully\cleo\.config\enums.ts"; DestDir: "{app}\cleo\.config"; Flags: ignoreversion; Check: IsBully;  Components: program/commands;
 
 ; Source: "{#SourceDir}\Release\LICENSE.txt"; DestDir: "{app}"; DestName: "CLEO_REDUX_LICENSE.txt"; Flags: ignoreversion;  Components: program
 
@@ -145,52 +146,58 @@ Source: "{tmp}\d3d9.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; 
 Source: "{tmp}\version.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; Check: not isRe and IsX64; AfterInstall: Extract('{app}\version.zip', 'version.dll', '{app}');  Components: asiloader;
 
 ; Plugins
-Source: "{#SourceDir}\plugins\Dylib\build\dylib.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/dylib
-Source: "{#SourceDir}\plugins\Dylib\build\dylib64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/dylib
-Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/ini
-Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/ini
-Source: "{#SourceDir}\plugins\Input\build\Input.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: plugins/input
-Source: "{#SourceDir}\plugins\Input\build\Input64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: plugins/input
-Source: "{#SourceDir}\plugins\Frontend\Frontend.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: plugins/frontend
-Source: "{#SourceDir}\plugins\Events\build\Events.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86 and not IsUnknown; Components: plugins/events
-Source: "{#SourceDir}\plugins\Events\build\Events64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64 and not IsUnknown; Components: plugins/events
+Source: "{#SourceDir}\plugins\Dylib\build\dylib.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86; Components: plugins/dylib
+Source: "{#SourceDir}\plugins\Dylib\build\dylib64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64; Components: plugins/dylib
+Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86; Components: plugins/ini
+Source: "{#SourceDir}\plugins\IniFiles\build\IniFiles64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64; Components: plugins/ini
+Source: "{#SourceDir}\plugins\Input\build\Input.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86; Components: plugins/input
+Source: "{#SourceDir}\plugins\Input\build\Input64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64; Components: plugins/input
+Source: "{#SourceDir}\plugins\Frontend\Frontend.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: plugins/frontend
+Source: "{#SourceDir}\plugins\Events\build\Events.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86 and not IsUnknown; Components: plugins/events
+Source: "{#SourceDir}\plugins\Events\build\Events64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64 and not IsUnknown; Components: plugins/events
+Source: "{#SourceDir}\plugins\Audio\build\Audio.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86; Components: plugins/audio
+Source: "{#SourceDir}\plugins\Audio\build\Audio64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64; Components: plugins/audio
+; BASS lives next to cleo_redux.asi - the plugin asks the SDK for that directory first
+Source: "{#SourceDir}\plugins\Audio\third_party\bass\bass.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: IsX86; Components: plugins/audio
+Source: "{#SourceDir}\plugins\Audio\third_party\bass\bass64.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: IsX64; Components: plugins/audio
 
-Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: InstallImGuiRedux32; Components: plugins/imgui;
-Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiReduxWin64.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/imgui;
+Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\cleo\cleo_plugins"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: InstallImGuiRedux32; Components: plugins/imgui;
+Source: "{tmp}\ImGuiRedux.zip"; DestDir: "{app}\cleo\cleo_plugins"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\cleo\cleo_plugins\ImGuiRedux.zip', 'ImGuiReduxWin64.cleo', '{app}\cleo\cleo_plugins'); Components: plugins/imgui;
 
 Source: "{tmp}\d3d8.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; AfterInstall: Extract('{app}\d3d8.zip', 'd3d8.dll', '{app}'); Components: plugins/imgui/d3d8to9;
 Source: "{tmp}\SilentPatch.zip"; DestDir: "{app}"; Flags: deleteafterinstall external; AfterInstall: ExtractAll('{app}\SilentPatch.zip', '{app}'); Components: plugins/imgui/SilentPatch;
 
-Source: "{tmp}\MemoryOperations.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\MemoryOperations.zip', 'MemoryOperations.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/memops;
-Source: "{tmp}\MemoryOperations.zip"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\CLEO\CLEO_PLUGINS\MemoryOperations.zip', 'MemoryOperations64.cleo', '{app}\CLEO\CLEO_PLUGINS'); Components: plugins/memops;
+Source: "{tmp}\MemoryOperations.zip"; DestDir: "{app}\cleo\cleo_plugins"; Flags: deleteafterinstall external; Check: IsX86; AfterInstall: Extract('{app}\cleo\cleo_plugins\MemoryOperations.zip', 'MemoryOperations.cleo', '{app}\cleo\cleo_plugins'); Components: plugins/memops;
+Source: "{tmp}\MemoryOperations.zip"; DestDir: "{app}\cleo\cleo_plugins"; Flags: deleteafterinstall external; Check: IsX64; AfterInstall: Extract('{app}\cleo\cleo_plugins\MemoryOperations.zip', 'MemoryOperations64.cleo', '{app}\cleo\cleo_plugins'); Components: plugins/memops;
 
 
 ; Custom File Loaders
-Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/text
-Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/text
-Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/ide
-Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/ide
-Source: "{#SourceDir}\loaders\FxtLoader\build\FxtLoader.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX86; Components: loaders/fxt
-Source: "{#SourceDir}\loaders\FxtLoader\build\FxtLoader64.cleo"; DestDir: "{app}\CLEO\CLEO_PLUGINS"; Flags: ignoreversion; Check: IsX64; Components: loaders/fxt
+Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86; Components: loaders/text
+Source: "{#SourceDir}\loaders\TextLoader\build\TextLoader64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64; Components: loaders/text
+Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86; Components: loaders/ide
+Source: "{#SourceDir}\loaders\IdeLoader\build\IdeLoader64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64; Components: loaders/ide
+Source: "{#SourceDir}\loaders\FxtLoader\build\FxtLoader.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX86; Components: loaders/fxt
+Source: "{#SourceDir}\loaders\FxtLoader\build\FxtLoader64.cleo"; DestDir: "{app}\cleo\cleo_plugins"; Flags: ignoreversion; Check: IsX64; Components: loaders/fxt
 
 ; Extra Modules
-Source: "{#OutputDir}\scm.mts"; DestDir: "{app}\CLEO"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: modules/scmts
+Source: "{#OutputDir}\scm.mts"; DestDir: "{app}\cleo"; Flags: ignoreversion; Check: IsX86 and (IsGta3 or IsVC or IsSA); Components: modules/scmts
 
 [INI]
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowCs"; String: 1
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowJs"; String: 1
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "AllowFxt"; String: 1
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "LogOpcodes"; String: 0
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "General"; Key: "PermissionLevel"; String: Lax
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "General"; Key: "AllowCs"; String: 1
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "General"; Key: "DelegateCs"; String: 0
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "General"; Key: "AllowJs"; String: 1
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "General"; Key: "AllowFxt"; String: 1
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "General"; Key: "LogOpcodes"; String: 0
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "General"; Key: "PermissionLevel"; String: Lax
 
 ; will be set in wpFinished
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Host"; Key: "EnableSelfHost"; String: 0 
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Host"; Key: "SelfHostFps"; String: 30
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "Host"; Key: "EnableSelfHost"; String: 0 
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "Host"; Key: "SelfHostFps"; String: 30
 
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "mem"; String: 1
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "dll"; String: 1
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "fs"; String: 0
-Filename: "{app}\CLEO\.config\cleo.ini"; Section: "Permissions"; Key: "net"; String: 0
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "Permissions"; Key: "mem"; String: 1
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "Permissions"; Key: "dll"; String: 1
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "Permissions"; Key: "fs"; String: 0
+Filename: "{app}\cleo\.config\cleo.ini"; Section: "Permissions"; Key: "net"; String: 0
 
 
 [CustomMessages]
@@ -303,8 +310,8 @@ end;
 
 procedure InstallImGuiRedux32();
 begin
-  Extract('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.zip', 'ImGuiReduxWin32.cleo', '{app}\CLEO\CLEO_PLUGINS');
-  DeleteFile(ExpandConstant('{app}\CLEO\CLEO_PLUGINS\ImGuiRedux.cleo'));
+  Extract('{app}\cleo\cleo_plugins\ImGuiRedux.zip', 'ImGuiReduxWin32.cleo', '{app}\cleo\cleo_plugins');
+  DeleteFile(ExpandConstant('{app}\cleo\cleo_plugins\ImGuiRedux.cleo'));
 end;
 
 function IdentifyGame(Dir: String): Integer;
@@ -479,15 +486,22 @@ begin
    begin
     FGameId := IdentifyGame(WizardDirValue);
      // reset all checkboxes to their initial state first
-    for I := 1 to 18 do
+     // NOTE: indices are 0-based and follow the declaration order in [Components]
+    for I := 1 to 19 do
     begin
       WizardForm.ComponentsList.ItemEnabled[I] := True;
       WizardForm.ComponentsList.Checked[I] := True;
     end;
     
+    // Audio plugin is off by default in GTA San Andreas
+    if IsSA then
+    begin
+      WizardForm.ComponentsList.Checked[12] := False;
+    end;
+
     // scm.ts: https://github.com/x87/scm.ts
-    WizardForm.ComponentsList.ItemEnabled[17] := False;
-    WizardForm.ComponentsList.Checked[17] := False;
+    WizardForm.ComponentsList.ItemEnabled[18] := False;
+    WizardForm.ComponentsList.Checked[18] := False;
 
     if (IsX64()) then
     begin
@@ -526,8 +540,8 @@ begin
         // scm.ts supports only GTA III, VC and SA: https://github.com/x87/scm.ts        
         if (IsGta3 or IsVC or IsSA) then
         begin
-          WizardForm.ComponentsList.ItemEnabled[17] := True;
-          WizardForm.ComponentsList.Checked[17] := True;
+          WizardForm.ComponentsList.ItemEnabled[18] := True;
+          WizardForm.ComponentsList.Checked[18] := True;
         end;
     end;
 
@@ -538,9 +552,9 @@ begin
       WizardForm.ComponentsList.Checked[11] := False;
       WizardForm.ComponentsList.ItemEnabled[11] := False;
       // ide loader
-      WizardForm.ComponentsList.Checked[14] := False;
-      // fxt loader
       WizardForm.ComponentsList.Checked[15] := False;
+      // fxt loader
+      WizardForm.ComponentsList.Checked[16] := False;
     end;
 
     // ImGuiRedux is bugged on re3/DE
@@ -557,7 +571,7 @@ begin
     // MSS lib is an ASI loader
     if FileExists(ExpandConstant('{app}\Mss32.dll')) then
     begin
-       WizardForm.ComponentsList.Checked[18] := False;
+       WizardForm.ComponentsList.Checked[19] := False;
     end;
    end;
 end;
@@ -592,7 +606,7 @@ begin
 
   if (CurPageID = wpFinished) then
   begin
-    SetIniString('Host', 'EnableSelfHost', GetSelfHost, ExpandConstant('{app}\CLEO\.config\cleo.ini'));
+    SetIniString('Host', 'EnableSelfHost', GetSelfHost, ExpandConstant('{app}\cleo\.config\cleo.ini'));
   end;
 
   if CurPageID = wpReady then 

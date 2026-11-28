@@ -1,12 +1,13 @@
 # Configuration
 
-CLEO Redux exposes some of the configurable settings in the file `CLEO\.config\cleo.ini`.
+CLEO Redux exposes some of the configurable settings in the file `cleo\.config\cleo.ini`.
 
 ## General
 
 - `AllowCs` - when set to `1` CLEO loads and executes `*.cs` files located in the [CLEO directory](./cleo-directory.md). Enabled by default.
+- `DelegateCs` - when set to `1` CLEO Redux hands compiled scripts (`*.cs`) over to [another instance of CLEO](./relation-to-cleo-library.md#running-cleo-redux-as-an-addon-to-cleo-library) and disables its own CS support. Useful when the other instance can not be detected automatically, e.g. when it is served from modloader. Takes precedence over `AllowCs`. Disabled by default.
 - `AllowJs` - when set to `1` CLEO loads and executes `*.js` and `*.ts` files located in the [CLEO directory](./cleo-directory.md). Enabled by default.
-- `AllowFxt` - when set to `1` CLEO loads and [uses](./using-fxt.md) `*.fxt` files located in the CLEO\CLEO_TEXT directory. Enabled by default.
+- `AllowFxt` - when set to `1` CLEO loads and [uses](./using-fxt.md) `*.fxt` files located in the cleo\cleo_text directory. Enabled by default.
 - `LogOpcodes` - when set to `1` CLEO [logs](./log.md) all executed opcodes in custom scripts.
 - `PermissionLevel` - sets the [permission level](./permissions.md) for unsafe operations (see below). Default is `Lax`.
 - `LogDirectory` - specifies a custom directory for the [log file](./log.md).

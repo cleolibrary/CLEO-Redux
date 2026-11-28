@@ -1,7 +1,4 @@
 use ctor::*;
-#[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
-#[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
-extern crate cleo_redux_sdk;
 
 mod r#impl;
 

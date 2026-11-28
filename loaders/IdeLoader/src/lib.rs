@@ -1,10 +1,6 @@
 use ctor::*;
 use std::{fs::read_to_string, path::Path};
 
-#[cfg_attr(target_arch = "x86", link(name = "cleo_redux"))]
-#[cfg_attr(target_arch = "x86_64", link(name = "cleo_redux64"))]
-unsafe extern "C" {}
-
 #[ctor]
 fn init() {
     cleo_redux_sdk::log("IDE Loader 1.5");
